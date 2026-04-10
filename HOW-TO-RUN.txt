@@ -1,0 +1,53 @@
+Enthermal Configurator — How to Run
+====================================
+
+This app loads data from external JSON files via fetch(), so it
+must be served over HTTP. Opening the HTML file directly (file://)
+will not work.
+
+Quick Start
+-----------
+1. Open a terminal in this project folder
+2. Run:   python -m http.server
+3. Open:  http://localhost:8000/enthermal-configurator.html
+
+That's it. No dependencies, no install, no build step.
+
+Stopping the Server
+-------------------
+Press Ctrl+C in the terminal to stop the server.
+
+Alternative Servers
+-------------------
+Any static file server works. Examples:
+
+  Node.js:    npx serve .
+  PHP:        php -S localhost:8000
+  VS Code:    Install "Live Server" extension, right-click the HTML file
+
+What is localhost:8000?
+-----------------------
+"localhost" is a web address that points to your own computer.
+Nothing goes to the internet — it's all local.
+
+  localhost  = your machine (equivalent to IP address 127.0.0.1)
+  8000       = the port number (like a door number — each service
+               on your computer listens on a different port)
+
+So http://localhost:8000/enthermal-configurator.html means:
+  http://       use the web protocol
+  localhost     talk to my own computer
+  :8000         on port 8000
+  /enthermal-configurator.html   serve this file
+
+Why is this needed? Browsers block fetch() requests when you open
+an HTML file directly (file:// protocol) for security reasons.
+Running a local server serves files over HTTP, which allows the
+JSON data files to load normally.
+
+Notes
+-----
+- Python 3 is required for the default method above
+- The data/ folder must be in the same directory as the HTML file
+- All three JSON files must be present: enthermal.json,
+  enthermal-plus-inboard.json, enthermal-plus-outboard.json

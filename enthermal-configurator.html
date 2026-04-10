@@ -435,7 +435,7 @@ body{font-family:var(--font-body);background:var(--lw-gray-50);color:var(--lw-da
         </div>
       <div class="cs-info-bar" style="display:flex;border-top:1px solid var(--lw-gray-200);font-family:var(--font-display);padding-top:1px">
         <div style="flex:1;text-align:center;padding:8px 18px">
-          <div style="font-size:13px;font-weight:700;color:var(--lw-navy);letter-spacing:.3px"><span id="csECarbon">100</span> <span style="font-weight:500;color:var(--lw-dark)">kg CO₂e/m²</span></div>
+          <div style="font-size:13px;font-weight:700;color:var(--lw-navy);letter-spacing:.3px"><span id="csECarbon">38.6</span> <span style="font-weight:500;color:var(--lw-dark)">kg CO₂e/m²</span></div>
           <div style="font-size:11px;font-weight:500;color:var(--lw-gray-400);margin-top:2px">Embodied Carbon</div>
         </div>
         <div style="width:1px;background:var(--lw-gray-200);flex-shrink:0"></div>
@@ -505,6 +505,10 @@ function coatingForDropdown(rawCoating) {
 }
 function coatingForSummary(rawCoating) {
   return coatingBaseName(rawCoating);
+}
+function coatingInSubstrate(coatingSummary, substrateName) {
+  var clean=function(s){return s.replace(/[®™]/g,'').trim()};
+  return clean(substrateName).indexOf(clean(coatingSummary)) !== -1;
 }
 
 // Post-process Enthermal data: derive outerThickness, outerColorName
@@ -665,15 +669,28 @@ document.getElementById('csCoatingLine').style.display='block';
 inner.style.width=innerPx+'px';
 inner.style.background='linear-gradient(180deg,rgba(200,220,240,0.6) 0%,rgba(180,200,220,0.4) 100%)';
 inner.style.borderColor='rgba(180,200,220,0.5)';
-document.getElementById('csOuterDetail').textContent=coatingForSummary(match.outerLowE);
-document.getElementById('csOuterSub').textContent=match.outerColorName.replace(/[®™]/g,'')+' '+match.outerThickness;
+var outerCoatLabel=coatingForSummary(match.outerLowE);
+var outerSubLabel=match.outerColorName.replace(/[®™]/g,'')+' '+match.outerThickness;
+if(coatingInSubstrate(outerCoatLabel,outerSubLabel)){
+  document.getElementById('csOuterDetail').textContent=outerSubLabel;
+  document.getElementById('csOuterSub').textContent='';
+}else{
+  document.getElementById('csOuterDetail').textContent=outerCoatLabel;
+  document.getElementById('csOuterSub').textContent=outerSubLabel;
+}
 document.getElementById('csInnerDetail').textContent=match.innerLite;
 document.getElementById('csThicknessVal').textContent=match.totalThickness.toFixed(1)+' mm';
 // Position callouts: coating is at right edge of outer pane, vacuum is in the gap
 var coatingLeft=outerPx-3;var vacuumLeft=outerPx-1;
 document.getElementById('csCalloutCoating').style.left=coatingLeft+'px';
 document.getElementById('csCalloutVacuum').style.left=vacuumLeft+'px';
-document.getElementById('summaryText').innerHTML='<strong>'+coatingForSummary(match.outerLowE)+'</strong> on <strong>'+match.outerColorName.replace(/[®™]/g,'')+' '+match.outerThickness+'</strong> outboard and <strong>'+match.innerLite+'</strong> inboard.';
+var summaryCoat=coatingForSummary(match.outerLowE);
+var summarySub=match.outerColorName.replace(/[®™]/g,'')+' '+match.outerThickness;
+if(coatingInSubstrate(summaryCoat,summarySub)){
+  document.getElementById('summaryText').innerHTML='<strong>'+summarySub+'</strong> outboard and <strong>'+match.innerLite+'</strong> inboard.';
+}else{
+  document.getElementById('summaryText').innerHTML='<strong>'+summaryCoat+'</strong> on <strong>'+summarySub+'</strong> outboard and <strong>'+match.innerLite+'</strong> inboard.';
+}
 updateColor(match);requestAnimationFrame(centerCrossSection)}
 function updateColor(match){if(!match)match=findMatch();if(!match)return;
 var L=showInterior?match.intL:match.extL,a=showInterior?match.intA:match.extA,b=showInterior?match.intB:match.extB;
@@ -896,10 +913,10 @@ function findPlusMatch(){
     filtered=filtered.filter(function(d){
       if(isOutboard){
         // VIG = outerLite + middleLite
-        return parseThickness(d.outerLite)===(parts[0]+'mm')&&(parseThickness(d.middleLite)===(parts[1]+'mm')||(!parseThickness(d.middleLite)&&d.middleLite===parts[1]));
+        return parseThickness(d.outerLite)===(parts[0]+'mm')&&parseThickness(d.middleLite)===(parts[1]+'mm');
       }else{
         // VIG = middleLite + innerLite
-        return (parseThickness(d.middleLite)===(parts[0]+'mm')||d.middleLite===parts[0])&&(parseThickness(d.innerLite)===(parts[1]+'mm')||d.innerLite===parts[1]);
+        return parseThickness(d.middleLite)===(parts[0]+'mm')&&parseThickness(d.innerLite)===(parts[1]+'mm');
       }
     });
   }
@@ -938,8 +955,14 @@ function updatePlusResults(surfaceOnly){
     document.getElementById('csPlusMonoS2').style.opacity='0';
     document.getElementById('csPlusMonoS5').style.opacity='1';
     // Cross-section info labels: left=Enthermal, right=Inboard glass
-    document.getElementById('csPlusOuterDetail').textContent=coatingForSummary(match.outerLowE);
-    document.getElementById('csPlusOuterCoating').textContent=match.outerLite;
+    var plusOutCoat=coatingForSummary(match.outerLowE);
+    if(coatingInSubstrate(plusOutCoat,match.outerLite)){
+      document.getElementById('csPlusOuterDetail').textContent=match.outerLite;
+      document.getElementById('csPlusOuterCoating').textContent='';
+    }else{
+      document.getElementById('csPlusOuterDetail').textContent=plusOutCoat;
+      document.getElementById('csPlusOuterCoating').textContent=match.outerLite;
+    }
     document.getElementById('csPlusVigCoatingLabel').textContent=coatingForSummary(vigCoatRaw);
     document.getElementById('csPlusRightCoating').style.display='';
     document.getElementById('csPlusRightCoating').textContent=match.innerLite;
@@ -950,8 +973,14 @@ function updatePlusResults(surfaceOnly){
     document.getElementById('csPlusCoatingS4').style.opacity=isS4?'1':'0';
     document.getElementById('csPlusCoatingS5').style.opacity=isS4?'0':'1';
     // Cross-section info labels
-    document.getElementById('csPlusOuterDetail').textContent=coatingForSummary(match.outerLowE);
-    document.getElementById('csPlusOuterCoating').textContent=match.outerLite;
+    var plusInCoat=coatingForSummary(match.outerLowE);
+    if(coatingInSubstrate(plusInCoat,match.outerLite)){
+      document.getElementById('csPlusOuterDetail').textContent=match.outerLite;
+      document.getElementById('csPlusOuterCoating').textContent='';
+    }else{
+      document.getElementById('csPlusOuterDetail').textContent=plusInCoat;
+      document.getElementById('csPlusOuterCoating').textContent=match.outerLite;
+    }
     document.getElementById('csPlusVigCoatingLabel').textContent=coatingForSummary(vigCoatRaw);
     document.getElementById('csPlusRightCoating').style.display='';
     document.getElementById('csPlusRightCoating').textContent=match.innerLite;

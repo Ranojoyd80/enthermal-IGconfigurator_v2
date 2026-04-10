@@ -31,26 +31,49 @@ def parse_float(val):
     return float(val)
 
 
-def normalize_string(val):
-    """Normalize lite and coating name strings.
+def normalize_coating(val):
+    """Normalize coating name strings (collapse double spaces)."""
+    import re
+    return re.sub(r'  +', ' ', val)
 
-    Fixes two issues from the IGDB source data:
-    1. Collapse double spaces to single (e.g. "Optigray®  6mm" -> "Optigray® 6mm")
-    2. Normalize clear glass to "Xmm Clear" format:
-       - "4 mm Clear" -> "4mm Clear"
-       - "Clear  4mm" -> "4mm Clear"
+
+def normalize_lite_name(raw_name, nominal_mm=None):
+    """Normalize a lite name to standard "Name Xmm" format.
+
+    Handles all known CSV variants in one place:
+      "4mm Clear"               -> "Clear 4mm"       (flip leading thickness)
+      "4 mm Clear"              -> "Clear 4mm"        (fix spacing + flip)
+      "Clear Float Glass"       -> "Clear 4mm"        (generic, thickness from Comment)
+      "Float Glass"             -> "Clear 4mm"        (generic, thickness from Comment)
+      "Float Glass - 4mm"       -> "Clear 4mm"        (generic with thickness)
+      "Clear Float Glass - 4mm" -> "Clear 4mm"        (generic with thickness)
+      "Optigray®  6mm"          -> "Optigray® 6mm"    (collapse double spaces)
+      "SGG ECLAZ II 4mm"        -> "SGG ECLAZ II 4mm" (already correct)
     """
     import re
+    val = raw_name.strip()
     # Collapse double spaces
     val = re.sub(r'  +', ' ', val)
-    # "Clear 4mm" (reversed order) -> "4mm Clear"
-    m = re.match(r'^Clear\s+(\d+mm)$', val)
+
+    # Generic clear glass without thickness — use nominal_mm from Comment
+    if val in ('Clear Float Glass', 'Float Glass') and nominal_mm is not None:
+        return f'Clear {nominal_mm}mm'
+
+    # Generic clear glass with thickness: "Float Glass - 4mm", "Clear Float Glass - 4mm"
+    m = re.match(r'^(?:Clear )?Float Glass\s*-\s*(\d+mm)$', val)
     if m:
-        return m.group(1) + ' Clear'
-    # "4 mm Clear" (space before mm) -> "4mm Clear"
-    m = re.match(r'^(\d+)\s+mm\s+Clear$', val)
+        return f'Clear {m.group(1)}'
+
+    # Leading thickness with space before mm: "4 mm Clear" -> "Clear 4mm"
+    m = re.match(r'^(\d+)\s+mm\s+(.+)$', val)
     if m:
-        return m.group(1) + 'mm Clear'
+        return f'{m.group(2)} {m.group(1)}mm'
+
+    # Leading thickness: "4mm Clear" -> "Clear 4mm"
+    m = re.match(r'^(\d+mm)\s+(.+)$', val)
+    if m:
+        return f'{m.group(2)} {m.group(1)}'
+
     return val
 
 
@@ -82,13 +105,6 @@ def parse_lite_thicknesses_from_comment(comment):
     return thicknesses
 
 
-def fix_clear_float_glass(lite_name, nominal_mm):
-    """Replace 'Clear Float Glass' with a name that includes the nominal thickness."""
-    if lite_name == 'Clear Float Glass' and nominal_mm is not None:
-        return f'Clear Float Glass - {nominal_mm}mm'
-    return lite_name
-
-
 def convert_enthermal(csv_path):
     """Convert Enthermal CSV to JSON array."""
     rows = []
@@ -99,12 +115,10 @@ def convert_enthermal(csv_path):
             # Gives [outer_mm, inner_mm]
             thicknesses = parse_lite_thicknesses_from_comment(r['Comment'])
             inner_mm = thicknesses[1] if len(thicknesses) > 1 else None
-            inner_lite = normalize_string(r['Inner Lite (Name_Thickness mm)'].strip())
-            inner_lite = fix_clear_float_glass(inner_lite, inner_mm)
             rows.append({
-                'outerLite': normalize_string(r['Outer Lite (Name_Thickness mm)'].strip()),
-                'outerLowE': normalize_string(r['Outer Lite Low-E'].strip()),
-                'innerLite': inner_lite,
+                'outerLite': normalize_lite_name(r['Outer Lite (Name_Thickness mm)']),
+                'outerLowE': normalize_coating(r['Outer Lite Low-E'].strip()),
+                'innerLite': normalize_lite_name(r['Inner Lite (Name_Thickness mm)'], inner_mm),
                 'totalThickness': parse_float(r['Total Thickness (mm)']),
                 'uval': parse_float(r['U-value NFRC (W/m²K)']),
                 'uvalIP': parse_float(r['U-value NFRC (BTU/hrftF)']),
@@ -139,19 +153,13 @@ def convert_plus(csv_path):
             middle_mm = thicknesses[1] if len(thicknesses) > 1 else None
             inner_mm = thicknesses[2] if len(thicknesses) > 2 else None
 
-            outer_lite = fix_clear_float_glass(
-                normalize_string(r['Outer Lite (Name_Thickness mm)'].strip()), outer_mm)
-            middle_lite = fix_clear_float_glass(
-                normalize_string(r['Middle Lite (Name_Thickness mm)'].strip()), middle_mm)
-            inner_lite = fix_clear_float_glass(
-                normalize_string(r['Inner Lite (Name_Thickness mm)'].strip()), inner_mm)
             rows.append({
-                'outerLite': outer_lite,
-                'outerLowE': normalize_string(r['Outer Lite Low-E'].strip()),
-                'middleLite': middle_lite,
-                'middleLowE': normalize_string(r['Middle Lite Low-E'].strip()),
-                'innerLite': inner_lite,
-                'innerLowE': normalize_string(r['Inner Lite Low-E'].strip()),
+                'outerLite': normalize_lite_name(r['Outer Lite (Name_Thickness mm)'], outer_mm),
+                'outerLowE': normalize_coating(r['Outer Lite Low-E'].strip()),
+                'middleLite': normalize_lite_name(r['Middle Lite (Name_Thickness mm)'], middle_mm),
+                'middleLowE': normalize_coating(r['Middle Lite Low-E'].strip()),
+                'innerLite': normalize_lite_name(r['Inner Lite (Name_Thickness mm)'], inner_mm),
+                'innerLowE': normalize_coating(r['Inner Lite Low-E'].strip()),
                 'gasFill': r['Gas Fill'].strip(),
                 'totalThickness': parse_float(r['Total Thickness (mm)']),
                 'uval': parse_float(r['U-value NFRC (W/m²K)']),
