@@ -1,4 +1,4 @@
-# Enthermal™ Configurator — UI Element Reference Guide — REV6 (V40)
+# Enthermal™ Configurator — UI Element Reference Guide — REV7
 
 ---
 
@@ -46,16 +46,20 @@
 | Inboard Label | "Inboard" text left of placement toggle | `#posLabelInboard` |
 | Outboard Label | "Outboard" text right of placement toggle | `#posLabelOutboard` |
 | Glass Section Label | Dynamic label ("Outboard" or "Inboard" based on placement) | `#plusGlassLabel` |
-| Outer Thickness Radios | 4mm / 5mm / 6mm (only 4mm enabled) | `input[name='plusOuterThickness']` |
-| Outer Low-E Coating | Outer coating dropdown (S2 surface) | `#plusOuterCoating` |
+| Outer Thickness Radios | 4mm / 5mm / 6mm (availability depends on data; some coatings restrict to 6mm only) | `input[name='plusOuterThickness']`, IDs: `plusOuterT4`, `plusOuterT5`, `plusOuterT6` |
+| Outer Low-E Coating | Outer coating dropdown (S2 surface). Values are bare shortcodes (e.g., `"C366"`) | `#plusOuterCoating` |
 | Gap Fill Toggle | 90% Argon / 100% Air slider toggle | `#gapToggle`, `#gapToggleInput` |
+| Argon Label | "Argon" text left of gas toggle | `#gapLabelArgon` |
+| Air Label | "Air" text right of gas toggle | `#gapLabelAir` |
 | Enthermal Section Label | "Enthermal" section header | `.config-section-label` |
-| VIG Thickness Dropdown | VIG glass thickness (4/4, 5/4, 5/5, 6/5 mm) | `#plusVigThickness` |
+| VIG Thickness Dropdown | VIG glass thickness: 4/4, 5/4, 5/5, 6/5, 6/6 mm | `#plusVigThickness` |
 | VIG Low-E Coating | Enthermal VIG coating dropdown | `#plusVigCoating` |
-| Coating Surface Toggle | S4 (Middle) / S5 (Inboard) slider toggle | `#srfToggle`, `#srfToggleInput` |
+| Coating Surface Toggle | S4 (Middle) / S5 (Inboard) slider toggle. Disabled and forced to S5 in Outboard mode. | `#srfToggle`, `#srfToggleInput` |
 | S4 Label | "Middle (S4)" text left of toggle | `#srfLabelS4` |
 | S5 Label | "Inboard (S5)" text right of toggle | `#srfLabelS5` |
 | Toggle Thumb | Teal circular sliding indicator | `#srfThumb` |
+| Coating Surface Field | Container for S4/S5 toggle — hidden in Outboard mode | `#plusCoatingSurfaceField` |
+| Hidden Radios | Hidden radio inputs synced by the surface toggle | `#plusSrf4` (S4), `#plusSrf5` (S5), `name='plusCoatingSurface'` |
 
 ---
 
@@ -73,13 +77,16 @@
 ### Summary Text Formats
 
 **Enthermal™:**
-`[coating] on [color] [thickness] outboard and Clear [thickness] inboard.`
-
-**Enthermal Plus™ — Outboard:**
-`[vigThick] mm Enthermal Outboard with [vigCoating] (S2) and [outerCoating] (S5)`
+`<strong>[coating display]</strong> on <strong>[outerMM]mm</strong> outboard and <strong>Clear [innerMM]mm</strong> inboard.`
+Example: **LoE³ 366** on **6mm** outboard and **Clear 6mm** inboard.
 
 **Enthermal Plus™ — Inboard:**
-`[vigThick] mm Enthermal Inboard with [outerCoating] (S2) and [vigCoating] (S4/S5)`
+`<strong>[S2 display]</strong> (S2) on <strong>[monoMM]mm</strong> with <strong>[vigCombo] mm</strong> Enthermal <strong>[secondCoating]</strong> ([surface]) inboard`
+Example: **LoE³ 366** (S2) on **4mm** with **4/4 mm** Enthermal **LoE³ 366** (S4) inboard
+
+**Enthermal Plus™ — Outboard:**
+`<strong>[vigCombo] mm</strong> Enthermal <strong>[S2 display]</strong> (S2) outboard with <strong>[secondCoating]</strong> (S5) on <strong>[monoMM]mm</strong>`
+Example: **5/5 mm** Enthermal **LoE³ 366** (S2) outboard with **LoE³ 366** (S5) on **4mm**
 
 ---
 
@@ -198,12 +205,34 @@
 
 ## CEN Mode Behavior
 
-When toggled to CEN:
-- U-Factor value shows "—" (metric remains visible, value blanked)
+The CEN/NFRC toggle **auto-flips** based on the matched data row's `cen` field and is always **locked** (user cannot manually override). CEN-enabled coatings: LUMI (ECLAZ II), ZEN (ECLAZ ONE II), SKN183 (COOL-LITE SKN 183 II), XTR6129 (COOL-LITE XTREME 61-29 II).
+
+When CEN is active:
+- U-value (SI) displays `uvalCEN` instead of `uval`
+- U-Factor (IP) value shows "—" (metric remains visible, value blanked)
 - R-Value shows "—" (metric remains visible, value blanked)
-- SHGC label → "g-factor", unit → "Solar Factor"
-- OITC label → "Rw" (subscript), unit → "Weighted Sound Reduction"
-- Toggling back to NFRC restores all original values and labels
+- SHGC label → "g-Factor", value displays `gFactor`, unit → "Solar Factor"
+- OITC label → "R<sub>w</sub>", unit → "Weighted Sound Reduction", value uses `rw` from acoustic lookup
+- Selecting a non-CEN coating automatically flips back to NFRC and restores all original values and labels
+
+## Placement Toggle Behavior (Plus Tab)
+
+The Inboard/Outboard placement toggle controls the physical arrangement of the VIG relative to the IGU:
+
+**Inboard mode** (toggle unchecked — default):
+- Mono outboard glass → argon gap → VIG inboard
+- Config order: Glass section (order 1) → Gap (order 2) → Enthermal (order 3)
+- S4/S5 surface toggle enabled
+- Cascade: outerThickness → outerCoating → gas → vigThickness → vigCoating → surface
+
+**Outboard mode** (toggle checked):
+- VIG outboard → argon gap → mono inboard glass
+- Config order: Enthermal section (order 1) → Gap (order 2) → Glass section (order 3)
+- S4/S5 surface toggle hidden (always S5)
+- Cascade: vigThickness (root) → S2 coating + monoThickness → S5 coating
+- Glass section label changes to "Inboard"
+
+Switching modes triggers a reseed to defaults (C366 where available) and cross-section pane reorder.
 
 ---
 

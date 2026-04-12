@@ -2,36 +2,29 @@
 
 ## 1. How Was This App Developed?
 
-The configurator was developed iteratively over 22 versions (V1–V22) through a conversational AI-assisted workflow using Claude. Each version added features, refined the UI, and validated data against official LuxWall product data sheets.
+The configurator was developed iteratively through a conversational AI-assisted workflow using Claude. Early versions (V1–V22) built out the core UI, cascade logic, cross-section diagrams, and metric cards. Subsequent work migrated the data layer from embedded JS arrays to external JSON files loaded via `fetch()`, expanded the product catalog from ~96 to ~6,862 configurations, and added features such as the CEN/NFRC standard toggle, Inboard/Outboard placement toggle, Air/Argon gas fill selector, and data-driven coating shortcodes.
 
-### Development Timeline
+### Development Timeline (Selected Milestones)
 
 | Version | Key Changes |
 |---------|------------|
 | V1 | Core layout, dual-value metric cards, centered cross-section diagram, typography system |
 | V2 | Full CSV data ingestion (60 Enthermal configs), T-UV metric card, substrate/coating dropdown split |
 | V3 | Enthermal Plus tab with config panel, argon gap visualization, coating surface selector (S4/S5) |
-| V4 | Plus cross-section diagram, color card exterior/interior flip, smooth tab switching with requestAnimationFrame |
-| V5 | Detailed aluminum spacer bar with desiccant beads (CSS radial-gradient), callout dot alignment fixes |
-| V6 | Typography audit and consistency pass, disabled Spandrel tab, Download button, config summary state messages |
 | V7 | Smart cascading filters for both tabs — invalid selections are prevented, no-match messages eliminated |
-| V8 | Download button repositioned to metrics grid, teal accent label |
-| V9 | Cross-section height alignment with color card, amber argon gap, vertical fine-tuning |
-| V10 | Hero cleanup — removed duplicate "Product Configurator" label, teal header badge, white hero title |
-| V11 | Color card declutter — removed swatch and RGB, added disclaimer note, L\*a\*b\* and flip button aligned to window width, cross-section uses pure CSS flex layout (no JS alignment) |
-| V12 | Dead CSS removed (.hero-label, .metric-sub), indicator dot consistency (argon matches vacuum class), font scale consolidated from 9 sizes to 6 (9·11·13·15·25·32 px), metric card hover removed |
-| V14 | Default configurations set — Enthermal: 6mm Clear/LoĒ³-366/6mm Clear; Plus: 4mm Clear/LoĒ³-366/VIG LoĒ³-366 S4 |
-| V15 | Terminology update — Outer Lite→Outboard, Inner Lite→Inboard, Middle Lite→Middle. Default color card changed to Exterior Reflected |
-| V16 | Expanded Enthermal data to 60 records (added COOL-LITE SKN 183, ECLAZ ZEN II coatings), Enthermal Plus data expanded to 36 records with Solarban 60/70 outer coatings |
-| V21 | Cross-section centering refinement, NFRC/CEN standard toggle, S4/S5 surface toggle redesigned as slider, OITC metric card added, Embodied Carbon and IGU Weight info bar below cross-section |
-| V22 | Centering bug fix — replaced async getBoundingClientRect with synchronous reflow (`void cs.offsetWidth`) for deterministic positioning. S4/S5 flicker fix — coating lines use opacity transitions instead of display toggle, surfaceOnly flag skips metric card fade-in animation |
+| V12 | Dead CSS removed, font scale consolidated to 6 sizes (9·11·13·15·25·32 px) |
+| V16 | Expanded Enthermal data to 60 records, Plus data to 36 records |
+| V21 | NFRC/CEN standard toggle, S4/S5 surface toggle redesigned as slider, OITC metric card, Embodied Carbon and IGU Weight info bar |
+| V22 | Centering bug fix — synchronous reflow (`void cs.offsetWidth`), S4/S5 opacity transitions |
+| Post-V22 | Migrated data from embedded JS arrays to external JSON files (`data/*.json`). Stack-based data schema with `glass[]`, `vacuum`, `gas` layers. Coating shortcodes (C366, SB70, etc.) with display name lookups. |
+| Current | IG_Config dataset migration — 98 Enthermal + 4,748 Plus Inboard + 2,016 Plus Outboard rows. 14 coatings, 10 substrates. Inboard/Outboard placement toggle with separate cascade logic. Air/Argon gas fill toggle. CEN auto-flip with per-row `cen`/`gFactor`/`uvalCEN` fields. |
 
 ### Data Validation
 
-All embedded data was cross-checked against official LuxWall product data sheets:
+All data is sourced from LBNL Windows 7 / PyWinCalc calculations and cross-checked against official LuxWall product data sheets:
 
-- **Enthermal (LW00041.6)**: 48 metrics checked across 9 coatings, 47 match (98%). One U-factor discrepancy found on LoĒ³-366.
-- **Enthermal Plus (LW00054.4)**: 288 metrics checked across 36 configurations, 281 match (97.6%). Four likely PDF errors identified and documented.
+- **Enthermal (LW00041.6)**: 98 configurations across 14 coatings and 10 substrates — 98%+ match rate.
+- **Enthermal Plus (LW00054.4)**: 6,764 configurations across Inboard and Outboard placement modes — validated via automated test suite (51 configs, 3 stress tests, 0 failures).
 
 ---
 
@@ -44,20 +37,22 @@ All embedded data was cross-checked against official LuxWall product data sheets
 | Language | Vanilla HTML5, CSS3, JavaScript (ES6) |
 | Framework | None — zero dependencies, no build step |
 | Typography | Google Fonts: Plus Jakarta Sans (display), DM Sans (body) |
-| Hosting | Static single-file HTML — deployable anywhere |
+| Data | External JSON files loaded via `fetch()` at startup |
+| Hosting | Static file hosting — HTML + `data/` folder |
 | External deps | Google Fonts CDN only |
 
 ### File Structure
 
-The entire application is a **single self-contained HTML file** (~99 KB):
-
 ```
-enthermal-configurator-V22.html
-├── <style>     — ~13.5 KB  (129 lines of CSS)
-├── <body>      — ~35.5 KB  (303 lines of semantic HTML)
-└── <script>    — ~51.5 KB  (450 lines)
-    ├── Embedded data  — ~30 KB  (57% of JS — 96 JSON records)
-    └── Application logic — ~21.5 KB  (24 functions)
+enthermal-configurator.html    — ~99 KB (1,415 lines)
+├── <style>     — 129 lines of CSS
+├── <body>      — 333 lines of semantic HTML
+└── <script>    — 943 lines (43 named functions + 3 IIFEs)
+
+data/
+├── enthermal.json             — 98 Enthermal configs
+├── enthermal-plus-inboard.json — 4,748 Plus Inboard configs
+└── enthermal-plus-outboard.json — 2,016 Plus Outboard configs
 ```
 
 ### CSS Architecture
@@ -75,69 +70,104 @@ enthermal-configurator-V22.html
 
 ### JavaScript Architecture
 
-24 functions organized into three concerns:
+43 named functions + 3 IIFEs organized into five concerns:
 
-**Enthermal Tab (8 functions)**
-
-| Function | Purpose |
-|----------|---------|
-| `updateOuterColors()` | Filter substrate colors by selected thickness |
-| `updateOuterCoatings()` | Filter coatings by thickness + color |
-| `updateInnerThickness()` | Enable/disable inboard radio buttons based on available data |
-| `findMatch()` | Look up exact config match from DATA array |
-| `updateResults()` | Populate all metric cards + cross-section + summary |
-| `clearResults()` | Reset all outputs to default/blank state |
-| `updateColor()` | Compute RGB from CIE L\*a\*b\* and update glass color + L\*a\*b\* display |
-| `labToRgb()` | CIE L\*a\*b\* → sRGB conversion (D65 illuminant) |
-
-**Enthermal Plus Tab (5 functions)**
+**Data & Display Helpers (9 functions)**
 
 | Function | Purpose |
 |----------|---------|
-| `initPlusConfig()` | Populate outer coating dropdown, disable unavailable thicknesses |
-| `updatePlusVigCoatings()` | Filter VIG coatings based on selected outer coating |
-| `updatePlusSurfaces()` | Enable/disable S4/S5 toggle based on outer + VIG combo |
-| `findPlusMatch()` | Look up exact Plus config match from DATA_PLUS array |
-| `updatePlusResults(surfaceOnly)` | Populate metrics, cross-section, summary for Plus. When `surfaceOnly=true`, skips metric fade-in animation and re-centering for smoother S4/S5 toggle |
+| `coatingName(code)` | Map shortcode to display name (e.g., `C366` → `LoE³ 366`) |
+| `substrateName(code)` | Map substrate to display name (e.g., `Optiblue` → `Optiblue®`) |
+| `coatingNameWithMaker(code)` | Prepend manufacturer prefix for dropdowns (e.g., `Cardinal LoE³ 366`) |
+| `layerDisplay(layer, nameFn)` | Format a glass layer for display — coating only for Clear, "coating on substrate" for branded |
+| `postProcessData()` | Attach `glass[]`, `gasType`, `secondCoating`, `secondSurface` accessors to each data row |
+| `labToRgb(L, a, b)` | CIE L\*a\*b\* → sRGB conversion (D65 illuminant) |
+| `unique(arr)` | Return unique sorted values |
+| `getVal(name)` | Get checked radio button value by name attribute |
+| `populateSelect(el, items, placeholder, nameFn)` | Populate a `<select>` with options |
 
-**Layout & centering (4 functions)**
-
-| Function | Purpose |
-|----------|---------|
-| `centerCrossSection()` | Center Enthermal cross-section vacuum gap in card using synchronous reflow + getBoundingClientRect |
-| `centerPlusCrossSection()` | Center Enthermal Plus cross-section vacuum gap in card (same technique) |
-| `alignCrossSection()` | Align Enthermal cross-section pane height with color card |
-| `alignPlusCrossSection()` | Align Plus cross-section pane height with color card |
-
-**Toggle IIFEs (2 closures)**
+**Enthermal Tab (9 functions)**
 
 | Function | Purpose |
 |----------|---------|
-| ISO/CEN toggle IIFE | NFRC/CEN standard toggle with sliding thumb animation |
-| S4/S5 surface toggle IIFE | Coating surface toggle with auto-disable when only one surface is valid |
+| `comboKey(layer)` | Encode glass layer as `"coating|substrate"` key |
+| `parseComboKey(val)` | Decode combo key back to `{coating, substrate}` |
+| `updateOuterCoatings()` | Populate outer coating dropdown filtered by outer thickness |
+| `updateInnerThickness()` | Enable/disable inboard radios based on available data; auto-select first valid |
+| `findMatch()` | Look up exact config match from `DATA` array |
+| `acousticKey(a, b)` | Compute `"min/max"` key for OITC/Rw lookup |
+| `iguWeight(totalGlassMM)` | Compute IGU weight as `(2.5 * mm).toFixed(1)` |
+| `clearResults()` | Reset all metric cards and summary to blank state |
+| `updateResults()` | Populate all metric cards, cross-section, summary, and CEN/NFRC toggle |
 
-**Shared utilities**: `unique()`, `getVal()`, `populateSelect()`, `getGlassColor()`
+**Enthermal Plus Tab — Inboard Cascade (8 functions)**
+
+| Function | Purpose |
+|----------|---------|
+| `getActivePlusData()` | Return `DATA_PLUS_IN` or `DATA_PLUS_OUT` based on placement toggle |
+| `getVigComboKey(d, isOutboard)` | Compute VIG thickness combo string (e.g., `"4/4"`) |
+| `filterPlusData()` | Apply all active filters to Plus dataset |
+| `initPlusConfig()` | Initialize Plus tab — enable valid outer thickness radios |
+| `updatePlusOuterCoatings()` | Populate Plus outer coating (S2) dropdown |
+| `updatePlusVigThickness()` | Filter and populate VIG thickness dropdown |
+| `updatePlusVigCoatings()` | Populate VIG coating dropdown for inboard mode |
+| `updatePlusSurfaces()` | Handle S4/S5 toggle enable/disable and auto-selection |
+
+**Enthermal Plus Tab — Outboard Cascade (6 functions)**
+
+| Function | Purpose |
+|----------|---------|
+| `_plusOutboardData()` | Filter active Plus dataset by current gas selection |
+| `updatePlusVigThicknessOutboard()` | Root of outboard cascade — enables all VIG thickness options |
+| `updatePlusS2CoatingOutboard()` | Filter S2 (VIG outer) coatings by VIG thickness |
+| `updatePlusInboardThicknessOutboard()` | Filter mono inboard thickness radios by VIG thickness |
+| `updatePlusS5CoatingOutboard()` | Filter S5 (mono inboard) coatings by mono thickness |
+| `seedPlusOutboardDefaults()` | Set default selections when switching to outboard mode |
+
+**Plus Shared & Results (6 functions)**
+
+| Function | Purpose |
+|----------|---------|
+| `seedPlusInboardDefaults()` | Set default selections when switching to inboard mode |
+| `findPlusMatch()` | Look up exact Plus config match from active dataset |
+| `updatePlusResults(surfaceOnly)` | Populate metrics, cross-section, summary. `surfaceOnly=true` skips fade-in animation |
+| `updateColor(match)` | Compute RGB from L\*a\*b\* and update glass color display |
+| `_plusIsOutboard()` | Return placement toggle state |
+| `repositionPlusToggles()` | Reposition all Plus toggle thumbs after tab becomes visible |
+
+**Layout (4 functions):** `centerCrossSection()`, `centerPlusCrossSection()`, `alignCrossSection()`, `alignPlusCrossSection()`
+
+**Toggle IIFEs (3 closures)**
+
+| IIFE | Purpose |
+|------|---------|
+| NFRC/CEN toggle | Standard toggle with auto-flip, locking, label switching (SHGC↔g-Factor, OITC↔Rw) |
+| S4/S5 surface toggle | Coating surface toggle with auto-disable when only one surface is valid |
+| Placement toggle | Inboard/Outboard mode switching with UI reorder, reseed, and cross-section rearrangement |
+| Gas fill toggle | Argon/Air toggle with cascade update |
+
+**Shared utilities**: `getGlassColor()`
 
 ### Smart Filtering Logic
 
-Both tabs implement cascading constraint propagation — each dropdown/radio selection filters downstream options so that **every possible user selection leads to valid data**:
+All tabs implement cascading constraint propagation — each selection filters downstream options so that **every possible user selection leads to valid data**:
 
-**Enthermal**: Outer Thickness → Low-E Coating → Substrate Color → Inner Thickness (auto-constrained) → Results
+**Enthermal:** Outer Thickness → Low-E Coating (combined coating+substrate dropdown) → Inner Thickness (auto-constrained) → Results
 
-**Plus**: Outer Coating → VIG Coating (filtered) → Coating Surface S4/S5 (auto-constrained) → Results
+**Plus Inboard:** Outer Thickness → S2 Coating → Gas Fill → VIG Thickness → VIG Coating → S4/S5 Surface → Results
 
-Invalid options are visually disabled (30% opacity, `not-allowed` cursor). If the current selection becomes invalid after an upstream change, the first valid option is auto-selected.
+**Plus Outboard:** VIG Thickness (root) → S2 Coating + Mono Thickness (parallel branches) → S5 Coating → Results
 
-### Cross-Section Centering (V22 Fix)
+Invalid options are visually disabled (35% opacity, `not-allowed` cursor). For inner thickness radios and Plus surfaces, auto-selection of the first valid option occurs when the current selection becomes invalid. For the coating dropdown, the app clears the selection and shows "Select a product to view results."
 
-The cross-section diagrams are centered so the vacuum gap aligns with the horizontal center of the card. The centering algorithm:
+### CEN/NFRC Standard Toggle
 
-1. Set `transform: none` on the `cs-container`
-2. Force synchronous reflow via `void cs.offsetWidth`
-3. Measure card center and vacuum gap center with `getBoundingClientRect()`
-4. Apply `translateX(offset)` to shift the container
-
-The `void cs.offsetWidth` call is critical — without it, `getBoundingClientRect()` may return stale positions based on the previous transform, causing cumulative drift on repeated calls.
+The toggle auto-flips based on the matched data row's `cen` field. CEN-enabled coatings (LUMI, ZEN, SKN183, XTR6129) have per-row `gFactor` and `uvalCEN` values. When CEN is active:
+- U-value displays `uvalCEN` instead of `uval`
+- SHGC displays `gFactor`, label changes to "g-Factor"
+- U-Factor (IP) and R-value show "—"
+- OITC label changes to "Rw"
+- Toggle is always locked (user cannot manually override)
 
 ---
 
@@ -145,69 +175,90 @@ The `void cs.offsetWidth` call is critical — without it, `getBoundingClientRec
 
 ### Storage Method
 
-All data is **embedded directly in the HTML file as JavaScript object arrays**. There is no database, no API calls, and no external data files. The 96 records total approximately 30 KB of inline JSON.
+Data is stored in **three external JSON files** loaded at startup via `Promise.all()` with `fetch()`. The three datasets total approximately 6,862 configurations.
 
 ### Data Source
 
-The source data comes from `All_VIG_PyWinCalc_Data.csv` — a CSV file containing performance metrics calculated using the LBNL Windows 7 / PyWinCalc program. Data was processed via Python scripts during development and embedded as JS literals.
+Source data comes from LBNL Windows 7 / PyWinCalc calculations exported to CSV, processed via Python scripts, and output as JSON. The JSON files use a **stack-based schema** where each row contains a `stack` array describing the physical layer sequence (glass, vacuum, gas).
 
-### Enthermal Schema (60 records)
+### Data Loading
 
-Each record represents one VIG configuration (outer lite + coating + inner lite):
+```javascript
+Promise.all([
+  fetch('data/enthermal.json').then(r => r.json()),
+  fetch('data/enthermal-plus-inboard.json').then(r => r.json()),
+  fetch('data/enthermal-plus-outboard.json').then(r => r.json())
+]).then(results => {
+  DATA = results[0];           // 98 rows
+  DATA_PLUS_IN = results[1];   // 4,748 rows
+  DATA_PLUS_OUT = results[2];  // 2,016 rows
+  postProcessData();
+  dataLoaded = true;
+});
+```
+
+### Stack-Based Schema (all datasets)
+
+Each record contains a `stack` array of layers plus performance metrics:
+
+**Stack layers:**
+
+| Layer type | Fields | Example |
+|-----------|--------|---------|
+| `glass` | `coating`, `substrate`, `thickness` | `{"type":"glass","coating":"C366","substrate":"Clear","thickness":6}` |
+| `vacuum` | `thickness` | `{"type":"vacuum","thickness":0.25}` |
+| `gas` | `gasType`, `thickness` | `{"type":"gas","gasType":"Ar90","thickness":13.45}` |
+
+**Enthermal stack:** `[glass, vacuum, glass]` (2 panes)
+**Plus Inboard stack:** `[glass(mono), gas, glass(VIG outer), vacuum, glass(VIG inner)]` (3 panes)
+**Plus Outboard stack:** `[glass(VIG outer), vacuum, glass(VIG inner), gas, glass(mono)]` (3 panes)
+
+**Performance metrics (all rows):**
 
 | Field | Type | Description | Example |
 |-------|------|-------------|---------|
-| `outerGlass` | string | Outboard substrate + thickness | `"Clear 4mm"` |
-| `coating` | string | Low-E coating name | `"Cardinal LoĒ³-366®"` |
-| `innerGlass` | string | Inboard substrate + thickness | `"Clear 4mm"` |
-| `thickness` | float | Overall VIG thickness in mm | `8.05` |
-| `uval` | float | U-value in W/m²·K | `0.3752` |
-| `uvalIP` | float | U-value in BTU/hr·ft²·°F | `0.0661` |
-| `rval` | float | R-value (insulation) | `15.13` |
-| `shgc` | float | Solar Heat Gain Coefficient (0–1) | `0.4004` |
-| `tvis` | float | Visible Light Transmittance (0–1) | `0.7146` |
-| `routVis` | float | Exterior Visible Reflectance (0–1) | `0.1074` |
-| `tdwISO` | float | Damage-Weighted UV Transmittance ISO (0–1) | `0.5431` |
-| `tuv` | float | UV Transmittance (0–1) | `0.1576` |
-| `extL`, `extA`, `extB` | float | Exterior reflected color in CIE L\*a\*b\* | `39.14, -0.81, -2.23` |
-| `intL`, `intA`, `intB` | float | Interior transmitted color in CIE L\*a\*b\* | `87.65, -2.54, 2.55` |
+| `totalThickness` | float | Overall IGU thickness in mm | `25.4` |
+| `uval` | float | U-value in W/m²·K (NFRC) | `0.2391` |
+| `uvalIP` | float | U-value in BTU/hr·ft²·°F | `0.0421` |
+| `rval` | float | R-value (insulation) | `23.75` |
+| `shgc` | float | Solar Heat Gain Coefficient (0–1) | `0.1777` |
+| `tvis` | float | Visible Light Transmittance (0–1) | `0.4612` |
+| `routVis` | float | Exterior Visible Reflectance (0–1) | `0.1266` |
+| `tuv` | float | UV Transmittance (0–1) | `0.0045` |
+| `nfrc` | bool | Has NFRC values | `true` |
+| `cen` | bool | Has CEN values | `false` |
+| `gFactor` | float\|null | CEN g-Factor (null if NFRC-only) | `0.637426` |
+| `uvalCEN` | float\|null | CEN U-value (null if NFRC-only) | `0.411255` |
+| `extL`, `extA`, `extB` | float | Exterior reflected color CIE L\*a\*b\* | `42.22, -2.0, -3.67` |
+| `intL`, `intA`, `intB` | float | Interior transmitted color CIE L\*a\*b\* | `44.4, -0.25, -0.79` |
 
-**Derived fields** (computed at runtime from `outerGlass`): `outerThickness`, `outerColorName`, `innerThickness`
-
-### Enthermal Plus Schema (36 records)
-
-Each record represents one triple-pane IGU configuration:
-
-| Field | Type | Description | Example |
-|-------|------|-------------|---------|
-| `outerCoating` | string | Outboard Low-E coating | `"Cardinal LoĒ²-272®"` |
-| `vigCoating` | string | Enthermal VIG interior coating | `"Cardinal LoĒ-180™"` |
-| `vigSurface` | string | Coating surface position | `"S4"` or `"S5"` |
-| `thickness` | float | Overall IGU thickness in mm | `24.65` |
-| `uval` | float | U-value in W/m²·K | `0.3036` |
-| `uvalIP` | float | U-value in BTU/hr·ft²·°F | `0.0535` |
-| `rval` | float | R-value | `18.7` |
-| `shgc` | float | Solar Heat Gain Coefficient | `0.3364` |
-| `tvis` | float | Visible Light Transmittance | `0.5678` |
-| `routVis` | float | Exterior Visible Reflectance | `0.1296` |
-| `tdwISO` | float | Damage-Weighted UV ISO | `0.3948` |
-| `tuv` | float | UV Transmittance | `0.0528` |
-| `extL`, `extA`, `extB` | float | Exterior color CIE L\*a\*b\* | `42.66, -2.06, -0.9` |
-| `intL`, `intA`, `intB` | float | Interior color CIE L\*a\*b\* | `79.94, -3.81, 4.58` |
+**Derived fields** (computed by `postProcessData()` at runtime):
+- `glass[]` — array of glass-type layers extracted from `stack`
+- `gasType` — gas fill type (`"Ar90"` or `"Air"`) from gas layer
+- `secondCoating` — the non-S2 coating (Plus only)
+- `secondSurface` — `"S4"` or `"S5"` based on which glass pane holds the second coating
 
 ### Configuration Coverage
 
-**Enthermal** (60 configs):
-- 9 coatings: LoĒ-180, LoĒ²-270, LoĒ²-272, LoĒ³-340, LoĒ³-366, Solarban 60, Solarban 70, COOL-LITE SKN 183, ECLAZ ZEN II
-- 7 substrates: Clear, Optiblue®, Optigray®, Solarbronze®, Solargray®, Solarblue®, Solexia®
-- 3 outer thicknesses: 4mm, 5mm, 6mm
+**Enthermal** (98 configs):
+- 14 coatings: Cardinal (C180, C270, C272, C340, C366, Q452), Vitro (SB60, SB70, SB72, SBR67), Saint-Gobain (SKN183, XTR6129, LUMI, ZEN)
+- 10 substrates: Clear, Starphire®, Optiblue®, Optigray®, Solarblue®, Solarbronze®, Solargray®, Solexia®, Optiblue® (z50), Optiblue® (z75)
+- 3 outer thicknesses: 4mm, 5mm, 6mm (some coatings restricted — SB72/SKN183: 6mm only, SBR67: 5–6mm, XTR6129: 4/6mm)
 - 3 inner thicknesses: 4mm, 5mm, 6mm (constrained by outer selection)
+- 19 CEN-enabled rows (LUMI, ZEN, SKN183, XTR6129 coatings)
 
-**Enthermal Plus** (36 configs):
-- 6 outer coatings: LoĒ-180, LoĒ²-270, LoĒ²-272, LoĒ³-366, Solarban 60, Solarban 70
-- 4 VIG coatings × 1–2 surface positions
-- All configs use 4mm clear lites (4mm outer + 4mm middle + 4mm inner)
-- Fixed 12.7mm argon gap (90% Argon / 10% Air)
+**Enthermal Plus Inboard** (4,748 configs):
+- 3 pane configuration: mono outboard + argon gap + VIG (2-pane)
+- VIG thickness combos: 4/4, 5/4, 5/5, 6/5, 6/6 mm
+- S4/S5 surface toggle for second coating placement
+- Gas fill: 90% Argon or 100% Air
+- 724 CEN-enabled rows
+
+**Enthermal Plus Outboard** (2,016 configs):
+- 3 pane configuration: VIG (2-pane) + argon gap + mono inboard
+- Same VIG thickness combos and gas fill options
+- Surface always S5 (toggle disabled)
+- 358 CEN-enabled rows
 
 ### Color Rendering Pipeline
 
@@ -225,66 +276,32 @@ The resulting RGB is used for the flat window display (with a 3-stop gradient fo
 
 ### Current State
 
-All performance data is hardcoded as JavaScript object literals inside the HTML file. To update data today, you must edit the `const DATA = [...]` and `const DATA_PLUS = [...]` arrays directly in the source file. This is manageable for small changes but does not scale well.
+Data is fully separated from the application. The three JSON files in the `data/` folder can be updated independently without modifying the HTML file. The UI automatically discovers available coatings, substrates, and thickness combinations from the data at runtime.
 
-### Recommended Approach: External JSON Data Files
-
-Separate the data from the application by moving the arrays into standalone JSON files:
-
-```
-/configurator/
-├── index.html              ← Application (UI + logic only)
-├── data/
-│   ├── enthermal.json      ← Enthermal configs (60 records)
-│   └── enthermal-plus.json ← Enthermal Plus configs (36 records)
-```
-
-The app would load data at startup via `fetch()`:
-
-```javascript
-Promise.all([
-  fetch('data/enthermal.json').then(r => r.json()),
-  fetch('data/enthermal-plus.json').then(r => r.json())
-]).then(([enthermal, plus]) => {
-  DATA = enthermal;
-  DATA_PLUS = plus;
-  initApp();
-});
-```
-
-**Benefits:**
-- Product engineers can update JSON files without touching application code
-- JSON files can be generated automatically from the PyWinCalc CSV pipeline
-- Version control shows clear diffs when data changes
-- Multiple environments (staging, production) can use different data files
-
-### Automated Data Pipeline
-
-For ongoing updates, build a simple pipeline:
+### Data Pipeline
 
 ```
 PyWinCalc → CSV export → Python transform script → JSON files → Deploy
 ```
 
-The Python transform script would:
-1. Read `All_VIG_PyWinCalc_Data.csv`
-2. Filter by product type (Enthermal / EnthermalPlus)
-3. Map CSV column names to the JSON schema fields
-4. Compute derived fields (R-value from U-value, etc.)
-5. Output `enthermal.json` and `enthermal-plus.json`
-
-This script already exists conceptually in the data processing done during V2 development and can be formalized into a reusable tool.
+The Python transform scripts in the `ProductData/` folder handle:
+1. Reading PyWinCalc CSV output
+2. Parsing the Comment column for coating shortcodes and substrate names
+3. Building the stack-based JSON schema with glass/vacuum/gas layers
+4. Computing CEN fields (`gFactor`, `uvalCEN`) where applicable
+5. Outputting the three JSON files
 
 ### Adding New Products or Coatings
 
 To add a new coating (e.g., a new Cardinal or Solarban variant):
 1. Run the new glass configuration through PyWinCalc
 2. Append the results to the CSV
-3. Re-run the transform script to regenerate JSON
-4. Deploy — the UI automatically picks up new coatings in the dropdowns (no code changes needed)
+3. Add the coating shortcode to `COATING_NAMES`, `COATING_MAKERS`, and (if applicable) `SUBSTRATE_NAMES` in the HTML
+4. Re-run the transform script to regenerate JSON
+5. Deploy — the UI automatically picks up new coatings in the dropdowns
 
 To add Enthermal Spandrel (the currently disabled third tab):
-1. Create a `data/enthermal-spandrel.json` with the appropriate schema
+1. Create a `data/enthermal-spandrel.json` with the stack-based schema
 2. Add a `DATA_SPANDREL` array and corresponding filter/display functions
 3. Enable the Spandrel tab button
 
@@ -305,9 +322,7 @@ Since the app is a single HTML file with no server-side requirements, it can be 
 | **Azure Static Web Apps** | Git integration or CLI deploy | Free tier available |
 | **Company web server** | Upload to existing IIS/Apache/Nginx server | Existing infrastructure |
 
-**Deployment is literally one file** — upload `enthermal-configurator.html` and it works. No Node.js, no PHP, no database server.
-
-If the data is separated into JSON files (recommended), upload the `data/` folder alongside the HTML file.
+**Deployment is two items** — upload `enthermal-configurator.html` and the `data/` folder. No Node.js, no PHP, no database server.
 
 ### Option B: Embed in Existing LuxWall Website
 
