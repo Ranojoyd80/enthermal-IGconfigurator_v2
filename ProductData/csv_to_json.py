@@ -1,5 +1,23 @@
 """
-Convert PyWinCalc CSV exports to JSON for the Enthermal Configurator.
+Convert IG_Config CSV exports to JSON for the Enthermal Configurator.
+
+Source of truth is the CSV's `Comment` column, which encodes the full glass
+stack in a structured, hand-normalized form:
+
+  Enthermal:      C180 4mm / Vacuum 0.25mm / Clear 4mm
+  Plus Inboard:   C180 4mm / Argon 13.45mm / C180 4mm / Vacuum 0.25mm / Clear 4mm
+  Plus Outboard:  C180 4mm / Vacuum 0.25mm / Clear 4mm / Argon 13.45mm / C180 4mm
+
+Each ` / `-delimited layer is one of:
+  <code> <substrate> <thickness>mm   — coated glass on branded substrate
+  <code> <thickness>mm               — coated glass on implied Clear substrate
+  <substrate> <thickness>mm          — uncoated glass lite
+  Vacuum <thickness>mm               — vacuum gap
+  Air|Argon <thickness>mm            — gas-filled gap
+
+The per-lite name columns and Low-E columns are ignored — they bring back the
+old naming mess (SGG prefixes, ®/™, variable thickness position). Everything
+the UI needs is in the stack.
 
 Outputs:
   data/enthermal.json
@@ -13,115 +31,151 @@ Usage:
 import csv
 import json
 import os
+import re
+import sys
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-OUTPUT_DIR = os.path.join(os.path.dirname(SCRIPT_DIR), 'data')
+REPO_ROOT = os.path.dirname(SCRIPT_DIR)
+OUTPUT_DIR = os.path.join(REPO_ROOT, 'data')
+HTML_PATH = os.path.join(REPO_ROOT, 'enthermal-configurator.html')
 
-# CSV file paths
-ENTHERMAL_CSV = os.path.join(SCRIPT_DIR, 'PyWinCalc_Enthermal_10-04-26.csv')
-PLUS_INBOARD_CSV = os.path.join(SCRIPT_DIR, 'PyWinCalc_EnthermalPlus_Inboard_10-04-26.csv')
-PLUS_OUTBOARD_CSV = os.path.join(SCRIPT_DIR, 'PyWinCalc_EnthermalPlus_Outboard_10-04-26.csv')
+ENTHERMAL_CSV = os.path.join(SCRIPT_DIR, 'IG_Config_Enthermal_Dataset_12-04-26.csv')
+PLUS_INBOARD_CSV = os.path.join(SCRIPT_DIR, 'IG_Config_EnthermalPlus_Inboard_Dataset_12-04-26.csv')
+PLUS_OUTBOARD_CSV = os.path.join(SCRIPT_DIR, 'IG_Config_EnthermalPlus_Outboard_Dataset_12-04-26.csv')
+
+# Rewrites applied to coating shortcodes during import. Keep the CSV's raw
+# codes on the left; the canonical set the app consumes is on the right.
+CSV_SHORTCODE_REWRITES = {
+    'SB67': 'SBR67',      # preserves the "R" in Vitro's Solarban R67
+    'XTREME': 'XTR6129',  # adds the 61-29 number to COOL-LITE XTREME
+}
+
+
+def load_html_lookups():
+    """Read COATING_NAMES and SUBSTRATE_NAMES from the HTML so the converter
+    validates against whatever the runtime actually knows about. Any CSV
+    shortcode missing from these tables is a new product that needs to be
+    added to the HTML before the JSON can be regenerated.
+    """
+    try:
+        with open(HTML_PATH, encoding='utf-8') as f:
+            content = f.read()
+    except FileNotFoundError:
+        raise ValueError(f'Cannot find HTML at {HTML_PATH} to validate product names')
+
+    def extract(name):
+        m = re.search(
+            r'const ' + name + r'\s*=\s*\{(.*?)\};',
+            content,
+            re.DOTALL,
+        )
+        if not m:
+            raise ValueError(f'Could not locate "const {name} = {{...}};" in {HTML_PATH}')
+        # Parse 'KEY': 'VALUE' pairs (JS string literals in single quotes).
+        return dict(re.findall(r"'([^']+)'\s*:\s*'([^']*)'", m.group(1)))
+
+    coatings = extract('COATING_NAMES')
+    substrates = extract('SUBSTRATE_NAMES')
+    if not coatings:
+        raise ValueError('COATING_NAMES lookup in HTML appears empty')
+    if not substrates:
+        raise ValueError('SUBSTRATE_NAMES lookup in HTML appears empty')
+    return set(coatings.keys()), set(substrates.keys())
+
+
+# Populated from HTML at main() time (not import time — keeps the module
+# side-effect-free for testing).
+KNOWN_COATINGS = set()
+KNOWN_SUBSTRATES = set()
+
+# Pre-parse segment rewrites for multi-token substrates that the whitespace
+# splitter can't handle. Applied to each segment before token counting.
+# Paired with CSV_SHORTCODE_REWRITES as the two "raw CSV -> canonical" passes.
+SEGMENT_REWRITES = [
+    (re.compile(r'Optiblue \(Solarban z(\d+)\)'), r'OptiblueZ\1'),
+]
+
+GAS_TOKENS = {'Vacuum', 'Air', 'Argon', 'Argon90'}
 
 
 def parse_float(val):
-    """Convert string to float, return None if empty."""
     val = val.strip()
-    if not val:
-        return None
-    return float(val)
+    return float(val) if val else None
 
 
-def normalize_coating(val):
-    """Normalize coating name strings (collapse double spaces)."""
-    import re
-    return re.sub(r'  +', ' ', val)
+def parse_layer(segment, row_index, csv_name):
+    """Parse one ` / `-delimited segment of a Comment into a layer dict."""
+    for pattern, replacement in SEGMENT_REWRITES:
+        segment = pattern.sub(replacement, segment)
+    tokens = segment.split()
+
+    if len(tokens) == 2:
+        name, thickness_str = tokens
+        thickness = float(thickness_str.rstrip('mm'))
+        if name == 'Vacuum':
+            return {'type': 'vacuum', 'thickness': thickness}
+        if name in GAS_TOKENS:
+            gas_type = 'Ar90' if name in ('Argon90', 'Argon') else name
+            return {'type': 'gas', 'gasType': gas_type, 'thickness': thickness}
+        # 2-token coated glass — coating on implied Clear substrate
+        code = CSV_SHORTCODE_REWRITES.get(name, name)
+        if code in KNOWN_COATINGS:
+            return {'type': 'glass', 'coating': code, 'substrate': 'Clear', 'thickness': int(thickness)}
+        # 2-token uncoated glass
+        if name not in KNOWN_SUBSTRATES:
+            raise ValueError(
+                f'{csv_name} row {row_index}: NEW SUBSTRATE "{name}" in segment "{segment}"\n'
+                f'  -> Add "{name}": "<display name>" to SUBSTRATE_NAMES in enthermal-configurator.html'
+            )
+        return {'type': 'glass', 'coating': None, 'substrate': name, 'thickness': int(thickness)}
+
+    if len(tokens) == 3:
+        code, substrate, thickness_str = tokens
+        raw_code = code
+        code = CSV_SHORTCODE_REWRITES.get(code, code)
+        if code not in KNOWN_COATINGS:
+            hint = f' (rewritten from CSV "{raw_code}")' if raw_code != code else ''
+            raise ValueError(
+                f'{csv_name} row {row_index}: NEW COATING "{code}"{hint} in segment "{segment}"\n'
+                f'  -> Add "{code}": "<display name>" to COATING_NAMES in enthermal-configurator.html'
+            )
+        if substrate not in KNOWN_SUBSTRATES:
+            raise ValueError(
+                f'{csv_name} row {row_index}: NEW SUBSTRATE "{substrate}" in segment "{segment}"\n'
+                f'  -> Add "{substrate}": "<display name>" to SUBSTRATE_NAMES in enthermal-configurator.html'
+            )
+        thickness = int(thickness_str.rstrip('mm'))
+        return {'type': 'glass', 'coating': code, 'substrate': substrate, 'thickness': thickness}
+
+    raise ValueError(
+        f'{csv_name} row {row_index}: unexpected layer token count ({len(tokens)}) in segment "{segment}"'
+    )
 
 
-def normalize_lite_name(raw_name, nominal_mm=None):
-    """Normalize a lite name to standard "Name Xmm" format.
-
-    Handles all known CSV variants in one place:
-      "4mm Clear"               -> "Clear 4mm"       (flip leading thickness)
-      "4 mm Clear"              -> "Clear 4mm"        (fix spacing + flip)
-      "Clear Float Glass"       -> "Clear 4mm"        (generic, thickness from Comment)
-      "Float Glass"             -> "Clear 4mm"        (generic, thickness from Comment)
-      "Float Glass - 4mm"       -> "Clear 4mm"        (generic with thickness)
-      "Clear Float Glass - 4mm" -> "Clear 4mm"        (generic with thickness)
-      "Optigray®  6mm"          -> "Optigray® 6mm"    (collapse double spaces)
-      "SGG ECLAZ II 4mm"        -> "SGG ECLAZ II 4mm" (already correct)
-    """
-    import re
-    val = raw_name.strip()
-    # Collapse double spaces
-    val = re.sub(r'  +', ' ', val)
-
-    # Generic clear glass without thickness — use nominal_mm from Comment
-    if val in ('Clear Float Glass', 'Float Glass') and nominal_mm is not None:
-        return f'Clear {nominal_mm}mm'
-
-    # Generic clear glass with thickness: "Float Glass - 4mm", "Clear Float Glass - 4mm"
-    m = re.match(r'^(?:Clear )?Float Glass\s*-\s*(\d+mm)$', val)
-    if m:
-        return f'Clear {m.group(1)}'
-
-    # Leading thickness with space before mm: "4 mm Clear" -> "Clear 4mm"
-    m = re.match(r'^(\d+)\s+mm\s+(.+)$', val)
-    if m:
-        return f'{m.group(2)} {m.group(1)}mm'
-
-    # Leading thickness: "4mm Clear" -> "Clear 4mm"
-    m = re.match(r'^(\d+mm)\s+(.+)$', val)
-    if m:
-        return f'{m.group(2)} {m.group(1)}'
-
-    return val
+def parse_stack(comment, row_index, csv_name):
+    segments = [s.strip() for s in comment.split(' / ')]
+    return [parse_layer(s, row_index, csv_name) for s in segments]
 
 
-def parse_lite_thicknesses_from_comment(comment):
-    """Extract nominal thickness for each lite from the Comment field.
-
-    Comment formats:
-      Enthermal:      "SB60 4mm / Vacuum 0.25mm / Clear 4mm"
-      Plus Inboard:   "C180 4mm / Argon 13.36mm / SB60 4mm / Vacuum 0.25mm / Clear 4mm"
-      Plus Outboard:  "SB60 4mm / Vacuum 0.25mm / Clear 4mm / Argon 13.36mm / C180 4mm"
-
-    Returns a list of lite thicknesses in order (excluding Vacuum and Argon segments).
-    """
-    import re
-    parts = [p.strip() for p in comment.split('/')]
-    thicknesses = []
-    for part in parts:
-        # Skip Vacuum, Argon, and Air gap segments
-        low = part.lower()
-        if low.startswith('vacuum') or low.startswith('argon') or low.startswith('air'):
-            continue
-        # Match nominal thickness: "SB60 4mm" -> 4, "Clear 6mm" -> 6
-        # Use word-boundary match to avoid picking up decimals like "13.45mm"
-        m = re.search(r'(?<!\.)(\d+)mm', part)
-        if m:
-            thicknesses.append(int(m.group(1)))
-        else:
-            thicknesses.append(None)
-    return thicknesses
+def _col(row, prefix):
+    """Find a column by prefix, tolerating encoding variants of ² in headers."""
+    for key in row:
+        if key.startswith(prefix):
+            return row[key]
+    return ''
 
 
-def convert_enthermal(csv_path):
-    """Convert Enthermal CSV to JSON array."""
+def convert(csv_path):
+    csv_name = os.path.basename(csv_path)
     rows = []
-    with open(csv_path, encoding='utf-8') as f:
+    with open(csv_path, encoding='latin-1') as f:
         reader = csv.DictReader(f)
-        for r in reader:
-            # Parse nominal thicknesses from Comment: "SB60 4mm / Vacuum 0.25mm / Clear 4mm"
-            # Gives [outer_mm, inner_mm]
-            thicknesses = parse_lite_thicknesses_from_comment(r['Comment'])
-            inner_mm = thicknesses[1] if len(thicknesses) > 1 else None
+        for i, r in enumerate(reader, start=2):  # start=2: header is row 1
             rows.append({
-                'outerLite': normalize_lite_name(r['Outer Lite (Name_Thickness mm)']),
-                'outerLowE': normalize_coating(r['Outer Lite Low-E'].strip()),
-                'innerLite': normalize_lite_name(r['Inner Lite (Name_Thickness mm)'], inner_mm),
+                'stack': parse_stack(r['Comment'], i, csv_name),
                 'totalThickness': parse_float(r['Total Thickness (mm)']),
-                'uval': parse_float(r['U-value NFRC (W/m²K)']),
-                'uvalIP': parse_float(r['U-value NFRC (BTU/hrftF)']),
+                'uval': parse_float(_col(r, 'U-value NFRC (W/')),
+                'uvalIP': parse_float(_col(r, 'U-value NFRC (BTU')),
                 'rval': parse_float(r['R-value NFRC']),
                 'shgc': parse_float(r['SHGC']),
                 'tvis': parse_float(r['Tvis (Visible Transmittance)']),
@@ -133,90 +187,50 @@ def convert_enthermal(csv_path):
                 'intL': parse_float(r['Interior Reflected Color L*']),
                 'intA': parse_float(r['Interior Reflected Color a*']),
                 'intB': parse_float(r['Interior Reflected Color b*']),
+                'nfrc': r.get('NFRC', '').strip() == 'Yes',
+                'cen': r.get('CEN', '').strip() == 'Yes',
+                'gFactor': parse_float(r.get('g-factor', '')),
+                'uvalCEN': parse_float(_col(r, 'U-value CEN')),
             })
     return rows
 
 
-def convert_plus(csv_path):
-    """Convert Enthermal Plus CSV to JSON array."""
-    rows = []
-    with open(csv_path, encoding='utf-8') as f:
-        reader = csv.DictReader(f)
-        for r in reader:
-            # Parse nominal thicknesses from Comment:
-            #   Inboard:  "C180 4mm / Argon 13.36mm / SB60 4mm / Vacuum 0.25mm / Clear 4mm"
-            #             -> [outer, middle, inner]
-            #   Outboard: "SB60 4mm / Vacuum 0.25mm / Clear 4mm / Argon 13.36mm / C180 4mm"
-            #             -> [outer, middle, inner]
-            thicknesses = parse_lite_thicknesses_from_comment(r['Comment'])
-            outer_mm = thicknesses[0] if len(thicknesses) > 0 else None
-            middle_mm = thicknesses[1] if len(thicknesses) > 1 else None
-            inner_mm = thicknesses[2] if len(thicknesses) > 2 else None
-
-            rows.append({
-                'outerLite': normalize_lite_name(r['Outer Lite (Name_Thickness mm)'], outer_mm),
-                'outerLowE': normalize_coating(r['Outer Lite Low-E'].strip()),
-                'middleLite': normalize_lite_name(r['Middle Lite (Name_Thickness mm)'], middle_mm),
-                'middleLowE': normalize_coating(r['Middle Lite Low-E'].strip()),
-                'innerLite': normalize_lite_name(r['Inner Lite (Name_Thickness mm)'], inner_mm),
-                'innerLowE': normalize_coating(r['Inner Lite Low-E'].strip()),
-                'gasFill': r['Gas Fill'].strip(),
-                'totalThickness': parse_float(r['Total Thickness (mm)']),
-                'uval': parse_float(r['U-value NFRC (W/m²K)']),
-                'uvalIP': parse_float(r['U-value NFRC (BTU/hrftF)']),
-                'rval': parse_float(r['R-value NFRC']),
-                'shgc': parse_float(r['SHGC']),
-                'tvis': parse_float(r['Tvis (Visible Transmittance)']),
-                'routVis': parse_float(r['Exterior Visible Reflectance']),
-                'tuv': parse_float(r['T-UV']),
-                'extL': parse_float(r['Exterior Reflected Color L*']),
-                'extA': parse_float(r['Exterior Reflected Color a*']),
-                'extB': parse_float(r['Exterior Reflected Color b*']),
-                'intL': parse_float(r['Interior Reflected Color L*']),
-                'intA': parse_float(r['Interior Reflected Color a*']),
-                'intB': parse_float(r['Interior Reflected Color b*']),
-            })
-    return rows
+def write_json(rows, name):
+    path = os.path.join(OUTPUT_DIR, name)
+    with open(path, 'w', encoding='utf-8') as f:
+        json.dump(rows, f, ensure_ascii=False, indent=2)
+    print(f'{name}: {len(rows)} rows')
 
 
 def main():
+    global KNOWN_COATINGS, KNOWN_SUBSTRATES
+    KNOWN_COATINGS, KNOWN_SUBSTRATES = load_html_lookups()
+    print(f'Validating against HTML lookup: {len(KNOWN_COATINGS)} coatings, {len(KNOWN_SUBSTRATES)} substrates')
+
     os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-    # Convert Enthermal
-    enthermal = convert_enthermal(ENTHERMAL_CSV)
-    out_path = os.path.join(OUTPUT_DIR, 'enthermal.json')
-    with open(out_path, 'w', encoding='utf-8') as f:
-        json.dump(enthermal, f, ensure_ascii=False, indent=2)
-    print(f'enthermal.json: {len(enthermal)} rows')
+    seen_coatings = set()
+    seen_substrates = set()
+    try:
+        for csv_path, out_name in (
+            (ENTHERMAL_CSV, 'enthermal.json'),
+            (PLUS_INBOARD_CSV, 'enthermal-plus-inboard.json'),
+            (PLUS_OUTBOARD_CSV, 'enthermal-plus-outboard.json'),
+        ):
+            rows = convert(csv_path)
+            write_json(rows, out_name)
+            for row in rows:
+                for layer in row['stack']:
+                    if layer['type'] == 'glass':
+                        if layer['coating']:
+                            seen_coatings.add(layer['coating'])
+                        seen_substrates.add(layer['substrate'])
+    except ValueError as e:
+        print(f'ERROR: {e}', file=sys.stderr)
+        sys.exit(1)
 
-    # Convert Plus Inboard
-    plus_inboard = convert_plus(PLUS_INBOARD_CSV)
-    out_path = os.path.join(OUTPUT_DIR, 'enthermal-plus-inboard.json')
-    with open(out_path, 'w', encoding='utf-8') as f:
-        json.dump(plus_inboard, f, ensure_ascii=False, indent=2)
-    print(f'enthermal-plus-inboard.json: {len(plus_inboard)} rows')
-
-    # Convert Plus Outboard
-    plus_outboard = convert_plus(PLUS_OUTBOARD_CSV)
-    out_path = os.path.join(OUTPUT_DIR, 'enthermal-plus-outboard.json')
-    with open(out_path, 'w', encoding='utf-8') as f:
-        json.dump(plus_outboard, f, ensure_ascii=False, indent=2)
-    print(f'enthermal-plus-outboard.json: {len(plus_outboard)} rows')
-
-    # Report all unique coatings found
-    all_coatings = set()
-    for row in enthermal:
-        all_coatings.add(row['outerLowE'])
-    for row in plus_inboard + plus_outboard:
-        all_coatings.add(row['outerLowE'])
-        if row['middleLowE']:
-            all_coatings.add(row['middleLowE'])
-        if row['innerLowE']:
-            all_coatings.add(row['innerLowE'])
-
-    print(f'\nUnique coatings found ({len(all_coatings)}):')
-    for c in sorted(all_coatings):
-        print(f'  {c}')
+    print(f'\nCoating shortcodes seen ({len(seen_coatings)}): {sorted(seen_coatings)}')
+    print(f'Substrates seen ({len(seen_substrates)}): {sorted(seen_substrates)}')
 
 
 if __name__ == '__main__':

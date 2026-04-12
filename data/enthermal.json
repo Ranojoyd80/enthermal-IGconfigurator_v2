@@ -1,8 +1,23 @@
 [
   {
-    "outerLite": "Clear 4mm",
-    "outerLowE": "LoE 180 S2",
-    "innerLite": "Clear 4mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "C180",
+        "substrate": "Clear",
+        "thickness": 4
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 4
+      }
+    ],
     "totalThickness": 8.05,
     "uval": 0.4778,
     "uvalIP": 0.0842,
@@ -16,12 +31,31 @@
     "extB": -5.55,
     "intL": 45.2,
     "intA": -0.5,
-    "intB": -5.95
+    "intB": -5.95,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 5mm",
-    "outerLowE": "LoE 180 S2",
-    "innerLite": "Clear 4mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "C180",
+        "substrate": "Clear",
+        "thickness": 5
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 4
+      }
+    ],
     "totalThickness": 8.85,
     "uval": 0.4777,
     "uvalIP": 0.0841,
@@ -35,12 +69,31 @@
     "extB": -5.5,
     "intL": 45.13,
     "intA": -0.53,
-    "intB": -5.97
+    "intB": -5.97,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 5mm",
-    "outerLowE": "LoE 180 S2",
-    "innerLite": "Clear 5mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "C180",
+        "substrate": "Clear",
+        "thickness": 5
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 5
+      }
+    ],
     "totalThickness": 9.65,
     "uval": 0.4775,
     "uvalIP": 0.0841,
@@ -54,12 +107,31 @@
     "extB": -5.53,
     "intL": 44.93,
     "intA": -0.63,
-    "intB": -5.94
+    "intB": -5.94,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 6mm",
-    "outerLowE": "LoE 180 S2",
-    "innerLite": "Clear 4mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "C180",
+        "substrate": "Clear",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 4
+      }
+    ],
     "totalThickness": 9.85,
     "uval": 0.4775,
     "uvalIP": 0.0841,
@@ -73,12 +145,31 @@
     "extB": -5.39,
     "intL": 45.05,
     "intA": -0.55,
-    "intB": -5.99
+    "intB": -5.99,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 6mm",
-    "outerLowE": "LoE 180 S2",
-    "innerLite": "Clear 5mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "C180",
+        "substrate": "Clear",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 5
+      }
+    ],
     "totalThickness": 10.65,
     "uval": 0.4773,
     "uvalIP": 0.0841,
@@ -92,12 +183,31 @@
     "extB": -5.42,
     "intL": 44.85,
     "intA": -0.66,
-    "intB": -5.96
+    "intB": -5.96,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 6mm",
-    "outerLowE": "LoE 180 S2",
-    "innerLite": "Clear 6mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "C180",
+        "substrate": "Clear",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 6
+      }
+    ],
     "totalThickness": 11.65,
     "uval": 0.477,
     "uvalIP": 0.084,
@@ -111,12 +221,31 @@
     "extB": -5.45,
     "intL": 44.58,
     "intA": -0.81,
-    "intB": -5.85
+    "intB": -5.85,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 4mm",
-    "outerLowE": "LoE² 270 S2",
-    "innerLite": "Clear 4mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "C270",
+        "substrate": "Clear",
+        "thickness": 4
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 4
+      }
+    ],
     "totalThickness": 8.05,
     "uval": 0.3503,
     "uvalIP": 0.0617,
@@ -130,12 +259,31 @@
     "extB": -2.04,
     "intL": 43.16,
     "intA": -7.54,
-    "intB": 2.45
+    "intB": 2.45,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 5mm",
-    "outerLowE": "LoE² 270 S2",
-    "innerLite": "Clear 4mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "C270",
+        "substrate": "Clear",
+        "thickness": 5
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 4
+      }
+    ],
     "totalThickness": 8.85,
     "uval": 0.3502,
     "uvalIP": 0.0617,
@@ -149,12 +297,31 @@
     "extB": -2.04,
     "intL": 43.07,
     "intA": -7.57,
-    "intB": 2.42
+    "intB": 2.42,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 5mm",
-    "outerLowE": "LoE² 270 S2",
-    "innerLite": "Clear 5mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "C270",
+        "substrate": "Clear",
+        "thickness": 5
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 5
+      }
+    ],
     "totalThickness": 9.65,
     "uval": 0.3501,
     "uvalIP": 0.0617,
@@ -168,12 +335,31 @@
     "extB": -2.06,
     "intL": 42.87,
     "intA": -7.66,
-    "intB": 2.43
+    "intB": 2.43,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 6mm",
-    "outerLowE": "LoE² 270 S2",
-    "innerLite": "Clear 4mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "C270",
+        "substrate": "Clear",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 4
+      }
+    ],
     "totalThickness": 9.85,
     "uval": 0.3501,
     "uvalIP": 0.0617,
@@ -187,12 +373,31 @@
     "extB": -1.94,
     "intL": 43.07,
     "intA": -7.63,
-    "intB": 2.45
+    "intB": 2.45,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 6mm",
-    "outerLowE": "LoE² 270 S2",
-    "innerLite": "Clear 5mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "C270",
+        "substrate": "Clear",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 5
+      }
+    ],
     "totalThickness": 10.65,
     "uval": 0.35,
     "uvalIP": 0.0616,
@@ -206,12 +411,31 @@
     "extB": -1.96,
     "intL": 42.87,
     "intA": -7.72,
-    "intB": 2.46
+    "intB": 2.46,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 6mm",
-    "outerLowE": "LoE² 270 S2",
-    "innerLite": "Clear 6mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "C270",
+        "substrate": "Clear",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 6
+      }
+    ],
     "totalThickness": 11.65,
     "uval": 0.3498,
     "uvalIP": 0.0616,
@@ -225,12 +449,31 @@
     "extB": -1.98,
     "intL": 42.62,
     "intA": -7.78,
-    "intB": 2.46
+    "intB": 2.46,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 4mm",
-    "outerLowE": "LoE² 272 S2",
-    "innerLite": "Clear 4mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "C272",
+        "substrate": "Clear",
+        "thickness": 4
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 4
+      }
+    ],
     "totalThickness": 8.05,
     "uval": 0.3779,
     "uvalIP": 0.0666,
@@ -244,12 +487,31 @@
     "extB": -2.23,
     "intL": 40.76,
     "intA": -2.06,
-    "intB": 0.72
+    "intB": 0.72,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 5mm",
-    "outerLowE": "LoE² 272 S2",
-    "innerLite": "Clear 4mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "C272",
+        "substrate": "Clear",
+        "thickness": 5
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 4
+      }
+    ],
     "totalThickness": 8.85,
     "uval": 0.3778,
     "uvalIP": 0.0665,
@@ -263,12 +525,31 @@
     "extB": -2.2,
     "intL": 40.69,
     "intA": -2.08,
-    "intB": 0.71
+    "intB": 0.71,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 5mm",
-    "outerLowE": "LoE² 272 S2",
-    "innerLite": "Clear 5mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "C272",
+        "substrate": "Clear",
+        "thickness": 5
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 5
+      }
+    ],
     "totalThickness": 9.65,
     "uval": 0.3777,
     "uvalIP": 0.0665,
@@ -282,12 +563,31 @@
     "extB": -2.22,
     "intL": 40.49,
     "intA": -2.16,
-    "intB": 0.72
+    "intB": 0.72,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 6mm",
-    "outerLowE": "LoE² 272 S2",
-    "innerLite": "Clear 4mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "C272",
+        "substrate": "Clear",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 4
+      }
+    ],
     "totalThickness": 9.85,
     "uval": 0.3777,
     "uvalIP": 0.0665,
@@ -301,12 +601,31 @@
     "extB": -2.14,
     "intL": 40.62,
     "intA": -2.11,
-    "intB": 0.71
+    "intB": 0.71,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 6mm",
-    "outerLowE": "LoE² 272 S2",
-    "innerLite": "Clear 5mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "C272",
+        "substrate": "Clear",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 5
+      }
+    ],
     "totalThickness": 10.65,
     "uval": 0.3775,
     "uvalIP": 0.0665,
@@ -320,12 +639,31 @@
     "extB": -2.16,
     "intL": 40.42,
     "intA": -2.19,
-    "intB": 0.72
+    "intB": 0.72,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 6mm",
-    "outerLowE": "LoE² 272 S2",
-    "innerLite": "Clear 6mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "C272",
+        "substrate": "Clear",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 6
+      }
+    ],
     "totalThickness": 11.65,
     "uval": 0.3774,
     "uvalIP": 0.0665,
@@ -339,12 +677,31 @@
     "extB": -2.18,
     "intL": 40.19,
     "intA": -2.28,
-    "intB": 0.73
+    "intB": 0.73,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 4mm",
-    "outerLowE": "LoE³ 340 S2",
-    "innerLite": "Clear 4mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "C340",
+        "substrate": "Clear",
+        "thickness": 4
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 4
+      }
+    ],
     "totalThickness": 8.05,
     "uval": 0.3228,
     "uvalIP": 0.0569,
@@ -358,12 +715,31 @@
     "extB": -12.84,
     "intL": 46.38,
     "intA": -1.92,
-    "intB": 0.96
+    "intB": 0.96,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 5mm",
-    "outerLowE": "LoE³ 340 S2",
-    "innerLite": "Clear 4mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "C340",
+        "substrate": "Clear",
+        "thickness": 5
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 4
+      }
+    ],
     "totalThickness": 8.85,
     "uval": 0.3227,
     "uvalIP": 0.0568,
@@ -377,12 +753,31 @@
     "extB": -12.74,
     "intL": 46.35,
     "intA": -1.91,
-    "intB": 0.97
+    "intB": 0.97,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 5mm",
-    "outerLowE": "LoE³ 340 S2",
-    "innerLite": "Clear 5mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "C340",
+        "substrate": "Clear",
+        "thickness": 5
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 5
+      }
+    ],
     "totalThickness": 9.65,
     "uval": 0.3226,
     "uvalIP": 0.0568,
@@ -396,12 +791,31 @@
     "extB": -12.74,
     "intL": 46.15,
     "intA": -2.05,
-    "intB": 1.0
+    "intB": 1.0,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 6mm",
-    "outerLowE": "LoE³ 340 S2",
-    "innerLite": "Clear 4mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "C340",
+        "substrate": "Clear",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 4
+      }
+    ],
     "totalThickness": 9.85,
     "uval": 0.3226,
     "uvalIP": 0.0568,
@@ -415,12 +829,31 @@
     "extB": -12.47,
     "intL": 46.36,
     "intA": -1.93,
-    "intB": 0.98
+    "intB": 0.98,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 6mm",
-    "outerLowE": "LoE³ 340 S2",
-    "innerLite": "Clear 5mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "C340",
+        "substrate": "Clear",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 5
+      }
+    ],
     "totalThickness": 10.65,
     "uval": 0.3226,
     "uvalIP": 0.0568,
@@ -434,12 +867,31 @@
     "extB": -12.47,
     "intL": 46.15,
     "intA": -2.07,
-    "intB": 1.02
+    "intB": 1.02,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 6mm",
-    "outerLowE": "LoE³ 340 S2",
-    "innerLite": "Clear 6mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "C340",
+        "substrate": "Clear",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 6
+      }
+    ],
     "totalThickness": 11.65,
     "uval": 0.3224,
     "uvalIP": 0.0568,
@@ -453,12 +905,31 @@
     "extB": -12.47,
     "intL": 45.87,
     "intA": -2.26,
-    "intB": 1.07
+    "intB": 1.07,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 4mm",
-    "outerLowE": "LoE³ 366 S2",
-    "innerLite": "Clear 4mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "C366",
+        "substrate": "Clear",
+        "thickness": 4
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 4
+      }
+    ],
     "totalThickness": 8.05,
     "uval": 0.2891,
     "uvalIP": 0.0509,
@@ -472,12 +943,31 @@
     "extB": -3.66,
     "intL": 41.43,
     "intA": 0.59,
-    "intB": -1.3
+    "intB": -1.3,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 5mm",
-    "outerLowE": "LoE³ 366 S2",
-    "innerLite": "Clear 4mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "C366",
+        "substrate": "Clear",
+        "thickness": 5
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 4
+      }
+    ],
     "totalThickness": 8.85,
     "uval": 0.2891,
     "uvalIP": 0.0509,
@@ -491,12 +981,31 @@
     "extB": -3.66,
     "intL": 41.35,
     "intA": 0.61,
-    "intB": -1.35
+    "intB": -1.35,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 5mm",
-    "outerLowE": "LoE³ 366 S2",
-    "innerLite": "Clear 5mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "C366",
+        "substrate": "Clear",
+        "thickness": 5
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 5
+      }
+    ],
     "totalThickness": 9.65,
     "uval": 0.289,
     "uvalIP": 0.0509,
@@ -510,12 +1019,31 @@
     "extB": -3.68,
     "intL": 41.15,
     "intA": 0.51,
-    "intB": -1.34
+    "intB": -1.34,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 6mm",
-    "outerLowE": "LoE³ 366 S2",
-    "innerLite": "Clear 4mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "C366",
+        "substrate": "Clear",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 4
+      }
+    ],
     "totalThickness": 9.85,
     "uval": 0.289,
     "uvalIP": 0.0509,
@@ -529,12 +1057,31 @@
     "extB": -3.53,
     "intL": 41.35,
     "intA": 0.55,
-    "intB": -1.32
+    "intB": -1.32,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 6mm",
-    "outerLowE": "LoE³ 366 S2",
-    "innerLite": "Clear 5mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "C366",
+        "substrate": "Clear",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 5
+      }
+    ],
     "totalThickness": 10.65,
     "uval": 0.2889,
     "uvalIP": 0.0509,
@@ -548,12 +1095,31 @@
     "extB": -3.56,
     "intL": 41.15,
     "intA": 0.46,
-    "intB": -1.31
+    "intB": -1.31,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 6mm",
-    "outerLowE": "LoE³ 366 S2",
-    "innerLite": "Clear 6mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "C366",
+        "substrate": "Clear",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 6
+      }
+    ],
     "totalThickness": 11.65,
     "uval": 0.2888,
     "uvalIP": 0.0509,
@@ -567,12 +1133,31 @@
     "extB": -3.58,
     "intL": 40.91,
     "intA": 0.32,
-    "intB": -1.27
+    "intB": -1.27,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 4mm",
-    "outerLowE": "Quad LoE 452 S2",
-    "innerLite": "Clear 4mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "Q452",
+        "substrate": "Clear",
+        "thickness": 4
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 4
+      }
+    ],
     "totalThickness": 8.05,
     "uval": 0.2811,
     "uvalIP": 0.0495,
@@ -586,12 +1171,31 @@
     "extB": -2.48,
     "intL": 45.86,
     "intA": -5.55,
-    "intB": 3.4
+    "intB": 3.4,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 5mm",
-    "outerLowE": "Quad LoE 452 S2",
-    "innerLite": "Clear 4mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "Q452",
+        "substrate": "Clear",
+        "thickness": 5
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 4
+      }
+    ],
     "totalThickness": 8.85,
     "uval": 0.2811,
     "uvalIP": 0.0495,
@@ -605,12 +1209,31 @@
     "extB": -2.52,
     "intL": 45.81,
     "intA": -5.54,
-    "intB": 3.38
+    "intB": 3.38,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 5mm",
-    "outerLowE": "Quad LoE 452 S2",
-    "innerLite": "Clear 5mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "Q452",
+        "substrate": "Clear",
+        "thickness": 5
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 5
+      }
+    ],
     "totalThickness": 9.65,
     "uval": 0.281,
     "uvalIP": 0.0495,
@@ -624,12 +1247,31 @@
     "extB": -2.54,
     "intL": 45.62,
     "intA": -5.63,
-    "intB": 3.4
+    "intB": 3.4,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 6mm",
-    "outerLowE": "Quad LoE 452 S2",
-    "innerLite": "Clear 4mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "Q452",
+        "substrate": "Clear",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 4
+      }
+    ],
     "totalThickness": 9.85,
     "uval": 0.281,
     "uvalIP": 0.0495,
@@ -643,12 +1285,31 @@
     "extB": -2.41,
     "intL": 45.81,
     "intA": -5.57,
-    "intB": 3.4
+    "intB": 3.4,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 6mm",
-    "outerLowE": "Quad LoE 452 S2",
-    "innerLite": "Clear 5mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "Q452",
+        "substrate": "Clear",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 5
+      }
+    ],
     "totalThickness": 10.65,
     "uval": 0.2809,
     "uvalIP": 0.0495,
@@ -662,12 +1323,31 @@
     "extB": -2.43,
     "intL": 45.61,
     "intA": -5.66,
-    "intB": 3.41
+    "intB": 3.41,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 6mm",
-    "outerLowE": "Quad LoE 452 S2",
-    "innerLite": "Clear 6mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "Q452",
+        "substrate": "Clear",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 6
+      }
+    ],
     "totalThickness": 11.65,
     "uval": 0.2808,
     "uvalIP": 0.0495,
@@ -681,12 +1361,31 @@
     "extB": -2.44,
     "intL": 45.34,
     "intA": -5.76,
-    "intB": 3.41
+    "intB": 3.41,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 4mm",
-    "outerLowE": "Solarban® 60 S2",
-    "innerLite": "Clear 4mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SB60",
+        "substrate": "Clear",
+        "thickness": 4
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 4
+      }
+    ],
     "totalThickness": 8.15,
     "uval": 0.3488,
     "uvalIP": 0.0614,
@@ -700,12 +1399,31 @@
     "extB": -2.48,
     "intL": 41.14,
     "intA": -2.84,
-    "intB": 1.81
+    "intB": 1.81,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 5mm",
-    "outerLowE": "Solarban® 60 S2",
-    "innerLite": "Clear 4mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SB60",
+        "substrate": "Clear",
+        "thickness": 5
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 4
+      }
+    ],
     "totalThickness": 8.95,
     "uval": 0.3487,
     "uvalIP": 0.0614,
@@ -719,12 +1437,31 @@
     "extB": -2.46,
     "intL": 41.1,
     "intA": -2.88,
-    "intB": 1.81
+    "intB": 1.81,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 5mm",
-    "outerLowE": "Solarban® 60 S2",
-    "innerLite": "Clear 5mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SB60",
+        "substrate": "Clear",
+        "thickness": 5
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 5
+      }
+    ],
     "totalThickness": 9.65,
     "uval": 0.3486,
     "uvalIP": 0.0614,
@@ -738,12 +1475,31 @@
     "extB": -2.46,
     "intL": 40.96,
     "intA": -2.99,
-    "intB": 1.83
+    "intB": 1.83,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 6mm",
-    "outerLowE": "Solarban® 60 S2",
-    "innerLite": "Clear 4mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SB60",
+        "substrate": "Clear",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 4
+      }
+    ],
     "totalThickness": 9.95,
     "uval": 0.3486,
     "uvalIP": 0.0614,
@@ -757,12 +1513,31 @@
     "extB": -2.43,
     "intL": 41.06,
     "intA": -2.93,
-    "intB": 1.81
+    "intB": 1.81,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 6mm",
-    "outerLowE": "Solarban® 60 S2",
-    "innerLite": "Clear 5mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SB60",
+        "substrate": "Clear",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 5
+      }
+    ],
     "totalThickness": 10.65,
     "uval": 0.3485,
     "uvalIP": 0.0614,
@@ -776,12 +1551,31 @@
     "extB": -2.43,
     "intL": 40.92,
     "intA": -3.04,
-    "intB": 1.82
+    "intB": 1.82,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 6mm",
-    "outerLowE": "Solarban® 60 S2",
-    "innerLite": "Clear 6mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SB60",
+        "substrate": "Clear",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 6
+      }
+    ],
     "totalThickness": 11.75,
     "uval": 0.3484,
     "uvalIP": 0.0614,
@@ -795,12 +1589,31 @@
     "extB": -2.36,
     "intL": 41.15,
     "intA": -3.23,
-    "intB": 1.8
+    "intB": 1.8,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Solarban® 70 glass 4mm",
-    "outerLowE": "Solarban® 70 S2",
-    "innerLite": "Clear 4mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SB70",
+        "substrate": "Clear",
+        "thickness": 4
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 4
+      }
+    ],
     "totalThickness": 8.15,
     "uval": 0.2808,
     "uvalIP": 0.0494,
@@ -814,12 +1627,31 @@
     "extB": -4.65,
     "intL": 44.26,
     "intA": -1.43,
-    "intB": -5.61
+    "intB": -5.61,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Solarban® 70 glass 5mm",
-    "outerLowE": "Solarban® 70 S2",
-    "innerLite": "Clear 4mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SB70",
+        "substrate": "Clear",
+        "thickness": 5
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 4
+      }
+    ],
     "totalThickness": 8.95,
     "uval": 0.2807,
     "uvalIP": 0.0494,
@@ -833,12 +1665,31 @@
     "extB": -4.61,
     "intL": 44.24,
     "intA": -1.46,
-    "intB": -5.62
+    "intB": -5.62,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Solarban® 70 glass 5mm",
-    "outerLowE": "Solarban® 70 S2",
-    "innerLite": "Clear 5mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SB70",
+        "substrate": "Clear",
+        "thickness": 5
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 5
+      }
+    ],
     "totalThickness": 9.65,
     "uval": 0.2806,
     "uvalIP": 0.0494,
@@ -852,12 +1703,31 @@
     "extB": -4.61,
     "intL": 44.07,
     "intA": -1.62,
-    "intB": -5.52
+    "intB": -5.52,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Solarban® 70 glass 6mm",
-    "outerLowE": "Solarban® 70 S2",
-    "innerLite": "Clear 4mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SB70",
+        "substrate": "Clear",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 4
+      }
+    ],
     "totalThickness": 9.95,
     "uval": 0.2806,
     "uvalIP": 0.0494,
@@ -871,12 +1741,31 @@
     "extB": -4.55,
     "intL": 44.21,
     "intA": -1.49,
-    "intB": -5.63
+    "intB": -5.63,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Solarban® 70 glass 6mm",
-    "outerLowE": "Solarban® 70 S2",
-    "innerLite": "Clear 5mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SB70",
+        "substrate": "Clear",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 5
+      }
+    ],
     "totalThickness": 10.65,
     "uval": 0.2806,
     "uvalIP": 0.0494,
@@ -890,12 +1779,31 @@
     "extB": -4.55,
     "intL": 44.04,
     "intA": -1.65,
-    "intB": -5.54
+    "intB": -5.54,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Solarban® 70 glass 6mm",
-    "outerLowE": "Solarban® 70 S2",
-    "innerLite": "Clear 6mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SB70",
+        "substrate": "Clear",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 6
+      }
+    ],
     "totalThickness": 11.75,
     "uval": 0.2805,
     "uvalIP": 0.0494,
@@ -909,12 +1817,31 @@
     "extB": -4.49,
     "intL": 44.21,
     "intA": -1.92,
-    "intB": -5.42
+    "intB": -5.42,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 5mm",
-    "outerLowE": "Solarban® R67 S2",
-    "innerLite": "Clear 4mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SBR67",
+        "substrate": "Clear",
+        "thickness": 5
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 4
+      }
+    ],
     "totalThickness": 8.95,
     "uval": 0.3503,
     "uvalIP": 0.0617,
@@ -928,12 +1855,31 @@
     "extB": -6.96,
     "intL": 47.16,
     "intA": -6.62,
-    "intB": -7.18
+    "intB": -7.18,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 5mm",
-    "outerLowE": "Solarban® R67 S2",
-    "innerLite": "Clear 5mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SBR67",
+        "substrate": "Clear",
+        "thickness": 5
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 5
+      }
+    ],
     "totalThickness": 9.65,
     "uval": 0.3502,
     "uvalIP": 0.0617,
@@ -947,12 +1893,31 @@
     "extB": -6.96,
     "intL": 46.98,
     "intA": -6.73,
-    "intB": -7.05
+    "intB": -7.05,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 6mm",
-    "outerLowE": "Solarban® R67 S2",
-    "innerLite": "Clear 4mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SBR67",
+        "substrate": "Clear",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 4
+      }
+    ],
     "totalThickness": 9.95,
     "uval": 0.3501,
     "uvalIP": 0.0617,
@@ -966,12 +1931,31 @@
     "extB": -6.9,
     "intL": 47.14,
     "intA": -6.64,
-    "intB": -7.18
+    "intB": -7.18,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 6mm",
-    "outerLowE": "Solarban® R67 S2",
-    "innerLite": "Clear 5mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SBR67",
+        "substrate": "Clear",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 5
+      }
+    ],
     "totalThickness": 10.65,
     "uval": 0.35,
     "uvalIP": 0.0616,
@@ -985,12 +1969,31 @@
     "extB": -6.89,
     "intL": 46.96,
     "intA": -6.75,
-    "intB": -7.05
+    "intB": -7.05,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Clear 6mm",
-    "outerLowE": "Solarban® R67 S2",
-    "innerLite": "Clear 6mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SBR67",
+        "substrate": "Clear",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 6
+      }
+    ],
     "totalThickness": 11.75,
     "uval": 0.3499,
     "uvalIP": 0.0616,
@@ -1004,12 +2007,335 @@
     "extB": -6.87,
     "intL": 47.09,
     "intA": -6.9,
-    "intB": -6.91
+    "intB": -6.91,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "SGG ECLAZ II 4mm",
-    "outerLowE": "ECLAZ II S2",
-    "innerLite": "SGG PLANICLEAR 4mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SB60",
+        "substrate": "Starphire",
+        "thickness": 5
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 4
+      }
+    ],
+    "totalThickness": 8.95,
+    "uval": 0.3487,
+    "uvalIP": 0.0614,
+    "rval": 16.28,
+    "shgc": 0.4028,
+    "tvis": 0.7276,
+    "routVis": 0.1115,
+    "tuv": 0.2121,
+    "extL": 39.83,
+    "extA": -0.68,
+    "extB": -2.58,
+    "intL": 41.27,
+    "intA": -2.64,
+    "intB": 1.82,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
+  },
+  {
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SB60",
+        "substrate": "Starphire",
+        "thickness": 5
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 5
+      }
+    ],
+    "totalThickness": 9.65,
+    "uval": 0.3486,
+    "uvalIP": 0.0614,
+    "rval": 16.29,
+    "shgc": 0.4029,
+    "tvis": 0.7227,
+    "routVis": 0.111,
+    "tuv": 0.2067,
+    "extL": 39.74,
+    "extA": -0.72,
+    "extB": -2.58,
+    "intL": 41.13,
+    "intA": -2.75,
+    "intB": 1.83,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
+  },
+  {
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SB60",
+        "substrate": "Starphire",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 4
+      }
+    ],
+    "totalThickness": 9.95,
+    "uval": 0.3486,
+    "uvalIP": 0.0614,
+    "rval": 16.29,
+    "shgc": 0.4018,
+    "tvis": 0.7267,
+    "routVis": 0.1114,
+    "tuv": 0.2115,
+    "extL": 39.8,
+    "extA": -0.7,
+    "extB": -2.58,
+    "intL": 41.27,
+    "intA": -2.65,
+    "intB": 1.81,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
+  },
+  {
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SB60",
+        "substrate": "Starphire",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 5
+      }
+    ],
+    "totalThickness": 10.65,
+    "uval": 0.3485,
+    "uvalIP": 0.0614,
+    "rval": 16.29,
+    "shgc": 0.4019,
+    "tvis": 0.7218,
+    "routVis": 0.1108,
+    "tuv": 0.2061,
+    "extL": 39.71,
+    "extA": -0.75,
+    "extB": -2.58,
+    "intL": 41.12,
+    "intA": -2.77,
+    "intB": 1.83,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
+  },
+  {
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SB60",
+        "substrate": "Starphire",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 6
+      }
+    ],
+    "totalThickness": 11.75,
+    "uval": 0.3484,
+    "uvalIP": 0.0614,
+    "rval": 16.3,
+    "shgc": 0.4013,
+    "tvis": 0.7168,
+    "routVis": 0.1119,
+    "tuv": 0.2017,
+    "extL": 39.89,
+    "extA": -0.86,
+    "extB": -2.51,
+    "intL": 41.35,
+    "intA": -2.97,
+    "intB": 1.81,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
+  },
+  {
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SB72",
+        "substrate": "Starphire",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 4
+      }
+    ],
+    "totalThickness": 9.95,
+    "uval": 0.2803,
+    "uvalIP": 0.0494,
+    "rval": 20.26,
+    "shgc": 0.2647,
+    "tvis": 0.6658,
+    "routVis": 0.1353,
+    "tuv": 0.0771,
+    "extL": 43.58,
+    "extA": -1.71,
+    "extB": -4.53,
+    "intL": 44.24,
+    "intA": -1.3,
+    "intB": -5.61,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
+  },
+  {
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SB72",
+        "substrate": "Starphire",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 5
+      }
+    ],
+    "totalThickness": 10.65,
+    "uval": 0.2802,
+    "uvalIP": 0.0494,
+    "rval": 20.26,
+    "shgc": 0.2648,
+    "tvis": 0.6613,
+    "routVis": 0.1349,
+    "tuv": 0.0751,
+    "extL": 43.52,
+    "extA": -1.74,
+    "extB": -4.53,
+    "intL": 44.08,
+    "intA": -1.47,
+    "intB": -5.52,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
+  },
+  {
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SB72",
+        "substrate": "Starphire",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 6
+      }
+    ],
+    "totalThickness": 11.75,
+    "uval": 0.2801,
+    "uvalIP": 0.0493,
+    "rval": 20.27,
+    "shgc": 0.2644,
+    "tvis": 0.6568,
+    "routVis": 0.1358,
+    "tuv": 0.0736,
+    "extL": 43.65,
+    "extA": -1.82,
+    "extB": -4.47,
+    "intL": 44.25,
+    "intA": -1.74,
+    "intB": -5.41,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
+  },
+  {
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "LUMI",
+        "substrate": "Clear",
+        "thickness": 4
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 4
+      }
+    ],
     "totalThickness": 8.25,
     "uval": 0.3932,
     "uvalIP": 0.0693,
@@ -1023,12 +2349,31 @@
     "extB": -3.62,
     "intL": 40.65,
     "intA": 0.21,
-    "intB": -3.71
+    "intB": -3.71,
+    "nfrc": true,
+    "cen": true,
+    "gFactor": 0.637426,
+    "uvalCEN": 0.411255
   },
   {
-    "outerLite": "SGG ECLAZ II 5mm",
-    "outerLowE": "ECLAZ II S2",
-    "innerLite": "SGG PLANICLEAR 4mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "LUMI",
+        "substrate": "Clear",
+        "thickness": 5
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 4
+      }
+    ],
     "totalThickness": 9.25,
     "uval": 0.3926,
     "uvalIP": 0.0691,
@@ -1042,12 +2387,31 @@
     "extB": -3.57,
     "intL": 40.65,
     "intA": 0.15,
-    "intB": -3.59
+    "intB": -3.59,
+    "nfrc": true,
+    "cen": true,
+    "gFactor": 0.631194,
+    "uvalCEN": 0.410489
   },
   {
-    "outerLite": "SGG ECLAZ II 5mm",
-    "outerLowE": "ECLAZ II S2",
-    "innerLite": "SGG PLANICLEAR 5mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "LUMI",
+        "substrate": "Clear",
+        "thickness": 5
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 5
+      }
+    ],
     "totalThickness": 10.25,
     "uval": 0.3924,
     "uvalIP": 0.0691,
@@ -1061,12 +2425,31 @@
     "extB": -3.57,
     "intL": 40.6,
     "intA": 0.09,
-    "intB": -3.53
+    "intB": -3.53,
+    "nfrc": true,
+    "cen": true,
+    "gFactor": 0.631191,
+    "uvalCEN": 0.410312
   },
   {
-    "outerLite": "SGG ECLAZ II 6mm",
-    "outerLowE": "ECLAZ II S2",
-    "innerLite": "SGG PLANICLEAR 4mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "LUMI",
+        "substrate": "Clear",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 4
+      }
+    ],
     "totalThickness": 10.25,
     "uval": 0.3931,
     "uvalIP": 0.0692,
@@ -1080,12 +2463,31 @@
     "extB": -3.52,
     "intL": 40.58,
     "intA": 0.18,
-    "intB": -3.71
+    "intB": -3.71,
+    "nfrc": true,
+    "cen": true,
+    "gFactor": 0.625003,
+    "uvalCEN": 0.411103
   },
   {
-    "outerLite": "SGG ECLAZ II 6mm",
-    "outerLowE": "ECLAZ II S2",
-    "innerLite": "SGG PLANICLEAR 5mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "LUMI",
+        "substrate": "Clear",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 5
+      }
+    ],
     "totalThickness": 11.25,
     "uval": 0.3929,
     "uvalIP": 0.0692,
@@ -1099,12 +2501,31 @@
     "extB": -3.52,
     "intL": 40.54,
     "intA": 0.12,
-    "intB": -3.65
+    "intB": -3.65,
+    "nfrc": true,
+    "cen": true,
+    "gFactor": 0.624999,
+    "uvalCEN": 0.410926
   },
   {
-    "outerLite": "SGG ECLAZ II 6mm",
-    "outerLowE": "ECLAZ II S2",
-    "innerLite": "SGG PLANICLEAR 6mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "LUMI",
+        "substrate": "Clear",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 6
+      }
+    ],
     "totalThickness": 12.25,
     "uval": 0.3928,
     "uvalIP": 0.0692,
@@ -1118,12 +2539,259 @@
     "extB": -3.61,
     "intL": 40.38,
     "intA": 0.02,
-    "intB": -3.78
+    "intB": -3.78,
+    "nfrc": true,
+    "cen": true,
+    "gFactor": 0.625117,
+    "uvalCEN": 0.410748
   },
   {
-    "outerLite": "SGG COOL-LITE SKN 183 II 6mm",
-    "outerLowE": "COOL-LITE SKN 183 II S2",
-    "innerLite": "SGG PLANICLEAR 4mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "ZEN",
+        "substrate": "Clear",
+        "thickness": 4
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 4
+      }
+    ],
+    "totalThickness": 8.25,
+    "uval": 0.3016,
+    "uvalIP": 0.0531,
+    "rval": 18.82,
+    "shgc": 0.5191,
+    "tvis": 0.7853,
+    "routVis": 0.176,
+    "tuv": 0.4248,
+    "extL": 49.29,
+    "extA": -0.64,
+    "extB": -7.1,
+    "intL": 46.7,
+    "intA": 0.22,
+    "intB": -7.29,
+    "nfrc": true,
+    "cen": true,
+    "gFactor": 0.521668,
+    "uvalCEN": 0.309946
+  },
+  {
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "ZEN",
+        "substrate": "Clear",
+        "thickness": 5
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 4
+      }
+    ],
+    "totalThickness": 9.25,
+    "uval": 0.3032,
+    "uvalIP": 0.0534,
+    "rval": 18.73,
+    "shgc": 0.5141,
+    "tvis": 0.7827,
+    "routVis": 0.1749,
+    "tuv": 0.4153,
+    "extL": 49.16,
+    "extA": -0.74,
+    "extB": -7.16,
+    "intL": 46.67,
+    "intA": 0.17,
+    "intB": -7.29,
+    "nfrc": true,
+    "cen": true,
+    "gFactor": 0.517117,
+    "uvalCEN": 0.311716
+  },
+  {
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "ZEN",
+        "substrate": "Clear",
+        "thickness": 5
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 5
+      }
+    ],
+    "totalThickness": 10.25,
+    "uval": 0.3031,
+    "uvalIP": 0.0534,
+    "rval": 18.73,
+    "shgc": 0.5142,
+    "tvis": 0.7802,
+    "routVis": 0.1748,
+    "tuv": 0.4078,
+    "extL": 49.14,
+    "extA": -0.8,
+    "extB": -7.17,
+    "intL": 46.61,
+    "intA": 0.08,
+    "intB": -7.23,
+    "nfrc": true,
+    "cen": true,
+    "gFactor": 0.517148,
+    "uvalCEN": 0.311615
+  },
+  {
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "ZEN",
+        "substrate": "Clear",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 4
+      }
+    ],
+    "totalThickness": 10.25,
+    "uval": 0.3045,
+    "uvalIP": 0.0536,
+    "rval": 18.65,
+    "shgc": 0.5093,
+    "tvis": 0.7802,
+    "routVis": 0.174,
+    "tuv": 0.4064,
+    "extL": 49.05,
+    "extA": -0.89,
+    "extB": -7.12,
+    "intL": 46.66,
+    "intA": 0.11,
+    "intB": -7.22,
+    "nfrc": true,
+    "cen": true,
+    "gFactor": 0.512729,
+    "uvalCEN": 0.313143
+  },
+  {
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "ZEN",
+        "substrate": "Clear",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 5
+      }
+    ],
+    "totalThickness": 11.25,
+    "uval": 0.3044,
+    "uvalIP": 0.0536,
+    "rval": 18.65,
+    "shgc": 0.5094,
+    "tvis": 0.7778,
+    "routVis": 0.1739,
+    "tuv": 0.3994,
+    "extL": 49.03,
+    "extA": -0.96,
+    "extB": -7.12,
+    "intL": 46.59,
+    "intA": 0.02,
+    "intB": -7.16,
+    "nfrc": true,
+    "cen": true,
+    "gFactor": 0.512758,
+    "uvalCEN": 0.313042
+  },
+  {
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "ZEN",
+        "substrate": "Clear",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 6
+      }
+    ],
+    "totalThickness": 12.25,
+    "uval": 0.3043,
+    "uvalIP": 0.0536,
+    "rval": 18.66,
+    "shgc": 0.5097,
+    "tvis": 0.7753,
+    "routVis": 0.1732,
+    "tuv": 0.3914,
+    "extL": 48.96,
+    "extA": -1.0,
+    "extB": -7.19,
+    "intL": 46.43,
+    "intA": -0.1,
+    "intB": -7.24,
+    "nfrc": true,
+    "cen": true,
+    "gFactor": 0.512902,
+    "uvalCEN": 0.31294
+  },
+  {
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SKN183",
+        "substrate": "Clear",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 4
+      }
+    ],
     "totalThickness": 10.25,
     "uval": 0.2855,
     "uvalIP": 0.0503,
@@ -1137,12 +2805,31 @@
     "extB": -8.27,
     "intL": 42.81,
     "intA": -2.64,
-    "intB": -4.33
+    "intB": -4.33,
+    "nfrc": true,
+    "cen": true,
+    "gFactor": 0.354771,
+    "uvalCEN": 0.292044
   },
   {
-    "outerLite": "SGG COOL-LITE SKN 183 II 6mm",
-    "outerLowE": "COOL-LITE SKN 183 II S2",
-    "innerLite": "SGG PLANICLEAR 5mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SKN183",
+        "substrate": "Clear",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 5
+      }
+    ],
     "totalThickness": 11.25,
     "uval": 0.2854,
     "uvalIP": 0.0503,
@@ -1156,12 +2843,31 @@
     "extB": -8.27,
     "intL": 42.76,
     "intA": -2.69,
-    "intB": -4.26
+    "intB": -4.26,
+    "nfrc": true,
+    "cen": true,
+    "gFactor": 0.354808,
+    "uvalCEN": 0.291956
   },
   {
-    "outerLite": "SGG COOL-LITE SKN 183 II 6mm",
-    "outerLowE": "COOL-LITE SKN 183 II S2",
-    "innerLite": "SGG PLANICLEAR 6mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SKN183",
+        "substrate": "Clear",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 6
+      }
+    ],
     "totalThickness": 12.25,
     "uval": 0.2853,
     "uvalIP": 0.0502,
@@ -1175,12 +2881,31 @@
     "extB": -8.35,
     "intL": 42.6,
     "intA": -2.8,
-    "intB": -4.37
+    "intB": -4.37,
+    "nfrc": true,
+    "cen": true,
+    "gFactor": 0.354948,
+    "uvalCEN": 0.291868
   },
   {
-    "outerLite": "SGG COOL-LITE XTREME 61-29 II 4mm",
-    "outerLowE": "COOL-LITE XTREME 61-29 II S2",
-    "innerLite": "SGG PLANICLEAR 4mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "XTR6129",
+        "substrate": "Clear",
+        "thickness": 4
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 4
+      }
+    ],
     "totalThickness": 8.25,
     "uval": 0.2998,
     "uvalIP": 0.0528,
@@ -1194,12 +2919,31 @@
     "extB": -6.29,
     "intL": 45.7,
     "intA": -6.62,
-    "intB": 0.36
+    "intB": 0.36,
+    "nfrc": true,
+    "cen": true,
+    "gFactor": 0.249646,
+    "uvalCEN": 0.307874
   },
   {
-    "outerLite": "SGG COOL-LITE XTREME 61-29 II 6mm",
-    "outerLowE": "COOL-LITE XTREME 61-29 II S2",
-    "innerLite": "SGG PLANICLEAR 4mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "XTR6129",
+        "substrate": "Clear",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 4
+      }
+    ],
     "totalThickness": 10.25,
     "uval": 0.2947,
     "uvalIP": 0.0519,
@@ -1213,12 +2957,31 @@
     "extB": -6.23,
     "intL": 45.69,
     "intA": -6.62,
-    "intB": 0.44
+    "intB": 0.44,
+    "nfrc": true,
+    "cen": true,
+    "gFactor": 0.248261,
+    "uvalCEN": 0.302222
   },
   {
-    "outerLite": "SGG COOL-LITE XTREME 61-29 II 6mm",
-    "outerLowE": "COOL-LITE XTREME 61-29 II S2",
-    "innerLite": "SGG PLANICLEAR 5mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "XTR6129",
+        "substrate": "Clear",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 5
+      }
+    ],
     "totalThickness": 11.25,
     "uval": 0.2946,
     "uvalIP": 0.0519,
@@ -1232,12 +2995,31 @@
     "extB": -6.23,
     "intL": 45.63,
     "intA": -6.69,
-    "intB": 0.48
+    "intB": 0.48,
+    "nfrc": true,
+    "cen": true,
+    "gFactor": 0.248291,
+    "uvalCEN": 0.302128
   },
   {
-    "outerLite": "SGG COOL-LITE XTREME 61-29 II 6mm",
-    "outerLowE": "COOL-LITE XTREME 61-29 II S2",
-    "innerLite": "SGG PLANICLEAR 6mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "XTR6129",
+        "substrate": "Clear",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 6
+      }
+    ],
     "totalThickness": 12.25,
     "uval": 0.2945,
     "uvalIP": 0.0519,
@@ -1251,12 +3033,31 @@
     "extB": -6.28,
     "intL": 45.47,
     "intA": -6.83,
-    "intB": 0.36
+    "intB": 0.36,
+    "nfrc": true,
+    "cen": true,
+    "gFactor": 0.248381,
+    "uvalCEN": 0.302033
   },
   {
-    "outerLite": "Solexia® 6mm",
-    "outerLowE": "Solarban® 60 S2",
-    "innerLite": "Clear 4mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SB60",
+        "substrate": "Solexia",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 4
+      }
+    ],
     "totalThickness": 9.95,
     "uval": 0.3486,
     "uvalIP": 0.0614,
@@ -1270,12 +3071,31 @@
     "extB": -1.27,
     "intL": 40.17,
     "intA": -3.66,
-    "intB": 1.93
+    "intB": 1.93,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Solexia® 6mm",
-    "outerLowE": "Solarban® 60 S2",
-    "innerLite": "Clear 5mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SB60",
+        "substrate": "Solexia",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 5
+      }
+    ],
     "totalThickness": 10.65,
     "uval": 0.3485,
     "uvalIP": 0.0614,
@@ -1289,12 +3109,31 @@
     "extB": -1.27,
     "intL": 40.04,
     "intA": -3.75,
-    "intB": 1.94
+    "intB": 1.94,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Solexia® 6mm",
-    "outerLowE": "Solarban® 60 S2",
-    "innerLite": "Clear 6mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SB60",
+        "substrate": "Solexia",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 6
+      }
+    ],
     "totalThickness": 11.75,
     "uval": 0.3484,
     "uvalIP": 0.0614,
@@ -1308,12 +3147,31 @@
     "extB": -1.2,
     "intL": 40.29,
     "intA": -3.92,
-    "intB": 1.92
+    "intB": 1.92,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Solarbronze® 6mm",
-    "outerLowE": "Solarban® 60 S2",
-    "innerLite": "Clear 4mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SB60",
+        "substrate": "Solarbronze",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 4
+      }
+    ],
     "totalThickness": 9.95,
     "uval": 0.3486,
     "uvalIP": 0.0614,
@@ -1327,12 +3185,31 @@
     "extB": 0.23,
     "intL": 38.54,
     "intA": -2.16,
-    "intB": 2.09
+    "intB": 2.09,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Solarbronze® 6mm",
-    "outerLowE": "Solarban® 60 S2",
-    "innerLite": "Clear 5mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SB60",
+        "substrate": "Solarbronze",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 5
+      }
+    ],
     "totalThickness": 10.65,
     "uval": 0.3485,
     "uvalIP": 0.0614,
@@ -1346,12 +3223,31 @@
     "extB": 0.22,
     "intL": 38.42,
     "intA": -2.25,
-    "intB": 2.09
+    "intB": 2.09,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Solarbronze® 6mm",
-    "outerLowE": "Solarban® 60 S2",
-    "innerLite": "Clear 6mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SB60",
+        "substrate": "Solarbronze",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 6
+      }
+    ],
     "totalThickness": 11.75,
     "uval": 0.3484,
     "uvalIP": 0.0614,
@@ -1365,12 +3261,31 @@
     "extB": 0.27,
     "intL": 38.7,
     "intA": -2.43,
-    "intB": 2.07
+    "intB": 2.07,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Solargray® 6mm",
-    "outerLowE": "Solarban® 60 S2",
-    "innerLite": "Clear 4mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SB60",
+        "substrate": "Solargray",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 4
+      }
+    ],
     "totalThickness": 9.95,
     "uval": 0.3486,
     "uvalIP": 0.0614,
@@ -1384,12 +3299,31 @@
     "extB": -2.09,
     "intL": 38.11,
     "intA": -2.38,
-    "intB": 1.48
+    "intB": 1.48,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Solargray® 6mm",
-    "outerLowE": "Solarban® 60 S2",
-    "innerLite": "Clear 5mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SB60",
+        "substrate": "Solargray",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 5
+      }
+    ],
     "totalThickness": 10.65,
     "uval": 0.3485,
     "uvalIP": 0.0614,
@@ -1403,12 +3337,31 @@
     "extB": -2.08,
     "intL": 37.99,
     "intA": -2.46,
-    "intB": 1.49
+    "intB": 1.49,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Solargray® 6mm",
-    "outerLowE": "Solarban® 60 S2",
-    "innerLite": "Clear 6mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SB60",
+        "substrate": "Solargray",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 6
+      }
+    ],
     "totalThickness": 11.75,
     "uval": 0.3484,
     "uvalIP": 0.0614,
@@ -1422,12 +3375,31 @@
     "extB": -2.06,
     "intL": 38.29,
     "intA": -2.63,
-    "intB": 1.48
+    "intB": 1.48,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Optigray® 6mm",
-    "outerLowE": "Solarban® 60 S2",
-    "innerLite": "Clear 4mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SB60",
+        "substrate": "Optigray",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 4
+      }
+    ],
     "totalThickness": 9.95,
     "uval": 0.3487,
     "uvalIP": 0.0614,
@@ -1441,12 +3413,31 @@
     "extB": -1.9,
     "intL": 39.14,
     "intA": -2.65,
-    "intB": 1.68
+    "intB": 1.68,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Optigray® 6mm",
-    "outerLowE": "Solarban® 60 S2",
-    "innerLite": "Clear 5mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SB60",
+        "substrate": "Optigray",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 5
+      }
+    ],
     "totalThickness": 10.65,
     "uval": 0.3486,
     "uvalIP": 0.0614,
@@ -1460,12 +3451,31 @@
     "extB": -1.89,
     "intL": 39.01,
     "intA": -2.74,
-    "intB": 1.69
+    "intB": 1.69,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Optigray® 6mm",
-    "outerLowE": "Solarban® 60 S2",
-    "innerLite": "Clear 6mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SB60",
+        "substrate": "Optigray",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 6
+      }
+    ],
     "totalThickness": 11.75,
     "uval": 0.3484,
     "uvalIP": 0.0614,
@@ -1479,12 +3489,31 @@
     "extB": -1.85,
     "intL": 39.28,
     "intA": -2.92,
-    "intB": 1.67
+    "intB": 1.67,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Solarblue® 6mm",
-    "outerLowE": "Solarban® 60 S2",
-    "innerLite": "Clear 4mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SB60",
+        "substrate": "Solarblue",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 4
+      }
+    ],
     "totalThickness": 9.95,
     "uval": 0.3486,
     "uvalIP": 0.0614,
@@ -1498,12 +3527,31 @@
     "extB": -6.02,
     "intL": 38.78,
     "intA": -2.9,
-    "intB": 0.55
+    "intB": 0.55,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Solarblue® 6mm",
-    "outerLowE": "Solarban® 60 S2",
-    "innerLite": "Clear 5mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SB60",
+        "substrate": "Solarblue",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 5
+      }
+    ],
     "totalThickness": 10.65,
     "uval": 0.3485,
     "uvalIP": 0.0614,
@@ -1517,12 +3565,31 @@
     "extB": -5.99,
     "intL": 38.66,
     "intA": -2.98,
-    "intB": 0.57
+    "intB": 0.57,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Solarblue® 6mm",
-    "outerLowE": "Solarban® 60 S2",
-    "innerLite": "Clear 6mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SB60",
+        "substrate": "Solarblue",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 6
+      }
+    ],
     "totalThickness": 11.75,
     "uval": 0.3484,
     "uvalIP": 0.0614,
@@ -1536,12 +3603,31 @@
     "extB": -5.98,
     "intL": 38.94,
     "intA": -3.14,
-    "intB": 0.58
+    "intB": 0.58,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Optiblue® (Solarban® z50) 6mm",
-    "outerLowE": "Solarban® 60 S2",
-    "innerLite": "Clear 4mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SB60",
+        "substrate": "Optiblue",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 4
+      }
+    ],
     "totalThickness": 9.95,
     "uval": 0.3486,
     "uvalIP": 0.0614,
@@ -1555,12 +3641,31 @@
     "extB": -5.13,
     "intL": 39.24,
     "intA": -2.61,
-    "intB": 0.84
+    "intB": 0.84,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Optiblue® (Solarban® z50) 6mm",
-    "outerLowE": "Solarban® 60 S2",
-    "innerLite": "Clear 5mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SB60",
+        "substrate": "Optiblue",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 5
+      }
+    ],
     "totalThickness": 10.65,
     "uval": 0.3485,
     "uvalIP": 0.0614,
@@ -1574,12 +3679,31 @@
     "extB": -5.1,
     "intL": 39.11,
     "intA": -2.7,
-    "intB": 0.86
+    "intB": 0.86,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   },
   {
-    "outerLite": "Optiblue® (Solarban® z50) 6mm",
-    "outerLowE": "Solarban® 60 S2",
-    "innerLite": "Clear 6mm",
+    "stack": [
+      {
+        "type": "glass",
+        "coating": "SB60",
+        "substrate": "Optiblue",
+        "thickness": 6
+      },
+      {
+        "type": "vacuum",
+        "thickness": 0.25
+      },
+      {
+        "type": "glass",
+        "coating": null,
+        "substrate": "Clear",
+        "thickness": 6
+      }
+    ],
     "totalThickness": 11.75,
     "uval": 0.3484,
     "uvalIP": 0.0614,
@@ -1593,6 +3717,10 @@
     "extB": -5.08,
     "intL": 39.38,
     "intA": -2.88,
-    "intB": 0.87
+    "intB": 0.87,
+    "nfrc": true,
+    "cen": false,
+    "gFactor": null,
+    "uvalCEN": null
   }
 ]

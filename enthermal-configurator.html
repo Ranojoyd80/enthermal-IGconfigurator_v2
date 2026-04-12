@@ -120,6 +120,8 @@ body{font-family:var(--font-body);background:var(--lw-gray-50);color:var(--lw-da
 .std-toggle-thumb{position:absolute;top:2px;left:2px;height:calc(100% - 4px);border-radius:18px;background:var(--lw-teal);box-shadow:0 1px 4px rgba(13,148,136,.35);transition:transform .25s cubic-bezier(.4,0,.2,1),width .25s;pointer-events:none}
 .std-toggle input:checked~.std-toggle-thumb{transform:translateX(var(--thumb-offset))}
 .std-toggle-option.active{color:#fff}
+.std-toggle.locked{cursor:not-allowed;pointer-events:none}
+.std-toggle.locked .std-toggle-option:not(.active){opacity:.35}
 .srf-toggle-row{display:grid;grid-template-columns:1fr 67px 1fr;align-items:center}
 .srf-toggle-row-label{font-family:var(--font-body);font-size:13px;font-weight:500;color:var(--lw-gray-400);white-space:nowrap;transition:color .2s}
 .srf-toggle-row-label:first-child{text-align:left}
@@ -171,9 +173,9 @@ body{font-family:var(--font-body);background:var(--lw-gray-50);color:var(--lw-da
           <div class="config-section-label">Outboard</div>
           <div class="config-field"><label>Thickness</label>
             <div class="radio-group">
-              <div class="radio-option"><input type="radio" name="outerThickness" id="outerT4" value="4mm"><label class="radio-label" for="outerT4"><span class="radio-value">4</span><span class="radio-unit">mm</span></label></div>
-              <div class="radio-option"><input type="radio" name="outerThickness" id="outerT5" value="5mm"><label class="radio-label" for="outerT5"><span class="radio-value">5</span><span class="radio-unit">mm</span></label></div>
-              <div class="radio-option"><input type="radio" name="outerThickness" id="outerT6" value="6mm"><label class="radio-label" for="outerT6"><span class="radio-value">6</span><span class="radio-unit">mm</span></label></div>
+              <div class="radio-option"><input type="radio" name="outerThickness" id="outerT4" value="4"><label class="radio-label" for="outerT4"><span class="radio-value">4</span><span class="radio-unit">mm</span></label></div>
+              <div class="radio-option"><input type="radio" name="outerThickness" id="outerT5" value="5"><label class="radio-label" for="outerT5"><span class="radio-value">5</span><span class="radio-unit">mm</span></label></div>
+              <div class="radio-option"><input type="radio" name="outerThickness" id="outerT6" value="6"><label class="radio-label" for="outerT6"><span class="radio-value">6</span><span class="radio-unit">mm</span></label></div>
             </div>
           </div>
           <div class="config-field"><label>Low-E Coating</label><select id="outerCoating"></select></div>
@@ -186,9 +188,9 @@ body{font-family:var(--font-body);background:var(--lw-gray-50);color:var(--lw-da
           <div class="config-section-label">Inboard</div>
           <div class="config-field"><label>Thickness</label>
             <div class="radio-group">
-              <div class="radio-option"><input type="radio" name="innerThickness" id="innerT4" value="4mm"><label class="radio-label" for="innerT4"><span class="radio-value">4</span><span class="radio-unit">mm</span></label></div>
-              <div class="radio-option"><input type="radio" name="innerThickness" id="innerT5" value="5mm"><label class="radio-label" for="innerT5"><span class="radio-value">5</span><span class="radio-unit">mm</span></label></div>
-              <div class="radio-option"><input type="radio" name="innerThickness" id="innerT6" value="6mm"><label class="radio-label" for="innerT6"><span class="radio-value">6</span><span class="radio-unit">mm</span></label></div>
+              <div class="radio-option"><input type="radio" name="innerThickness" id="innerT4" value="4"><label class="radio-label" for="innerT4"><span class="radio-value">4</span><span class="radio-unit">mm</span></label></div>
+              <div class="radio-option"><input type="radio" name="innerThickness" id="innerT5" value="5"><label class="radio-label" for="innerT5"><span class="radio-value">5</span><span class="radio-unit">mm</span></label></div>
+              <div class="radio-option"><input type="radio" name="innerThickness" id="innerT6" value="6"><label class="radio-label" for="innerT6"><span class="radio-value">6</span><span class="radio-unit">mm</span></label></div>
             </div>
           </div>
         </div>
@@ -213,9 +215,9 @@ body{font-family:var(--font-body);background:var(--lw-gray-50);color:var(--lw-da
           <div class="config-section-label" id="plusGlassLabel">Outboard</div>
           <div class="config-field"><label>Thickness</label>
             <div class="radio-group">
-              <div class="radio-option"><input type="radio" name="plusOuterThickness" id="plusOuterT4" value="4mm" checked><label class="radio-label" for="plusOuterT4"><span class="radio-value">4</span><span class="radio-unit">mm</span></label></div>
-              <div class="radio-option"><input type="radio" name="plusOuterThickness" id="plusOuterT5" value="5mm"><label class="radio-label" for="plusOuterT5"><span class="radio-value">5</span><span class="radio-unit">mm</span></label></div>
-              <div class="radio-option"><input type="radio" name="plusOuterThickness" id="plusOuterT6" value="6mm"><label class="radio-label" for="plusOuterT6"><span class="radio-value">6</span><span class="radio-unit">mm</span></label></div>
+              <div class="radio-option"><input type="radio" name="plusOuterThickness" id="plusOuterT4" value="4" checked><label class="radio-label" for="plusOuterT4"><span class="radio-value">4</span><span class="radio-unit">mm</span></label></div>
+              <div class="radio-option"><input type="radio" name="plusOuterThickness" id="plusOuterT5" value="5"><label class="radio-label" for="plusOuterT5"><span class="radio-value">5</span><span class="radio-unit">mm</span></label></div>
+              <div class="radio-option"><input type="radio" name="plusOuterThickness" id="plusOuterT6" value="6"><label class="radio-label" for="plusOuterT6"><span class="radio-value">6</span><span class="radio-unit">mm</span></label></div>
             </div>
           </div>
           <div class="config-field"><label>Low-E Coating</label><select id="plusOuterCoating"></select></div>
@@ -269,7 +271,7 @@ body{font-family:var(--font-body);background:var(--lw-gray-50);color:var(--lw-da
       <!-- Row 1: Summary + Download (full span) -->
       <div style="grid-column:1/-1;display:grid;grid-template-columns:1fr 120px;gap:14px;height:calc(var(--tab-row-height) + 2px)">
         <div class="config-summary" style="display:flex;align-items:center;justify-content:space-between;gap:16px">
-          <div class="config-summary-text" id="summaryText">Select a configuration to view results.</div>
+          <div class="config-summary-text" id="summaryText">Select a product to view results.</div>
           <div class="std-toggle-wrap">
             <label class="std-toggle" id="stdToggle">
               <input type="checkbox" id="stdToggleInput">
@@ -470,46 +472,58 @@ body{font-family:var(--font-body);background:var(--lw-gray-50);color:var(--lw-da
 let DATA = [], DATA_PLUS_IN = [], DATA_PLUS_OUT = [];
 let dataLoaded = false;
 
-function parseThickness(liteName) {
-  var m = liteName.match(/(\d+)\s*mm/);
-  return m ? m[1] + 'mm' : null;
-}
-function parseColorName(liteName) {
-  return liteName.replace(/\s*\d+\s*mm\s*$/, '').trim() || liteName;
-}
-
-// Manufacturer lookup for coating dropdown display
-const MANUFACTURERS = {
-  'LoE 180': 'Cardinal',
-  'LoE² 270': 'Cardinal', 'LoE² 272': 'Cardinal',
-  'LoE³ 340': 'Cardinal', 'LoE³ 366': 'Cardinal',
-  'Quad LoE 452': 'Cardinal',
-  'Solarban® 60': 'Vitro', 'Solarban® 70': 'Vitro',
-  'Solarban® R67': 'Vitro',
-  'COOL-LITE SKN 183 II': 'Saint-Gobain',
-  'COOL-LITE XTREME 61-29 II': 'Saint-Gobain',
-  'ECLAZ II': 'Saint-Gobain'
+// Shortcode → display name lookups. Source of truth for all user-facing
+// product names. JSON stores shortcodes; the UI never sees them directly.
+const COATING_NAMES = {
+  'C180': 'LoE 180', 'C270': 'LoE² 270', 'C272': 'LoE² 272',
+  'C340': 'LoE³ 340', 'C366': 'LoE³ 366', 'Q452': 'Quad LoE 452',
+  'SB60': 'Solarban 60', 'SB70': 'Solarban 70', 'SB72': 'Solarban 72', 'SBR67': 'Solarban R67',
+  'SKN183': 'COOL-LITE SKN 183 II', 'XTR6129': 'COOL-LITE XTREME 61-29 II',
+  'LUMI': 'ECLAZ II', 'ZEN': 'ECLAZ ONE II'
 };
-function coatingBaseName(rawCoating) {
-  return rawCoating.replace(/\s+S\d+$/, '');
-}
-function coatingForDropdown(rawCoating) {
-  return coatingBaseName(rawCoating);
-}
-function coatingForSummary(rawCoating) {
-  return coatingBaseName(rawCoating);
-}
-function coatingInSubstrate(coatingSummary, substrateName) {
-  var clean=function(s){return s.replace(/[®™]/g,'').trim()};
-  return clean(substrateName).indexOf(clean(coatingSummary)) !== -1;
+const SUBSTRATE_NAMES = {
+  'Clear': 'Clear',
+  'Optiblue': 'Optiblue®', 'Optigray': 'Optigray®', 'Solarblue': 'Solarblue®',
+  'Solarbronze': 'Solarbronze®', 'Solargray': 'Solargray®',
+  'Solexia': 'Solexia®', 'Starphire': 'Starphire®',
+  'OptiblueZ50': 'Optiblue® (Solarban® z50)', 'OptiblueZ75': 'Optiblue® (Solarban® z75)'
+};
+// Manufacturer prefix for coating dropdowns. Not applied to summary bar or
+// cross-section labels — those keep the bare product name.
+const COATING_MAKERS = {
+  'C180':'Cardinal','C270':'Cardinal','C272':'Cardinal','C340':'Cardinal','C366':'Cardinal','Q452':'Cardinal',
+  'SB60':'Vitro','SB70':'Vitro','SB72':'Vitro','SBR67':'Vitro',
+  'SKN183':'Saint-Gobain','XTR6129':'Saint-Gobain','LUMI':'Saint-Gobain','ZEN':'Saint-Gobain'
+};
+function coatingName(code){return COATING_NAMES[code]||code}
+function substrateName(code){return SUBSTRATE_NAMES[code]||code}
+function coatingNameWithMaker(code){var m=COATING_MAKERS[code];return m?m+' '+coatingName(code):coatingName(code)}
+// Dropdown display rule: clear substrate shows only the coating name;
+// branded substrates append " on <substrate>". Pass coatingNameWithMaker
+// as the nameFn for dropdowns; omit for summary/cross-section.
+function layerDisplay(layer,nameFn){
+  var name=(nameFn||coatingName)(layer.coating);
+  return layer.substrate==='Clear'?name:name+' on '+substrateName(layer.substrate);
 }
 
-// Post-process Enthermal data: derive outerThickness, outerColorName
+// Post-process each row to attach semantic accessors read from the stack.
+// Enthermal rows have 2 glass layers; Plus rows have 3. For Plus, also
+// identify the "second coating" (the non-S2 coating, on whichever lite
+// carries it) and its surface number.
 function postProcessData() {
-  DATA.forEach(function(d) {
-    d.outerThickness = parseThickness(d.outerLite);
-    d.outerColorName = parseColorName(d.outerLite);
-  });
+  function process(d){
+    d.glass=d.stack.filter(function(l){return l.type==='glass'});
+    var gas=d.stack.find(function(l){return l.type==='gas'});
+    d.gasType=gas?gas.gasType:null;
+    if(d.glass.length===3){
+      if(d.glass[1].coating){d.secondCoating=d.glass[1].coating;d.secondSurface='S4'}
+      else if(d.glass[2].coating){d.secondCoating=d.glass[2].coating;d.secondSurface='S5'}
+      else{d.secondCoating=null;d.secondSurface=null}
+    }
+  }
+  DATA.forEach(process);
+  DATA_PLUS_IN.forEach(process);
+  DATA_PLUS_OUT.forEach(process);
 }
 
 // Load all JSON data
@@ -528,105 +542,92 @@ Promise.all([
   document.getElementById('innerT6').checked = true;
   updateOuterCoatings();
   if (outerCoatingEl.options.length > 0) {
-    var coat366 = Array.from(outerCoatingEl.options).find(function(o) { return o.value.includes('366') && o.value.includes('Clear'); });
+    var coat366 = Array.from(outerCoatingEl.options).find(function(o) { return o.value==='C366|Clear'; });
     if (coat366) { outerCoatingEl.value = coat366.value; updateInnerThickness(); }
   }
 }).catch(function(err) { console.error('Failed to load data:', err); });
 
-const _REMOVED_EMBEDDED_DATA = [
-  {"outerGlass":"Clear 4mm","coating":"Cardinal LoĒ-180™","innerGlass":"Clear 4mm","thickness":8.05,"uval":0.4753,"uvalIP":0.0837,"rval":11.95,"shgc":0.6332,"tvis":0.7868,"routVis":0.1532,"tdwISO":0.6196,"tuv":0.2747,"extL":46.23,"extA":-1.34,"extB":-5.55,"intL":91.06,"intA":-2.39,"intB":2.46},
-  {"outerGlass":"Clear 4mm","coating":"Cardinal LoĒ²-270®","innerGlass":"Clear 4mm","thickness":8.05,"uval":0.3476,"uvalIP":0.0612,"rval":16.34,"shgc":0.3513,"tvis":0.6916,"routVis":0.1218,"tdwISO":0.5098,"tuv":0.1356,"extL":41.56,"extA":-2.96,"extB":-2.04,"intL":86.55,"intA":-3.66,"intB":2.78},
-  {"outerGlass":"Clear 4mm","coating":"Cardinal LoĒ³-340®","innerGlass":"Clear 4mm","thickness":8.05,"uval":0.3201,"uvalIP":0.0564,"rval":17.74,"shgc":0.1589,"tvis":0.386,"routVis":0.1329,"tdwISO":0.27,"tuv":0.0205,"extL":43.38,"extA":-5.66,"extB":-12.84,"intL":68.83,"intA":-8.87,"intB":-5.53},
-  {"outerGlass":"Clear 4mm","coating":"Cardinal LoĒ³-366®","innerGlass":"Clear 4mm","thickness":8.05,"uval":0.2864,"uvalIP":0.0504,"rval":19.83,"shgc":0.2582,"tvis":0.6433,"routVis":0.1116,"tdwISO":0.4254,"tuv":0.0487,"extL":39.84,"extA":-0.63,"extB":-3.66,"intL":84.11,"intA":-5.99,"intB":3.29},
-  {"outerGlass":"Clear 5mm","coating":"Cardinal LoĒ²-272®","innerGlass":"Clear 4mm","thickness":8.85,"uval":0.3751,"uvalIP":0.0661,"rval":15.14,"shgc":0.3964,"tvis":0.7117,"routVis":0.1066,"tdwISO":0.5395,"tuv":0.1528,"extL":38.99,"extA":-0.9,"extB":-2.2,"intL":87.51,"intA":-2.71,"intB":2.58},
-  {"outerGlass":"Clear 5mm","coating":"Cardinal LoĒ²-272®","innerGlass":"Clear 5mm","thickness":9.65,"uval":0.375,"uvalIP":0.066,"rval":15.14,"shgc":0.3965,"tvis":0.7091,"routVis":0.106,"tdwISO":0.5361,"tuv":0.1482,"extL":38.89,"extA":-0.9,"extB":-2.22,"intL":87.38,"intA":-2.88,"intB":2.6},
-  {"outerGlass":"Clear 5mm","coating":"Cardinal LoĒ-180™","innerGlass":"Clear 4mm","thickness":8.85,"uval":0.4751,"uvalIP":0.0837,"rval":11.95,"shgc":0.6232,"tvis":0.7836,"routVis":0.152,"tdwISO":0.6148,"tuv":0.2656,"extL":46.07,"extA":-1.47,"extB":-5.5,"intL":90.91,"intA":-2.57,"intB":2.49},
-  {"outerGlass":"Clear 5mm","coating":"Cardinal LoĒ²-270®","innerGlass":"Clear 4mm","thickness":8.85,"uval":0.3475,"uvalIP":0.0612,"rval":16.34,"shgc":0.3482,"tvis":0.688,"routVis":0.1204,"tdwISO":0.5059,"tuv":0.1322,"extL":41.34,"extA":-3.05,"extB":-2.04,"intL":86.37,"intA":-3.79,"intB":2.85},
-  {"outerGlass":"Clear 5mm","coating":"Cardinal LoĒ³-340®","innerGlass":"Clear 4mm","thickness":8.85,"uval":0.32,"uvalIP":0.0564,"rval":17.74,"shgc":0.1582,"tvis":0.3841,"routVis":0.1314,"tdwISO":0.2683,"tuv":0.02,"extL":43.15,"extA":-5.8,"extB":-12.74,"intL":68.69,"intA":-8.96,"intB":-5.46},
-  {"outerGlass":"Clear 5mm","coating":"Cardinal LoĒ³-366®","innerGlass":"Clear 4mm","thickness":8.85,"uval":0.2863,"uvalIP":0.0504,"rval":19.83,"shgc":0.2567,"tvis":0.6401,"routVis":0.1102,"tdwISO":0.4225,"tuv":0.0474,"extL":39.62,"extA":-0.73,"extB":-3.66,"intL":83.94,"intA":-6.1,"intB":3.36},
-  {"outerGlass":"Clear 5mm","coating":"Cardinal LoĒ-180™","innerGlass":"Clear 5mm","thickness":9.65,"uval":0.4749,"uvalIP":0.0836,"rval":11.96,"shgc":0.6232,"tvis":0.7807,"routVis":0.1513,"tdwISO":0.6101,"tuv":0.2567,"extL":45.97,"extA":-1.47,"extB":-5.53,"intL":90.78,"intA":-2.75,"intB":2.52},
-  {"outerGlass":"Clear 5mm","coating":"Cardinal LoĒ²-270®","innerGlass":"Clear 5mm","thickness":9.65,"uval":0.3474,"uvalIP":0.0612,"rval":16.34,"shgc":0.3484,"tvis":0.6855,"routVis":0.1198,"tdwISO":0.5028,"tuv":0.1281,"extL":41.24,"extA":-3.05,"extB":-2.06,"intL":86.25,"intA":-3.96,"intB":2.88},
-  {"outerGlass":"Clear 5mm","coating":"Cardinal LoĒ³-340®","innerGlass":"Clear 5mm","thickness":9.65,"uval":0.3199,"uvalIP":0.0563,"rval":17.75,"shgc":0.1583,"tvis":0.3827,"routVis":0.1312,"tdwISO":0.267,"tuv":0.0193,"extL":43.12,"extA":-5.79,"extB":-12.74,"intL":68.59,"intA":-9.08,"intB":-5.43},
-  {"outerGlass":"Clear 5mm","coating":"Cardinal LoĒ³-366®","innerGlass":"Clear 5mm","thickness":9.65,"uval":0.2862,"uvalIP":0.0504,"rval":19.84,"shgc":0.2568,"tvis":0.6378,"routVis":0.1097,"tdwISO":0.4204,"tuv":0.0459,"extL":39.54,"extA":-0.71,"extB":-3.68,"intL":83.82,"intA":-6.26,"intB":3.38},
-  {"outerGlass":"Clear 6mm","coating":"Cardinal LoĒ²-272®","innerGlass":"Clear 5mm","thickness":10.65,"uval":0.3749,"uvalIP":0.066,"rval":15.15,"shgc":0.3894,"tvis":0.7026,"routVis":0.1048,"tdwISO":0.53,"tuv":0.1445,"extL":38.68,"extA":-1.03,"extB":-2.16,"intL":87.07,"intA":-3.16,"intB":2.66},
-  {"outerGlass":"Clear 6mm","coating":"Cardinal LoĒ²-272®","innerGlass":"Clear 6mm","thickness":11.65,"uval":0.3747,"uvalIP":0.066,"rval":15.15,"shgc":0.3892,"tvis":0.6962,"routVis":0.1043,"tdwISO":0.524,"tuv":0.1409,"extL":38.6,"extA":-1.02,"extB":-2.18,"intL":86.76,"intA":-3.45,"intB":2.72},
-  {"outerGlass":"Clear 6mm","coating":"Cardinal LoĒ-180™","innerGlass":"Clear 5mm","thickness":10.65,"uval":0.4747,"uvalIP":0.0836,"rval":11.96,"shgc":0.6064,"tvis":0.7735,"routVis":0.1493,"tdwISO":0.6024,"tuv":0.2487,"extL":45.69,"extA":-1.66,"extB":-5.42,"intL":90.45,"intA":-3.04,"intB":2.57},
-  {"outerGlass":"Clear 6mm","coating":"Cardinal LoĒ²-270®","innerGlass":"Clear 5mm","thickness":10.65,"uval":0.3473,"uvalIP":0.0612,"rval":16.35,"shgc":0.3435,"tvis":0.6811,"routVis":0.1193,"tdwISO":0.4986,"tuv":0.1248,"extL":41.17,"extA":-3.27,"extB":-1.96,"intL":86.03,"intA":-4.27,"intB":2.9},
-  {"outerGlass":"Clear 6mm","coating":"Cardinal LoĒ³-340®","innerGlass":"Clear 5mm","thickness":10.65,"uval":0.3198,"uvalIP":0.0563,"rval":17.75,"shgc":0.1575,"tvis":0.3804,"routVis":0.1307,"tdwISO":0.2652,"tuv":0.0188,"extL":43.05,"extA":-6.03,"extB":-12.47,"intL":68.42,"intA":-9.31,"intB":-5.38},
-  {"outerGlass":"Clear 6mm","coating":"Cardinal LoĒ³-366®","innerGlass":"Clear 5mm","thickness":10.65,"uval":0.2862,"uvalIP":0.0504,"rval":19.84,"shgc":0.2548,"tvis":0.6337,"routVis":0.1094,"tdwISO":0.4173,"tuv":0.0446,"extL":39.47,"extA":-0.94,"extB":-3.56,"intL":83.61,"intA":-6.55,"intB":3.41},
-  {"outerGlass":"Clear 6mm","coating":"Cardinal LoĒ-180™","innerGlass":"Clear 6mm","thickness":11.65,"uval":0.4745,"uvalIP":0.0836,"rval":11.97,"shgc":0.6058,"tvis":0.7664,"routVis":0.1487,"tdwISO":0.5949,"tuv":0.2412,"extL":45.61,"extA":-1.65,"extB":-5.45,"intL":90.13,"intA":-3.34,"intB":2.63},
-  {"outerGlass":"Clear 6mm","coating":"Cardinal LoĒ²-270®","innerGlass":"Clear 6mm","thickness":11.65,"uval":0.3472,"uvalIP":0.0611,"rval":16.36,"shgc":0.3434,"tvis":0.6749,"routVis":0.1189,"tdwISO":0.493,"tuv":0.1216,"extL":41.1,"extA":-3.27,"extB":-1.98,"intL":85.72,"intA":-4.55,"intB":2.96},
-  {"outerGlass":"Clear 6mm","coating":"Cardinal LoĒ³-340®","innerGlass":"Clear 6mm","thickness":11.65,"uval":0.3197,"uvalIP":0.0563,"rval":17.76,"shgc":0.1575,"tvis":0.377,"routVis":0.1306,"tdwISO":0.2625,"tuv":0.0183,"extL":43.03,"extA":-6.02,"extB":-12.47,"intL":68.16,"intA":-9.51,"intB":-5.31},
-  {"outerGlass":"Clear 6mm","coating":"Cardinal LoĒ³-366®","innerGlass":"Clear 6mm","thickness":11.65,"uval":0.2861,"uvalIP":0.0504,"rval":19.85,"shgc":0.2548,"tvis":0.628,"routVis":0.1089,"tdwISO":0.4129,"tuv":0.0434,"extL":39.41,"extA":-0.93,"extB":-3.58,"intL":83.31,"intA":-6.81,"intB":3.46},
-  {"outerGlass":"Clear 4mm","coating":"Solarban 60®","innerGlass":"Clear 4mm","thickness":8.05,"uval":0.3461,"uvalIP":0.061,"rval":16.4,"shgc":0.384,"tvis":0.7234,"routVis":0.1082,"tdwISO":0.5513,"tuv":0.1963,"extL":39.28,"extA":-1.03,"extB":-2.53,"intL":88.09,"intA":-3.3,"intB":2.75},
-  {"outerGlass":"Clear 5mm","coating":"Solarban 60®","innerGlass":"Clear 4mm","thickness":8.85,"uval":0.3461,"uvalIP":0.0609,"rval":16.41,"shgc":0.3797,"tvis":0.7201,"routVis":0.1077,"tdwISO":0.5479,"tuv":0.1926,"extL":39.18,"extA":-1.16,"extB":-2.51,"intL":87.93,"intA":-3.51,"intB":2.75},
-  {"outerGlass":"Clear 5mm","coating":"Solarban 60®","innerGlass":"Clear 5mm","thickness":9.65,"uval":0.346,"uvalIP":0.0609,"rval":16.41,"shgc":0.3799,"tvis":0.7175,"routVis":0.107,"tdwISO":0.5442,"tuv":0.1864,"extL":39.08,"extA":-1.16,"extB":-2.54,"intL":87.81,"intA":-3.69,"intB":2.78},
-  {"outerGlass":"Clear 6mm","coating":"Solarban 60®","innerGlass":"Clear 5mm","thickness":10.65,"uval":0.3458,"uvalIP":0.0609,"rval":16.42,"shgc":0.3744,"tvis":0.7132,"routVis":0.1063,"tdwISO":0.5399,"tuv":0.1821,"extL":38.95,"extA":-1.32,"extB":-2.51,"intL":87.6,"intA":-3.96,"intB":2.77},
-  {"outerGlass":"Clear 6mm","coating":"Solarban 60®","innerGlass":"Clear 6mm","thickness":11.65,"uval":0.3457,"uvalIP":0.0609,"rval":16.42,"shgc":0.3743,"tvis":0.7067,"routVis":0.1058,"tdwISO":0.5335,"tuv":0.177,"extL":38.86,"extA":-1.31,"extB":-2.53,"intL":87.29,"intA":-4.25,"intB":2.83},
-  {"outerGlass":"Optiblue® 6mm","coating":"Solarban 60®","innerGlass":"Clear 4mm","thickness":9.85,"uval":0.346,"uvalIP":0.0609,"rval":16.41,"shgc":0.2982,"tvis":0.5168,"routVis":0.0766,"tdwISO":0.4262,"tuv":0.1402,"extL":33.35,"extA":-0.18,"extB":-5.14,"intL":77.2,"intA":-3.13,"intB":-3.56},
-  {"outerGlass":"Optiblue® 6mm","coating":"Solarban 60®","innerGlass":"Clear 5mm","thickness":10.65,"uval":0.3458,"uvalIP":0.0609,"rval":16.42,"shgc":0.2984,"tvis":0.515,"routVis":0.0763,"tdwISO":0.4235,"tuv":0.1361,"extL":33.28,"extA":-0.17,"extB":-5.14,"intL":77.09,"intA":-3.28,"intB":-3.53},
-  {"outerGlass":"Optiblue® 6mm","coating":"Solarban 60®","innerGlass":"Clear 6mm","thickness":11.65,"uval":0.3457,"uvalIP":0.0609,"rval":16.42,"shgc":0.2983,"tvis":0.5103,"routVis":0.076,"tdwISO":0.4186,"tuv":0.1328,"extL":33.22,"extA":-0.17,"extB":-5.14,"intL":76.81,"intA":-3.54,"intB":-3.45},
-  {"outerGlass":"Optigray® 6mm","coating":"Solarban 60®","innerGlass":"Clear 4mm","thickness":9.85,"uval":0.346,"uvalIP":0.0609,"rval":16.41,"shgc":0.2674,"tvis":0.5077,"routVis":0.0753,"tdwISO":0.3822,"tuv":0.1077,"extL":32.98,"extA":-0.76,"extB":-1.93,"intL":76.47,"intA":-3.34,"intB":2.26},
-  {"outerGlass":"Optigray® 6mm","coating":"Solarban 60®","innerGlass":"Clear 5mm","thickness":10.65,"uval":0.3459,"uvalIP":0.0609,"rval":16.42,"shgc":0.2675,"tvis":0.5059,"routVis":0.075,"tdwISO":0.3799,"tuv":0.1047,"extL":32.91,"extA":-0.76,"extB":-1.95,"intL":76.36,"intA":-3.49,"intB":2.29},
-  {"outerGlass":"Optigray® 6mm","coating":"Solarban 60®","innerGlass":"Clear 6mm","thickness":11.65,"uval":0.3457,"uvalIP":0.0609,"rval":16.42,"shgc":0.2674,"tvis":0.5013,"routVis":0.0748,"tdwISO":0.3757,"tuv":0.1024,"extL":32.86,"extA":-0.75,"extB":-1.96,"intL":76.08,"intA":-3.74,"intB":2.34},
-  {"outerGlass":"Clear 6mm","coating":"COOL-LITE SKN 183","innerGlass":"Clear 5mm","thickness":10.95,"uval":0.295,"uvalIP":0.052,"rval":19.25,"shgc":0.3542,"tvis":0.7393,"routVis":0.1196,"tdwISO":0.5475,"tuv":0.1816,"extL":41.36,"extA":-1.53,"extB":-8.26,"intL":88.85,"intA":-4.03,"intB":3.29},
-  {"outerGlass":"Clear 6mm","coating":"COOL-LITE SKN 183","innerGlass":"Clear 6mm","thickness":11.95,"uval":0.2949,"uvalIP":0.0519,"rval":19.25,"shgc":0.3542,"tvis":0.7326,"routVis":0.1191,"tdwISO":0.541,"tuv":0.1762,"extL":41.27,"extA":-1.53,"extB":-8.3,"intL":88.53,"intA":-4.32,"intB":3.34},
-  {"outerGlass":"Clear 4mm","coating":"ECLAZ ZEN II","innerGlass":"Clear 4mm","thickness":8.15,"uval":0.3904,"uvalIP":0.0688,"rval":14.54,"shgc":0.6337,"tvis":0.8263,"routVis":0.1143,"tdwISO":0.691,"tuv":0.4197,"extL":40.45,"extA":-0.77,"extB":-3.61,"intL":92.84,"intA":-2.35,"intB":2.06},
-  {"outerGlass":"Clear 5mm","coating":"ECLAZ ZEN II","innerGlass":"Clear 4mm","thickness":9.15,"uval":0.3898,"uvalIP":0.0686,"rval":14.57,"shgc":0.627,"tvis":0.8238,"routVis":0.1137,"tdwISO":0.6867,"tuv":0.4117,"extL":40.37,"extA":-0.9,"extB":-3.57,"intL":92.72,"intA":-2.48,"intB":2.09},
-  {"outerGlass":"Clear 5mm","coating":"ECLAZ ZEN II","innerGlass":"Clear 5mm","thickness":9.95,"uval":0.3896,"uvalIP":0.0686,"rval":14.57,"shgc":0.6271,"tvis":0.8208,"routVis":0.1129,"tdwISO":0.6805,"tuv":0.397,"extL":40.23,"extA":-0.91,"extB":-3.6,"intL":92.59,"intA":-2.66,"intB":2.12},
-  {"outerGlass":"Clear 6mm","coating":"ECLAZ ZEN II","innerGlass":"Clear 5mm","thickness":10.95,"uval":0.3902,"uvalIP":0.0687,"rval":14.55,"shgc":0.6205,"tvis":0.8181,"routVis":0.1126,"tdwISO":0.6767,"tuv":0.3897,"extL":40.18,"extA":-0.94,"extB":-3.55,"intL":92.48,"intA":-2.81,"intB":2.13},
-  {"outerGlass":"Clear 6mm","coating":"ECLAZ ZEN II","innerGlass":"Clear 6mm","thickness":11.95,"uval":0.39,"uvalIP":0.0687,"rval":14.56,"shgc":0.6201,"tvis":0.8107,"routVis":0.1119,"tdwISO":0.6671,"tuv":0.3758,"extL":40.07,"extA":-0.94,"extB":-3.57,"intL":92.15,"intA":-3.12,"intB":2.2},
-  {"outerGlass":"Clear 4mm","coating":"Solarban 70®","innerGlass":"Clear 4mm","thickness":8.05,"uval":0.278,"uvalIP":0.049,"rval":20.42,"shgc":0.2566,"tvis":0.6612,"routVis":0.1347,"tdwISO":0.4437,"tuv":0.0662,"extL":43.54,"extA":-2.93,"extB":-4.7,"intL":84.98,"intA":-5.39,"intB":4.66},
-  {"outerGlass":"Clear 5mm","coating":"Solarban 70®","innerGlass":"Clear 4mm","thickness":8.85,"uval":0.278,"uvalIP":0.0489,"rval":20.43,"shgc":0.2552,"tvis":0.6582,"routVis":0.1339,"tdwISO":0.4412,"tuv":0.065,"extL":43.42,"extA":-3.1,"extB":-4.66,"intL":84.83,"intA":-5.57,"intB":4.67},
-  {"outerGlass":"Clear 5mm","coating":"Solarban 70®","innerGlass":"Clear 5mm","thickness":9.65,"uval":0.2779,"uvalIP":0.0489,"rval":20.43,"shgc":0.2554,"tvis":0.6558,"routVis":0.1334,"tdwISO":0.4389,"tuv":0.0629,"extL":43.34,"extA":-3.09,"extB":-4.69,"intL":84.7,"intA":-5.73,"intB":4.69},
-  {"outerGlass":"Clear 6mm","coating":"Solarban 70®","innerGlass":"Clear 5mm","thickness":10.65,"uval":0.2778,"uvalIP":0.0489,"rval":20.44,"shgc":0.2536,"tvis":0.6518,"routVis":0.1323,"tdwISO":0.4358,"tuv":0.0614,"extL":43.18,"extA":-3.31,"extB":-4.63,"intL":84.5,"intA":-5.97,"intB":4.7},
-  {"outerGlass":"Clear 6mm","coating":"Solarban 70®","innerGlass":"Clear 6mm","thickness":11.65,"uval":0.2777,"uvalIP":0.0489,"rval":20.45,"shgc":0.2536,"tvis":0.6459,"routVis":0.1319,"tdwISO":0.4311,"tuv":0.0597,"extL":43.12,"extA":-3.3,"extB":-4.65,"intL":84.2,"intA":-6.23,"intB":4.75},
-  {"outerGlass":"Solarblue® 6mm","coating":"Solarban 60®","innerGlass":"Clear 4mm","thickness":9.85,"uval":0.346,"uvalIP":0.0609,"rval":16.41,"shgc":0.2472,"tvis":0.4527,"routVis":0.0691,"tdwISO":0.3834,"tuv":0.1032,"extL":31.75,"extA":-1.13,"extB":-6.02,"intL":73.35,"intA":-6.52,"intB":-6.91},
-  {"outerGlass":"Solarblue® 6mm","coating":"Solarban 60®","innerGlass":"Clear 5mm","thickness":10.65,"uval":0.3458,"uvalIP":0.0609,"rval":16.42,"shgc":0.2473,"tvis":0.4511,"routVis":0.0689,"tdwISO":0.3811,"tuv":0.1003,"extL":31.69,"extA":-1.12,"extB":-6.01,"intL":73.24,"intA":-6.65,"intB":-6.87},
-  {"outerGlass":"Solarblue® 6mm","coating":"Solarban 60®","innerGlass":"Clear 6mm","thickness":11.65,"uval":0.3457,"uvalIP":0.0609,"rval":16.42,"shgc":0.2473,"tvis":0.4471,"routVis":0.0687,"tdwISO":0.3769,"tuv":0.0981,"extL":31.64,"extA":-1.1,"extB":-6,"intL":72.98,"intA":-6.89,"intB":-6.78},
-  {"outerGlass":"Solarbronze® 6mm","coating":"Solarban 60®","innerGlass":"Clear 4mm","thickness":9.85,"uval":0.346,"uvalIP":0.0609,"rval":16.41,"shgc":0.2416,"tvis":0.4292,"routVis":0.0662,"tdwISO":0.3034,"tuv":0.0846,"extL":30.83,"extA":0.66,"extB":0.19,"intL":71.19,"intA":1.08,"intB":7.03},
-  {"outerGlass":"Solarbronze® 6mm","coating":"Solarban 60®","innerGlass":"Clear 5mm","thickness":10.65,"uval":0.3458,"uvalIP":0.0609,"rval":16.42,"shgc":0.2417,"tvis":0.4276,"routVis":0.0659,"tdwISO":0.3015,"tuv":0.0822,"extL":30.77,"extA":0.65,"extB":0.17,"intL":71.09,"intA":0.94,"intB":7.04},
-  {"outerGlass":"Solarbronze® 6mm","coating":"Solarban 60®","innerGlass":"Clear 6mm","thickness":11.65,"uval":0.3457,"uvalIP":0.0609,"rval":16.42,"shgc":0.2416,"tvis":0.4237,"routVis":0.0657,"tdwISO":0.2982,"tuv":0.0804,"extL":30.73,"extA":0.65,"extB":0.15,"intL":70.82,"intA":0.68,"intB":7.07},
-  {"outerGlass":"Solargray® 6mm","coating":"Solarban 60®","innerGlass":"Clear 4mm","thickness":9.85,"uval":0.346,"uvalIP":0.0609,"rval":16.41,"shgc":0.2103,"tvis":0.3587,"routVis":0.0593,"tdwISO":0.2816,"tuv":0.0813,"extL":29.22,"extA":0.16,"extB":-2.1,"intL":66.34,"intA":-1.21,"intB":0.13},
-  {"outerGlass":"Solargray® 6mm","coating":"Solarban 60®","innerGlass":"Clear 5mm","thickness":10.65,"uval":0.3458,"uvalIP":0.0609,"rval":16.42,"shgc":0.2104,"tvis":0.3574,"routVis":0.0591,"tdwISO":0.2799,"tuv":0.079,"extL":29.18,"extA":0.15,"extB":-2.11,"intL":66.24,"intA":-1.34,"intB":0.15},
-  {"outerGlass":"Solargray® 6mm","coating":"Solarban 60®","innerGlass":"Clear 6mm","thickness":11.65,"uval":0.3457,"uvalIP":0.0609,"rval":16.42,"shgc":0.2104,"tvis":0.3542,"routVis":0.059,"tdwISO":0.2767,"tuv":0.0773,"extL":29.15,"extA":0.16,"extB":-2.11,"intL":65.99,"intA":-1.57,"intB":0.21},
-  {"outerGlass":"Solexia® 6mm","coating":"Solarban 60®","innerGlass":"Clear 4mm","thickness":9.85,"uval":0.346,"uvalIP":0.0609,"rval":16.41,"shgc":0.2843,"tvis":0.6234,"routVis":0.0919,"tdwISO":0.4481,"tuv":0.1021,"extL":36.36,"extA":-3.92,"extB":-1.32,"intL":83.1,"intA":-8.84,"intB":3.59},
-  {"outerGlass":"Solexia® 6mm","coating":"Solarban 60®","innerGlass":"Clear 5mm","thickness":10.65,"uval":0.3458,"uvalIP":0.0609,"rval":16.42,"shgc":0.2845,"tvis":0.6212,"routVis":0.0914,"tdwISO":0.4456,"tuv":0.0992,"extL":36.27,"extA":-3.9,"extB":-1.34,"intL":82.98,"intA":-8.99,"intB":3.61},
-  0
-];
 
 function labToRgb(L,a,b){let fy=(L+16)/116,fx=a/500+fy,fz=fy-b/200;const d=6/29,xn=.95047,yn=1,zn=1.08883;let x=xn*(fx>d?fx*fx*fx:(fx-16/116)*3*d*d),y=yn*(fy>d?fy*fy*fy:(fy-16/116)*3*d*d),z=zn*(fz>d?fz*fz*fz:(fz-16/116)*3*d*d);let rl=3.2404542*x-1.5371385*y-.4985314*z,gl=-.969266*x+1.8760108*y+.041556*z,bl=.0556434*x-.2040259*y+1.0572252*z;const g=c=>c<=.0031308?12.92*c:1.055*Math.pow(c,1/2.4)-.055;return{r:Math.round(Math.min(255,Math.max(0,g(rl)*255))),g:Math.round(Math.min(255,Math.max(0,g(gl)*255))),b:Math.round(Math.min(255,Math.max(0,g(bl)*255)))}}
 function unique(a){return[...new Set(a)].sort()}
-function simplifyCoating(name){return coatingForSummary(name)}
 let showInterior=false;
 const outerCoatingEl=document.getElementById('outerCoating'),flipBtn=document.getElementById('flipBtn');
 function getVal(n){const c=document.querySelector('input[name="'+n+'"]:checked');return c?c.value:null}
-function populateSelect(el,opts,ph){el.innerHTML='';const o=document.createElement('option');o.value='';o.textContent=ph;o.disabled=true;o.selected=true;el.appendChild(o);opts.forEach(v=>{const op=document.createElement('option');op.value=v;op.textContent=v;el.appendChild(op)})}
-function populateCoatingSelect(el,items,ph){el.innerHTML='';const o=document.createElement('option');o.value='';o.textContent=ph;o.disabled=true;o.selected=true;el.appendChild(o);items.forEach(function(item){const op=document.createElement('option');op.value=item.value;op.textContent=item.display;el.appendChild(op)})}
-function updateOuterCoatings(){const t=getVal('outerThickness');if(!t||!dataLoaded)return;const combos=[];const seen=new Set();DATA.filter(d=>d.outerThickness===t).forEach(function(d){const key=d.outerLowE+'|'+d.outerColorName;if(!seen.has(key)){seen.add(key);var base=coatingBaseName(d.outerLowE);var colorClean=d.outerColorName.replace(/[®™]/g,'').replace(/^SGG\s+/,'');var displayText=coatingForDropdown(d.outerLowE);if(colorClean.indexOf(base.replace(/[®™²³]/g,''))>=0||base.replace(/[®™²³]/g,'').indexOf(colorClean)>=0){/* SGG/coated glass — name already in coating */}else{displayText+=' on '+d.outerColorName.replace(/[®™]/g,'')}combos.push({value:key,display:displayText,coating:d.outerLowE,color:d.outerColorName})}});combos.sort(function(a,b){return a.display.localeCompare(b.display)});const prev=outerCoatingEl.value;populateCoatingSelect(outerCoatingEl,combos,'Select coating…');if(combos.some(c=>c.value===prev))outerCoatingEl.value=prev;else clearResults();updateInnerThickness()}
-function parseCoatingCombo(val){if(!val)return{coating:'',color:''};var parts=val.split('|');return{coating:parts[0],color:parts[1]||''}}
-function updateInnerThickness(){const ot=getVal('outerThickness'),combo=parseCoatingCombo(outerCoatingEl.value),coat=combo.coating,oc=combo.color;
-  if(!ot||!coat||!oc){document.querySelectorAll('input[name="innerThickness"]').forEach(r=>{r.disabled=false;r.parentElement.querySelector('label').style.opacity='1';r.parentElement.querySelector('label').style.cursor='pointer'});return}
-  var filtered=DATA.filter(d=>d.outerColorName===oc&&d.outerThickness===ot&&d.outerLowE===coat);
-  var validInner=unique(filtered.map(d=>d.innerLite));
-  // Map innerLite to nominal thickness for radio matching
-  var validThick=unique(validInner.map(function(il){var t=parseThickness(il);return t||il}));
-  var currentInner=getVal('innerThickness');
-  document.querySelectorAll('input[name="innerThickness"]').forEach(r=>{
-    var val=r.value;var isValid=validThick.includes(val);
+// populateSelect(el, opts, placeholder[, labelFn]) — each opt is either a
+// string value or a {value, display} tuple; labelFn can transform string
+// values into display text on option creation (one write, no relabel pass).
+function populateSelect(el,opts,ph,labelFn){
+  el.innerHTML='';
+  var o=document.createElement('option');
+  o.value='';o.textContent=ph;o.disabled=true;o.selected=true;
+  el.appendChild(o);
+  opts.forEach(function(v){
+    var op=document.createElement('option');
+    if(v&&typeof v==='object'){op.value=v.value;op.textContent=v.display}
+    else{op.value=v;op.textContent=labelFn?labelFn(v):v}
+    el.appendChild(op);
+  });
+}
+// Dropdown value encoding for coating combos: "<coating>|<substrate>"
+function comboKey(layer){return layer.coating+'|'+layer.substrate}
+function parseComboKey(val){if(!val)return{coating:'',substrate:''};var p=val.split('|');return{coating:p[0],substrate:p[1]||''}}
+function updateOuterCoatings(){
+  var t=parseInt(getVal('outerThickness'));
+  if(!t||!dataLoaded)return;
+  var combos=[],seen=new Set();
+  DATA.filter(function(d){return d.glass[0].thickness===t}).forEach(function(d){
+    var key=comboKey(d.glass[0]);
+    if(seen.has(key))return;
+    seen.add(key);
+    combos.push({value:key,display:layerDisplay(d.glass[0],coatingNameWithMaker)});
+  });
+  combos.sort(function(a,b){return a.display.localeCompare(b.display)});
+  var prev=outerCoatingEl.value;
+  populateSelect(outerCoatingEl,combos,'Select coating…');
+  if(combos.some(function(c){return c.value===prev}))outerCoatingEl.value=prev;
+  else clearResults();
+  updateInnerThickness();
+}
+function updateInnerThickness(){
+  var ot=parseInt(getVal('outerThickness')),combo=parseComboKey(outerCoatingEl.value);
+  if(!ot||!combo.coating||!combo.substrate){
+    document.querySelectorAll('input[name="innerThickness"]').forEach(function(r){r.disabled=false;r.parentElement.querySelector('label').style.opacity='1';r.parentElement.querySelector('label').style.cursor='pointer'});
+    return;
+  }
+  var filtered=DATA.filter(function(d){return d.glass[0].coating===combo.coating&&d.glass[0].substrate===combo.substrate&&d.glass[0].thickness===ot});
+  var validThick=new Set(filtered.map(function(d){return d.glass[1].thickness}));
+  var currentInner=parseInt(getVal('innerThickness'));
+  document.querySelectorAll('input[name="innerThickness"]').forEach(function(r){
+    var isValid=validThick.has(parseInt(r.value));
     r.disabled=!isValid;
     r.parentElement.querySelector('label').style.opacity=isValid?'1':'0.35';
     r.parentElement.querySelector('label').style.cursor=isValid?'pointer':'not-allowed';
   });
-  if(!validThick.includes(currentInner)){
+  if(!validThick.has(currentInner)){
     var firstValid=document.querySelector('input[name="innerThickness"]:not(:disabled)');
-    if(firstValid){firstValid.checked=true}
+    if(firstValid)firstValid.checked=true;
   }
   updateResults();
 }
-function findMatch(){const ot=getVal('outerThickness'),combo=parseCoatingCombo(outerCoatingEl.value),coat=combo.coating,oc=combo.color,it=getVal('innerThickness');if(!ot||!oc||!coat||!it)return null;return DATA.find(function(d){return d.outerColorName===oc&&d.outerThickness===ot&&d.outerLowE===coat&&(parseThickness(d.innerLite)===it||d.innerLite===it)})||null}
-const glassColors={'Clear':'rgba(200,225,245,0.45)','Optigray':'rgba(140,145,150,0.55)','Optiblue':'rgba(150,190,220,0.55)','Solarbronze':'rgba(180,150,110,0.55)','Solargray':'rgba(130,130,135,0.6)','Solarblue':'rgba(120,170,210,0.6)','Solexia':'rgba(170,210,180,0.5)'};
-function getGlassColor(s){for(const[k,v]of Object.entries(glassColors))if(s.toLowerCase().includes(k.toLowerCase()))return v;return'rgba(200,225,245,0.45)'}
+function findMatch(){
+  var ot=parseInt(getVal('outerThickness')),combo=parseComboKey(outerCoatingEl.value),it=parseInt(getVal('innerThickness'));
+  if(!ot||!combo.coating||!combo.substrate||!it)return null;
+  return DATA.find(function(d){
+    return d.glass[0].coating===combo.coating&&d.glass[0].substrate===combo.substrate&&d.glass[0].thickness===ot&&d.glass[1].thickness===it;
+  })||null;
+}
+const glassColors={
+  'Clear':'rgba(200,225,245,0.45)',
+  'Optigray':'rgba(140,145,150,0.55)',
+  'Solarblue':'rgba(120,170,210,0.6)',
+  'Solarbronze':'rgba(180,150,110,0.55)',
+  'Solargray':'rgba(130,130,135,0.6)',
+  'Solexia':'rgba(170,210,180,0.5)',
+  'Starphire':'rgba(215,235,245,0.35)',
+  'OptiblueZ50':'rgba(150,190,220,0.55)',
+  'OptiblueZ75':'rgba(130,175,215,0.6)'
+};
+function getGlassColor(substrate){return glassColors[substrate]||glassColors['Clear']}
 // Acoustic lookup for Enthermal — key = "<smaller>/<larger>" glass thickness in mm
 const ENTHERMAL_ACOUSTIC={
   '4/4':{rw:35,oitc:31},
@@ -636,13 +637,12 @@ const ENTHERMAL_ACOUSTIC={
   '5/6':{rw:35,oitc:32},
   '6/6':{rw:36,oitc:32}
 };
-function thicknessMM(liteName){var m=(liteName||'').match(/(\d+)\s*mm/);return m?parseInt(m[1],10):0}
 function acousticKey(a,b){return Math.min(a,b)+'/'+Math.max(a,b)}
 function iguWeight(totalGlassMM){return (2.5*totalGlassMM).toFixed(1)}
 const EMBODIED_CARBON_PLACEHOLDER='38.6';
 function clearResults(){
   ['metricU','metricUIP','metricR','metricSHGC','metricTvis','metricRoutVis','metricTdw','metricTuv'].forEach(id=>document.getElementById(id).textContent='—');
-  document.getElementById('summaryText').textContent='Select a configuration to view results.';
+  document.getElementById('summaryText').textContent='Select a product to view results.';
   document.getElementById('csThicknessVal').textContent='—';
   document.getElementById('csOuterDetail').textContent='—';
   document.getElementById('csOuterSub').textContent='—';
@@ -655,52 +655,54 @@ function clearResults(){
 }
 function updateResults(){const match=findMatch();if(!getVal('outerThickness')||!outerCoatingEl.value||!getVal('innerThickness')){clearResults();return}
 if(!match){clearResults();return}
-var uSI=match.uval;var uIP=match.uvalIP;
+// Auto-flip toggle to match the config's CEN availability
+var stdInput=document.getElementById('stdToggleInput');
+var stdToggleEl=document.getElementById('stdToggle');
+stdInput.checked=!!match.cen;syncStdToggle();
+stdToggleEl.classList.toggle('locked',true);
+var cenActive=stdInput.checked;
+var uSI=cenActive&&match.uvalCEN!=null?match.uvalCEN:match.uval;
 document.getElementById('metricU').textContent=uSI.toFixed(3);
-var cenActive=document.getElementById('stdToggleInput').checked;
-document.getElementById('metricUIP').textContent=cenActive?'—':uIP.toFixed(3);
+document.getElementById('metricUIP').textContent=cenActive?'—':match.uvalIP.toFixed(3);
 document.getElementById('metricR').textContent=cenActive?'—':'R-'+Math.round(match.rval);
-document.getElementById('metricSHGC').textContent=match.shgc.toFixed(2);
+var shgcVal=cenActive&&match.gFactor!=null?match.gFactor:match.shgc;
+document.getElementById('metricSHGC').textContent=shgcVal.toFixed(2);
 document.getElementById('metricTvis').innerHTML=(match.tvis*100).toFixed(1)+'<span style="font-size:50%">%</span>';
 document.getElementById('metricRoutVis').innerHTML=(match.routVis*100).toFixed(1)+'<span style="font-size:50%">%</span>';
-var eOuterMM=thicknessMM(match.outerLite),eInnerMM=thicknessMM(match.innerLite);
+var outerLayer=match.glass[0],innerLayer=match.glass[1];
+var eOuterMM=outerLayer.thickness,eInnerMM=innerLayer.thickness;
 var eAcoustic=ENTHERMAL_ACOUSTIC[acousticKey(eOuterMM,eInnerMM)];
 document.getElementById('metricTdw').textContent=eAcoustic?(cenActive?eAcoustic.rw:eAcoustic.oitc):'—';
 document.getElementById('csIGUWeight').textContent=iguWeight(eOuterMM+eInnerMM);
 document.getElementById('csECarbon').textContent=EMBODIED_CARBON_PLACEHOLDER;
 document.getElementById('metricTuv').innerHTML=(match.tuv*100).toFixed(1)+'<span style="font-size:50%">%</span>';
 document.querySelectorAll('.metric-value').forEach(el=>{el.classList.remove('fade-in');void el.offsetWidth;el.classList.add('fade-in')});
-var outerNom=parseThickness(match.outerLite);var innerNom=parseThickness(match.innerLite);
-const outerPx=Math.round(parseInt(outerNom)*3),innerPx=Math.round(parseInt(innerNom||'4')*3);
-const outer=document.getElementById('csPaneOuter'),inner=document.getElementById('csPaneInner');
+var outerPx=Math.round(eOuterMM*3),innerPx=Math.round(eInnerMM*3);
+var outer=document.getElementById('csPaneOuter'),inner=document.getElementById('csPaneInner');
 outer.style.width=outerPx+'px';
-outer.style.background='linear-gradient(180deg,'+getGlassColor(match.outerLite)+' 0%,'+getGlassColor(match.outerLite).replace(/0\.\d+\)/,'0.3)')+' 100%)';
+outer.style.background='linear-gradient(180deg,'+getGlassColor(outerLayer.substrate)+' 0%,'+getGlassColor(outerLayer.substrate).replace(/0\.\d+\)/,'0.3)')+' 100%)';
 document.getElementById('csCoatingLine').style.display='block';
 inner.style.width=innerPx+'px';
 inner.style.background='linear-gradient(180deg,rgba(200,220,240,0.6) 0%,rgba(180,200,220,0.4) 100%)';
 inner.style.borderColor='rgba(180,200,220,0.5)';
-var outerCoatLabel=coatingForSummary(match.outerLowE);
-var outerSubLabel=match.outerColorName.replace(/[®™]/g,'')+' '+match.outerThickness;
-if(coatingInSubstrate(outerCoatLabel,outerSubLabel)){
-  document.getElementById('csOuterDetail').textContent=outerSubLabel;
-  document.getElementById('csOuterSub').textContent='';
-}else{
-  document.getElementById('csOuterDetail').textContent=outerCoatLabel;
+// Cross-section labels: if substrate is Clear, show coating name on top line and
+// substrate+thickness on sub-line. If branded, show substrate+thickness on top
+// line (coating is embedded in the substrate product) and clear the sub-line.
+var outerSubLabel=substrateName(outerLayer.substrate).replace(/[®™]/g,'')+' '+eOuterMM+'mm';
+if(outerLayer.substrate==='Clear'){
+  document.getElementById('csOuterDetail').textContent=coatingName(outerLayer.coating);
   document.getElementById('csOuterSub').textContent=outerSubLabel;
+}else{
+  document.getElementById('csOuterDetail').textContent=outerSubLabel;
+  document.getElementById('csOuterSub').textContent=coatingName(outerLayer.coating);
 }
-document.getElementById('csInnerDetail').textContent=match.innerLite;
+document.getElementById('csInnerDetail').textContent='Clear '+eInnerMM+'mm';
 document.getElementById('csThicknessVal').textContent=match.totalThickness.toFixed(1)+' mm';
 // Position callouts: coating is at right edge of outer pane, vacuum is in the gap
 var coatingLeft=outerPx-3;var vacuumLeft=outerPx-1;
 document.getElementById('csCalloutCoating').style.left=coatingLeft+'px';
 document.getElementById('csCalloutVacuum').style.left=vacuumLeft+'px';
-var summaryCoat=coatingForSummary(match.outerLowE);
-var summarySub=match.outerColorName.replace(/[®™]/g,'')+' '+match.outerThickness;
-if(coatingInSubstrate(summaryCoat,summarySub)){
-  document.getElementById('summaryText').innerHTML='<strong>'+summarySub+'</strong> outboard and <strong>'+match.innerLite+'</strong> inboard.';
-}else{
-  document.getElementById('summaryText').innerHTML='<strong>'+summaryCoat+'</strong> on <strong>'+summarySub+'</strong> outboard and <strong>'+match.innerLite+'</strong> inboard.';
-}
+document.getElementById('summaryText').innerHTML='<strong>'+layerDisplay(outerLayer)+'</strong> on <strong>'+eOuterMM+'mm</strong> outboard and <strong>Clear '+eInnerMM+'mm</strong> inboard.';
 updateColor(match);requestAnimationFrame(centerCrossSection)}
 function updateColor(match){if(!match)match=findMatch();if(!match)return;
 var L=showInterior?match.intL:match.extL,a=showInterior?match.intA:match.extA,b=showInterior?match.intB:match.extB;
@@ -777,78 +779,39 @@ function getActivePlusData(){
   var isOutboard=document.getElementById('posToggleInput').checked;
   return isOutboard?DATA_PLUS_OUT:DATA_PLUS_IN;
 }
-// Helper: get VIG coating from a Plus record (middleLowE or innerLowE, whichever is non-empty)
-function getVigCoating(rec){return rec.middleLowE||rec.innerLowE||''}
-// Helper: get VIG surface from a Plus record
-function getVigSurface(rec){return rec.middleLowE?'S4':'S5'}
-const _REMOVED_DATA_PLUS = [
-  {"outerCoating":"Cardinal LoĒ²-272®","vigCoating":"Cardinal LoĒ²-272®","vigSurface":"S5","thickness":24.65,"uval":0.3036,"uvalIP":0.0535,"rval":18.7,"shgc":0.3364,"tvis":0.5678,"routVis":0.1296,"tdwISO":0.3948,"tuv":0.0528,"extL":42.66,"extA":-2.06,"extB":-0.9,"intL":79.94,"intA":-3.81,"intB":4.58},
-  {"outerCoating":"Cardinal LoĒ²-272®","vigCoating":"Cardinal LoĒ-180™","vigSurface":"S5","thickness":24.65,"uval":0.3683,"uvalIP":0.0649,"rval":15.42,"shgc":0.3583,"tvis":0.6258,"routVis":0.1477,"tdwISO":0.4395,"tuv":0.0765,"extL":45.36,"extA":-1.4,"extB":-4.24,"intL":83.13,"intA":-3.74,"intB":4.5},
-  {"outerCoating":"Cardinal LoĒ²-272®","vigCoating":"Cardinal LoĒ²-270®","vigSurface":"S5","thickness":24.65,"uval":0.2848,"uvalIP":0.0502,"rval":19.94,"shgc":0.3236,"tvis":0.55,"routVis":0.1393,"tdwISO":0.3721,"tuv":0.0422,"extL":44.11,"extA":-5.39,"extB":0.24,"intL":78.94,"intA":-4.85,"intB":4.78},
-  {"outerCoating":"Cardinal LoĒ²-272®","vigCoating":"Cardinal LoĒ³-366®","vigSurface":"S5","thickness":24.65,"uval":0.2413,"uvalIP":0.0425,"rval":23.54,"shgc":0.295,"tvis":0.5115,"routVis":0.1323,"tdwISO":0.3201,"tuv":0.0151,"extL":43.05,"extA":-0.67,"extB":-1.86,"intL":76.68,"intA":-6.8,"intB":5.12},
-  {"outerCoating":"Cardinal LoĒ²-272®","vigCoating":"Cardinal LoĒ-180™","vigSurface":"S4","thickness":24.65,"uval":0.3682,"uvalIP":0.0649,"rval":15.42,"shgc":0.3446,"tvis":0.626,"routVis":0.1524,"tdwISO":0.4394,"tuv":0.0762,"extL":46.02,"extA":-1.95,"extB":-3.96,"intL":83.14,"intA":-3.75,"intB":4.51},
-  {"outerCoating":"Cardinal LoĒ²-272®","vigCoating":"Cardinal LoĒ²-270®","vigSurface":"S4","thickness":24.65,"uval":0.2847,"uvalIP":0.0501,"rval":19.94,"shgc":0.2694,"tvis":0.5497,"routVis":0.1325,"tdwISO":0.3722,"tuv":0.0421,"extL":43.14,"extA":-2.7,"extB":-2.3,"intL":78.93,"intA":-4.8,"intB":4.74},
-  {"outerCoating":"Cardinal LoĒ²-272®","vigCoating":"Cardinal LoĒ²-272®","vigSurface":"S4","thickness":24.65,"uval":0.3036,"uvalIP":0.0535,"rval":18.7,"shgc":0.2911,"tvis":0.5676,"routVis":0.1234,"tdwISO":0.3949,"tuv":0.0526,"extL":41.73,"extA":-1.33,"extB":-2.54,"intL":79.92,"intA":-3.79,"intB":4.56},
-  {"outerCoating":"Cardinal LoĒ²-272®","vigCoating":"Cardinal LoĒ³-366®","vigSurface":"S4","thickness":24.65,"uval":0.2412,"uvalIP":0.0425,"rval":23.54,"shgc":0.2194,"tvis":0.5113,"routVis":0.126,"tdwISO":0.3203,"tuv":0.0152,"extL":42.12,"extA":-1.43,"extB":-3.16,"intL":76.67,"intA":-6.81,"intB":5.1},
-  {"outerCoating":"Cardinal LoĒ-180™","vigCoating":"Cardinal LoĒ²-272®","vigSurface":"S5","thickness":24.65,"uval":0.3073,"uvalIP":0.0541,"rval":18.48,"shgc":0.4308,"tvis":0.6258,"routVis":0.1801,"tdwISO":0.4395,"tuv":0.0765,"extL":49.63,"extA":-2.45,"extB":-4.05,"intL":83.13,"intA":-3.74,"intB":4.5},
-  {"outerCoating":"Cardinal LoĒ²-270®","vigCoating":"Cardinal LoĒ²-272®","vigSurface":"S5","thickness":24.65,"uval":0.3026,"uvalIP":0.0533,"rval":18.76,"shgc":0.3059,"tvis":0.55,"routVis":0.1426,"tdwISO":0.3721,"tuv":0.0422,"extL":44.63,"extA":-4.08,"extB":-0.83,"intL":78.94,"intA":-4.85,"intB":4.78},
-  {"outerCoating":"Cardinal LoĒ³-366®","vigCoating":"Cardinal LoĒ²-272®","vigSurface":"S5","thickness":24.65,"uval":0.3003,"uvalIP":0.0529,"rval":18.91,"shgc":0.2391,"tvis":0.5115,"routVis":0.1296,"tdwISO":0.3201,"tuv":0.0151,"extL":42.67,"extA":-2.27,"extB":-2.29,"intL":76.68,"intA":-6.8,"intB":5.12},
-  {"outerCoating":"Cardinal LoĒ-180™","vigCoating":"Cardinal LoĒ-180™","vigSurface":"S5","thickness":24.65,"uval":0.3734,"uvalIP":0.0658,"rval":15.21,"shgc":0.5352,"tvis":0.6906,"routVis":0.202,"tdwISO":0.4956,"tuv":0.1252,"extL":52.26,"extA":-1.84,"extB":-7.04,"intL":86.47,"intA":-3.58,"intB":4.22},
-  {"outerCoating":"Cardinal LoĒ-180™","vigCoating":"Cardinal LoĒ²-270®","vigSurface":"S5","thickness":24.65,"uval":0.288,"uvalIP":0.0507,"rval":19.72,"shgc":0.4029,"tvis":0.6065,"routVis":0.1919,"tdwISO":0.4143,"tuv":0.063,"extL":51.04,"extA":-5.7,"extB":-2.9,"intL":82.12,"intA":-4.88,"intB":4.69},
-  {"outerCoating":"Cardinal LoĒ-180™","vigCoating":"Cardinal LoĒ³-366®","vigSurface":"S5","thickness":24.65,"uval":0.2436,"uvalIP":0.0429,"rval":23.31,"shgc":0.3497,"tvis":0.5637,"routVis":0.1835,"tdwISO":0.3555,"tuv":0.0231,"extL":50.01,"extA":-1.04,"extB":-4.89,"intL":79.76,"intA":-6.87,"intB":4.98},
-  {"outerCoating":"Cardinal LoĒ²-270®","vigCoating":"Cardinal LoĒ-180™","vigSurface":"S5","thickness":24.65,"uval":0.3668,"uvalIP":0.0646,"rval":15.48,"shgc":0.3169,"tvis":0.6065,"routVis":0.1596,"tdwISO":0.4143,"tuv":0.063,"extL":47.03,"extA":-3.52,"extB":-3.7,"intL":82.12,"intA":-4.88,"intB":4.69},
-  {"outerCoating":"Cardinal LoĒ²-270®","vigCoating":"Cardinal LoĒ²-270®","vigSurface":"S5","thickness":24.65,"uval":0.2839,"uvalIP":0.05,"rval":20,"shgc":0.2964,"tvis":0.533,"routVis":0.1518,"tdwISO":0.3523,"tuv":0.0344,"extL":45.92,"extA":-7.02,"extB":0.15,"intL":77.98,"intA":-5.89,"intB":4.96},
-  {"outerCoating":"Cardinal LoĒ²-270®","vigCoating":"Cardinal LoĒ³-366®","vigSurface":"S5","thickness":24.65,"uval":0.2406,"uvalIP":0.0424,"rval":23.6,"shgc":0.2752,"tvis":0.4957,"routVis":0.1451,"tdwISO":0.3055,"tuv":0.0122,"extL":44.97,"extA":-2.9,"extB":-1.63,"intL":75.74,"intA":-7.7,"intB":5.24},
-  {"outerCoating":"Cardinal LoĒ³-366®","vigCoating":"Cardinal LoĒ-180™","vigSurface":"S5","thickness":24.65,"uval":0.3635,"uvalIP":0.064,"rval":15.62,"shgc":0.2368,"tvis":0.5637,"routVis":0.1444,"tdwISO":0.3555,"tuv":0.0231,"extL":44.91,"extA":-2.09,"extB":-4.61,"intL":79.76,"intA":-6.87,"intB":4.98},
-  {"outerCoating":"Cardinal LoĒ³-366®","vigCoating":"Cardinal LoĒ²-270®","vigSurface":"S5","thickness":24.65,"uval":0.2818,"uvalIP":0.0496,"rval":20.15,"shgc":0.2347,"tvis":0.4957,"routVis":0.1376,"tdwISO":0.3055,"tuv":0.0122,"extL":43.89,"extA":-5.08,"extB":-1.39,"intL":75.74,"intA":-7.7,"intB":5.24},
-  {"outerCoating":"Cardinal LoĒ³-366®","vigCoating":"Cardinal LoĒ³-366®","vigSurface":"S5","thickness":24.65,"uval":0.239,"uvalIP":0.0421,"rval":23.76,"shgc":0.2285,"tvis":0.4615,"routVis":0.1316,"tdwISO":0.2725,"tuv":0.0044,"extL":42.97,"extA":-1.4,"extB":-2.9,"intL":73.58,"intA":-9.29,"intB":5.42},
-  {"outerCoating":"Cardinal LoĒ-180™","vigCoating":"Cardinal LoĒ-180™","vigSurface":"S4","thickness":24.65,"uval":0.3734,"uvalIP":0.0658,"rval":15.21,"shgc":0.511,"tvis":0.691,"routVis":0.2078,"tdwISO":0.4956,"tuv":0.1245,"extL":52.91,"extA":-2.37,"extB":-6.75,"intL":86.49,"intA":-3.6,"intB":4.22},
-  {"outerCoating":"Cardinal LoĒ-180™","vigCoating":"Cardinal LoĒ²-270®","vigSurface":"S4","thickness":24.65,"uval":0.288,"uvalIP":0.0507,"rval":19.72,"shgc":0.3312,"tvis":0.6059,"routVis":0.1836,"tdwISO":0.4146,"tuv":0.0626,"extL":50.09,"extA":-3.07,"extB":-5.31,"intL":82.09,"intA":-4.78,"intB":4.59},
-  {"outerCoating":"Cardinal LoĒ-180™","vigCoating":"Cardinal LoĒ²-272®","vigSurface":"S4","thickness":24.65,"uval":0.3072,"uvalIP":0.0541,"rval":18.48,"shgc":0.3689,"tvis":0.6253,"routVis":0.1726,"tdwISO":0.4398,"tuv":0.0758,"extL":48.71,"extA":-1.79,"extB":-5.61,"intL":83.1,"intA":-3.7,"intB":4.44},
-  {"outerCoating":"Cardinal LoĒ-180™","vigCoating":"Cardinal LoĒ³-366®","vigSurface":"S4","thickness":24.65,"uval":0.2436,"uvalIP":0.0429,"rval":23.31,"shgc":0.2539,"tvis":0.5633,"routVis":0.1758,"tdwISO":0.356,"tuv":0.0232,"extL":49.1,"extA":-1.84,"extB":-6.12,"intL":79.74,"intA":-6.87,"intB":4.94},
-  {"outerCoating":"Cardinal LoĒ²-270®","vigCoating":"Cardinal LoĒ-180™","vigSurface":"S4","thickness":24.65,"uval":0.3668,"uvalIP":0.0646,"rval":15.48,"shgc":0.3055,"tvis":0.6068,"routVis":0.1641,"tdwISO":0.4144,"tuv":0.0629,"extL":47.61,"extA":-4,"extB":-3.46,"intL":82.14,"intA":-4.9,"intB":4.7},
-  {"outerCoating":"Cardinal LoĒ²-270®","vigCoating":"Cardinal LoĒ²-270®","vigSurface":"S4","thickness":24.65,"uval":0.2838,"uvalIP":0.05,"rval":20.01,"shgc":0.2482,"tvis":0.5326,"routVis":0.1453,"tdwISO":0.3522,"tuv":0.0343,"extL":45.05,"extA":-4.67,"extB":-2.03,"intL":77.95,"intA":-5.82,"intB":4.91},
-  {"outerCoating":"Cardinal LoĒ²-270®","vigCoating":"Cardinal LoĒ²-272®","vigSurface":"S4","thickness":24.65,"uval":0.3026,"uvalIP":0.0533,"rval":18.77,"shgc":0.2655,"tvis":0.5496,"routVis":0.1368,"tdwISO":0.3721,"tuv":0.0421,"extL":43.81,"extA":-3.46,"extB":-2.21,"intL":78.92,"intA":-4.82,"intB":4.75},
-  {"outerCoating":"Cardinal LoĒ²-270®","vigCoating":"Cardinal LoĒ³-366®","vigSurface":"S4","thickness":24.65,"uval":0.2406,"uvalIP":0.0424,"rval":23.6,"shgc":0.2069,"tvis":0.4954,"routVis":0.1392,"tdwISO":0.3055,"tuv":0.0122,"extL":44.15,"extA":-3.62,"extB":-2.66,"intL":75.72,"intA":-7.71,"intB":5.23},
-  {"outerCoating":"Cardinal LoĒ³-366®","vigCoating":"Cardinal LoĒ-180™","vigSurface":"S4","thickness":24.65,"uval":0.3635,"uvalIP":0.064,"rval":15.62,"shgc":0.2292,"tvis":0.5639,"routVis":0.1483,"tdwISO":0.3555,"tuv":0.023,"extL":45.46,"extA":-2.59,"extB":-4.39,"intL":79.77,"intA":-6.88,"intB":4.98},
-  {"outerCoating":"Cardinal LoĒ³-366®","vigCoating":"Cardinal LoĒ²-270®","vigSurface":"S4","thickness":24.65,"uval":0.2817,"uvalIP":0.0496,"rval":20.16,"shgc":0.2001,"tvis":0.4954,"routVis":0.1319,"tdwISO":0.3057,"tuv":0.0121,"extL":43.07,"extA":-2.9,"extB":-3.3,"intL":75.72,"intA":-7.66,"intB":5.2},
-  {"outerCoating":"Cardinal LoĒ³-366®","vigCoating":"Cardinal LoĒ²-272®","vigSurface":"S4","thickness":24.65,"uval":0.3002,"uvalIP":0.0529,"rval":18.91,"shgc":0.2097,"tvis":0.5113,"routVis":0.1246,"tdwISO":0.3203,"tuv":0.015,"extL":41.92,"extA":-1.6,"extB":-3.47,"intL":76.67,"intA":-6.79,"intB":5.09},
-  {"outerCoating":"Cardinal LoĒ³-366®","vigCoating":"Cardinal LoĒ³-366®","vigSurface":"S4","thickness":24.65,"uval":0.239,"uvalIP":0.0421,"rval":23.76,"shgc":0.1771,"tvis":0.4612,"routVis":0.1266,"tdwISO":0.2727,"tuv":0.0045,"extL":42.22,"extA":-2,"extB":-3.67,"intL":73.57,"intA":-9.3,"intB":5.39},
-  {"outerCoating":"Solarban 60®","vigCoating":"Solarban 60®","vigSurface":"S5","thickness":24.65,"uval":0.2827,"uvalIP":0.0498,"rval":20.08,"shgc":0.3282,"tvis":0.5821,"routVis":0.1324,"tdwISO":0.3986,"tuv":0.0661,"extL":43.06,"extA":-2.66,"extB":-0.51,"intL":80.77,"intA":-5.21,"intB":4.97},
-  {"outerCoating":"Solarban 60®","vigCoating":"Solarban 70®","vigSurface":"S5","thickness":24.65,"uval":0.2344,"uvalIP":0.0413,"rval":24.22,"shgc":0.278,"tvis":0.5329,"routVis":0.1455,"tdwISO":0.3345,"tuv":0.0241,"extL":45.02,"extA":-2.48,"extB":-4.24,"intL":77.93,"intA":-6.95,"intB":6.57},
-  {"outerCoating":"Solarban 70®","vigCoating":"Solarban 60®","vigSurface":"S5","thickness":24.65,"uval":0.2804,"uvalIP":0.0494,"rval":20.25,"shgc":0.2392,"tvis":0.5329,"routVis":0.155,"tdwISO":0.3345,"tuv":0.0241,"extL":46.33,"extA":-4.31,"extB":-2.84,"intL":77.93,"intA":-6.95,"intB":6.57},
-  0
-];
+// Plus accessors — the "second coating" is the non-S2 coating carried by
+// either the middle or inner lite. d.secondCoating / d.secondSurface are
+// computed once in postProcessData.
 
 var plusOuterCoatingEl=document.getElementById('plusOuterCoating');
 var plusVigCoatingEl=document.getElementById('plusVigCoating');
 var plusInitialized=false;
 
-// VIG thickness combo key — e.g. "4/5" — derived from lite positions based on mode
+// VIG thickness combo key — "X/Y" where X,Y are the two VIG pane thicknesses.
+// In Inboard mode the VIG panes are glass[1] + glass[2]; in Outboard mode
+// they are glass[0] + glass[1].
 function getVigComboKey(d,isOutboard){
-  if(isOutboard){
-    return thicknessMM(d.outerLite)+'/'+thicknessMM(d.middleLite);
-  }
-  return thicknessMM(d.middleLite)+'/'+thicknessMM(d.innerLite);
+  if(isOutboard)return d.glass[0].thickness+'/'+d.glass[1].thickness;
+  return d.glass[1].thickness+'/'+d.glass[2].thickness;
 }
 
-// Progressive filter: returns records matching all current Plus selections up to the given level
+// Progressive filter: returns records matching all current Plus selections.
 function filterPlusData(){
   var data=getActivePlusData();
   var isOutboard=document.getElementById('posToggleInput').checked;
-  // Step 1: "outer" thickness control — in Inboard mode this binds to outerLite (mono outboard);
-  // in Outboard mode it binds to innerLite (mono inboard).
-  var ot=getVal('plusOuterThickness');
+  // Step 1: "outer" thickness control — Inboard: glass[0] (mono outboard);
+  // Outboard: glass[2] (mono inboard, despite the control name).
+  var ot=parseInt(getVal('plusOuterThickness'));
   if(ot){
-    if(isOutboard)data=data.filter(function(d){return parseThickness(d.innerLite)===ot});
-    else data=data.filter(function(d){return parseThickness(d.outerLite)===ot});
+    if(isOutboard)data=data.filter(function(d){return d.glass[2].thickness===ot});
+    else data=data.filter(function(d){return d.glass[0].thickness===ot});
   }
-  // Step 2: Outer coating (S2 — outerLowE, same field in both modes)
+  // Step 2: Outer coating (S2 — glass[0].coating, both modes)
   var oc=plusOuterCoatingEl.value;
-  if(oc)data=data.filter(function(d){return d.outerLowE===oc});
+  if(oc)data=data.filter(function(d){return d.glass[0].coating===oc});
   // Step 3: Gas fill
   var isAir=document.getElementById('gapToggleInput').checked;
-  data=data.filter(function(d){return d.gasFill===(isAir?'Air':'Ar90')});
+  data=data.filter(function(d){return d.gasType===(isAir?'Air':'Ar90')});
   // Step 4: VIG thickness combo
   var vigThick=document.getElementById('plusVigThickness').value;
   if(vigThick){
@@ -860,27 +823,26 @@ function filterPlusData(){
 function initPlusConfig(){
   if(!dataLoaded)return;
   var data=getActivePlusData();
+  // Enable outer thickness radios based on available data. In Inboard mode
+  // this control binds to glass[0]; in Outboard mode to glass[2].
   var isOutboard=document.getElementById('posToggleInput').checked;
-  // Enable outer thickness radios based on available data
-  var availThick=new Set(data.map(function(d){return parseThickness(d.outerLite)}));
+  var availThick=new Set(data.map(function(d){return isOutboard?d.glass[2].thickness:d.glass[0].thickness}));
   document.querySelectorAll('input[name="plusOuterThickness"]').forEach(function(r){
     var label=r.nextElementSibling||r.parentElement.querySelector('label');
-    var isValid=availThick.has(r.value);
+    var isValid=availThick.has(parseInt(r.value));
     r.disabled=!isValid;
     if(label){label.style.opacity=isValid?'1':'0.35';label.style.cursor=isValid?'pointer':'not-allowed'}
   });
-  // Populate outer coating dropdown
   updatePlusOuterCoatings();
 }
 
 function updatePlusOuterCoatings(){
   var data=getActivePlusData();
-  var ot=getVal('plusOuterThickness');
-  if(ot)data=data.filter(function(d){return parseThickness(d.outerLite)===ot});
-  var coats=unique(data.map(function(d){return d.outerLowE}));
+  var ot=parseInt(getVal('plusOuterThickness'));
+  if(ot)data=data.filter(function(d){return d.glass[0].thickness===ot});
+  var coats=unique(data.map(function(d){return d.glass[0].coating}));
   var prev=plusOuterCoatingEl.value;
-  populateSelect(plusOuterCoatingEl,coats,'Select coating…');
-  Array.from(plusOuterCoatingEl.options).forEach(function(opt){if(opt.value)opt.textContent=coatingForDropdown(opt.value)});
+  populateSelect(plusOuterCoatingEl,coats,'Select coating…',coatingNameWithMaker);
   if(coats.includes(prev))plusOuterCoatingEl.value=prev;
   else if(coats.length===1)plusOuterCoatingEl.value=coats[0];
   updatePlusVigThickness();
@@ -889,12 +851,12 @@ function updatePlusOuterCoatings(){
 function updatePlusVigThickness(){
   var data=getActivePlusData();
   var isOutboard=document.getElementById('posToggleInput').checked;
-  var ot=getVal('plusOuterThickness');
-  if(ot)data=data.filter(function(d){return parseThickness(d.outerLite)===ot});
+  var ot=parseInt(getVal('plusOuterThickness'));
+  if(ot)data=data.filter(function(d){return d.glass[0].thickness===ot});
   var oc=plusOuterCoatingEl.value;
-  if(oc)data=data.filter(function(d){return d.outerLowE===oc});
+  if(oc)data=data.filter(function(d){return d.glass[0].coating===oc});
   var isAir=document.getElementById('gapToggleInput').checked;
-  data=data.filter(function(d){return d.gasFill===(isAir?'Air':'Ar90')});
+  data=data.filter(function(d){return d.gasType===(isAir?'Air':'Ar90')});
   var validCombos=new Set(data.map(function(d){return getVigComboKey(d,isOutboard)}));
   var sel=document.getElementById('plusVigThickness');
   var prev=sel.value;
@@ -904,19 +866,15 @@ function updatePlusVigThickness(){
     opt.disabled=!valid;
     if(valid&&!firstValid)firstValid=opt.value;
   });
-  if(!validCombos.has(prev)){
-    sel.value=firstValid;
-  }
+  if(!validCombos.has(prev))sel.value=firstValid;
   updatePlusVigCoatings();
 }
 
 function updatePlusVigCoatings(){
   var filtered=filterPlusData();
-  // Get unique VIG coatings (base name without surface)
-  var vigCoats=unique(filtered.map(function(d){return coatingBaseName(getVigCoating(d))})).filter(function(c){return c});
+  var vigCoats=unique(filtered.map(function(d){return d.secondCoating})).filter(function(c){return c});
   var prev=plusVigCoatingEl.value;
-  populateSelect(plusVigCoatingEl,vigCoats,'Select coating…');
-  Array.from(plusVigCoatingEl.options).forEach(function(opt){if(opt.value)opt.textContent=coatingForDropdown(opt.value)});
+  populateSelect(plusVigCoatingEl,vigCoats,'Select coating…',coatingNameWithMaker);
   if(vigCoats.includes(prev))plusVigCoatingEl.value=prev;
   else if(vigCoats.length>0)plusVigCoatingEl.value=vigCoats[0];
   updatePlusSurfaces();
@@ -926,16 +884,14 @@ function updatePlusSurfaces(){
   var filtered=filterPlusData();
   var vc=plusVigCoatingEl.value;
   if(!vc){updatePlusResults();return}
-  // Filter by selected VIG coating base name
-  filtered=filtered.filter(function(d){return coatingBaseName(getVigCoating(d))===vc});
+  filtered=filtered.filter(function(d){return d.secondCoating===vc});
   var isOutboard=document.getElementById('posToggleInput').checked;
   if(isOutboard){
-    // Outboard: always S5, no toggle needed
     document.getElementById('plusSrf5').checked=true;
     updatePlusResults();
     return;
   }
-  var validSurfaces=unique(filtered.map(function(d){return getVigSurface(d)}));
+  var validSurfaces=unique(filtered.map(function(d){return d.secondSurface}));
   var currentSrf=document.querySelector('input[name="plusCoatingSurface"]:checked');
   var currentVal=currentSrf?currentSrf.value:'';
   if(!validSurfaces.includes(currentVal)){
@@ -957,40 +913,36 @@ function updatePlusSurfaces(){
 function _plusOutboardData(){
   var data=getActivePlusData();
   var isAir=document.getElementById('gapToggleInput').checked;
-  return data.filter(function(d){return d.gasFill===(isAir?'Air':'Ar90')});
+  return data.filter(function(d){return d.gasType===(isAir?'Air':'Ar90')});
 }
 function updatePlusVigThicknessOutboard(){
-  // Root: always re-enable all options.
   var sel=document.getElementById('plusVigThickness');
   Array.from(sel.options).forEach(function(opt){opt.disabled=false});
-  // Cascade to both downstream branches.
   updatePlusS2CoatingOutboard();
   updatePlusInboardThicknessOutboard();
 }
-// Branch a — S2 coating, depends on Enthermal Thickness only.
+// Branch a — S2 coating, depends on VIG thickness only.
 function updatePlusS2CoatingOutboard(){
   var data=_plusOutboardData();
   var vt=document.getElementById('plusVigThickness').value;
   if(vt)data=data.filter(function(d){return getVigComboKey(d,true)===vt});
-  var coats=unique(data.map(function(d){return d.outerLowE})).filter(function(c){return c});
+  var coats=unique(data.map(function(d){return d.glass[0].coating})).filter(function(c){return c});
   var prev=plusOuterCoatingEl.value;
-  populateSelect(plusOuterCoatingEl,coats,'Select coating…');
-  Array.from(plusOuterCoatingEl.options).forEach(function(opt){if(opt.value)opt.textContent=coatingForDropdown(opt.value)});
+  populateSelect(plusOuterCoatingEl,coats,'Select coating…',coatingNameWithMaker);
   if(coats.includes(prev))plusOuterCoatingEl.value=prev;
   else if(coats.length>0)plusOuterCoatingEl.value=coats[0];
   updatePlusResults();
 }
-// Branch b — Inboard (mono inner) thickness, depends on Enthermal Thickness only.
+// Branch b — Inboard (mono inner) thickness, depends on VIG thickness only.
 function updatePlusInboardThicknessOutboard(){
   var data=_plusOutboardData();
   var vt=document.getElementById('plusVigThickness').value;
   if(vt)data=data.filter(function(d){return getVigComboKey(d,true)===vt});
-  // In Outboard mode, the Inboard thickness control filters innerLite
-  var validThick=new Set(data.map(function(d){return parseThickness(d.innerLite)}));
-  var current=getVal('plusOuterThickness');
+  var validThick=new Set(data.map(function(d){return d.glass[2].thickness}));
+  var current=parseInt(getVal('plusOuterThickness'));
   document.querySelectorAll('input[name="plusOuterThickness"]').forEach(function(r){
     var label=r.parentElement.querySelector('label');
-    var isValid=validThick.has(r.value);
+    var isValid=validThick.has(parseInt(r.value));
     r.disabled=!isValid;
     if(label){label.style.opacity=isValid?'1':'0.35';label.style.cursor=isValid?'pointer':'not-allowed'}
   });
@@ -1000,53 +952,42 @@ function updatePlusInboardThicknessOutboard(){
   }
   updatePlusS5CoatingOutboard();
 }
-// Branch c — S5 coating, depends on Inboard mono thickness only (transitively also on vig combo).
+// Branch c — S5 coating, depends on Inboard mono thickness (transitively on vig combo).
 function updatePlusS5CoatingOutboard(){
   var data=_plusOutboardData();
   var vt=document.getElementById('plusVigThickness').value;
   if(vt)data=data.filter(function(d){return getVigComboKey(d,true)===vt});
-  var ot=getVal('plusOuterThickness');
-  if(ot)data=data.filter(function(d){return parseThickness(d.innerLite)===ot});
-  var vigCoats=unique(data.map(function(d){return coatingBaseName(getVigCoating(d))})).filter(function(c){return c});
+  var ot=parseInt(getVal('plusOuterThickness'));
+  if(ot)data=data.filter(function(d){return d.glass[2].thickness===ot});
+  var vigCoats=unique(data.map(function(d){return d.secondCoating})).filter(function(c){return c});
   var prev=plusVigCoatingEl.value;
-  populateSelect(plusVigCoatingEl,vigCoats,'Select coating…');
-  Array.from(plusVigCoatingEl.options).forEach(function(opt){if(opt.value)opt.textContent=coatingForDropdown(opt.value)});
+  populateSelect(plusVigCoatingEl,vigCoats,'Select coating…',coatingNameWithMaker);
   if(vigCoats.includes(prev))plusVigCoatingEl.value=prev;
   else if(vigCoats.length>0)plusVigCoatingEl.value=vigCoats[0];
-  // Outboard: surface always S5
   document.getElementById('plusSrf5').checked=true;
   updatePlusResults();
 }
 function seedPlusOutboardDefaults(){
-  // Re-enable all vig thickness options
   var vSel=document.getElementById('plusVigThickness');
   Array.from(vSel.options).forEach(function(opt){opt.disabled=false});
-  // Default to 5/5 combo
-  if(Array.from(vSel.options).some(function(o){return o.value==='5/5'})){
-    vSel.value='5/5';
-  }
-  // Cascade both branches
+  if(Array.from(vSel.options).some(function(o){return o.value==='5/5'}))vSel.value='5/5';
   updatePlusS2CoatingOutboard();
   updatePlusInboardThicknessOutboard();
-  // Prefer LoE³ 366 family on the S5 dropdown if available
-  var coat366=Array.from(plusVigCoatingEl.options).find(function(o){return o.value&&o.value.indexOf('366')>=0});
+  var coat366=Array.from(plusVigCoatingEl.options).find(function(o){return o.value==='C366'});
   if(coat366&&plusVigCoatingEl.value!==coat366.value){
     plusVigCoatingEl.value=coat366.value;
     updatePlusResults();
   }
 }
 function seedPlusInboardDefaults(){
-  // Re-init outer thickness radios + populate downstream
   initPlusConfig();
   document.getElementById('plusSrf4').checked=true;
-  var pCoat366=Array.from(plusOuterCoatingEl.options).find(function(o){return o.value&&o.value.indexOf('366')>=0});
+  var pCoat366=Array.from(plusOuterCoatingEl.options).find(function(o){return o.value==='C366'});
   if(pCoat366){
     plusOuterCoatingEl.value=pCoat366.value;
     updatePlusVigThickness();
-    var vCoat366=Array.from(plusVigCoatingEl.options).find(function(o){return o.value&&o.value.indexOf('366')>=0});
-    if(vCoat366){
-      plusVigCoatingEl.value=vCoat366.value;
-    }
+    var vCoat366=Array.from(plusVigCoatingEl.options).find(function(o){return o.value==='C366'});
+    if(vCoat366)plusVigCoatingEl.value=vCoat366.value;
   }
   updatePlusSurfaces();
 }
@@ -1057,99 +998,86 @@ function findPlusMatch(){
   var srf=document.querySelector('input[name="plusCoatingSurface"]:checked');
   var srfVal=srf?srf.value:'';
   if(!vc||!srfVal)return null;
-  // Filter by VIG coating base name and surface
-  filtered=filtered.filter(function(d){
-    var vigBase=coatingBaseName(getVigCoating(d));
-    var vigSrf=getVigSurface(d);
-    return vigBase===vc&&vigSrf===srfVal;
-  });
-  // If multiple remain (different middleLite/innerLite thicknesses), use VIG thickness dropdown
+  filtered=filtered.filter(function(d){return d.secondCoating===vc&&d.secondSurface===srfVal});
   var vigThickSel=document.getElementById('plusVigThickness').value;
   if(vigThickSel&&filtered.length>1){
-    // VIG thickness format: "4/4" meaning outer_vig/inner_vig nominal mm
-    var parts=vigThickSel.split('/');
     var isOutboard=document.getElementById('posToggleInput').checked;
-    filtered=filtered.filter(function(d){
-      if(isOutboard){
-        // VIG = outerLite + middleLite
-        return parseThickness(d.outerLite)===(parts[0]+'mm')&&parseThickness(d.middleLite)===(parts[1]+'mm');
-      }else{
-        // VIG = middleLite + innerLite
-        return parseThickness(d.middleLite)===(parts[0]+'mm')&&parseThickness(d.innerLite)===(parts[1]+'mm');
-      }
-    });
+    filtered=filtered.filter(function(d){return getVigComboKey(d,isOutboard)===vigThickSel});
   }
-  return filtered.length===1?filtered[0]:filtered[0]||null;
+  return filtered[0]||null;
 }
 function updatePlusResults(surfaceOnly){
+  if(!plusOuterCoatingEl.value||!plusVigCoatingEl.value){clearResults();return}
   var match=findPlusMatch();
-  if(!match){['metricU','metricUIP','metricR','metricSHGC','metricTvis','metricRoutVis','metricTdw','metricTuv'].forEach(id=>document.getElementById(id).textContent='—');document.getElementById('summaryText').textContent='Select a configuration to view results.';document.getElementById('fvGlass').style.background='linear-gradient(180deg,rgba(200,220,240,0.4) 0%,rgba(180,200,220,0.3) 100%)';document.getElementById('colorViewTitle').textContent='Glass Color';document.getElementById('colorInfo').innerHTML='L* — &nbsp; a* — &nbsp; b* —';return}
-  var cenActive=document.getElementById('stdToggleInput').checked;
-  document.getElementById('metricU').textContent=match.uval.toFixed(3);
+  if(!match){['metricU','metricUIP','metricR','metricSHGC','metricTvis','metricRoutVis','metricTdw','metricTuv'].forEach(id=>document.getElementById(id).textContent='—');document.getElementById('summaryText').textContent='Select a product to view results.';document.getElementById('fvGlass').style.background='linear-gradient(180deg,rgba(200,220,240,0.4) 0%,rgba(180,200,220,0.3) 100%)';document.getElementById('colorViewTitle').textContent='Glass Color';document.getElementById('colorInfo').innerHTML='L* — &nbsp; a* — &nbsp; b* —';return}
+  // Auto-flip toggle to match the config's CEN availability
+  var stdInput=document.getElementById('stdToggleInput');
+  var stdToggleEl=document.getElementById('stdToggle');
+  stdInput.checked=!!match.cen;syncStdToggle();
+  stdToggleEl.classList.toggle('locked',true);
+  var cenActive=stdInput.checked;
+  var uSI=cenActive&&match.uvalCEN!=null?match.uvalCEN:match.uval;
+  document.getElementById('metricU').textContent=uSI.toFixed(3);
   document.getElementById('metricUIP').textContent=cenActive?'—':match.uvalIP.toFixed(3);
   document.getElementById('metricR').textContent=cenActive?'—':'R-'+Math.round(match.rval);
-  document.getElementById('metricSHGC').textContent=match.shgc.toFixed(2);
+  var shgcVal=cenActive&&match.gFactor!=null?match.gFactor:match.shgc;
+  document.getElementById('metricSHGC').textContent=shgcVal.toFixed(2);
   document.getElementById('metricTvis').innerHTML=(match.tvis*100).toFixed(1)+'<span style="font-size:50%">%</span>';
   document.getElementById('metricRoutVis').innerHTML=(match.routVis*100).toFixed(1)+'<span style="font-size:50%">%</span>';
   document.getElementById('metricTdw').textContent='—';
-  var pOuterMM=thicknessMM(match.outerLite),pMiddleMM=thicknessMM(match.middleLite),pInnerMM=thicknessMM(match.innerLite);
+  var pOuterMM=match.glass[0].thickness,pMiddleMM=match.glass[1].thickness,pInnerMM=match.glass[2].thickness;
   document.getElementById('csIGUWeight').textContent=iguWeight(pOuterMM+pMiddleMM+pInnerMM);
   document.getElementById('csECarbon').textContent=EMBODIED_CARBON_PLACEHOLDER;
   document.getElementById('metricTuv').innerHTML=(match.tuv*100).toFixed(1)+'<span style="font-size:50%">%</span>';
   document.getElementById('csThicknessValPlus').textContent=match.totalThickness.toFixed(1)+' mm';
   if(!surfaceOnly){document.querySelectorAll('.metric-value').forEach(function(el){el.classList.remove('fade-in');void el.offsetWidth;el.classList.add('fade-in')})}
-  // Determine placement mode
   var isOutboard=document.getElementById('posToggleInput').checked;
-  var vigCoatRaw=getVigCoating(match);
-  var vigSrf=getVigSurface(match);
+  var s2Display=layerDisplay(match.glass[0]);
+  var secondDisplay=coatingName(match.secondCoating);
+  var vigSrf=match.secondSurface;
   var isS4=vigSrf==='S4';
-  var vigThick=document.getElementById('plusVigThickness').value;
+  // The "mono" (non-VIG) lite: glass[0] in Inboard, glass[2] in Outboard.
+  // Both are always Clear in practice; we format them generically.
+  var monoLayer=isOutboard?match.glass[2]:match.glass[0];
+  var monoDisplay='Clear '+monoLayer.thickness+'mm';
+  var monoMM=monoLayer.thickness;
   if(isOutboard){
-    // VIG = outerLite + middleLite; mono inboard = innerLite
-    var vigComboOut=pOuterMM+'/'+pMiddleMM;
-    document.getElementById('summaryText').innerHTML='<strong>'+vigComboOut+' mm Enthermal outboard</strong> <strong>'+coatingForSummary(match.outerLowE)+'</strong> (S2) and <strong>'+coatingForSummary(vigCoatRaw)+'</strong> (S5) on <strong>'+pInnerMM+'mm</strong> inboard';
+    var vigCombo=pOuterMM+'/'+pMiddleMM;
+    document.getElementById('summaryText').innerHTML='<strong>'+vigCombo+' mm</strong> Enthermal <strong>'+s2Display+'</strong> (S2) outboard with <strong>'+secondDisplay+'</strong> (S5) on <strong>'+monoMM+'mm</strong>';
   }else{
-    // VIG = middleLite + innerLite; mono outboard = outerLite
-    var vigComboIn=pMiddleMM+'/'+pInnerMM;
-    document.getElementById('summaryText').innerHTML='<strong>'+pOuterMM+'mm</strong> outboard with <strong>'+coatingForSummary(match.outerLowE)+'</strong> (S2) on <strong>'+vigComboIn+' mm Enthermal inboard</strong> with <strong>'+coatingForSummary(vigCoatRaw)+'</strong> ('+vigSrf+')';
+    var vigCombo=pMiddleMM+'/'+pInnerMM;
+    document.getElementById('summaryText').innerHTML='<strong>'+s2Display+'</strong> (S2) on <strong>'+monoMM+'mm</strong> with <strong>'+vigCombo+' mm</strong> Enthermal <strong>'+secondDisplay+'</strong> ('+vigSrf+') inboard';
   }
 
+  // Cross-section labels: left pane in Inboard = mono (glass[0]); left pane in
+  // Outboard = VIG outer (glass[0], always coated). Right pane label shows
+  // the inboard-most lite in both modes.
+  var leftLayer=match.glass[0];
+  var leftIsCoated=leftLayer.substrate!=='Clear';
+  var leftSubLabel=substrateName(leftLayer.substrate).replace(/[®™]/g,'')+' '+leftLayer.thickness+'mm';
+  if(leftIsCoated){
+    document.getElementById('csPlusOuterDetail').textContent=leftSubLabel;
+    document.getElementById('csPlusOuterCoating').textContent=coatingName(leftLayer.coating);
+  }else{
+    document.getElementById('csPlusOuterDetail').textContent=coatingName(leftLayer.coating);
+    document.getElementById('csPlusOuterCoating').textContent=leftSubLabel;
+  }
+  document.getElementById('csPlusVigCoatingLabel').textContent=coatingName(match.secondCoating);
+  document.getElementById('csPlusRightCoating').style.display='';
+  document.getElementById('csPlusRightCoating').textContent='Clear '+match.glass[2].thickness+'mm';
+
   if(isOutboard){
-    // Outboard: coatings fixed at S2 (VIG outer right edge) and S5 (mono pane left edge)
-    document.getElementById('csPlusCoatingS4').style.opacity='1';   // reused as S2 line
+    // Coatings fixed at S2 (VIG outer right edge) and S5 (mono pane left edge)
+    document.getElementById('csPlusCoatingS4').style.opacity='1';
     document.getElementById('csPlusCoatingS5').style.opacity='0';
     document.getElementById('csPlusMonoS2').style.opacity='0';
     document.getElementById('csPlusMonoS5').style.opacity='1';
-    // Cross-section info labels: left=Enthermal, right=Inboard glass
-    var plusOutCoat=coatingForSummary(match.outerLowE);
-    if(coatingInSubstrate(plusOutCoat,match.outerLite)){
-      document.getElementById('csPlusOuterDetail').textContent=match.outerLite;
-      document.getElementById('csPlusOuterCoating').textContent='';
-    }else{
-      document.getElementById('csPlusOuterDetail').textContent=plusOutCoat;
-      document.getElementById('csPlusOuterCoating').textContent=match.outerLite;
-    }
-    document.getElementById('csPlusVigCoatingLabel').textContent=coatingForSummary(vigCoatRaw);
-    document.getElementById('csPlusRightCoating').style.display='';
-    document.getElementById('csPlusRightCoating').textContent=match.innerLite;
   }else{
     // Inboard: S2 on mono right, S4/S5 on VIG (toggle)
     document.getElementById('csPlusMonoS2').style.opacity='1';
     document.getElementById('csPlusMonoS5').style.opacity='0';
     document.getElementById('csPlusCoatingS4').style.opacity=isS4?'1':'0';
     document.getElementById('csPlusCoatingS5').style.opacity=isS4?'0':'1';
-    // Cross-section info labels
-    var plusInCoat=coatingForSummary(match.outerLowE);
-    if(coatingInSubstrate(plusInCoat,match.outerLite)){
-      document.getElementById('csPlusOuterDetail').textContent=match.outerLite;
-      document.getElementById('csPlusOuterCoating').textContent='';
-    }else{
-      document.getElementById('csPlusOuterDetail').textContent=plusInCoat;
-      document.getElementById('csPlusOuterCoating').textContent=match.outerLite;
-    }
-    document.getElementById('csPlusVigCoatingLabel').textContent=coatingForSummary(vigCoatRaw);
-    document.getElementById('csPlusRightCoating').style.display='';
-    document.getElementById('csPlusRightCoating').textContent=match.innerLite;
   }
 
   // Position callout dots
@@ -1220,31 +1148,36 @@ plusVigCoatingEl.addEventListener('change',function(){
 });
 
 // ── ISO / CEN toggle ──
+// Sync toggle visuals and labels to match the current checked state.
+// Called from updateResults / updatePlusResults after auto-flipping, and
+// on manual user toggle.
+var syncStdToggle;
 (function(){
   var toggle=document.getElementById('stdToggle');
   var input=document.getElementById('stdToggleInput');
   var thumb=document.getElementById('stdThumb');
   var optISO=document.getElementById('stdOptISO');
   var optCEN=document.getElementById('stdOptCEN');
-  function syncThumb(){
+  syncStdToggle=function(){
     var isCEN=input.checked;
     thumb.style.width=(isCEN?optCEN:optISO).offsetWidth+'px';
     toggle.style.setProperty('--thumb-offset',(isCEN?optCEN.offsetLeft-2:0)+'px');
     optISO.classList.toggle('active',!isCEN);
     optCEN.classList.toggle('active',isCEN);
-    // U-factor and R-value: refresh to show — in CEN or actual values in NFRC
-    var isPlus=document.getElementById('configEnthPlus').style.display!=='none';
-    if(isPlus){updatePlusResults()}else{updateResults()}
     // Relabel SHGC → g-Factor
     document.getElementById('shgcLabel').textContent=isCEN?'g-Factor':'SHGC';
     document.getElementById('shgcUnit').textContent=isCEN?'Solar Factor':'Solar Heat Gain';
     // Relabel OITC → Rw
     document.getElementById('oitcLabel').innerHTML=isCEN?'R<sub>w</sub>':'OITC';
     document.getElementById('oitcUnit').innerHTML=isCEN?'Weighted Sound<br>Reduction':'Outside-Inside<br>Transmission';
-  }
-  requestAnimationFrame(syncThumb);
-  input.addEventListener('change',syncThumb);
-  window.addEventListener('resize',syncThumb);
+  };
+  input.addEventListener('change',function(){
+    syncStdToggle();
+    var isPlus=document.getElementById('configEnthPlus').style.display!=='none';
+    if(isPlus){updatePlusResults()}else{updateResults()}
+  });
+  requestAnimationFrame(syncStdToggle);
+  window.addEventListener('resize',syncStdToggle);
 })();
 // ── Reposition all Plus toggle thumbs (called after tab becomes visible) ──
 var _plusToggleResizers=[];
@@ -1294,8 +1227,8 @@ function repositionPlusToggles(){_plusToggleResizers.forEach(function(fn){fn()})
       updatePlusResults();
       return;
     }
-    var filtered=filterPlusData().filter(function(d){return coatingBaseName(getVigCoating(d))===vc});
-    var validSurfaces=unique(filtered.map(function(d){return getVigSurface(d)}));
+    var filtered=filterPlusData().filter(function(d){return d.secondCoating===vc});
+    var validSurfaces=unique(filtered.map(function(d){return d.secondSurface}));
     var hasS4=validSurfaces.includes('S4'),hasS5=validSurfaces.includes('S5');
     if(hasS4&&hasS5){
       toggle.classList.remove('disabled');input.disabled=false;
