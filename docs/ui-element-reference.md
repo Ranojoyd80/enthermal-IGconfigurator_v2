@@ -47,13 +47,13 @@
 | Outboard Label | "Outboard" text right of placement toggle | `#posLabelOutboard` |
 | Glass Section Label | Dynamic label ("Outboard" or "Inboard" based on placement) | `#plusGlassLabel` |
 | Outer Thickness Radios | 4mm / 5mm / 6mm (availability depends on data; some coatings restrict to 6mm only) | `input[name='plusOuterThickness']`, IDs: `plusOuterT4`, `plusOuterT5`, `plusOuterT6` |
-| Outer Low-E Coating | Outer coating dropdown (S2 surface). Values are bare shortcodes (e.g., `"C366"`) | `#plusOuterCoating` |
+| Outer Low-E Coating | S2 coating dropdown. Parent section swaps with placement: sits under "Outboard" (the mono lite) in Inboard mode and under "Enthermal" (the VIG) in Outboard mode. Values are bare shortcodes (e.g., `"C366"`) | `#plusOuterCoating` |
 | Gap Fill Toggle | 90% Argon / 100% Air slider toggle | `#gapToggle`, `#gapToggleInput` |
 | Argon Label | "Argon" text left of gas toggle | `#gapLabelArgon` |
 | Air Label | "Air" text right of gas toggle | `#gapLabelAir` |
 | Enthermal Section Label | "Enthermal" section header | `.config-section-label` |
 | VIG Thickness Dropdown | VIG glass thickness: 4/4, 5/4, 5/5, 6/5, 6/6 mm | `#plusVigThickness` |
-| VIG Low-E Coating | Enthermal VIG coating dropdown | `#plusVigCoating` |
+| VIG Low-E Coating | S4/S5 coating dropdown. Parent section swaps with placement: sits under "Enthermal" (VIG S4/S5) in Inboard mode and under "Inboard" (mono S5) in Outboard mode | `#plusVigCoating` |
 | Coating Surface Toggle | S4 (Middle) / S5 (Inboard) slider toggle. Disabled and forced to S5 in Outboard mode. | `#srfToggle`, `#srfToggleInput` |
 | S4 Label | "Middle (S4)" text left of toggle | `#srfLabelS4` |
 | S5 Label | "Inboard (S5)" text right of toggle | `#srfLabelS5` |
@@ -161,7 +161,7 @@ Example: **5/5 mm** Enthermal **LoE³ 366** (S2) outboard with **LoE³ 366** (S5
 | Argon Gap | 50px wide gap with desiccant bead pattern | `#csPlusArgonGap` |
 | S4 Coating Line | Orange line on right edge of VIG outer pane (opacity transition) | `#csPlusCoatingS4` |
 | S5 Coating Line | Orange line on left edge of VIG inner pane (opacity transition) | `#csPlusCoatingS5` |
-| Callout: Argon Fill | Circle + line + "12.7 MM ARGON FILL" (or "AIR FILL") | `#csPlusCalloutArgon`, `#csPlusArgonLabel` |
+| Callout: Argon Gap | Circle + line + dynamic label "<gap> MM ARGON GAP" (or "AIR GAP"), thickness from matched row's gas layer | `#csPlusCalloutArgon`, `#csPlusArgonLabel` |
 | Callout: Vacuum | Circle + line + "VACUUM CAVITY" | `#csPlusCalloutVacuum` |
 | Callout: Low-E | Circle + line + "LOW-E (S4)" or "LOW-E (S5)" | `#csPlusCalloutCoating`, `#csPlusCoatingLabel` |
 | Callout: S2 | Circle + line + "LOW-E (S2)" (exterior/left side) | `#csPlusCalloutS2`, `#csPlusS2Label` |

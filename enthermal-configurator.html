@@ -409,7 +409,7 @@ body{font-family:var(--font-body);background:var(--lw-gray-50);color:var(--lw-da
                   <div class="cs-callout" id="csPlusCalloutArgon" style="top:12%">
                     <div class="cs-callout-dot"></div>
                     <div class="cs-callout-line" style="width:40px"></div>
-                    <div class="cs-callout-text" id="csPlusArgonLabel">12.7 mm Argon Fill</div>
+                    <div class="cs-callout-text" id="csPlusArgonLabel">12.7 mm Argon Gap</div>
                   </div>
                   <div class="cs-callout" id="csPlusCalloutVacuum" style="top:22%">
                     <div class="cs-callout-dot"></div>
@@ -1030,6 +1030,11 @@ function updatePlusResults(surfaceOnly){
   document.getElementById('csECarbon').textContent=EMBODIED_CARBON_PLACEHOLDER;
   document.getElementById('metricTuv').innerHTML=(match.tuv*100).toFixed(1)+'<span style="font-size:50%">%</span>';
   document.getElementById('csThicknessValPlus').textContent=match.totalThickness.toFixed(1)+' mm';
+  var gasLayer=match.stack.find(function(l){return l.type==='gas'});
+  if(gasLayer){
+    var gasName=gasLayer.gasType==='Air'?'Air':'Argon';
+    document.getElementById('csPlusArgonLabel').textContent=gasLayer.thickness.toFixed(2)+' mm '+gasName+' Gap';
+  }
   if(!surfaceOnly){document.querySelectorAll('.metric-value').forEach(function(el){el.classList.remove('fade-in');void el.offsetWidth;el.classList.add('fade-in')})}
   var isOutboard=document.getElementById('posToggleInput').checked;
   var s2Display=layerDisplay(match.glass[0]);
@@ -1263,7 +1268,9 @@ function repositionPlusToggles(){_plusToggleResizers.forEach(function(fn){fn()})
     var isAir=input.checked;
     labelArgon.classList.toggle('active',!isAir);
     labelAir.classList.toggle('active',isAir);
-    document.getElementById('csPlusArgonLabel').textContent=isAir?'12.7 mm Air Fill':'12.7 mm Argon Fill';
+    // Gas-type word only; thickness is set from the matched row in updatePlusResults.
+    var curLabel=document.getElementById('csPlusArgonLabel');
+    curLabel.textContent=curLabel.textContent.replace(/(Air|Argon)\s+Gap/, (isAir?'Air':'Argon')+' Gap');
     positionThumb();
     // Gas fill change affects the cascade — refresh from the current root
     if(dataLoaded&&plusInitialized){
@@ -1311,16 +1318,29 @@ function repositionPlusToggles(){_plusToggleResizers.forEach(function(fn){fn()})
     // Fade out, reorder, fade in
     wrap.style.opacity='0';
     setTimeout(function(){
+      // Coating dropdowns swap parents so section labels match their semantics:
+      // Inboard placement → "Outboard" section holds S2 (mono), "Enthermal" holds S4/S5 (VIG).
+      // Outboard placement → "Enthermal" holds S2 (VIG), "Inboard" holds S5 (mono).
+      var s2Field=plusOuterCoatingEl.parentElement;
+      var s5Field=plusVigCoatingEl.parentElement;
       if(isOutboard){
         enthermalSection.style.order='1';
         glassSection.style.order='3';
         glassLabel.textContent='Inboard';
         coatingSurfaceField.style.display='none';
+        enthermalSection.insertBefore(s2Field,coatingSurfaceField);
+        glassSection.appendChild(s5Field);
+        s2Field.style.marginBottom='0';
+        s5Field.style.marginBottom='';
       }else{
         glassSection.style.order='1';
         enthermalSection.style.order='3';
         glassLabel.textContent='Outboard';
         coatingSurfaceField.style.display='';
+        enthermalSection.insertBefore(s5Field,coatingSurfaceField);
+        glassSection.appendChild(s2Field);
+        s5Field.style.marginBottom='0';
+        s2Field.style.marginBottom='';
       }
       // Re-seed defaults from the new cascade root so the user lands in a
       // coherent state regardless of which placement they came from.
