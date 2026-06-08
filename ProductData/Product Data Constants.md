@@ -10,13 +10,17 @@ Lookup by total unit thickness.
 
 ### Enthermal™
 
-| Total Thickness | Embodied Carbon (kg CO₂e/m²) |
-|---|---|
-| 8 mm | _TBD_ |
-| 9 mm | _TBD_ |
-| 10 mm | **38.6** |
-| 11 mm | _TBD_ |
-| 12 mm | _TBD_ |
+Cradle-Gate (A1–A3) is shown in NFRC mode; Cradle-Grave (full life cycle) is shown in CEN mode.
+
+| Total Thickness | Cradle-Gate A1–A3 (kg CO₂e/m²) | Cradle-Grave Full Life Cycle (kg CO₂e/m²) |
+|---|---|---|
+| 8 mm | 29.3 _(calculated)_ | 34.6 _(calculated)_ |
+| 9 mm | 33.9 _(interpolated)_ | 39.6 _(interpolated)_ |
+| 10 mm | **38.4** _(published)_ | **44.6** _(published)_ |
+| 11 mm | 43.7 _(interpolated)_ | 50.7 _(interpolated)_ |
+| 12 mm | 49.0 _(calculated)_ | 56.7 _(calculated)_ |
+
+_9 mm and 11 mm values are linear midpoints between adjacent published/calculated points._
 
 ### Enthermal Plus™
 
