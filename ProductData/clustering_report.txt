@@ -1,0 +1,96 @@
+JND RECLUSTERING REPORT
+============================================================
+
+Tolerance (dE76)        : 2.00
+Total configurations    : 6862
+Distinct exterior colors: 3133
+Anchors (renders needed): 77
+Renders x 3 HDR variants: 231
+
+GUARANTEE
+  Max config->anchor dE : 1.8928  (must be <= 2.00)
+  Config-weighted mean dE: 0.8633
+  Guarantee satisfied   : YES
+
+CLUSTER SIZE (configs per anchor)
+  min / median / max    : 3 / 69 / 463
+
+PER-ANCHOR DETAIL
+  code       configs  colors    maxdE   meandE  stack
+  anchor_35      463     210    1.711    1.101  SB60 Starphire 6mm / Ar90 8.05mm / SB70 Clear 6mm / Vacuum 0.25mm / Clear 6mm
+  anchor_31      239     119    1.458    0.899  LUMI Clear 6mm / Ar90 7.75mm / C272 Clear 6mm / Vacuum 0.25mm / Clear 6mm
+  anchor_37      228      99    1.845    1.190  C180 Clear 6mm / Vacuum 0.25mm / Clear 4mm
+  anchor_76      225     104    1.333    0.765  SB60 Clear 6mm / Ar90 10.09mm / C272 Clear 5mm / Vacuum 0.25mm / Clear 5mm
+  anchor_15      216      85    1.081    0.742  SB60 Clear 5mm / Ar90 12.68mm / Clear 4mm / Vacuum 0.25mm / C272 Clear 4mm
+  anchor_11      210      98    1.812    1.045  SB60 Solarbronze 5mm / Vacuum 0.25mm / Clear 5mm / Ar90 11.06mm / C366 Clear 5mm
+  anchor_03      196      87    1.417    0.692  C340 Clear 5mm / Ar90 12.45mm / LUMI Clear 4mm / Vacuum 0.25mm / Clear 4mm
+  anchor_45      188      78    1.315    0.853  Q452 Clear 6mm / Ar90 11.65mm / Clear 4mm / Vacuum 0.25mm / C272 Clear 4mm
+  anchor_42      182      84    1.581    0.724  SB60 Solargray 5mm / Ar90 12.58mm / SB60 Clear 4mm / Vacuum 0.25mm / Clear 4mm
+  anchor_61      170      85    1.565    0.817  LUMI Clear 6mm / Ar90 9.75mm / C180 Clear 5mm / Vacuum 0.25mm / Clear 5mm
+  anchor_53      168      73    1.489    0.889  C270 Clear 4mm / Ar90 13.36mm / SB70 Clear 4mm / Vacuum 0.25mm / Clear 4mm
+  anchor_20      166      67    1.646    0.980  SB72 Starphire 6mm / Ar90 9.11mm / SB70 Clear 6mm / Vacuum 0.25mm / Clear 5mm
+  anchor_30      158      72    1.845    1.209  SB60 Optigray 6mm / Ar90 11.69mm / Clear 4mm / Vacuum 0.25mm / C366 Clear 4mm
+  anchor_70      154      56    1.125    0.601  C340 Clear 6mm / Ar90 9.0mm / Clear 6mm / Vacuum 0.25mm / SB60 Clear 5mm
+  anchor_05      150      71    1.844    1.116  SB70 Solarblue 6mm / Ar90 10.09mm / C270 Clear 5mm / Vacuum 0.25mm / Clear 5mm
+  anchor_54      146      69    1.685    1.134  ZEN Clear 4mm / Ar90 13.35mm / C270 Clear 4mm / Vacuum 0.25mm / Clear 4mm
+  anchor_39      144      72    1.574    1.107  SB70 Optigray 6mm / Ar90 7.49mm / Clear 6mm / Vacuum 0.25mm / SKN183 Clear 6mm
+  anchor_74      137      71    1.638    1.099  C366 Clear 6mm / Ar90 11.65mm / C270 Clear 4mm / Vacuum 0.25mm / Clear 4mm
+  anchor_47      136      63    1.729    1.347  XTR6129 Clear 4mm / Ar90 13.35mm / C270 Clear 4mm / Vacuum 0.25mm / Clear 4mm
+  anchor_51      136      57    1.441    0.820  C272 Clear 4mm / Ar90 13.45mm / Clear 4mm / Vacuum 0.25mm / C270 Clear 4mm
+  anchor_56      132      52    1.196    0.737  SB60 Clear 5mm / Ar90 11.88mm / Clear 5mm / Vacuum 0.25mm / C366 Clear 4mm
+  anchor_12      129      63    1.251    0.735  SB70 Solargray 6mm / Ar90 11.69mm / Clear 4mm / Vacuum 0.25mm / C180 Clear 4mm
+  anchor_33      126      56    1.514    0.837  SB70 Optiblue 6mm / Ar90 8.49mm / LUMI Clear 6mm / Vacuum 0.25mm / Clear 5mm
+  anchor_73      126      59    1.282    0.831  SB60 Optigray 6mm / Vacuum 0.25mm / Clear 6mm / Ar90 8.01mm / C180 Clear 6mm
+  anchor_32      114      49    1.375    0.961  ZEN Clear 4mm / Ar90 13.15mm / Clear 4mm / Vacuum 0.25mm / LUMI Clear 4mm
+  anchor_36      113      54    1.583    0.822  SB60 Solarbronze 6mm / Ar90 9.09mm / C272 Clear 6mm / Vacuum 0.25mm / Clear 5mm
+  anchor_00      111      53    1.546    0.618  SB60 Solargray 6mm / Ar90 8.05mm / SB60 Clear 6mm / Vacuum 0.25mm / Clear 6mm
+  anchor_46      100      42    1.429    0.654  C270 Clear 4mm / Ar90 13.45mm / Clear 4mm / Vacuum 0.25mm / C366 Clear 4mm
+  anchor_66       96      48    1.495    0.766  Q452 Clear 6mm / Ar90 7.45mm / Clear 6mm / Vacuum 0.25mm / SKN183 Clear 6mm
+  anchor_34       89      43    1.605    0.810  C180 Clear 6mm / Vacuum 0.25mm / Clear 6mm / Ar90 9.08mm / SB70 Clear 5mm
+  anchor_22       80      40    1.824    0.957  XTR6129 Clear 6mm / Ar90 11.35mm / C180 Clear 4mm / Vacuum 0.25mm / Clear 4mm
+  anchor_01       76      38    1.034    0.509  ZEN Clear 6mm / Ar90 11.35mm / Clear 4mm / Vacuum 0.25mm / C180 Clear 4mm
+  anchor_49       76      26    1.261    0.734  SB60 Solexia 6mm / Vacuum 0.25mm / Clear 4mm / Ar90 11.6mm / C272 Clear 4mm
+  anchor_62       74      37    1.121    0.665  SB60 Optiblue 6mm / Vacuum 0.25mm / Clear 6mm / Ar90 8.71mm / LUMI Clear 5mm
+  anchor_41       72      36    1.811    0.759  SB60 Solarblue 6mm / Ar90 11.49mm / Clear 4mm / Vacuum 0.25mm / LUMI Clear 4mm
+  anchor_43       72      23    1.562    0.963  C270 Clear 6mm / Ar90 11.65mm / C270 Clear 4mm / Vacuum 0.25mm / Clear 4mm
+  anchor_63       70      37    1.491    0.927  SB70 Optiblue 5mm / Ar90 11.08mm / Clear 5mm / Vacuum 0.25mm / C272 Clear 5mm
+  anchor_64       70      30    1.522    0.905  SB70 Solargray 5mm / Ar90 12.58mm / Clear 4mm / Vacuum 0.25mm / SB70 Clear 4mm
+  anchor_68       69      35    1.558    0.913  SB70 Solargray 5mm / Ar90 12.58mm / Clear 4mm / Vacuum 0.25mm / SB60 Clear 4mm
+  anchor_60       68      30    1.395    0.955  SKN183 Clear 6mm / Ar90 9.15mm / Clear 5mm / Vacuum 0.25mm / LUMI Clear 5mm
+  anchor_14       64      24    1.319    0.820  C270 Clear 4mm / Ar90 13.45mm / Clear 4mm / Vacuum 0.25mm / C270 Clear 4mm
+  anchor_24       64      32    1.410    0.775  SB60 Optiblue 5mm / Vacuum 0.25mm / Clear 5mm / Ar90 10.76mm / LUMI Clear 5mm
+  anchor_44       64      24    0.836    0.456  C180 Clear 5mm / Vacuum 0.25mm / Clear 5mm / Ar90 11.08mm / SB60 Clear 5mm
+  anchor_21       62      31    1.654    1.169  SBR67 Clear 5mm / Vacuum 0.25mm / Clear 5mm / Ar90 11.86mm / C270 Clear 4mm
+  anchor_48       60      29    1.361    0.706  ZEN Clear 6mm / Ar90 7.71mm / SB70 Clear 6mm / Vacuum 0.25mm / Clear 6mm
+  anchor_28       53      20    1.363    0.641  Q452 Clear 4mm / Ar90 13.45mm / Clear 4mm / Vacuum 0.25mm / C180 Clear 4mm
+  anchor_17       52      22    1.255    0.801  SB60 Solexia 6mm / Ar90 10.1mm / Clear 5mm / Vacuum 0.25mm / SB70 Clear 5mm
+  anchor_72       52      26    1.480    0.797  SB70 Optiblue 6mm / Ar90 9.09mm / C180 Clear 6mm / Vacuum 0.25mm / Clear 5mm
+  anchor_57       48      22    1.893    0.842  SKN183 Clear 6mm / Vacuum 0.25mm / Clear 4mm / Ar90 11.25mm / C270 Clear 4mm
+  anchor_50       46      26    1.351    0.706  C180 Clear 4mm / Ar90 13.25mm / Clear 4mm / Vacuum 0.25mm / LUMI Clear 4mm
+  anchor_52       44      22    1.229    0.537  SB70 Solexia 6mm / Ar90 7.49mm / LUMI Clear 6mm / Vacuum 0.25mm / Clear 6mm
+  anchor_23       40      20    1.682    1.093  SB60 Solargray 5mm / Ar90 11.88mm / Clear 5mm / Vacuum 0.25mm / C270 Clear 4mm
+  anchor_67       40      16    1.150    0.452  SB60 Solarblue 6mm / Vacuum 0.25mm / Clear 6mm / Ar90 9.01mm / C272 Clear 5mm
+  anchor_08       36      18    1.419    0.902  SKN183 Clear 6mm / Ar90 9.75mm / C180 Clear 5mm / Vacuum 0.25mm / Clear 5mm
+  anchor_40       36      18    1.601    0.923  SB60 Solarbronze 5mm / Ar90 11.08mm / Clear 5mm / Vacuum 0.25mm / C270 Clear 5mm
+  anchor_29       34      17    0.996    0.678  SB70 Solexia 6mm / Ar90 11.59mm / Clear 4mm / Vacuum 0.25mm / SB70 Clear 4mm
+  anchor_04       32      16    0.450    0.216  LUMI Clear 6mm / Vacuum 0.25mm / Clear 5mm / Ar90 9.45mm / C366 Clear 5mm
+  anchor_07       32       8    0.519    0.287  C180 Clear 5mm / Ar90 11.05mm / Clear 5mm / Vacuum 0.25mm / C270 Clear 5mm
+  anchor_16       32       8    0.569    0.304  C180 Clear 5mm / Ar90 11.05mm / Clear 5mm / Vacuum 0.25mm / C366 Clear 5mm
+  anchor_55       32      16    1.011    0.647  SB70 Solexia 6mm / Ar90 8.09mm / Clear 6mm / Vacuum 0.25mm / C272 Clear 6mm
+  anchor_59       32      14    1.674    1.170  SB60 Starphire 6mm / Ar90 8.49mm / SKN183 Clear 6mm / Vacuum 0.25mm / Clear 5mm
+  anchor_75       32      16    0.366    0.223  SB70 Clear 5mm / Vacuum 0.25mm / Clear 5mm / Ar90 11.86mm / C270 Clear 4mm
+  anchor_13       29      29    1.245    0.865  SB60 Starphire 5mm / Vacuum 0.25mm / Clear 5mm
+  anchor_10       23      12    1.446    0.575  SB70 Optiblue 5mm / Ar90 12.68mm / Clear 4mm / Vacuum 0.25mm / C180 Clear 4mm
+  anchor_09       20      10    0.298    0.178  XTR6129 Clear 6mm / Vacuum 0.25mm / Clear 4mm / Ar90 11.25mm / C270 Clear 4mm
+  anchor_58       20       9    1.161    0.623  SKN183 Clear 6mm / Ar90 11.25mm / SB70 Clear 4mm / Vacuum 0.25mm / Clear 4mm
+  anchor_06       19      11    1.051    0.384  SB60 Optigray 6mm / Vacuum 0.25mm / Clear 6mm / Ar90 9.01mm / C270 Clear 5mm
+  anchor_18       16       8    0.164    0.099  SB60 Solarblue 6mm / Vacuum 0.25mm / Clear 5mm / Ar90 10.07mm / C270 Clear 5mm
+  anchor_26       16       8    0.237    0.149  SB60 Solexia 6mm / Vacuum 0.25mm / Clear 5mm / Ar90 10.07mm / C270 Clear 5mm
+  anchor_19       14       7    1.651    0.725  SB70 Optiblue 6mm / Ar90 9.09mm / Clear 6mm / Vacuum 0.25mm / C270 Clear 5mm
+  anchor_71       12       6    1.606    1.047  SB60 Optiblue 6mm / Ar90 7.49mm / SKN183 Clear 6mm / Vacuum 0.25mm / Clear 6mm
+  anchor_02        8       4    0.122    0.085  SB70 Solexia 6mm / Ar90 10.09mm / Clear 5mm / Vacuum 0.25mm / C270 Clear 5mm
+  anchor_38        8       4    0.158    0.062  SB70 Solarblue 6mm / Ar90 9.09mm / Clear 6mm / Vacuum 0.25mm / C270 Clear 5mm
+  anchor_25        4       2    0.060    0.030  ZEN Clear 6mm / Ar90 7.15mm / SKN183 Clear 6mm / Vacuum 0.25mm / Clear 6mm
+  anchor_27        4       2    0.077    0.038  SKN183 Clear 6mm / Ar90 7.15mm / SKN183 Clear 6mm / Vacuum 0.25mm / Clear 6mm
+  anchor_65        4       2    0.054    0.027  XTR6129 Clear 6mm / Ar90 8.15mm / SKN183 Clear 6mm / Vacuum 0.25mm / Clear 5mm
+  anchor_69        3       3    0.115    0.056  SB60 Solarblue 6mm / Vacuum 0.25mm / Clear 4mm

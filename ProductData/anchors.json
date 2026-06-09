@@ -1,0 +1,3516 @@
+{
+  "tolerance_dE76": 2.0,
+  "anchor_count": 77,
+  "total_configs": 6862,
+  "anchors": [
+    {
+      "code": "anchor_00",
+      "cluster_id": 0,
+      "exterior": {
+        "L": 30.27,
+        "a": -0.14,
+        "b": -2.42
+      },
+      "config_count": 111,
+      "distinct_colors": 53,
+      "max_dE_in_cluster": 1.5458,
+      "mean_dE_in_cluster": 0.6179,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 2034,
+      "totalThickness": 26.3,
+      "stack_desc": "SB60 Solargray 6mm / Ar90 8.05mm / SB60 Clear 6mm / Vacuum 0.25mm / Clear 6mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SB60",
+          "substrate": "Solargray",
+          "thickness": 6
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 8.05
+        },
+        {
+          "type": "glass",
+          "coating": "SB60",
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 6
+        }
+      ]
+    },
+    {
+      "code": "anchor_01",
+      "cluster_id": 1,
+      "exterior": {
+        "L": 54.53,
+        "a": -1.6,
+        "b": -7.97
+      },
+      "config_count": 76,
+      "distinct_colors": 38,
+      "max_dE_in_cluster": 1.0342,
+      "mean_dE_in_cluster": 0.5092,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 735,
+      "totalThickness": 25.6,
+      "stack_desc": "ZEN Clear 6mm / Ar90 11.35mm / Clear 4mm / Vacuum 0.25mm / C180 Clear 4mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "ZEN",
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 11.35
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 4
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": "C180",
+          "substrate": "Clear",
+          "thickness": 4
+        }
+      ]
+    },
+    {
+      "code": "anchor_02",
+      "cluster_id": 2,
+      "exterior": {
+        "L": 43.14,
+        "a": -10.71,
+        "b": -0.74
+      },
+      "config_count": 8,
+      "distinct_colors": 4,
+      "max_dE_in_cluster": 0.1225,
+      "mean_dE_in_cluster": 0.0848,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 1492,
+      "totalThickness": 26.34,
+      "stack_desc": "SB70 Solexia 6mm / Ar90 10.09mm / Clear 5mm / Vacuum 0.25mm / C270 Clear 5mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SB70",
+          "substrate": "Solexia",
+          "thickness": 6
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 10.09
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 5
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": "C270",
+          "substrate": "Clear",
+          "thickness": 5
+        }
+      ]
+    },
+    {
+      "code": "anchor_03",
+      "cluster_id": 3,
+      "exterior": {
+        "L": 44.09,
+        "a": -6.1,
+        "b": -13.27
+      },
+      "config_count": 196,
+      "distinct_colors": 87,
+      "max_dE_in_cluster": 1.4174,
+      "mean_dE_in_cluster": 0.6917,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 195,
+      "totalThickness": 25.7,
+      "stack_desc": "C340 Clear 5mm / Ar90 12.45mm / LUMI Clear 4mm / Vacuum 0.25mm / Clear 4mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "C340",
+          "substrate": "Clear",
+          "thickness": 5
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 12.45
+        },
+        {
+          "type": "glass",
+          "coating": "LUMI",
+          "substrate": "Clear",
+          "thickness": 4
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 4
+        }
+      ]
+    },
+    {
+      "code": "anchor_04",
+      "cluster_id": 4,
+      "exterior": {
+        "L": 45.08,
+        "a": -0.49,
+        "b": -3.04
+      },
+      "config_count": 32,
+      "distinct_colors": 16,
+      "max_dE_in_cluster": 0.4497,
+      "mean_dE_in_cluster": 0.2163,
+      "source": "enthermal-plus-outboard.json",
+      "source_idx": 626,
+      "totalThickness": 25.7,
+      "stack_desc": "LUMI Clear 6mm / Vacuum 0.25mm / Clear 5mm / Ar90 9.45mm / C366 Clear 5mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "LUMI",
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 5
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 9.45
+        },
+        {
+          "type": "glass",
+          "coating": "C366",
+          "substrate": "Clear",
+          "thickness": 5
+        }
+      ]
+    },
+    {
+      "code": "anchor_05",
+      "cluster_id": 5,
+      "exterior": {
+        "L": 35.93,
+        "a": -3.36,
+        "b": -8.94
+      },
+      "config_count": 150,
+      "distinct_colors": 71,
+      "max_dE_in_cluster": 1.8437,
+      "mean_dE_in_cluster": 1.1162,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 1338,
+      "totalThickness": 26.34,
+      "stack_desc": "SB70 Solarblue 6mm / Ar90 10.09mm / C270 Clear 5mm / Vacuum 0.25mm / Clear 5mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SB70",
+          "substrate": "Solarblue",
+          "thickness": 6
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 10.09
+        },
+        {
+          "type": "glass",
+          "coating": "C270",
+          "substrate": "Clear",
+          "thickness": 5
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 5
+        }
+      ]
+    },
+    {
+      "code": "anchor_06",
+      "cluster_id": 6,
+      "exterior": {
+        "L": 36.2,
+        "a": -4.11,
+        "b": -0.26
+      },
+      "config_count": 19,
+      "distinct_colors": 11,
+      "max_dE_in_cluster": 1.051,
+      "mean_dE_in_cluster": 0.384,
+      "source": "enthermal-plus-outboard.json",
+      "source_idx": 820,
+      "totalThickness": 26.259999999999998,
+      "stack_desc": "SB60 Optigray 6mm / Vacuum 0.25mm / Clear 6mm / Ar90 9.01mm / C270 Clear 5mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SB60",
+          "substrate": "Optigray",
+          "thickness": 6
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 9.01
+        },
+        {
+          "type": "glass",
+          "coating": "C270",
+          "substrate": "Clear",
+          "thickness": 5
+        }
+      ]
+    },
+    {
+      "code": "anchor_07",
+      "cluster_id": 7,
+      "exterior": {
+        "L": 50.69,
+        "a": -5.87,
+        "b": -2.92
+      },
+      "config_count": 32,
+      "distinct_colors": 8,
+      "max_dE_in_cluster": 0.519,
+      "mean_dE_in_cluster": 0.2872,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 1093,
+      "totalThickness": 26.3,
+      "stack_desc": "C180 Clear 5mm / Ar90 11.05mm / Clear 5mm / Vacuum 0.25mm / C270 Clear 5mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "C180",
+          "substrate": "Clear",
+          "thickness": 5
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 11.05
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 5
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": "C270",
+          "substrate": "Clear",
+          "thickness": 5
+        }
+      ]
+    },
+    {
+      "code": "anchor_08",
+      "cluster_id": 8,
+      "exterior": {
+        "L": 48.19,
+        "a": -2.73,
+        "b": -8.85
+      },
+      "config_count": 36,
+      "distinct_colors": 18,
+      "max_dE_in_cluster": 1.4191,
+      "mean_dE_in_cluster": 0.902,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 1372,
+      "totalThickness": 26.0,
+      "stack_desc": "SKN183 Clear 6mm / Ar90 9.75mm / C180 Clear 5mm / Vacuum 0.25mm / Clear 5mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SKN183",
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 9.75
+        },
+        {
+          "type": "glass",
+          "coating": "C180",
+          "substrate": "Clear",
+          "thickness": 5
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 5
+        }
+      ]
+    },
+    {
+      "code": "anchor_09",
+      "cluster_id": 9,
+      "exterior": {
+        "L": 43.41,
+        "a": -5.95,
+        "b": -4.47
+      },
+      "config_count": 20,
+      "distinct_colors": 10,
+      "max_dE_in_cluster": 0.2983,
+      "mean_dE_in_cluster": 0.1784,
+      "source": "enthermal-plus-outboard.json",
+      "source_idx": 288,
+      "totalThickness": 25.5,
+      "stack_desc": "XTR6129 Clear 6mm / Vacuum 0.25mm / Clear 4mm / Ar90 11.25mm / C270 Clear 4mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "XTR6129",
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 4
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 11.25
+        },
+        {
+          "type": "glass",
+          "coating": "C270",
+          "substrate": "Clear",
+          "thickness": 4
+        }
+      ]
+    },
+    {
+      "code": "anchor_10",
+      "cluster_id": 10,
+      "exterior": {
+        "L": 40.91,
+        "a": -1.74,
+        "b": -8.53
+      },
+      "config_count": 23,
+      "distinct_colors": 12,
+      "max_dE_in_cluster": 1.4457,
+      "mean_dE_in_cluster": 0.5749,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 371,
+      "totalThickness": 25.93,
+      "stack_desc": "SB70 Optiblue 5mm / Ar90 12.68mm / Clear 4mm / Vacuum 0.25mm / C180 Clear 4mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SB70",
+          "substrate": "Optiblue",
+          "thickness": 5
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 12.68
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 4
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": "C180",
+          "substrate": "Clear",
+          "thickness": 4
+        }
+      ]
+    },
+    {
+      "code": "anchor_11",
+      "cluster_id": 11,
+      "exterior": {
+        "L": 34.16,
+        "a": 0.71,
+        "b": 0.61
+      },
+      "config_count": 210,
+      "distinct_colors": 98,
+      "max_dE_in_cluster": 1.8116,
+      "mean_dE_in_cluster": 1.0447,
+      "source": "enthermal-plus-outboard.json",
+      "source_idx": 528,
+      "totalThickness": 26.310000000000002,
+      "stack_desc": "SB60 Solarbronze 5mm / Vacuum 0.25mm / Clear 5mm / Ar90 11.06mm / C366 Clear 5mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SB60",
+          "substrate": "Solarbronze",
+          "thickness": 5
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 5
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 11.06
+        },
+        {
+          "type": "glass",
+          "coating": "C366",
+          "substrate": "Clear",
+          "thickness": 5
+        }
+      ]
+    },
+    {
+      "code": "anchor_12",
+      "cluster_id": 12,
+      "exterior": {
+        "L": 32.82,
+        "a": -0.35,
+        "b": -4.05
+      },
+      "config_count": 129,
+      "distinct_colors": 63,
+      "max_dE_in_cluster": 1.2507,
+      "mean_dE_in_cluster": 0.7354,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 693,
+      "totalThickness": 25.939999999999998,
+      "stack_desc": "SB70 Solargray 6mm / Ar90 11.69mm / Clear 4mm / Vacuum 0.25mm / C180 Clear 4mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SB70",
+          "substrate": "Solargray",
+          "thickness": 6
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 11.69
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 4
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": "C180",
+          "substrate": "Clear",
+          "thickness": 4
+        }
+      ]
+    },
+    {
+      "code": "anchor_13",
+      "cluster_id": 13,
+      "exterior": {
+        "L": 39.74,
+        "a": -0.72,
+        "b": -2.58
+      },
+      "config_count": 29,
+      "distinct_colors": 29,
+      "max_dE_in_cluster": 1.2448,
+      "mean_dE_in_cluster": 0.8648,
+      "source": "enthermal.json",
+      "source_idx": 54,
+      "totalThickness": 10.25,
+      "stack_desc": "SB60 Starphire 5mm / Vacuum 0.25mm / Clear 5mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SB60",
+          "substrate": "Starphire",
+          "thickness": 5
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 5
+        }
+      ]
+    },
+    {
+      "code": "anchor_14",
+      "cluster_id": 14,
+      "exterior": {
+        "L": 45.92,
+        "a": -7.02,
+        "b": 0.15
+      },
+      "config_count": 64,
+      "distinct_colors": 24,
+      "max_dE_in_cluster": 1.319,
+      "mean_dE_in_cluster": 0.8202,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 92,
+      "totalThickness": 25.7,
+      "stack_desc": "C270 Clear 4mm / Ar90 13.45mm / Clear 4mm / Vacuum 0.25mm / C270 Clear 4mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "C270",
+          "substrate": "Clear",
+          "thickness": 4
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 13.45
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 4
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": "C270",
+          "substrate": "Clear",
+          "thickness": 4
+        }
+      ]
+    },
+    {
+      "code": "anchor_15",
+      "cluster_id": 15,
+      "exterior": {
+        "L": 42.76,
+        "a": -2.58,
+        "b": -1.09
+      },
+      "config_count": 216,
+      "distinct_colors": 85,
+      "max_dE_in_cluster": 1.0805,
+      "mean_dE_in_cluster": 0.7423,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 324,
+      "totalThickness": 25.93,
+      "stack_desc": "SB60 Clear 5mm / Ar90 12.68mm / Clear 4mm / Vacuum 0.25mm / C272 Clear 4mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SB60",
+          "substrate": "Clear",
+          "thickness": 5
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 12.68
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 4
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": "C272",
+          "substrate": "Clear",
+          "thickness": 4
+        }
+      ]
+    },
+    {
+      "code": "anchor_16",
+      "cluster_id": 16,
+      "exterior": {
+        "L": 49.67,
+        "a": -1.23,
+        "b": -4.9
+      },
+      "config_count": 32,
+      "distinct_colors": 8,
+      "max_dE_in_cluster": 0.5688,
+      "mean_dE_in_cluster": 0.3044,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 1095,
+      "totalThickness": 26.3,
+      "stack_desc": "C180 Clear 5mm / Ar90 11.05mm / Clear 5mm / Vacuum 0.25mm / C366 Clear 5mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "C180",
+          "substrate": "Clear",
+          "thickness": 5
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 11.05
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 5
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": "C366",
+          "substrate": "Clear",
+          "thickness": 5
+        }
+      ]
+    },
+    {
+      "code": "anchor_17",
+      "cluster_id": 17,
+      "exterior": {
+        "L": 41.11,
+        "a": -6.57,
+        "b": -2.22
+      },
+      "config_count": 52,
+      "distinct_colors": 22,
+      "max_dE_in_cluster": 1.2548,
+      "mean_dE_in_cluster": 0.8015,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 1440,
+      "totalThickness": 26.35,
+      "stack_desc": "SB60 Solexia 6mm / Ar90 10.1mm / Clear 5mm / Vacuum 0.25mm / SB70 Clear 5mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SB60",
+          "substrate": "Solexia",
+          "thickness": 6
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 10.1
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 5
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": "SB70",
+          "substrate": "Clear",
+          "thickness": 5
+        }
+      ]
+    },
+    {
+      "code": "anchor_18",
+      "cluster_id": 18,
+      "exterior": {
+        "L": 34.58,
+        "a": -4.47,
+        "b": -5.28
+      },
+      "config_count": 16,
+      "distinct_colors": 8,
+      "max_dE_in_cluster": 0.164,
+      "mean_dE_in_cluster": 0.099,
+      "source": "enthermal-plus-outboard.json",
+      "source_idx": 680,
+      "totalThickness": 26.32,
+      "stack_desc": "SB60 Solarblue 6mm / Vacuum 0.25mm / Clear 5mm / Ar90 10.07mm / C270 Clear 5mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SB60",
+          "substrate": "Solarblue",
+          "thickness": 6
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 5
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 10.07
+        },
+        {
+          "type": "glass",
+          "coating": "C270",
+          "substrate": "Clear",
+          "thickness": 5
+        }
+      ]
+    },
+    {
+      "code": "anchor_19",
+      "cluster_id": 19,
+      "exterior": {
+        "L": 38.66,
+        "a": -3.64,
+        "b": -6.45
+      },
+      "config_count": 14,
+      "distinct_colors": 7,
+      "max_dE_in_cluster": 1.6513,
+      "mean_dE_in_cluster": 0.7245,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 1917,
+      "totalThickness": 26.34,
+      "stack_desc": "SB70 Optiblue 6mm / Ar90 9.09mm / Clear 6mm / Vacuum 0.25mm / C270 Clear 5mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SB70",
+          "substrate": "Optiblue",
+          "thickness": 6
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 9.09
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": "C270",
+          "substrate": "Clear",
+          "thickness": 5
+        }
+      ]
+    },
+    {
+      "code": "anchor_20",
+      "cluster_id": 20,
+      "exterior": {
+        "L": 47.38,
+        "a": -4.24,
+        "b": -4.86
+      },
+      "config_count": 166,
+      "distinct_colors": 67,
+      "max_dE_in_cluster": 1.6457,
+      "mean_dE_in_cluster": 0.9801,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 1741,
+      "totalThickness": 26.36,
+      "stack_desc": "SB72 Starphire 6mm / Ar90 9.11mm / SB70 Clear 6mm / Vacuum 0.25mm / Clear 5mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SB72",
+          "substrate": "Starphire",
+          "thickness": 6
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 9.11
+        },
+        {
+          "type": "glass",
+          "coating": "SB70",
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 5
+        }
+      ]
+    },
+    {
+      "code": "anchor_21",
+      "cluster_id": 21,
+      "exterior": {
+        "L": 53.07,
+        "a": -5.31,
+        "b": -5.82
+      },
+      "config_count": 62,
+      "distinct_colors": 31,
+      "max_dE_in_cluster": 1.6544,
+      "mean_dE_in_cluster": 1.1695,
+      "source": "enthermal-plus-outboard.json",
+      "source_idx": 393,
+      "totalThickness": 26.11,
+      "stack_desc": "SBR67 Clear 5mm / Vacuum 0.25mm / Clear 5mm / Ar90 11.86mm / C270 Clear 4mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SBR67",
+          "substrate": "Clear",
+          "thickness": 5
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 5
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 11.86
+        },
+        {
+          "type": "glass",
+          "coating": "C270",
+          "substrate": "Clear",
+          "thickness": 4
+        }
+      ]
+    },
+    {
+      "code": "anchor_22",
+      "cluster_id": 22,
+      "exterior": {
+        "L": 44.89,
+        "a": -3.31,
+        "b": -7.68
+      },
+      "config_count": 80,
+      "distinct_colors": 40,
+      "max_dE_in_cluster": 1.8237,
+      "mean_dE_in_cluster": 0.9574,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 567,
+      "totalThickness": 25.6,
+      "stack_desc": "XTR6129 Clear 6mm / Ar90 11.35mm / C180 Clear 4mm / Vacuum 0.25mm / Clear 4mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "XTR6129",
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 11.35
+        },
+        {
+          "type": "glass",
+          "coating": "C180",
+          "substrate": "Clear",
+          "thickness": 4
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 4
+        }
+      ]
+    },
+    {
+      "code": "anchor_23",
+      "cluster_id": 23,
+      "exterior": {
+        "L": 32.67,
+        "a": -1.99,
+        "b": -1.18
+      },
+      "config_count": 40,
+      "distinct_colors": 20,
+      "max_dE_in_cluster": 1.6822,
+      "mean_dE_in_cluster": 1.0925,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 925,
+      "totalThickness": 26.130000000000003,
+      "stack_desc": "SB60 Solargray 5mm / Ar90 11.88mm / Clear 5mm / Vacuum 0.25mm / C270 Clear 4mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SB60",
+          "substrate": "Solargray",
+          "thickness": 5
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 11.88
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 5
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": "C270",
+          "substrate": "Clear",
+          "thickness": 4
+        }
+      ]
+    },
+    {
+      "code": "anchor_24",
+      "cluster_id": 24,
+      "exterior": {
+        "L": 36.78,
+        "a": -0.56,
+        "b": -6.07
+      },
+      "config_count": 64,
+      "distinct_colors": 32,
+      "max_dE_in_cluster": 1.4102,
+      "mean_dE_in_cluster": 0.7754,
+      "source": "enthermal-plus-outboard.json",
+      "source_idx": 545,
+      "totalThickness": 26.009999999999998,
+      "stack_desc": "SB60 Optiblue 5mm / Vacuum 0.25mm / Clear 5mm / Ar90 10.76mm / LUMI Clear 5mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SB60",
+          "substrate": "Optiblue",
+          "thickness": 5
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 5
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 10.76
+        },
+        {
+          "type": "glass",
+          "coating": "LUMI",
+          "substrate": "Clear",
+          "thickness": 5
+        }
+      ]
+    },
+    {
+      "code": "anchor_25",
+      "cluster_id": 25,
+      "exterior": {
+        "L": 52.41,
+        "a": -1.94,
+        "b": -9.47
+      },
+      "config_count": 4,
+      "distinct_colors": 2,
+      "max_dE_in_cluster": 0.06,
+      "mean_dE_in_cluster": 0.03,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 2149,
+      "totalThickness": 25.4,
+      "stack_desc": "ZEN Clear 6mm / Ar90 7.15mm / SKN183 Clear 6mm / Vacuum 0.25mm / Clear 6mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "ZEN",
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 7.15
+        },
+        {
+          "type": "glass",
+          "coating": "SKN183",
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 6
+        }
+      ]
+    },
+    {
+      "code": "anchor_26",
+      "cluster_id": 26,
+      "exterior": {
+        "L": 40.58,
+        "a": -8.95,
+        "b": 0.99
+      },
+      "config_count": 16,
+      "distinct_colors": 8,
+      "max_dE_in_cluster": 0.2373,
+      "mean_dE_in_cluster": 0.1487,
+      "source": "enthermal-plus-outboard.json",
+      "source_idx": 652,
+      "totalThickness": 26.32,
+      "stack_desc": "SB60 Solexia 6mm / Vacuum 0.25mm / Clear 5mm / Ar90 10.07mm / C270 Clear 5mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SB60",
+          "substrate": "Solexia",
+          "thickness": 6
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 5
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 10.07
+        },
+        {
+          "type": "glass",
+          "coating": "C270",
+          "substrate": "Clear",
+          "thickness": 5
+        }
+      ]
+    },
+    {
+      "code": "anchor_27",
+      "cluster_id": 27,
+      "exterior": {
+        "L": 45.3,
+        "a": -2.43,
+        "b": -10.82
+      },
+      "config_count": 4,
+      "distinct_colors": 2,
+      "max_dE_in_cluster": 0.0768,
+      "mean_dE_in_cluster": 0.0384,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 2157,
+      "totalThickness": 25.4,
+      "stack_desc": "SKN183 Clear 6mm / Ar90 7.15mm / SKN183 Clear 6mm / Vacuum 0.25mm / Clear 6mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SKN183",
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 7.15
+        },
+        {
+          "type": "glass",
+          "coating": "SKN183",
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 6
+        }
+      ]
+    },
+    {
+      "code": "anchor_28",
+      "cluster_id": 28,
+      "exterior": {
+        "L": 40.98,
+        "a": -3.91,
+        "b": -3.11
+      },
+      "config_count": 53,
+      "distinct_colors": 20,
+      "max_dE_in_cluster": 1.3627,
+      "mean_dE_in_cluster": 0.6413,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 119,
+      "totalThickness": 25.7,
+      "stack_desc": "Q452 Clear 4mm / Ar90 13.45mm / Clear 4mm / Vacuum 0.25mm / C180 Clear 4mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "Q452",
+          "substrate": "Clear",
+          "thickness": 4
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 13.45
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 4
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": "C180",
+          "substrate": "Clear",
+          "thickness": 4
+        }
+      ]
+    },
+    {
+      "code": "anchor_29",
+      "cluster_id": 29,
+      "exterior": {
+        "L": 43.64,
+        "a": -9.24,
+        "b": -2.78
+      },
+      "config_count": 34,
+      "distinct_colors": 17,
+      "max_dE_in_cluster": 0.9963,
+      "mean_dE_in_cluster": 0.6784,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 684,
+      "totalThickness": 25.84,
+      "stack_desc": "SB70 Solexia 6mm / Ar90 11.59mm / Clear 4mm / Vacuum 0.25mm / SB70 Clear 4mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SB70",
+          "substrate": "Solexia",
+          "thickness": 6
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 11.59
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 4
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": "SB70",
+          "substrate": "Clear",
+          "thickness": 4
+        }
+      ]
+    },
+    {
+      "code": "anchor_30",
+      "cluster_id": 30,
+      "exterior": {
+        "L": 35.54,
+        "a": -0.84,
+        "b": -1.68
+      },
+      "config_count": 158,
+      "distinct_colors": 72,
+      "max_dE_in_cluster": 1.8448,
+      "mean_dE_in_cluster": 1.2094,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 647,
+      "totalThickness": 25.939999999999998,
+      "stack_desc": "SB60 Optigray 6mm / Ar90 11.69mm / Clear 4mm / Vacuum 0.25mm / C366 Clear 4mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SB60",
+          "substrate": "Optigray",
+          "thickness": 6
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 11.69
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 4
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": "C366",
+          "substrate": "Clear",
+          "thickness": 4
+        }
+      ]
+    },
+    {
+      "code": "anchor_31",
+      "cluster_id": 31,
+      "exterior": {
+        "L": 43.17,
+        "a": -1.66,
+        "b": -3.88
+      },
+      "config_count": 239,
+      "distinct_colors": 119,
+      "max_dE_in_cluster": 1.4582,
+      "mean_dE_in_cluster": 0.8992,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 2136,
+      "totalThickness": 26.0,
+      "stack_desc": "LUMI Clear 6mm / Ar90 7.75mm / C272 Clear 6mm / Vacuum 0.25mm / Clear 6mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "LUMI",
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 7.75
+        },
+        {
+          "type": "glass",
+          "coating": "C272",
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 6
+        }
+      ]
+    },
+    {
+      "code": "anchor_32",
+      "cluster_id": 32,
+      "exterior": {
+        "L": 52.33,
+        "a": -0.67,
+        "b": -7.47
+      },
+      "config_count": 114,
+      "distinct_colors": 49,
+      "max_dE_in_cluster": 1.375,
+      "mean_dE_in_cluster": 0.9605,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 160,
+      "totalThickness": 25.4,
+      "stack_desc": "ZEN Clear 4mm / Ar90 13.15mm / Clear 4mm / Vacuum 0.25mm / LUMI Clear 4mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "ZEN",
+          "substrate": "Clear",
+          "thickness": 4
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 13.15
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 4
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": "LUMI",
+          "substrate": "Clear",
+          "thickness": 4
+        }
+      ]
+    },
+    {
+      "code": "anchor_33",
+      "cluster_id": 33,
+      "exterior": {
+        "L": 37.88,
+        "a": -1.34,
+        "b": -8.31
+      },
+      "config_count": 126,
+      "distinct_colors": 56,
+      "max_dE_in_cluster": 1.5142,
+      "mean_dE_in_cluster": 0.8367,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 1734,
+      "totalThickness": 25.740000000000002,
+      "stack_desc": "SB70 Optiblue 6mm / Ar90 8.49mm / LUMI Clear 6mm / Vacuum 0.25mm / Clear 5mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SB70",
+          "substrate": "Optiblue",
+          "thickness": 6
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 8.49
+        },
+        {
+          "type": "glass",
+          "coating": "LUMI",
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 5
+        }
+      ]
+    },
+    {
+      "code": "anchor_34",
+      "cluster_id": 34,
+      "exterior": {
+        "L": 50.89,
+        "a": -2.83,
+        "b": -6.68
+      },
+      "config_count": 89,
+      "distinct_colors": 43,
+      "max_dE_in_cluster": 1.6045,
+      "mean_dE_in_cluster": 0.81,
+      "source": "enthermal-plus-outboard.json",
+      "source_idx": 698,
+      "totalThickness": 26.33,
+      "stack_desc": "C180 Clear 6mm / Vacuum 0.25mm / Clear 6mm / Ar90 9.08mm / SB70 Clear 5mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "C180",
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 9.08
+        },
+        {
+          "type": "glass",
+          "coating": "SB70",
+          "substrate": "Clear",
+          "thickness": 5
+        }
+      ]
+    },
+    {
+      "code": "anchor_35",
+      "cluster_id": 35,
+      "exterior": {
+        "L": 44.96,
+        "a": -3.27,
+        "b": -3.66
+      },
+      "config_count": 463,
+      "distinct_colors": 210,
+      "max_dE_in_cluster": 1.7112,
+      "mean_dE_in_cluster": 1.1011,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 2067,
+      "totalThickness": 26.3,
+      "stack_desc": "SB60 Starphire 6mm / Ar90 8.05mm / SB70 Clear 6mm / Vacuum 0.25mm / Clear 6mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SB60",
+          "substrate": "Starphire",
+          "thickness": 6
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 8.05
+        },
+        {
+          "type": "glass",
+          "coating": "SB70",
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 6
+        }
+      ]
+    },
+    {
+      "code": "anchor_36",
+      "cluster_id": 36,
+      "exterior": {
+        "L": 31.99,
+        "a": 0.47,
+        "b": 0.28
+      },
+      "config_count": 113,
+      "distinct_colors": 54,
+      "max_dE_in_cluster": 1.5827,
+      "mean_dE_in_cluster": 0.8222,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 1634,
+      "totalThickness": 26.34,
+      "stack_desc": "SB60 Solarbronze 6mm / Ar90 9.09mm / C272 Clear 6mm / Vacuum 0.25mm / Clear 5mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SB60",
+          "substrate": "Solarbronze",
+          "thickness": 6
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 9.09
+        },
+        {
+          "type": "glass",
+          "coating": "C272",
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 5
+        }
+      ]
+    },
+    {
+      "code": "anchor_37",
+      "cluster_id": 37,
+      "exterior": {
+        "L": 45.79,
+        "a": -1.65,
+        "b": -5.39
+      },
+      "config_count": 228,
+      "distinct_colors": 99,
+      "max_dE_in_cluster": 1.8452,
+      "mean_dE_in_cluster": 1.1902,
+      "source": "enthermal.json",
+      "source_idx": 3,
+      "totalThickness": 10.25,
+      "stack_desc": "C180 Clear 6mm / Vacuum 0.25mm / Clear 4mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "C180",
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 4
+        }
+      ]
+    },
+    {
+      "code": "anchor_38",
+      "cluster_id": 38,
+      "exterior": {
+        "L": 36.33,
+        "a": -4.75,
+        "b": -7.75
+      },
+      "config_count": 8,
+      "distinct_colors": 4,
+      "max_dE_in_cluster": 0.1584,
+      "mean_dE_in_cluster": 0.0622,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 1910,
+      "totalThickness": 26.34,
+      "stack_desc": "SB70 Solarblue 6mm / Ar90 9.09mm / Clear 6mm / Vacuum 0.25mm / C270 Clear 5mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SB70",
+          "substrate": "Solarblue",
+          "thickness": 6
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 9.09
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": "C270",
+          "substrate": "Clear",
+          "thickness": 5
+        }
+      ]
+    },
+    {
+      "code": "anchor_39",
+      "cluster_id": 39,
+      "exterior": {
+        "L": 38.03,
+        "a": -3.23,
+        "b": -3.71
+      },
+      "config_count": 144,
+      "distinct_colors": 72,
+      "max_dE_in_cluster": 1.5739,
+      "mean_dE_in_cluster": 1.1069,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 2317,
+      "totalThickness": 25.740000000000002,
+      "stack_desc": "SB70 Optigray 6mm / Ar90 7.49mm / Clear 6mm / Vacuum 0.25mm / SKN183 Clear 6mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SB70",
+          "substrate": "Optigray",
+          "thickness": 6
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 7.49
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": "SKN183",
+          "substrate": "Clear",
+          "thickness": 6
+        }
+      ]
+    },
+    {
+      "code": "anchor_40",
+      "cluster_id": 40,
+      "exterior": {
+        "L": 34.69,
+        "a": -1.67,
+        "b": 1.73
+      },
+      "config_count": 36,
+      "distinct_colors": 18,
+      "max_dE_in_cluster": 1.6011,
+      "mean_dE_in_cluster": 0.9232,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 1142,
+      "totalThickness": 26.33,
+      "stack_desc": "SB60 Solarbronze 5mm / Ar90 11.08mm / Clear 5mm / Vacuum 0.25mm / C270 Clear 5mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SB60",
+          "substrate": "Solarbronze",
+          "thickness": 5
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 11.08
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 5
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": "C270",
+          "substrate": "Clear",
+          "thickness": 5
+        }
+      ]
+    },
+    {
+      "code": "anchor_41",
+      "cluster_id": 41,
+      "exterior": {
+        "L": 33.72,
+        "a": -1.3,
+        "b": -7.64
+      },
+      "config_count": 72,
+      "distinct_colors": 36,
+      "max_dE_in_cluster": 1.8108,
+      "mean_dE_in_cluster": 0.7591,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 657,
+      "totalThickness": 25.740000000000002,
+      "stack_desc": "SB60 Solarblue 6mm / Ar90 11.49mm / Clear 4mm / Vacuum 0.25mm / LUMI Clear 4mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SB60",
+          "substrate": "Solarblue",
+          "thickness": 6
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 11.49
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 4
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": "LUMI",
+          "substrate": "Clear",
+          "thickness": 4
+        }
+      ]
+    },
+    {
+      "code": "anchor_42",
+      "cluster_id": 42,
+      "exterior": {
+        "L": 31.67,
+        "a": -0.14,
+        "b": -2.63
+      },
+      "config_count": 182,
+      "distinct_colors": 84,
+      "max_dE_in_cluster": 1.5815,
+      "mean_dE_in_cluster": 0.7243,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 228,
+      "totalThickness": 25.83,
+      "stack_desc": "SB60 Solargray 5mm / Ar90 12.58mm / SB60 Clear 4mm / Vacuum 0.25mm / Clear 4mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SB60",
+          "substrate": "Solargray",
+          "thickness": 5
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 12.58
+        },
+        {
+          "type": "glass",
+          "coating": "SB60",
+          "substrate": "Clear",
+          "thickness": 4
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 4
+        }
+      ]
+    },
+    {
+      "code": "anchor_43",
+      "cluster_id": 43,
+      "exterior": {
+        "L": 44.71,
+        "a": -5.02,
+        "b": -1.91
+      },
+      "config_count": 72,
+      "distinct_colors": 23,
+      "max_dE_in_cluster": 1.5616,
+      "mean_dE_in_cluster": 0.963,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 400,
+      "totalThickness": 25.9,
+      "stack_desc": "C270 Clear 6mm / Ar90 11.65mm / C270 Clear 4mm / Vacuum 0.25mm / Clear 4mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "C270",
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 11.65
+        },
+        {
+          "type": "glass",
+          "coating": "C270",
+          "substrate": "Clear",
+          "thickness": 4
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 4
+        }
+      ]
+    },
+    {
+      "code": "anchor_44",
+      "cluster_id": 44,
+      "exterior": {
+        "L": 49.49,
+        "a": -2.88,
+        "b": -3.49
+      },
+      "config_count": 64,
+      "distinct_colors": 24,
+      "max_dE_in_cluster": 0.8362,
+      "mean_dE_in_cluster": 0.4559,
+      "source": "enthermal-plus-outboard.json",
+      "source_idx": 445,
+      "totalThickness": 26.33,
+      "stack_desc": "C180 Clear 5mm / Vacuum 0.25mm / Clear 5mm / Ar90 11.08mm / SB60 Clear 5mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "C180",
+          "substrate": "Clear",
+          "thickness": 5
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 5
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 11.08
+        },
+        {
+          "type": "glass",
+          "coating": "SB60",
+          "substrate": "Clear",
+          "thickness": 5
+        }
+      ]
+    },
+    {
+      "code": "anchor_45",
+      "cluster_id": 45,
+      "exterior": {
+        "L": 39.03,
+        "a": -4.06,
+        "b": -1.39
+      },
+      "config_count": 188,
+      "distinct_colors": 78,
+      "max_dE_in_cluster": 1.3154,
+      "mean_dE_in_cluster": 0.8529,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 611,
+      "totalThickness": 25.9,
+      "stack_desc": "Q452 Clear 6mm / Ar90 11.65mm / Clear 4mm / Vacuum 0.25mm / C272 Clear 4mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "Q452",
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 11.65
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 4
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": "C272",
+          "substrate": "Clear",
+          "thickness": 4
+        }
+      ]
+    },
+    {
+      "code": "anchor_46",
+      "cluster_id": 46,
+      "exterior": {
+        "L": 44.97,
+        "a": -2.9,
+        "b": -1.63
+      },
+      "config_count": 100,
+      "distinct_colors": 42,
+      "max_dE_in_cluster": 1.4292,
+      "mean_dE_in_cluster": 0.6541,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 94,
+      "totalThickness": 25.7,
+      "stack_desc": "C270 Clear 4mm / Ar90 13.45mm / Clear 4mm / Vacuum 0.25mm / C366 Clear 4mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "C270",
+          "substrate": "Clear",
+          "thickness": 4
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 13.45
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 4
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": "C366",
+          "substrate": "Clear",
+          "thickness": 4
+        }
+      ]
+    },
+    {
+      "code": "anchor_47",
+      "cluster_id": 47,
+      "exterior": {
+        "L": 42.84,
+        "a": -3.66,
+        "b": -6.42
+      },
+      "config_count": 136,
+      "distinct_colors": 63,
+      "max_dE_in_cluster": 1.7291,
+      "mean_dE_in_cluster": 1.347,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 78,
+      "totalThickness": 25.6,
+      "stack_desc": "XTR6129 Clear 4mm / Ar90 13.35mm / C270 Clear 4mm / Vacuum 0.25mm / Clear 4mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "XTR6129",
+          "substrate": "Clear",
+          "thickness": 4
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 13.35
+        },
+        {
+          "type": "glass",
+          "coating": "C270",
+          "substrate": "Clear",
+          "thickness": 4
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 4
+        }
+      ]
+    },
+    {
+      "code": "anchor_48",
+      "cluster_id": 48,
+      "exterior": {
+        "L": 53.55,
+        "a": -3.35,
+        "b": -7.39
+      },
+      "config_count": 60,
+      "distinct_colors": 29,
+      "max_dE_in_cluster": 1.3612,
+      "mean_dE_in_cluster": 0.7064,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 2147,
+      "totalThickness": 25.96,
+      "stack_desc": "ZEN Clear 6mm / Ar90 7.71mm / SB70 Clear 6mm / Vacuum 0.25mm / Clear 6mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "ZEN",
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 7.71
+        },
+        {
+          "type": "glass",
+          "coating": "SB70",
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 6
+        }
+      ]
+    },
+    {
+      "code": "anchor_49",
+      "cluster_id": 49,
+      "exterior": {
+        "L": 39.44,
+        "a": -5.96,
+        "b": 0.01
+      },
+      "config_count": 76,
+      "distinct_colors": 26,
+      "max_dE_in_cluster": 1.261,
+      "mean_dE_in_cluster": 0.7343,
+      "source": "enthermal-plus-outboard.json",
+      "source_idx": 296,
+      "totalThickness": 25.85,
+      "stack_desc": "SB60 Solexia 6mm / Vacuum 0.25mm / Clear 4mm / Ar90 11.6mm / C272 Clear 4mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SB60",
+          "substrate": "Solexia",
+          "thickness": 6
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 4
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 11.6
+        },
+        {
+          "type": "glass",
+          "coating": "C272",
+          "substrate": "Clear",
+          "thickness": 4
+        }
+      ]
+    },
+    {
+      "code": "anchor_50",
+      "cluster_id": 50,
+      "exterior": {
+        "L": 49.56,
+        "a": -1.18,
+        "b": -6.26
+      },
+      "config_count": 46,
+      "distinct_colors": 26,
+      "max_dE_in_cluster": 1.3515,
+      "mean_dE_in_cluster": 0.7056,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 90,
+      "totalThickness": 25.5,
+      "stack_desc": "C180 Clear 4mm / Ar90 13.25mm / Clear 4mm / Vacuum 0.25mm / LUMI Clear 4mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "C180",
+          "substrate": "Clear",
+          "thickness": 4
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 13.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 4
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": "LUMI",
+          "substrate": "Clear",
+          "thickness": 4
+        }
+      ]
+    },
+    {
+      "code": "anchor_51",
+      "cluster_id": 51,
+      "exterior": {
+        "L": 44.11,
+        "a": -5.39,
+        "b": 0.24
+      },
+      "config_count": 136,
+      "distinct_colors": 57,
+      "max_dE_in_cluster": 1.4407,
+      "mean_dE_in_cluster": 0.8196,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 99,
+      "totalThickness": 25.7,
+      "stack_desc": "C272 Clear 4mm / Ar90 13.45mm / Clear 4mm / Vacuum 0.25mm / C270 Clear 4mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "C272",
+          "substrate": "Clear",
+          "thickness": 4
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 13.45
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 4
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": "C270",
+          "substrate": "Clear",
+          "thickness": 4
+        }
+      ]
+    },
+    {
+      "code": "anchor_52",
+      "cluster_id": 52,
+      "exterior": {
+        "L": 41.98,
+        "a": -7.83,
+        "b": -3.04
+      },
+      "config_count": 44,
+      "distinct_colors": 22,
+      "max_dE_in_cluster": 1.2287,
+      "mean_dE_in_cluster": 0.5371,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 2084,
+      "totalThickness": 25.740000000000002,
+      "stack_desc": "SB70 Solexia 6mm / Ar90 7.49mm / LUMI Clear 6mm / Vacuum 0.25mm / Clear 6mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SB70",
+          "substrate": "Solexia",
+          "thickness": 6
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 7.49
+        },
+        {
+          "type": "glass",
+          "coating": "LUMI",
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 6
+        }
+      ]
+    },
+    {
+      "code": "anchor_53",
+      "cluster_id": 53,
+      "exterior": {
+        "L": 46.16,
+        "a": -5.25,
+        "b": -2.93
+      },
+      "config_count": 168,
+      "distinct_colors": 73,
+      "max_dE_in_cluster": 1.4888,
+      "mean_dE_in_cluster": 0.8888,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 12,
+      "totalThickness": 25.61,
+      "stack_desc": "C270 Clear 4mm / Ar90 13.36mm / SB70 Clear 4mm / Vacuum 0.25mm / Clear 4mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "C270",
+          "substrate": "Clear",
+          "thickness": 4
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 13.36
+        },
+        {
+          "type": "glass",
+          "coating": "SB70",
+          "substrate": "Clear",
+          "thickness": 4
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 4
+        }
+      ]
+    },
+    {
+      "code": "anchor_54",
+      "cluster_id": 54,
+      "exterior": {
+        "L": 52.81,
+        "a": -2.41,
+        "b": -6.61
+      },
+      "config_count": 146,
+      "distinct_colors": 69,
+      "max_dE_in_cluster": 1.6851,
+      "mean_dE_in_cluster": 1.134,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 71,
+      "totalThickness": 25.6,
+      "stack_desc": "ZEN Clear 4mm / Ar90 13.35mm / C270 Clear 4mm / Vacuum 0.25mm / Clear 4mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "ZEN",
+          "substrate": "Clear",
+          "thickness": 4
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 13.35
+        },
+        {
+          "type": "glass",
+          "coating": "C270",
+          "substrate": "Clear",
+          "thickness": 4
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 4
+        }
+      ]
+    },
+    {
+      "code": "anchor_55",
+      "cluster_id": 55,
+      "exterior": {
+        "L": 42.02,
+        "a": -8.39,
+        "b": -1.59
+      },
+      "config_count": 32,
+      "distinct_colors": 16,
+      "max_dE_in_cluster": 1.0113,
+      "mean_dE_in_cluster": 0.6468,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 2288,
+      "totalThickness": 26.34,
+      "stack_desc": "SB70 Solexia 6mm / Ar90 8.09mm / Clear 6mm / Vacuum 0.25mm / C272 Clear 6mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SB70",
+          "substrate": "Solexia",
+          "thickness": 6
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 8.09
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": "C272",
+          "substrate": "Clear",
+          "thickness": 6
+        }
+      ]
+    },
+    {
+      "code": "anchor_56",
+      "cluster_id": 56,
+      "exterior": {
+        "L": 43.03,
+        "a": -1.25,
+        "b": -2.04
+      },
+      "config_count": 132,
+      "distinct_colors": 52,
+      "max_dE_in_cluster": 1.1962,
+      "mean_dE_in_cluster": 0.7373,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 913,
+      "totalThickness": 26.130000000000003,
+      "stack_desc": "SB60 Clear 5mm / Ar90 11.88mm / Clear 5mm / Vacuum 0.25mm / C366 Clear 4mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SB60",
+          "substrate": "Clear",
+          "thickness": 5
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 11.88
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 5
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": "C366",
+          "substrate": "Clear",
+          "thickness": 4
+        }
+      ]
+    },
+    {
+      "code": "anchor_57",
+      "cluster_id": 57,
+      "exterior": {
+        "L": 46.42,
+        "a": -5.96,
+        "b": -5.24
+      },
+      "config_count": 48,
+      "distinct_colors": 22,
+      "max_dE_in_cluster": 1.8928,
+      "mean_dE_in_cluster": 0.8423,
+      "source": "enthermal-plus-outboard.json",
+      "source_idx": 281,
+      "totalThickness": 25.5,
+      "stack_desc": "SKN183 Clear 6mm / Vacuum 0.25mm / Clear 4mm / Ar90 11.25mm / C270 Clear 4mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SKN183",
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 4
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 11.25
+        },
+        {
+          "type": "glass",
+          "coating": "C270",
+          "substrate": "Clear",
+          "thickness": 4
+        }
+      ]
+    },
+    {
+      "code": "anchor_58",
+      "cluster_id": 58,
+      "exterior": {
+        "L": 46.69,
+        "a": -4.13,
+        "b": -8.5
+      },
+      "config_count": 20,
+      "distinct_colors": 9,
+      "max_dE_in_cluster": 1.1606,
+      "mean_dE_in_cluster": 0.6233,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 565,
+      "totalThickness": 25.5,
+      "stack_desc": "SKN183 Clear 6mm / Ar90 11.25mm / SB70 Clear 4mm / Vacuum 0.25mm / Clear 4mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SKN183",
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 11.25
+        },
+        {
+          "type": "glass",
+          "coating": "SB70",
+          "substrate": "Clear",
+          "thickness": 4
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 4
+        }
+      ]
+    },
+    {
+      "code": "anchor_59",
+      "cluster_id": 59,
+      "exterior": {
+        "L": 43.68,
+        "a": -1.55,
+        "b": -6.1
+      },
+      "config_count": 32,
+      "distinct_colors": 14,
+      "max_dE_in_cluster": 1.6736,
+      "mean_dE_in_cluster": 1.1701,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 1679,
+      "totalThickness": 25.740000000000002,
+      "stack_desc": "SB60 Starphire 6mm / Ar90 8.49mm / SKN183 Clear 6mm / Vacuum 0.25mm / Clear 5mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SB60",
+          "substrate": "Starphire",
+          "thickness": 6
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 8.49
+        },
+        {
+          "type": "glass",
+          "coating": "SKN183",
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 5
+        }
+      ]
+    },
+    {
+      "code": "anchor_60",
+      "cluster_id": 60,
+      "exterior": {
+        "L": 44.87,
+        "a": -1.48,
+        "b": -8.57
+      },
+      "config_count": 68,
+      "distinct_colors": 30,
+      "max_dE_in_cluster": 1.3949,
+      "mean_dE_in_cluster": 0.9548,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 1560,
+      "totalThickness": 25.4,
+      "stack_desc": "SKN183 Clear 6mm / Ar90 9.15mm / Clear 5mm / Vacuum 0.25mm / LUMI Clear 5mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SKN183",
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 9.15
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 5
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": "LUMI",
+          "substrate": "Clear",
+          "thickness": 5
+        }
+      ]
+    },
+    {
+      "code": "anchor_61",
+      "cluster_id": 61,
+      "exterior": {
+        "L": 48.62,
+        "a": -2.41,
+        "b": -5.57
+      },
+      "config_count": 170,
+      "distinct_colors": 85,
+      "max_dE_in_cluster": 1.5648,
+      "mean_dE_in_cluster": 0.8166,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 1358,
+      "totalThickness": 26.0,
+      "stack_desc": "LUMI Clear 6mm / Ar90 9.75mm / C180 Clear 5mm / Vacuum 0.25mm / Clear 5mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "LUMI",
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 9.75
+        },
+        {
+          "type": "glass",
+          "coating": "C180",
+          "substrate": "Clear",
+          "thickness": 5
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 5
+        }
+      ]
+    },
+    {
+      "code": "anchor_62",
+      "cluster_id": 62,
+      "exterior": {
+        "L": 35.74,
+        "a": -0.56,
+        "b": -6.35
+      },
+      "config_count": 74,
+      "distinct_colors": 37,
+      "max_dE_in_cluster": 1.1209,
+      "mean_dE_in_cluster": 0.6654,
+      "source": "enthermal-plus-outboard.json",
+      "source_idx": 839,
+      "totalThickness": 25.96,
+      "stack_desc": "SB60 Optiblue 6mm / Vacuum 0.25mm / Clear 6mm / Ar90 8.71mm / LUMI Clear 5mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SB60",
+          "substrate": "Optiblue",
+          "thickness": 6
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 8.71
+        },
+        {
+          "type": "glass",
+          "coating": "LUMI",
+          "substrate": "Clear",
+          "thickness": 5
+        }
+      ]
+    },
+    {
+      "code": "anchor_63",
+      "cluster_id": 63,
+      "exterior": {
+        "L": 39.24,
+        "a": -2.12,
+        "b": -6.65
+      },
+      "config_count": 70,
+      "distinct_colors": 37,
+      "max_dE_in_cluster": 1.4911,
+      "mean_dE_in_cluster": 0.927,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 1185,
+      "totalThickness": 26.33,
+      "stack_desc": "SB70 Optiblue 5mm / Ar90 11.08mm / Clear 5mm / Vacuum 0.25mm / C272 Clear 5mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SB70",
+          "substrate": "Optiblue",
+          "thickness": 5
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 11.08
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 5
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": "C272",
+          "substrate": "Clear",
+          "thickness": 5
+        }
+      ]
+    },
+    {
+      "code": "anchor_64",
+      "cluster_id": 64,
+      "exterior": {
+        "L": 34.46,
+        "a": -1.05,
+        "b": -4.3
+      },
+      "config_count": 70,
+      "distinct_colors": 30,
+      "max_dE_in_cluster": 1.522,
+      "mean_dE_in_cluster": 0.9048,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 369,
+      "totalThickness": 25.83,
+      "stack_desc": "SB70 Solargray 5mm / Ar90 12.58mm / Clear 4mm / Vacuum 0.25mm / SB70 Clear 4mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SB70",
+          "substrate": "Solargray",
+          "thickness": 5
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 12.58
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 4
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": "SB70",
+          "substrate": "Clear",
+          "thickness": 4
+        }
+      ]
+    },
+    {
+      "code": "anchor_65",
+      "cluster_id": 65,
+      "exterior": {
+        "L": 42.63,
+        "a": -2.87,
+        "b": -8.86
+      },
+      "config_count": 4,
+      "distinct_colors": 2,
+      "max_dE_in_cluster": 0.0539,
+      "mean_dE_in_cluster": 0.0269,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 1775,
+      "totalThickness": 25.4,
+      "stack_desc": "XTR6129 Clear 6mm / Ar90 8.15mm / SKN183 Clear 6mm / Vacuum 0.25mm / Clear 5mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "XTR6129",
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 8.15
+        },
+        {
+          "type": "glass",
+          "coating": "SKN183",
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 5
+        }
+      ]
+    },
+    {
+      "code": "anchor_66",
+      "cluster_id": 66,
+      "exterior": {
+        "L": 39.72,
+        "a": -4.66,
+        "b": -2.6
+      },
+      "config_count": 96,
+      "distinct_colors": 48,
+      "max_dE_in_cluster": 1.4951,
+      "mean_dE_in_cluster": 0.7657,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 2213,
+      "totalThickness": 25.7,
+      "stack_desc": "Q452 Clear 6mm / Ar90 7.45mm / Clear 6mm / Vacuum 0.25mm / SKN183 Clear 6mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "Q452",
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 7.45
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": "SKN183",
+          "substrate": "Clear",
+          "thickness": 6
+        }
+      ]
+    },
+    {
+      "code": "anchor_67",
+      "cluster_id": 67,
+      "exterior": {
+        "L": 33.77,
+        "a": -2.51,
+        "b": -5.88
+      },
+      "config_count": 40,
+      "distinct_colors": 16,
+      "max_dE_in_cluster": 1.15,
+      "mean_dE_in_cluster": 0.4518,
+      "source": "enthermal-plus-outboard.json",
+      "source_idx": 828,
+      "totalThickness": 26.259999999999998,
+      "stack_desc": "SB60 Solarblue 6mm / Vacuum 0.25mm / Clear 6mm / Ar90 9.01mm / C272 Clear 5mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SB60",
+          "substrate": "Solarblue",
+          "thickness": 6
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 9.01
+        },
+        {
+          "type": "glass",
+          "coating": "C272",
+          "substrate": "Clear",
+          "thickness": 5
+        }
+      ]
+    },
+    {
+      "code": "anchor_68",
+      "cluster_id": 68,
+      "exterior": {
+        "L": 33.74,
+        "a": -0.99,
+        "b": -3.01
+      },
+      "config_count": 69,
+      "distinct_colors": 35,
+      "max_dE_in_cluster": 1.5578,
+      "mean_dE_in_cluster": 0.9131,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 368,
+      "totalThickness": 25.83,
+      "stack_desc": "SB70 Solargray 5mm / Ar90 12.58mm / Clear 4mm / Vacuum 0.25mm / SB60 Clear 4mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SB70",
+          "substrate": "Solargray",
+          "thickness": 5
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 12.58
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 4
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": "SB60",
+          "substrate": "Clear",
+          "thickness": 4
+        }
+      ]
+    },
+    {
+      "code": "anchor_69",
+      "cluster_id": 69,
+      "exterior": {
+        "L": 31.83,
+        "a": -1.26,
+        "b": -6.02
+      },
+      "config_count": 3,
+      "distinct_colors": 3,
+      "max_dE_in_cluster": 0.1153,
+      "mean_dE_in_cluster": 0.0564,
+      "source": "enthermal.json",
+      "source_idx": 92,
+      "totalThickness": 10.25,
+      "stack_desc": "SB60 Solarblue 6mm / Vacuum 0.25mm / Clear 4mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SB60",
+          "substrate": "Solarblue",
+          "thickness": 6
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 4
+        }
+      ]
+    },
+    {
+      "code": "anchor_70",
+      "cluster_id": 70,
+      "exterior": {
+        "L": 44.1,
+        "a": -6.84,
+        "b": -12.03
+      },
+      "config_count": 154,
+      "distinct_colors": 56,
+      "max_dE_in_cluster": 1.1245,
+      "mean_dE_in_cluster": 0.6013,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 1801,
+      "totalThickness": 26.25,
+      "stack_desc": "C340 Clear 6mm / Ar90 9.0mm / Clear 6mm / Vacuum 0.25mm / SB60 Clear 5mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "C340",
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 9.0
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": "SB60",
+          "substrate": "Clear",
+          "thickness": 5
+        }
+      ]
+    },
+    {
+      "code": "anchor_71",
+      "cluster_id": 71,
+      "exterior": {
+        "L": 35.99,
+        "a": -0.47,
+        "b": -8.55
+      },
+      "config_count": 12,
+      "distinct_colors": 6,
+      "max_dE_in_cluster": 1.6064,
+      "mean_dE_in_cluster": 1.047,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 2061,
+      "totalThickness": 25.740000000000002,
+      "stack_desc": "SB60 Optiblue 6mm / Ar90 7.49mm / SKN183 Clear 6mm / Vacuum 0.25mm / Clear 6mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SB60",
+          "substrate": "Optiblue",
+          "thickness": 6
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 7.49
+        },
+        {
+          "type": "glass",
+          "coating": "SKN183",
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 6
+        }
+      ]
+    },
+    {
+      "code": "anchor_72",
+      "cluster_id": 72,
+      "exterior": {
+        "L": 39.68,
+        "a": -1.88,
+        "b": -8.74
+      },
+      "config_count": 52,
+      "distinct_colors": 26,
+      "max_dE_in_cluster": 1.48,
+      "mean_dE_in_cluster": 0.7971,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 1728,
+      "totalThickness": 26.34,
+      "stack_desc": "SB70 Optiblue 6mm / Ar90 9.09mm / C180 Clear 6mm / Vacuum 0.25mm / Clear 5mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SB70",
+          "substrate": "Optiblue",
+          "thickness": 6
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 9.09
+        },
+        {
+          "type": "glass",
+          "coating": "C180",
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 5
+        }
+      ]
+    },
+    {
+      "code": "anchor_73",
+      "cluster_id": 73,
+      "exterior": {
+        "L": 36.97,
+        "a": -1.7,
+        "b": -3.11
+      },
+      "config_count": 126,
+      "distinct_colors": 59,
+      "max_dE_in_cluster": 1.2824,
+      "mean_dE_in_cluster": 0.8311,
+      "source": "enthermal-plus-outboard.json",
+      "source_idx": 984,
+      "totalThickness": 26.259999999999998,
+      "stack_desc": "SB60 Optigray 6mm / Vacuum 0.25mm / Clear 6mm / Ar90 8.01mm / C180 Clear 6mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SB60",
+          "substrate": "Optigray",
+          "thickness": 6
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 8.01
+        },
+        {
+          "type": "glass",
+          "coating": "C180",
+          "substrate": "Clear",
+          "thickness": 6
+        }
+      ]
+    },
+    {
+      "code": "anchor_74",
+      "cluster_id": 74,
+      "exterior": {
+        "L": 42.75,
+        "a": -3.25,
+        "b": -3.17
+      },
+      "config_count": 137,
+      "distinct_colors": 71,
+      "max_dE_in_cluster": 1.6377,
+      "mean_dE_in_cluster": 1.0988,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 421,
+      "totalThickness": 25.9,
+      "stack_desc": "C366 Clear 6mm / Ar90 11.65mm / C270 Clear 4mm / Vacuum 0.25mm / Clear 4mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "C366",
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 11.65
+        },
+        {
+          "type": "glass",
+          "coating": "C270",
+          "substrate": "Clear",
+          "thickness": 4
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 4
+        }
+      ]
+    },
+    {
+      "code": "anchor_75",
+      "cluster_id": 75,
+      "exterior": {
+        "L": 47.09,
+        "a": -7.1,
+        "b": -2.3
+      },
+      "config_count": 32,
+      "distinct_colors": 16,
+      "max_dE_in_cluster": 0.3662,
+      "mean_dE_in_cluster": 0.223,
+      "source": "enthermal-plus-outboard.json",
+      "source_idx": 386,
+      "totalThickness": 26.11,
+      "stack_desc": "SB70 Clear 5mm / Vacuum 0.25mm / Clear 5mm / Ar90 11.86mm / C270 Clear 4mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SB70",
+          "substrate": "Clear",
+          "thickness": 5
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 5
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 11.86
+        },
+        {
+          "type": "glass",
+          "coating": "C270",
+          "substrate": "Clear",
+          "thickness": 4
+        }
+      ]
+    },
+    {
+      "code": "anchor_76",
+      "cluster_id": 76,
+      "exterior": {
+        "L": 41.52,
+        "a": -2.04,
+        "b": -2.7
+      },
+      "config_count": 225,
+      "distinct_colors": 104,
+      "max_dE_in_cluster": 1.3329,
+      "mean_dE_in_cluster": 0.7653,
+      "source": "enthermal-plus-inboard.json",
+      "source_idx": 1248,
+      "totalThickness": 26.34,
+      "stack_desc": "SB60 Clear 6mm / Ar90 10.09mm / C272 Clear 5mm / Vacuum 0.25mm / Clear 5mm",
+      "stack": [
+        {
+          "type": "glass",
+          "coating": "SB60",
+          "substrate": "Clear",
+          "thickness": 6
+        },
+        {
+          "type": "gas",
+          "gasType": "Ar90",
+          "thickness": 10.09
+        },
+        {
+          "type": "glass",
+          "coating": "C272",
+          "substrate": "Clear",
+          "thickness": 5
+        },
+        {
+          "type": "vacuum",
+          "thickness": 0.25
+        },
+        {
+          "type": "glass",
+          "coating": null,
+          "substrate": "Clear",
+          "thickness": 5
+        }
+      ]
+    }
+  ]
+}
