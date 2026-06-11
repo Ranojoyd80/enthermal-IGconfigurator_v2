@@ -1,30 +1,35 @@
 """
-Build AnchorRender_Configs.json — the full, PyWinCalc-ready makeup of the 77
-JND render anchors.
+Build AnchorRender_Configs.json — the build-CONFIGURATION of the 77 JND render
+anchors. This is the PyWinCalc *input*: the optical stack only. It deliberately
+carries NO performance or color outputs (U/SHGC/Tvis/Lab/reflectance) — PyWinCalc
+computes those. Keeping the file input-only avoids shipping stale duplicates of
+results the run will regenerate.
 
 HYBRID SOURCE (by design):
-  * MAKEUP comes from the live app data in ../App_Data/*.json (the optical `stack`:
-    pane order exterior->interior, substrate, coating shortcode, thickness, gaps,
-    plus the validated performance metrics and reflected colors).
-  * SURFACE NUMBERS come from the CSVs in this folder. The data-folder JSON dropped
-    the Low-E surface suffix ("LoE 180 S2" -> face S2) when csv_to_json.py built the
-    stack, so the face each coating sits on survives only in the CSV Low-E column.
+  * MAKEUP comes from the live app data in ../../App_Data/*.json (the optical `stack`:
+    pane order exterior->interior, substrate, coating shortcode, thickness, gaps).
+  * SURFACE NUMBERS come from the Source CSVs. The app JSON dropped the Low-E surface
+    suffix ("LoE 180 S2" -> face S2) when csv_to_json.py built the stack, so the face
+    each coating sits on survives only in the CSV Low-E column.
 
 Each anchor is re-joined to its exact source row by (source, source_idx), which
-anchors.json carries and which indexes 1:1 into BOTH ../App_Data/<source> and the
-matching CSV (csv_to_json.py appends every row in order, no filtering). The join
-is VALIDATED three ways: anchor exterior Lab == data-JSON exterior Lab == CSV
-exterior Lab (rounding-tolerant), and the glass-layer count must match the CSV's
-present lites.
+anchors.json carries and which indexes 1:1 into BOTH ../../App_Data/<source> and the
+matching CSV (csv_to_json.py appends every row in order, no filtering). The join is
+VALIDATED three ways at build time (anchor exterior Lab == data-JSON Lab == CSV Lab,
+rounding-tolerant; glass-layer count == CSV present lites) — those references are
+used only to verify the join, not emitted.
 
-Output (Data_Pipeline/4_Anchor_Specs/AnchorRender_Configs.json): one entry per anchor with an
-exterior->interior `layers` array carrying absolute IGU surface numbers (S1..S2N),
-substrate, thickness, coating (shortcode + full Low-E name + surface + which face
-of the pane), lite NFRC id, gas/vacuum gaps, plus a one-line `surface_map`.
+OPTICS KEY: each layer carries `lite_nfrc_id`, which in the Source CSVs is the
+**coated-product** NFRC/IGDB id (unique per glass+coating — verified: one glass name
+maps to a different id per Low-E, no id reused across coatings). Mapping
+`lite_nfrc_id` -> IGSDB resolves the correct *coated* optics; the coating shortcode /
+Low-E name are descriptive only. (This corrects the earlier, mistaken
+"NFRC id == bare substrate" note.)
 
-Still NOT supplied (same caveat as build_pywincalc_specs.py): the IGDB/CGDB id of
-the COATED product. The CSV only names the bare-substrate NFRC id and the coating
-by name. Fill COATING_IGDB to embed runnable spectral ids.
+Output (Data_Pipeline/4_Anchor_Specs/AnchorRender_Configs.json): one entry per anchor
+with an exterior->interior `layers` array — absolute IGU surface numbers (S1..S2N),
+substrate, thickness, coating (shortcode + full Low-E name + surface + pane face),
+`lite_nfrc_id`, gas/vacuum gaps — plus a one-line `surface_map`.
 
 Run:  python build_anchor_render_configs.py
 """
@@ -60,10 +65,6 @@ PRODUCT_LABEL = {
 
 LITE_COLUMNS = ['Outer', 'Middle', 'Inner']   # optical order, exterior -> interior
 SURFACE_RE = re.compile(r'\bS(\d+)\s*$')
-
-# OPTIONAL: shortcode -> IGDB/CGDB id of the COATED product, to make each layer
-# directly runnable in PyWinCalc. Empty -> coated layers flagged unresolved.
-COATING_IGDB = {}
 
 
 def num(s):
@@ -101,7 +102,6 @@ def main():
     csv_cache = {src: load_csv_rows(name) for src, name in CSV_FOR_SOURCE.items()}
 
     out_anchors = []
-    unresolved = {}
     color_mismatches = []
     layer_count_mismatches = []
     surface_flags = []
@@ -111,7 +111,7 @@ def main():
         rec = data_cache[src][idx]          # makeup: from App_Data/*.json
         row = csv_cache[src][idx]           # surfaces: from CSV
 
-        # --- validate the join three ways on exterior color ---
+        # --- validate the join three ways on exterior color (references only; not emitted) ---
         ext = a['exterior']
         if not (close(rec.get('extL'), ext['L']) and close(rec.get('extA'), ext['a'])
                 and close(rec.get('extB'), ext['b'])):
@@ -154,19 +154,12 @@ def main():
                         surface_flags.append((a['code'], pane, shortcode,
                                               'CSV surface S%s is not a face of pane %d (S%d/S%d)'
                                               % (lowE_surface, pane, s_out, s_in)))
-                    igdb = COATING_IGDB.get(shortcode)
-                    if not igdb:
-                        unresolved[shortcode] = unresolved.get(shortcode, 0) + 1
                     coating = {
                         'shortcode': shortcode,
                         'lowE_name': lowE_name,
                         'surface': lowE_surface,
                         'pane_face': ('outboard' if lowE_surface == s_out else
                                       'inboard' if lowE_surface == s_in else 'CHECK'),
-                        'coated_igdb_id': igdb,
-                        'spectral_note': (None if igdb else
-                                          'no coated-product IGDB id for "%s" -- add to COATING_IGDB'
-                                          % shortcode),
                     }
                 elif lowE_name:
                     surface_flags.append((a['code'], pane, lowE_name,
@@ -180,7 +173,7 @@ def main():
                     'substrate': layer.get('substrate'),
                     'thickness_mm': layer.get('thickness'),
                     'lite_name_csv': lite_name,
-                    'lite_nfrc_id': nfrc_id or None,
+                    'lite_nfrc_id': nfrc_id or None,   # coated-product NFRC/IGDB id (NFRC->IGSDB)
                     'coating': coating,
                 })
                 gi += 1
@@ -203,43 +196,29 @@ def main():
             'product': PRODUCT_LABEL[src],
             'source': src,
             'source_idx': idx,
-            'config_count': a['config_count'],
-            'distinct_colors': a['distinct_colors'],
-            'max_dE_in_cluster': a['max_dE_in_cluster'],
-            'mean_dE_in_cluster': a['mean_dE_in_cluster'],
-            'comment_csv': (row.get('Comment', '') or '').strip(),
             'n_panes': pane,
             'gas_fill': rec.get('gasFill') or (
                 next((l['fill'] for l in layers if l['kind'] == 'gap'), None)),
             'total_thickness_mm': rec.get('totalThickness'),
-            'exterior_Lab': {'L': rec.get('extL'), 'a': rec.get('extA'), 'b': rec.get('extB')},
-            'interior_Lab': {'L': rec.get('intL'), 'a': rec.get('intA'), 'b': rec.get('intB')},
-            'performance': {
-                'uval': rec.get('uval'), 'uvalIP': rec.get('uvalIP'), 'rval': rec.get('rval'),
-                'shgc': rec.get('shgc'), 'tvis': rec.get('tvis'),
-                'routVis': rec.get('routVis'), 'tuv': rec.get('tuv'),
-                'nfrc': rec.get('nfrc'), 'cen': rec.get('cen'),
-            },
             'surface_map': surface_map,
             'layers': layers,
         })
 
     out = {
         'title': 'AnchorRender_Configs',
-        'description': ('Full PyWinCalc-ready makeup of the 77 JND color-cluster render '
-                        'anchors. Makeup from App_Data/*.json; coating surface numbers joined '
-                        'from the Data_Pipeline CSVs.'),
+        'description': ('Build configuration (PyWinCalc input) for the 77 JND color-cluster '
+                        'render anchors. Optical stack only -- NO performance/color outputs; '
+                        'PyWinCalc computes those. Makeup from App_Data/*.json; coating surface '
+                        'numbers joined from the Source CSVs.'),
+        'optics_key': ('Per layer, lite_nfrc_id is the coated-product NFRC/IGDB id (unique per '
+                       'glass+coating). Resolve via NFRC->IGSDB to get the coated optics; orient '
+                       'using coating.surface / pane_face.'),
         'tolerance_dE76': anchors_doc.get('tolerance_dE76'),
         'total_configs_covered': anchors_doc.get('total_configs'),
         'anchor_count': len(out_anchors),
         'layer_order': 'exterior -> interior; surfaces S1..S2N numbered from the exterior face',
         'makeup_source': 'App_Data/*.json (live app data)',
         'surface_source': 'Data_Pipeline/1_Source_CSVs/*.csv (Low-E column suffix)',
-        'unresolved': {
-            'coatings_without_igdb_id': dict(sorted(unresolved.items())),
-            'note': ('Each coated layer needs the IGDB/CGDB id of the COATED product '
-                     '(not the substrate NFRC id). Fill COATING_IGDB and re-run.'),
-        },
         'anchors': out_anchors,
     }
 
@@ -260,9 +239,6 @@ def main():
                                                '' if not surface_flags else '<-- CHECK'))
     for m in surface_flags[:12]:
         print('   ', m)
-    print('Coatings needing IGDB id (%d): %s'
-          % (len(unresolved), ', '.join('%s x%d' % (k, v)
-                                         for k, v in sorted(unresolved.items()))))
     print('\nWrote: %s' % os.path.relpath(out_path, SCRIPT_DIR))
 
 

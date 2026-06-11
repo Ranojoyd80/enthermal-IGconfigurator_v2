@@ -1,31 +1,13 @@
 {
   "title": "AnchorRender_Configs",
-  "description": "Full PyWinCalc-ready makeup of the 77 JND color-cluster render anchors. Makeup from App_Data/*.json; coating surface numbers joined from the Data_Pipeline CSVs.",
+  "description": "Build configuration (PyWinCalc input) for the 77 JND color-cluster render anchors. Optical stack only -- NO performance/color outputs; PyWinCalc computes those. Makeup from App_Data/*.json; coating surface numbers joined from the Source CSVs.",
+  "optics_key": "Per layer, lite_nfrc_id is the coated-product NFRC/IGDB id (unique per glass+coating). Resolve via NFRC->IGSDB to get the coated optics; orient using coating.surface / pane_face.",
   "tolerance_dE76": 2.0,
   "total_configs_covered": 6862,
   "anchor_count": 77,
   "layer_order": "exterior -> interior; surfaces S1..S2N numbered from the exterior face",
   "makeup_source": "App_Data/*.json (live app data)",
   "surface_source": "Data_Pipeline/1_Source_CSVs/*.csv (Low-E column suffix)",
-  "unresolved": {
-    "coatings_without_igdb_id": {
-      "C180": 15,
-      "C270": 24,
-      "C272": 10,
-      "C340": 2,
-      "C366": 7,
-      "LUMI": 12,
-      "Q452": 3,
-      "SB60": 30,
-      "SB70": 25,
-      "SB72": 1,
-      "SBR67": 1,
-      "SKN183": 12,
-      "XTR6129": 4,
-      "ZEN": 5
-    },
-    "note": "Each coated layer needs the IGDB/CGDB id of the COATED product (not the substrate NFRC id). Fill COATING_IGDB and re-run."
-  },
   "anchors": [
     {
       "code": "anchor_00",
@@ -33,35 +15,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 2034,
-      "config_count": 111,
-      "distinct_colors": 53,
-      "max_dE_in_cluster": 1.5458,
-      "mean_dE_in_cluster": 0.6179,
-      "comment_csv": "SB60 Solargray 6mm / Argon 8.05mm / SB60 6mm / Vacuum 0.25mm / Clear 6mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.5,
-      "exterior_Lab": {
-        "L": 30.27,
-        "a": -0.14,
-        "b": -2.42
-      },
-      "interior_Lab": {
-        "L": 42.86,
-        "a": -4.25,
-        "b": 2.95
-      },
-      "performance": {
-        "uval": 0.3024,
-        "uvalIP": 0.0533,
-        "rval": 18.78,
-        "shgc": 0.1504,
-        "tvis": 0.2781,
-        "routVis": 0.0635,
-        "tuv": 0.0274,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Solargray +SB60@S2; S3/4=Clear +SB60@S4; S5/6=Clear",
       "layers": [
         {
@@ -80,9 +36,7 @@
             "shortcode": "SB60",
             "lowE_name": "SolarbanÂ® 60",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB60\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -106,9 +60,7 @@
             "shortcode": "SB60",
             "lowE_name": "SolarbanÂ® 60",
             "surface": 4,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB60\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -138,35 +90,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 735,
-      "config_count": 76,
-      "distinct_colors": 38,
-      "max_dE_in_cluster": 1.0342,
-      "mean_dE_in_cluster": 0.5092,
-      "comment_csv": "ZEN 6mm / Argon 11.35mm / Clear 4mm / Vacuum 0.25mm / C180 4mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.4,
-      "exterior_Lab": {
-        "L": 54.53,
-        "a": -1.6,
-        "b": -7.97
-      },
-      "interior_Lab": {
-        "L": 53.16,
-        "a": -1.64,
-        "b": -7.77
-      },
-      "performance": {
-        "uval": 0.3726,
-        "uvalIP": 0.0656,
-        "rval": 15.24,
-        "shgc": 0.4482,
-        "tvis": 0.6821,
-        "routVis": 0.222,
-        "tuv": 0.1672,
-        "nfrc": true,
-        "cen": true
-      },
       "surface_map": "S1/2=Clear +ZEN@S2; S3/4=Clear; S5/6=Clear +C180@S5",
       "layers": [
         {
@@ -185,9 +111,7 @@
             "shortcode": "ZEN",
             "lowE_name": "ECLAZ ONE II",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"ZEN\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -230,9 +154,7 @@
             "shortcode": "C180",
             "lowE_name": "LoE 180",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C180\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -243,35 +165,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 1492,
-      "config_count": 8,
-      "distinct_colors": 4,
-      "max_dE_in_cluster": 0.1225,
-      "mean_dE_in_cluster": 0.0848,
-      "comment_csv": "SB70 Solexia 6mm / Argon 10.09mm / Clear 5mm / Vacuum 0.25mm / C270 5mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.44,
-      "exterior_Lab": {
-        "L": 43.14,
-        "a": -10.71,
-        "b": -0.74
-      },
-      "interior_Lab": {
-        "L": 45.74,
-        "a": -4.54,
-        "b": -3.6
-      },
-      "performance": {
-        "uval": 0.2931,
-        "uvalIP": 0.0516,
-        "rval": 19.38,
-        "shgc": 0.1978,
-        "tvis": 0.4365,
-        "routVis": 0.132,
-        "tuv": 0.0092,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Solexia +SB70@S2; S3/4=Clear; S5/6=Clear +C270@S5",
       "layers": [
         {
@@ -290,9 +186,7 @@
             "shortcode": "SB70",
             "lowE_name": "SolarbanÂ® 70",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB70\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -335,9 +229,7 @@
             "shortcode": "C270",
             "lowE_name": "LoEÂ² 270",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C270\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -348,35 +240,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 195,
-      "config_count": 196,
-      "distinct_colors": 87,
-      "max_dE_in_cluster": 1.4174,
-      "mean_dE_in_cluster": 0.6917,
-      "comment_csv": "C340 5mm / Argon 12.45mm / LUMI 4mm / Vacuum 0.25mm / Clear 4mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.4,
-      "exterior_Lab": {
-        "L": 44.09,
-        "a": -6.1,
-        "b": -13.27
-      },
-      "interior_Lab": {
-        "L": 49.34,
-        "a": -1.76,
-        "b": -0.68
-      },
-      "performance": {
-        "uval": 0.3142,
-        "uvalIP": 0.0553,
-        "rval": 18.07,
-        "shgc": 0.1463,
-        "tvis": 0.355,
-        "routVis": 0.1374,
-        "tuv": 0.0144,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Clear +C340@S2; S3/4=Clear +LUMI@S4; S5/6=Clear",
       "layers": [
         {
@@ -395,9 +261,7 @@
             "shortcode": "C340",
             "lowE_name": "LoEÂ³ 340",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C340\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -421,9 +285,7 @@
             "shortcode": "LUMI",
             "lowE_name": "ECLAZ II",
             "surface": 4,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"LUMI\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -453,35 +315,9 @@
       "product": "Enthermal Plus (VIG outboard)",
       "source": "enthermal-plus-outboard.json",
       "source_idx": 626,
-      "config_count": 32,
-      "distinct_colors": 16,
-      "max_dE_in_cluster": 0.4497,
-      "mean_dE_in_cluster": 0.2163,
-      "comment_csv": "LUMI 6mm / Vacuum 0.25mm / Clear 5mm / Argon 9.45mm / C366 5mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.4,
-      "exterior_Lab": {
-        "L": 45.08,
-        "a": -0.49,
-        "b": -3.04
-      },
-      "interior_Lab": {
-        "L": 42.34,
-        "a": -1.33,
-        "b": -4.07
-      },
-      "performance": {
-        "uval": 0.3236,
-        "uvalIP": 0.057,
-        "rval": 17.55,
-        "shgc": 0.4043,
-        "tvis": 0.5854,
-        "routVis": 0.1454,
-        "tuv": 0.0328,
-        "nfrc": true,
-        "cen": true
-      },
       "surface_map": "S1/2=Clear +LUMI@S2; S3/4=Clear; S5/6=Clear +C366@S5",
       "layers": [
         {
@@ -500,9 +336,7 @@
             "shortcode": "LUMI",
             "lowE_name": "ECLAZ II",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"LUMI\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -545,9 +379,7 @@
             "shortcode": "C366",
             "lowE_name": "LoEÂ³ 366",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C366\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -558,35 +390,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 1338,
-      "config_count": 150,
-      "distinct_colors": 71,
-      "max_dE_in_cluster": 1.8437,
-      "mean_dE_in_cluster": 1.1162,
-      "comment_csv": "SB70 Solarblue 6mm / Argon 10.09mm / C270 5mm / Vacuum 0.25mm / Clear 5mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.44,
-      "exterior_Lab": {
-        "L": 35.93,
-        "a": -3.36,
-        "b": -8.94
-      },
-      "interior_Lab": {
-        "L": 46.6,
-        "a": -8.19,
-        "b": -0.39
-      },
-      "performance": {
-        "uval": 0.293,
-        "uvalIP": 0.0516,
-        "rval": 19.38,
-        "shgc": 0.1356,
-        "tvis": 0.3163,
-        "routVis": 0.0884,
-        "tuv": 0.0094,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Solarblue +SB70@S2; S3/4=Clear +C270@S4; S5/6=Clear",
       "layers": [
         {
@@ -605,9 +411,7 @@
             "shortcode": "SB70",
             "lowE_name": "SolarbanÂ® 70",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB70\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -631,9 +435,7 @@
             "shortcode": "C270",
             "lowE_name": "LoEÂ² 270",
             "surface": 4,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C270\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -663,35 +465,9 @@
       "product": "Enthermal Plus (VIG outboard)",
       "source": "enthermal-plus-outboard.json",
       "source_idx": 820,
-      "config_count": 19,
-      "distinct_colors": 11,
-      "max_dE_in_cluster": 1.051,
-      "mean_dE_in_cluster": 0.384,
-      "comment_csv": "SB60 Optigray 6mm / Vacuum 0.25mm / Clear 6mm / Argon 9.01mm / C270 5mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.46,
-      "exterior_Lab": {
-        "L": 36.2,
-        "a": -4.11,
-        "b": -0.26
-      },
-      "interior_Lab": {
-        "L": 43.66,
-        "a": -4.44,
-        "b": -0.57
-      },
-      "performance": {
-        "uval": 0.297,
-        "uvalIP": 0.0523,
-        "rval": 19.12,
-        "shgc": 0.238,
-        "tvis": 0.3788,
-        "routVis": 0.0913,
-        "tuv": 0.0266,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Optigray +SB60@S2; S3/4=Clear; S5/6=Clear +C270@S5",
       "layers": [
         {
@@ -710,9 +486,7 @@
             "shortcode": "SB60",
             "lowE_name": "SolarbanÂ® 60",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB60\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -755,9 +529,7 @@
             "shortcode": "C270",
             "lowE_name": "LoEÂ² 270",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C270\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -768,35 +540,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 1093,
-      "config_count": 32,
-      "distinct_colors": 8,
-      "max_dE_in_cluster": 0.519,
-      "mean_dE_in_cluster": 0.2872,
-      "comment_csv": "C180 5mm / Argon 11.05mm / Clear 5mm / Vacuum 0.25mm / C270 5mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.4,
-      "exterior_Lab": {
-        "L": 50.69,
-        "a": -5.87,
-        "b": -2.92
-      },
-      "interior_Lab": {
-        "L": 46.64,
-        "a": -3.68,
-        "b": -3.68
-      },
-      "performance": {
-        "uval": 0.2947,
-        "uvalIP": 0.0519,
-        "rval": 19.27,
-        "shgc": 0.3961,
-        "tvis": 0.5987,
-        "routVis": 0.1889,
-        "tuv": 0.058,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Clear +C180@S2; S3/4=Clear; S5/6=Clear +C270@S5",
       "layers": [
         {
@@ -815,9 +561,7 @@
             "shortcode": "C180",
             "lowE_name": "LoE 180",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C180\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -860,9 +604,7 @@
             "shortcode": "C270",
             "lowE_name": "LoEÂ² 270",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C270\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -873,35 +615,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 1372,
-      "config_count": 36,
-      "distinct_colors": 18,
-      "max_dE_in_cluster": 1.4191,
-      "mean_dE_in_cluster": 0.902,
-      "comment_csv": "SKN183 6mm / Argon 9.75mm / C180 5mm / Vacuum 0.25mm / Clear 5mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.4,
-      "exterior_Lab": {
-        "L": 48.19,
-        "a": -2.73,
-        "b": -8.85
-      },
-      "interior_Lab": {
-        "L": 49.65,
-        "a": -2.62,
-        "b": -6.63
-      },
-      "performance": {
-        "uval": 0.382,
-        "uvalIP": 0.0673,
-        "rval": 14.87,
-        "shgc": 0.3022,
-        "tvis": 0.646,
-        "routVis": 0.1677,
-        "tuv": 0.1153,
-        "nfrc": true,
-        "cen": true
-      },
       "surface_map": "S1/2=Clear +SKN183@S2; S3/4=Clear +C180@S4; S5/6=Clear",
       "layers": [
         {
@@ -920,9 +636,7 @@
             "shortcode": "SKN183",
             "lowE_name": "COOL-LITE SKN 183 II",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SKN183\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -946,9 +660,7 @@
             "shortcode": "C180",
             "lowE_name": "LoE 180",
             "surface": 4,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C180\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -978,35 +690,9 @@
       "product": "Enthermal Plus (VIG outboard)",
       "source": "enthermal-plus-outboard.json",
       "source_idx": 288,
-      "config_count": 20,
-      "distinct_colors": 10,
-      "max_dE_in_cluster": 0.2983,
-      "mean_dE_in_cluster": 0.1784,
-      "comment_csv": "XTREME 6mm / Vacuum 0.25mm / Clear 4mm / Argon 11.25mm / C270 4mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.4,
-      "exterior_Lab": {
-        "L": 43.41,
-        "a": -5.95,
-        "b": -4.47
-      },
-      "interior_Lab": {
-        "L": 47.28,
-        "a": -7.16,
-        "b": -0.59
-      },
-      "performance": {
-        "uval": 0.2508,
-        "uvalIP": 0.0442,
-        "rval": 22.64,
-        "shgc": 0.2236,
-        "tvis": 0.4709,
-        "routVis": 0.1333,
-        "tuv": 0.0541,
-        "nfrc": true,
-        "cen": true
-      },
       "surface_map": "S1/2=Clear +XTR6129@S2; S3/4=Clear; S5/6=Clear +C270@S5",
       "layers": [
         {
@@ -1025,9 +711,7 @@
             "shortcode": "XTR6129",
             "lowE_name": "COOL-LITE XTREME 61-29 II",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"XTR6129\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -1070,9 +754,7 @@
             "shortcode": "C270",
             "lowE_name": "LoEÂ² 270",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C270\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -1083,35 +765,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 371,
-      "config_count": 23,
-      "distinct_colors": 12,
-      "max_dE_in_cluster": 1.4457,
-      "mean_dE_in_cluster": 0.5749,
-      "comment_csv": "SB70 Optiblue 5mm / Argon 12.68mm / Clear 4mm / Vacuum 0.25mm / C180 4mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.43,
-      "exterior_Lab": {
-        "L": 40.91,
-        "a": -1.74,
-        "b": -8.53
-      },
-      "interior_Lab": {
-        "L": 50.94,
-        "a": -2.06,
-        "b": -7.52
-      },
-      "performance": {
-        "uval": 0.3645,
-        "uvalIP": 0.0642,
-        "rval": 15.58,
-        "shgc": 0.1899,
-        "tvis": 0.441,
-        "routVis": 0.1169,
-        "tuv": 0.0266,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Optiblue +SB70@S2; S3/4=Clear; S5/6=Clear +C180@S5",
       "layers": [
         {
@@ -1130,9 +786,7 @@
             "shortcode": "SB70",
             "lowE_name": "SolarbanÂ® 70",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB70\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -1175,9 +829,7 @@
             "shortcode": "C180",
             "lowE_name": "LoE 180",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C180\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -1188,35 +840,9 @@
       "product": "Enthermal Plus (VIG outboard)",
       "source": "enthermal-plus-outboard.json",
       "source_idx": 528,
-      "config_count": 210,
-      "distinct_colors": 98,
-      "max_dE_in_cluster": 1.8116,
-      "mean_dE_in_cluster": 1.0447,
-      "comment_csv": "SB60 Solarbronze 5mm / Vacuum 0.25mm / Clear 5mm / Argon 11.06mm / C366 5mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.41,
-      "exterior_Lab": {
-        "L": 34.16,
-        "a": 0.71,
-        "b": 0.61
-      },
-      "interior_Lab": {
-        "L": 41.5,
-        "a": -2.07,
-        "b": -2.04
-      },
-      "performance": {
-        "uval": 0.2864,
-        "uvalIP": 0.0504,
-        "rval": 19.83,
-        "shgc": 0.2182,
-        "tvis": 0.3293,
-        "routVis": 0.0815,
-        "tuv": 0.0087,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Solarbronze +SB60@S2; S3/4=Clear; S5/6=Clear +C366@S5",
       "layers": [
         {
@@ -1235,9 +861,7 @@
             "shortcode": "SB60",
             "lowE_name": "SolarbanÂ® 60",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB60\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -1280,9 +904,7 @@
             "shortcode": "C366",
             "lowE_name": "LoEÂ³ 366",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C366\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -1293,35 +915,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 693,
-      "config_count": 129,
-      "distinct_colors": 63,
-      "max_dE_in_cluster": 1.2507,
-      "mean_dE_in_cluster": 0.7354,
-      "comment_csv": "SB70 Solargray 6mm / Argon 11.69mm / Clear 4mm / Vacuum 0.25mm / C180 4mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.44,
-      "exterior_Lab": {
-        "L": 32.82,
-        "a": -0.35,
-        "b": -4.05
-      },
-      "interior_Lab": {
-        "L": 50.32,
-        "a": -1.82,
-        "b": -7.6
-      },
-      "performance": {
-        "uval": 0.3695,
-        "uvalIP": 0.0651,
-        "rval": 15.37,
-        "shgc": 0.1326,
-        "tvis": 0.2872,
-        "routVis": 0.0744,
-        "tuv": 0.0149,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Solargray +SB70@S2; S3/4=Clear; S5/6=Clear +C180@S5",
       "layers": [
         {
@@ -1340,9 +936,7 @@
             "shortcode": "SB70",
             "lowE_name": "SolarbanÂ® 70",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB70\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -1385,9 +979,7 @@
             "shortcode": "C180",
             "lowE_name": "LoE 180",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C180\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -1398,35 +990,9 @@
       "product": "Enthermal (VIG, 2 panes)",
       "source": "enthermal.json",
       "source_idx": 54,
-      "config_count": 29,
-      "distinct_colors": 29,
-      "max_dE_in_cluster": 1.2448,
-      "mean_dE_in_cluster": 0.8648,
-      "comment_csv": "SB60 Starphire 5mm / Vacuum 0.25mm / Clear 5mm",
       "n_panes": 2,
       "gas_fill": null,
       "total_thickness_mm": 9.65,
-      "exterior_Lab": {
-        "L": 39.74,
-        "a": -0.72,
-        "b": -2.58
-      },
-      "interior_Lab": {
-        "L": 41.13,
-        "a": -2.75,
-        "b": 1.83
-      },
-      "performance": {
-        "uval": 0.3486,
-        "uvalIP": 0.0614,
-        "rval": 16.29,
-        "shgc": 0.4029,
-        "tvis": 0.7227,
-        "routVis": 0.111,
-        "tuv": 0.2067,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Starphire +SB60@S2; S3/4=Clear",
       "layers": [
         {
@@ -1445,9 +1011,7 @@
             "shortcode": "SB60",
             "lowE_name": "SolarbanÂ® 60",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB60\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -1477,35 +1041,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 92,
-      "config_count": 64,
-      "distinct_colors": 24,
-      "max_dE_in_cluster": 1.319,
-      "mean_dE_in_cluster": 0.8202,
-      "comment_csv": "C270 4mm / Argon 13.45mm / Clear 4mm / Vacuum 0.25mm / C270 4mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.4,
-      "exterior_Lab": {
-        "L": 45.92,
-        "a": -7.02,
-        "b": 0.15
-      },
-      "interior_Lab": {
-        "L": 45.92,
-        "a": -7.02,
-        "b": 0.15
-      },
-      "performance": {
-        "uval": 0.2835,
-        "uvalIP": 0.0499,
-        "rval": 20.03,
-        "shgc": 0.2966,
-        "tvis": 0.533,
-        "routVis": 0.1518,
-        "tuv": 0.0344,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Clear +C270@S2; S3/4=Clear; S5/6=Clear +C270@S5",
       "layers": [
         {
@@ -1524,9 +1062,7 @@
             "shortcode": "C270",
             "lowE_name": "LoEÂ² 270",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C270\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -1569,9 +1105,7 @@
             "shortcode": "C270",
             "lowE_name": "LoEÂ² 270",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C270\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -1582,35 +1116,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 324,
-      "config_count": 216,
-      "distinct_colors": 85,
-      "max_dE_in_cluster": 1.0805,
-      "mean_dE_in_cluster": 0.7423,
-      "comment_csv": "SB60 5mm / Argon 12.68mm / Clear 4mm / Vacuum 0.25mm / C272 4mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.43,
-      "exterior_Lab": {
-        "L": 42.76,
-        "a": -2.58,
-        "b": -1.09
-      },
-      "interior_Lab": {
-        "L": 42.83,
-        "a": -2.31,
-        "b": -0.31
-      },
-      "performance": {
-        "uval": 0.3043,
-        "uvalIP": 0.0536,
-        "rval": 18.66,
-        "shgc": 0.3272,
-        "tvis": 0.5722,
-        "routVis": 0.1302,
-        "tuv": 0.0565,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Clear +SB60@S2; S3/4=Clear; S5/6=Clear +C272@S5",
       "layers": [
         {
@@ -1629,9 +1137,7 @@
             "shortcode": "SB60",
             "lowE_name": "SolarbanÂ® 60",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB60\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -1674,9 +1180,7 @@
             "shortcode": "C272",
             "lowE_name": "LoEÂ² 272",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C272\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -1687,35 +1191,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 1095,
-      "config_count": 32,
-      "distinct_colors": 8,
-      "max_dE_in_cluster": 0.5688,
-      "mean_dE_in_cluster": 0.3044,
-      "comment_csv": "C180 5mm / Argon 11.05mm / Clear 5mm / Vacuum 0.25mm / C366 5mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.4,
-      "exterior_Lab": {
-        "L": 49.67,
-        "a": -1.23,
-        "b": -4.9
-      },
-      "interior_Lab": {
-        "L": 44.54,
-        "a": -2.23,
-        "b": -4.6
-      },
-      "performance": {
-        "uval": 0.2493,
-        "uvalIP": 0.0439,
-        "rval": 22.78,
-        "shgc": 0.3452,
-        "tvis": 0.5565,
-        "routVis": 0.1806,
-        "tuv": 0.0212,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Clear +C180@S2; S3/4=Clear; S5/6=Clear +C366@S5",
       "layers": [
         {
@@ -1734,9 +1212,7 @@
             "shortcode": "C180",
             "lowE_name": "LoE 180",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C180\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -1779,9 +1255,7 @@
             "shortcode": "C366",
             "lowE_name": "LoEÂ³ 366",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C366\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -1792,35 +1266,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 1440,
-      "config_count": 52,
-      "distinct_colors": 22,
-      "max_dE_in_cluster": 1.2548,
-      "mean_dE_in_cluster": 0.8015,
-      "comment_csv": "SB60 Solexia 6mm / Argon 10.1mm / Clear 5mm / Vacuum 0.25mm / SB70 5mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.45,
-      "exterior_Lab": {
-        "L": 41.11,
-        "a": -6.57,
-        "b": -2.22
-      },
-      "interior_Lab": {
-        "L": 45.75,
-        "a": -4.88,
-        "b": -2.92
-      },
-      "performance": {
-        "uval": 0.243,
-        "uvalIP": 0.0428,
-        "rval": 23.37,
-        "shgc": 0.2193,
-        "tvis": 0.4493,
-        "routVis": 0.1192,
-        "tuv": 0.013,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Solexia +SB60@S2; S3/4=Clear; S5/6=Clear +SB70@S5",
       "layers": [
         {
@@ -1839,9 +1287,7 @@
             "shortcode": "SB60",
             "lowE_name": "SolarbanÂ® 60",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB60\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -1884,9 +1330,7 @@
             "shortcode": "SB70",
             "lowE_name": "SolarbanÂ® 70",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB70\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -1897,35 +1341,9 @@
       "product": "Enthermal Plus (VIG outboard)",
       "source": "enthermal-plus-outboard.json",
       "source_idx": 680,
-      "config_count": 16,
-      "distinct_colors": 8,
-      "max_dE_in_cluster": 0.164,
-      "mean_dE_in_cluster": 0.099,
-      "comment_csv": "SB60 Solarblue 6mm / Vacuum 0.25mm / Clear 5mm / Argon 10.07mm / C270 5mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.42,
-      "exterior_Lab": {
-        "L": 34.58,
-        "a": -4.47,
-        "b": -5.28
-      },
-      "interior_Lab": {
-        "L": 43.34,
-        "a": -4.46,
-        "b": -1.12
-      },
-      "performance": {
-        "uval": 0.2926,
-        "uvalIP": 0.0515,
-        "rval": 19.41,
-        "shgc": 0.2194,
-        "tvis": 0.3403,
-        "routVis": 0.082,
-        "tuv": 0.0261,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Solarblue +SB60@S2; S3/4=Clear; S5/6=Clear +C270@S5",
       "layers": [
         {
@@ -1944,9 +1362,7 @@
             "shortcode": "SB60",
             "lowE_name": "SolarbanÂ® 60",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB60\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -1989,9 +1405,7 @@
             "shortcode": "C270",
             "lowE_name": "LoEÂ² 270",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C270\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -2002,35 +1416,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 1917,
-      "config_count": 14,
-      "distinct_colors": 7,
-      "max_dE_in_cluster": 1.6513,
-      "mean_dE_in_cluster": 0.7245,
-      "comment_csv": "SB70 Optiblue 6mm / Argon 9.09mm / Clear 6mm / Vacuum 0.25mm / C270 5mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.44,
-      "exterior_Lab": {
-        "L": 38.66,
-        "a": -3.64,
-        "b": -6.45
-      },
-      "interior_Lab": {
-        "L": 45.22,
-        "a": -4.15,
-        "b": -4.04
-      },
-      "performance": {
-        "uval": 0.2975,
-        "uvalIP": 0.0524,
-        "rval": 19.09,
-        "shgc": 0.1764,
-        "tvis": 0.3577,
-        "routVis": 0.1038,
-        "tuv": 0.0122,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Optiblue +SB70@S2; S3/4=Clear; S5/6=Clear +C270@S5",
       "layers": [
         {
@@ -2049,9 +1437,7 @@
             "shortcode": "SB70",
             "lowE_name": "SolarbanÂ® 70",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB70\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -2094,9 +1480,7 @@
             "shortcode": "C270",
             "lowE_name": "LoEÂ² 270",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C270\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -2107,35 +1491,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 1741,
-      "config_count": 166,
-      "distinct_colors": 67,
-      "max_dE_in_cluster": 1.6457,
-      "mean_dE_in_cluster": 0.9801,
-      "comment_csv": "SB72 Starphire 6mm / Argon 9.11mm / SB70 6mm / Vacuum 0.25mm / Clear 5mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.46,
-      "exterior_Lab": {
-        "L": 47.38,
-        "a": -4.24,
-        "b": -4.86
-      },
-      "interior_Lab": {
-        "L": 47.97,
-        "a": -3.65,
-        "b": -5.75
-      },
-      "performance": {
-        "uval": 0.2448,
-        "uvalIP": 0.0431,
-        "rval": 23.19,
-        "shgc": 0.1806,
-        "tvis": 0.4832,
-        "routVis": 0.1628,
-        "tuv": 0.0097,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Starphire +SB72@S2; S3/4=Clear +SB70@S4; S5/6=Clear",
       "layers": [
         {
@@ -2154,9 +1512,7 @@
             "shortcode": "SB72",
             "lowE_name": "SolarbanÂ® 72",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB72\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -2180,9 +1536,7 @@
             "shortcode": "SB70",
             "lowE_name": "SolarbanÂ® 70",
             "surface": 4,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB70\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -2212,35 +1566,9 @@
       "product": "Enthermal Plus (VIG outboard)",
       "source": "enthermal-plus-outboard.json",
       "source_idx": 393,
-      "config_count": 62,
-      "distinct_colors": 31,
-      "max_dE_in_cluster": 1.6544,
-      "mean_dE_in_cluster": 1.1695,
-      "comment_csv": "SB67 5mm / Vacuum 0.25mm / Clear 5mm / Argon 11.86mm / C270 4mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.41,
-      "exterior_Lab": {
-        "L": 53.07,
-        "a": -5.31,
-        "b": -5.82
-      },
-      "interior_Lab": {
-        "L": 48.08,
-        "a": -7.13,
-        "b": -4.08
-      },
-      "performance": {
-        "uval": 0.2867,
-        "uvalIP": 0.0505,
-        "rval": 19.81,
-        "shgc": 0.2454,
-        "tvis": 0.4166,
-        "routVis": 0.2099,
-        "tuv": 0.0274,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Clear +SBR67@S2; S3/4=Clear; S5/6=Clear +C270@S5",
       "layers": [
         {
@@ -2259,9 +1587,7 @@
             "shortcode": "SBR67",
             "lowE_name": "SolarbanÂ® R67",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SBR67\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -2304,9 +1630,7 @@
             "shortcode": "C270",
             "lowE_name": "LoEÂ² 270",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C270\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -2317,35 +1641,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 567,
-      "config_count": 80,
-      "distinct_colors": 40,
-      "max_dE_in_cluster": 1.8237,
-      "mean_dE_in_cluster": 0.9574,
-      "comment_csv": "XTREME 6mm / Argon 11.35mm / C180 4mm / Vacuum 0.25mm / Clear 4mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.4,
-      "exterior_Lab": {
-        "L": 44.89,
-        "a": -3.31,
-        "b": -7.68
-      },
-      "interior_Lab": {
-        "L": 51.73,
-        "a": -5.08,
-        "b": -3.88
-      },
-      "performance": {
-        "uval": 0.372,
-        "uvalIP": 0.0655,
-        "rval": 15.26,
-        "shgc": 0.211,
-        "tvis": 0.5335,
-        "routVis": 0.143,
-        "tuv": 0.1018,
-        "nfrc": true,
-        "cen": true
-      },
       "surface_map": "S1/2=Clear +XTR6129@S2; S3/4=Clear +C180@S4; S5/6=Clear",
       "layers": [
         {
@@ -2364,9 +1662,7 @@
             "shortcode": "XTR6129",
             "lowE_name": "COOL-LITE XTREME 61-29 II",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"XTR6129\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -2390,9 +1686,7 @@
             "shortcode": "C180",
             "lowE_name": "LoE 180",
             "surface": 4,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C180\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -2422,35 +1716,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 925,
-      "config_count": 40,
-      "distinct_colors": 20,
-      "max_dE_in_cluster": 1.6822,
-      "mean_dE_in_cluster": 1.0925,
-      "comment_csv": "SB60 Solargray 5mm / Argon 11.88mm / Clear 5mm / Vacuum 0.25mm / C270 4mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.43,
-      "exterior_Lab": {
-        "L": 32.67,
-        "a": -1.99,
-        "b": -1.18
-      },
-      "interior_Lab": {
-        "L": 43.27,
-        "a": -3.92,
-        "b": -0.78
-      },
-      "performance": {
-        "uval": 0.2881,
-        "uvalIP": 0.0507,
-        "rval": 19.71,
-        "shgc": 0.1932,
-        "tvis": 0.3119,
-        "routVis": 0.074,
-        "tuv": 0.0242,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Solargray +SB60@S2; S3/4=Clear; S5/6=Clear +C270@S5",
       "layers": [
         {
@@ -2469,9 +1737,7 @@
             "shortcode": "SB60",
             "lowE_name": "SolarbanÂ® 60",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB60\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -2514,9 +1780,7 @@
             "shortcode": "C270",
             "lowE_name": "LoEÂ² 270",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C270\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -2527,35 +1791,9 @@
       "product": "Enthermal Plus (VIG outboard)",
       "source": "enthermal-plus-outboard.json",
       "source_idx": 545,
-      "config_count": 64,
-      "distinct_colors": 32,
-      "max_dE_in_cluster": 1.4102,
-      "mean_dE_in_cluster": 0.7754,
-      "comment_csv": "SB60 Optiblue 5mm / Vacuum 0.25mm / Clear 5mm / Argon 10.76mm / LUMI 5mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.41,
-      "exterior_Lab": {
-        "L": 36.78,
-        "a": -0.56,
-        "b": -6.07
-      },
-      "interior_Lab": {
-        "L": 43.81,
-        "a": -2.73,
-        "b": -1.93
-      },
-      "performance": {
-        "uval": 0.2913,
-        "uvalIP": 0.0513,
-        "rval": 19.49,
-        "shgc": 0.2963,
-        "tvis": 0.4943,
-        "routVis": 0.0936,
-        "tuv": 0.0984,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Optiblue +SB60@S2; S3/4=Clear; S5/6=Clear +LUMI@S5",
       "layers": [
         {
@@ -2574,9 +1812,7 @@
             "shortcode": "SB60",
             "lowE_name": "SolarbanÂ® 60",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB60\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -2619,9 +1855,7 @@
             "shortcode": "LUMI",
             "lowE_name": "ECLAZ II",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"LUMI\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -2632,35 +1866,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 2149,
-      "config_count": 4,
-      "distinct_colors": 2,
-      "max_dE_in_cluster": 0.06,
-      "mean_dE_in_cluster": 0.03,
-      "comment_csv": "ZEN 6mm / Argon 7.15mm / SKN183 6mm / Vacuum 0.25mm / Clear 6mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.4,
-      "exterior_Lab": {
-        "L": 52.41,
-        "a": -1.94,
-        "b": -9.47
-      },
-      "interior_Lab": {
-        "L": 49.49,
-        "a": -3.16,
-        "b": -6.77
-      },
-      "performance": {
-        "uval": 0.2555,
-        "uvalIP": 0.045,
-        "rval": 22.22,
-        "shgc": 0.3003,
-        "tvis": 0.6411,
-        "routVis": 0.2021,
-        "tuv": 0.1666,
-        "nfrc": true,
-        "cen": true
-      },
       "surface_map": "S1/2=Clear +ZEN@S2; S3/4=Clear +SKN183@S4; S5/6=Clear",
       "layers": [
         {
@@ -2679,9 +1887,7 @@
             "shortcode": "ZEN",
             "lowE_name": "ECLAZ ONE II",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"ZEN\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -2705,9 +1911,7 @@
             "shortcode": "SKN183",
             "lowE_name": "COOL-LITE SKN 183 II",
             "surface": 4,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SKN183\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -2737,35 +1941,9 @@
       "product": "Enthermal Plus (VIG outboard)",
       "source": "enthermal-plus-outboard.json",
       "source_idx": 652,
-      "config_count": 16,
-      "distinct_colors": 8,
-      "max_dE_in_cluster": 0.2373,
-      "mean_dE_in_cluster": 0.1487,
-      "comment_csv": "SB60 Solexia 6mm / Vacuum 0.25mm / Clear 5mm / Argon 10.07mm / C270 5mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.42,
-      "exterior_Lab": {
-        "L": 40.58,
-        "a": -8.95,
-        "b": 0.99
-      },
-      "interior_Lab": {
-        "L": 44.04,
-        "a": -4.89,
-        "b": -0.37
-      },
-      "performance": {
-        "uval": 0.2926,
-        "uvalIP": 0.0515,
-        "rval": 19.41,
-        "shgc": 0.2567,
-        "tvis": 0.4689,
-        "routVis": 0.1159,
-        "tuv": 0.0255,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Solexia +SB60@S2; S3/4=Clear; S5/6=Clear +C270@S5",
       "layers": [
         {
@@ -2784,9 +1962,7 @@
             "shortcode": "SB60",
             "lowE_name": "SolarbanÂ® 60",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB60\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -2829,9 +2005,7 @@
             "shortcode": "C270",
             "lowE_name": "LoEÂ² 270",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C270\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -2842,35 +2016,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 2157,
-      "config_count": 4,
-      "distinct_colors": 2,
-      "max_dE_in_cluster": 0.0768,
-      "mean_dE_in_cluster": 0.0384,
-      "comment_csv": "SKN183 6mm / Argon 7.15mm / SKN183 6mm / Vacuum 0.25mm / Clear 6mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.4,
-      "exterior_Lab": {
-        "L": 45.3,
-        "a": -2.43,
-        "b": -10.82
-      },
-      "interior_Lab": {
-        "L": 47.19,
-        "a": -4.59,
-        "b": -5.23
-      },
-      "performance": {
-        "uval": 0.2553,
-        "uvalIP": 0.045,
-        "rval": 22.24,
-        "shgc": 0.2564,
-        "tvis": 0.6124,
-        "routVis": 0.1458,
-        "tuv": 0.1238,
-        "nfrc": true,
-        "cen": true
-      },
       "surface_map": "S1/2=Clear +SKN183@S2; S3/4=Clear +SKN183@S4; S5/6=Clear",
       "layers": [
         {
@@ -2889,9 +2037,7 @@
             "shortcode": "SKN183",
             "lowE_name": "COOL-LITE SKN 183 II",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SKN183\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -2915,9 +2061,7 @@
             "shortcode": "SKN183",
             "lowE_name": "COOL-LITE SKN 183 II",
             "surface": 4,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SKN183\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -2947,35 +2091,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 119,
-      "config_count": 53,
-      "distinct_colors": 20,
-      "max_dE_in_cluster": 1.3627,
-      "mean_dE_in_cluster": 0.6413,
-      "comment_csv": "Q452 4mm / Argon 13.45mm / Clear 4mm / Vacuum 0.25mm / C180 4mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.4,
-      "exterior_Lab": {
-        "L": 40.98,
-        "a": -3.91,
-        "b": -3.11
-      },
-      "interior_Lab": {
-        "L": 52.69,
-        "a": -4.74,
-        "b": -1.9
-      },
-      "performance": {
-        "uval": 0.3616,
-        "uvalIP": 0.0637,
-        "rval": 15.7,
-        "shgc": 0.1865,
-        "tvis": 0.4563,
-        "routVis": 0.1174,
-        "tuv": 0.0066,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Clear +Q452@S2; S3/4=Clear; S5/6=Clear +C180@S5",
       "layers": [
         {
@@ -2994,9 +2112,7 @@
             "shortcode": "Q452",
             "lowE_name": "Quad LoE 452",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"Q452\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -3039,9 +2155,7 @@
             "shortcode": "C180",
             "lowE_name": "LoE 180",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C180\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -3052,35 +2166,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 684,
-      "config_count": 34,
-      "distinct_colors": 17,
-      "max_dE_in_cluster": 0.9963,
-      "mean_dE_in_cluster": 0.6784,
-      "comment_csv": "SB70 Solexia 6mm / Argon 11.59mm / Clear 4mm / Vacuum 0.25mm / SB70 4mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.44,
-      "exterior_Lab": {
-        "L": 43.64,
-        "a": -9.24,
-        "b": -2.78
-      },
-      "interior_Lab": {
-        "L": 47.44,
-        "a": -5.04,
-        "b": -5.12
-      },
-      "performance": {
-        "uval": 0.2375,
-        "uvalIP": 0.0418,
-        "rval": 23.91,
-        "shgc": 0.1866,
-        "tvis": 0.417,
-        "routVis": 0.1354,
-        "tuv": 0.0056,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Solexia +SB70@S2; S3/4=Clear; S5/6=Clear +SB70@S5",
       "layers": [
         {
@@ -3099,9 +2187,7 @@
             "shortcode": "SB70",
             "lowE_name": "SolarbanÂ® 70",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB70\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -3144,9 +2230,7 @@
             "shortcode": "SB70",
             "lowE_name": "SolarbanÂ® 70",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB70\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -3157,35 +2241,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 647,
-      "config_count": 158,
-      "distinct_colors": 72,
-      "max_dE_in_cluster": 1.8448,
-      "mean_dE_in_cluster": 1.2094,
-      "comment_csv": "SB60 Optigray 6mm / Argon 11.69mm / Clear 4mm / Vacuum 0.25mm / C366 4mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.44,
-      "exterior_Lab": {
-        "L": 35.54,
-        "a": -0.84,
-        "b": -1.68
-      },
-      "interior_Lab": {
-        "L": 41.86,
-        "a": -2.05,
-        "b": -2.16
-      },
-      "performance": {
-        "uval": 0.245,
-        "uvalIP": 0.0431,
-        "rval": 23.18,
-        "shgc": 0.2076,
-        "tvis": 0.3635,
-        "routVis": 0.088,
-        "tuv": 0.01,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Optigray +SB60@S2; S3/4=Clear; S5/6=Clear +C366@S5",
       "layers": [
         {
@@ -3204,9 +2262,7 @@
             "shortcode": "SB60",
             "lowE_name": "SolarbanÂ® 60",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB60\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -3249,9 +2305,7 @@
             "shortcode": "C366",
             "lowE_name": "LoEÂ³ 366",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C366\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -3262,35 +2316,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 2136,
-      "config_count": 239,
-      "distinct_colors": 119,
-      "max_dE_in_cluster": 1.4582,
-      "mean_dE_in_cluster": 0.8992,
-      "comment_csv": "LUMI 6mm / Argon 7.75mm / C272 6mm / Vacuum 0.25mm / Clear 6mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.4,
-      "exterior_Lab": {
-        "L": 43.17,
-        "a": -1.66,
-        "b": -3.88
-      },
-      "interior_Lab": {
-        "L": 43.35,
-        "a": -2.37,
-        "b": -0.56
-      },
-      "performance": {
-        "uval": 0.3267,
-        "uvalIP": 0.0575,
-        "rval": 17.38,
-        "shgc": 0.3662,
-        "tvis": 0.6352,
-        "routVis": 0.1319,
-        "tuv": 0.0946,
-        "nfrc": true,
-        "cen": true
-      },
       "surface_map": "S1/2=Clear +LUMI@S2; S3/4=Clear +C272@S4; S5/6=Clear",
       "layers": [
         {
@@ -3309,9 +2337,7 @@
             "shortcode": "LUMI",
             "lowE_name": "ECLAZ II",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"LUMI\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -3335,9 +2361,7 @@
             "shortcode": "C272",
             "lowE_name": "LoEÂ² 272",
             "surface": 4,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C272\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -3367,35 +2391,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 160,
-      "config_count": 114,
-      "distinct_colors": 49,
-      "max_dE_in_cluster": 1.375,
-      "mean_dE_in_cluster": 0.9605,
-      "comment_csv": "ZEN 4mm / Argon 13.15mm / Clear 4mm / Vacuum 0.25mm / LUMI 4mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.4,
-      "exterior_Lab": {
-        "L": 52.33,
-        "a": -0.67,
-        "b": -7.47
-      },
-      "interior_Lab": {
-        "L": 49.38,
-        "a": -0.91,
-        "b": -7.0
-      },
-      "performance": {
-        "uval": 0.3109,
-        "uvalIP": 0.0548,
-        "rval": 18.26,
-        "shgc": 0.4709,
-        "tvis": 0.7226,
-        "routVis": 0.2019,
-        "tuv": 0.2717,
-        "nfrc": true,
-        "cen": true
-      },
       "surface_map": "S1/2=Clear +ZEN@S2; S3/4=Clear; S5/6=Clear +LUMI@S5",
       "layers": [
         {
@@ -3414,9 +2412,7 @@
             "shortcode": "ZEN",
             "lowE_name": "ECLAZ ONE II",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"ZEN\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -3459,9 +2455,7 @@
             "shortcode": "LUMI",
             "lowE_name": "ECLAZ II",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"LUMI\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -3472,35 +2466,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 1734,
-      "config_count": 126,
-      "distinct_colors": 56,
-      "max_dE_in_cluster": 1.5142,
-      "mean_dE_in_cluster": 0.8367,
-      "comment_csv": "SB70 Optiblue 6mm / Argon 8.49mm / LUMI 6mm / Vacuum 0.25mm / Clear 5mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.44,
-      "exterior_Lab": {
-        "L": 37.88,
-        "a": -1.34,
-        "b": -8.31
-      },
-      "interior_Lab": {
-        "L": 46.43,
-        "a": -0.91,
-        "b": -6.64
-      },
-      "performance": {
-        "uval": 0.3319,
-        "uvalIP": 0.0585,
-        "rval": 17.11,
-        "shgc": 0.1798,
-        "tvis": 0.432,
-        "routVis": 0.0991,
-        "tuv": 0.0351,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Optiblue +SB70@S2; S3/4=Clear +LUMI@S4; S5/6=Clear",
       "layers": [
         {
@@ -3519,9 +2487,7 @@
             "shortcode": "SB70",
             "lowE_name": "SolarbanÂ® 70",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB70\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -3545,9 +2511,7 @@
             "shortcode": "LUMI",
             "lowE_name": "ECLAZ II",
             "surface": 4,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"LUMI\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -3577,35 +2541,9 @@
       "product": "Enthermal Plus (VIG outboard)",
       "source": "enthermal-plus-outboard.json",
       "source_idx": 698,
-      "config_count": 89,
-      "distinct_colors": 43,
-      "max_dE_in_cluster": 1.6045,
-      "mean_dE_in_cluster": 0.81,
-      "comment_csv": "C180 6mm / Vacuum 0.25mm / Clear 6mm / Argon 9.08mm / SB70 5mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.43,
-      "exterior_Lab": {
-        "L": 50.89,
-        "a": -2.83,
-        "b": -6.68
-      },
-      "interior_Lab": {
-        "L": 47.84,
-        "a": -4.13,
-        "b": -5.15
-      },
-      "performance": {
-        "uval": 0.3801,
-        "uvalIP": 0.0669,
-        "rval": 14.94,
-        "shgc": 0.3955,
-        "tvis": 0.5626,
-        "routVis": 0.1905,
-        "tuv": 0.0292,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Clear +C180@S2; S3/4=Clear; S5/6=Clear +SB70@S5",
       "layers": [
         {
@@ -3624,9 +2562,7 @@
             "shortcode": "C180",
             "lowE_name": "LoE 180",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C180\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -3669,9 +2605,7 @@
             "shortcode": "SB70",
             "lowE_name": "SolarbanÂ® 70",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB70\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -3682,35 +2616,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 2067,
-      "config_count": 463,
-      "distinct_colors": 210,
-      "max_dE_in_cluster": 1.7112,
-      "mean_dE_in_cluster": 1.1011,
-      "comment_csv": "SB60 Starphire 6mm / Argon 8.05mm / SB70 6mm / Vacuum 0.25mm / Clear 6mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.5,
-      "exterior_Lab": {
-        "L": 44.96,
-        "a": -3.27,
-        "b": -3.66
-      },
-      "interior_Lab": {
-        "L": 46.82,
-        "a": -3.36,
-        "b": -3.64
-      },
-      "performance": {
-        "uval": 0.2491,
-        "uvalIP": 0.0439,
-        "rval": 22.79,
-        "shgc": 0.2153,
-        "tvis": 0.5224,
-        "routVis": 0.145,
-        "tuv": 0.023,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Starphire +SB60@S2; S3/4=Clear +SB70@S4; S5/6=Clear",
       "layers": [
         {
@@ -3729,9 +2637,7 @@
             "shortcode": "SB60",
             "lowE_name": "SolarbanÂ® 60",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB60\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -3755,9 +2661,7 @@
             "shortcode": "SB70",
             "lowE_name": "SolarbanÂ® 70",
             "surface": 4,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB70\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -3787,35 +2691,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 1634,
-      "config_count": 113,
-      "distinct_colors": 54,
-      "max_dE_in_cluster": 1.5827,
-      "mean_dE_in_cluster": 0.8222,
-      "comment_csv": "SB60 Solarbronze 6mm / Argon 9.09mm / C272 6mm / Vacuum 0.25mm / Clear 5mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.44,
-      "exterior_Lab": {
-        "L": 31.99,
-        "a": 0.47,
-        "b": 0.28
-      },
-      "interior_Lab": {
-        "L": 42.42,
-        "a": -3.05,
-        "b": 2.25
-      },
-      "performance": {
-        "uval": 0.3192,
-        "uvalIP": 0.0562,
-        "rval": 17.79,
-        "shgc": 0.1764,
-        "tvis": 0.3351,
-        "routVis": 0.0713,
-        "tuv": 0.0253,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Solarbronze +SB60@S2; S3/4=Clear +C272@S4; S5/6=Clear",
       "layers": [
         {
@@ -3834,9 +2712,7 @@
             "shortcode": "SB60",
             "lowE_name": "SolarbanÂ® 60",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB60\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -3860,9 +2736,7 @@
             "shortcode": "C272",
             "lowE_name": "LoEÂ² 272",
             "surface": 4,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C272\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -3892,35 +2766,9 @@
       "product": "Enthermal (VIG, 2 panes)",
       "source": "enthermal.json",
       "source_idx": 3,
-      "config_count": 228,
-      "distinct_colors": 99,
-      "max_dE_in_cluster": 1.8452,
-      "mean_dE_in_cluster": 1.1902,
-      "comment_csv": "C180 6mm / Vacuum 0.25mm / Clear 4mm",
       "n_panes": 2,
       "gas_fill": null,
       "total_thickness_mm": 9.85,
-      "exterior_Lab": {
-        "L": 45.79,
-        "a": -1.65,
-        "b": -5.39
-      },
-      "interior_Lab": {
-        "L": 45.05,
-        "a": -0.55,
-        "b": -5.99
-      },
-      "performance": {
-        "uval": 0.4775,
-        "uvalIP": 0.0841,
-        "rval": 11.89,
-        "shgc": 0.6064,
-        "tvis": 0.7764,
-        "routVis": 0.15,
-        "tuv": 0.2572,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Clear +C180@S2; S3/4=Clear",
       "layers": [
         {
@@ -3939,9 +2787,7 @@
             "shortcode": "C180",
             "lowE_name": "LoE 180",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C180\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -3971,35 +2817,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 1910,
-      "config_count": 8,
-      "distinct_colors": 4,
-      "max_dE_in_cluster": 0.1584,
-      "mean_dE_in_cluster": 0.0622,
-      "comment_csv": "SB70 Solarblue 6mm / Argon 9.09mm / Clear 6mm / Vacuum 0.25mm / C270 5mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.44,
-      "exterior_Lab": {
-        "L": 36.33,
-        "a": -4.75,
-        "b": -7.75
-      },
-      "interior_Lab": {
-        "L": 45.04,
-        "a": -4.21,
-        "b": -4.2
-      },
-      "performance": {
-        "uval": 0.2975,
-        "uvalIP": 0.0524,
-        "rval": 19.09,
-        "shgc": 0.157,
-        "tvis": 0.3137,
-        "routVis": 0.0906,
-        "tuv": 0.0093,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Solarblue +SB70@S2; S3/4=Clear; S5/6=Clear +C270@S5",
       "layers": [
         {
@@ -4018,9 +2838,7 @@
             "shortcode": "SB70",
             "lowE_name": "SolarbanÂ® 70",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB70\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -4063,9 +2881,7 @@
             "shortcode": "C270",
             "lowE_name": "LoEÂ² 270",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C270\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -4076,35 +2892,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 2317,
-      "config_count": 144,
-      "distinct_colors": 72,
-      "max_dE_in_cluster": 1.5739,
-      "mean_dE_in_cluster": 1.1069,
-      "comment_csv": "SB70 Optigray 6mm / Argon 7.49mm / Clear 6mm / Vacuum 0.25mm / SKN183 6mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.44,
-      "exterior_Lab": {
-        "L": 38.03,
-        "a": -3.23,
-        "b": -3.71
-      },
-      "interior_Lab": {
-        "L": 45.98,
-        "a": -2.57,
-        "b": -9.63
-      },
-      "performance": {
-        "uval": 0.2541,
-        "uvalIP": 0.0447,
-        "rval": 22.35,
-        "shgc": 0.169,
-        "tvis": 0.3834,
-        "routVis": 0.1008,
-        "tuv": 0.02,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Optigray +SB70@S2; S3/4=Clear; S5/6=Clear +SKN183@S5",
       "layers": [
         {
@@ -4123,9 +2913,7 @@
             "shortcode": "SB70",
             "lowE_name": "SolarbanÂ® 70",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB70\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -4168,9 +2956,7 @@
             "shortcode": "SKN183",
             "lowE_name": "COOL-LITE SKN 183 II",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SKN183\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -4181,35 +2967,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 1142,
-      "config_count": 36,
-      "distinct_colors": 18,
-      "max_dE_in_cluster": 1.6011,
-      "mean_dE_in_cluster": 0.9232,
-      "comment_csv": "SB60 Solarbronze 5mm / Argon 11.08mm / Clear 5mm / Vacuum 0.25mm / C270 5mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.43,
-      "exterior_Lab": {
-        "L": 34.69,
-        "a": -1.67,
-        "b": 1.73
-      },
-      "interior_Lab": {
-        "L": 43.26,
-        "a": -3.92,
-        "b": -0.46
-      },
-      "performance": {
-        "uval": 0.291,
-        "uvalIP": 0.0512,
-        "rval": 19.51,
-        "shgc": 0.2164,
-        "tvis": 0.3597,
-        "routVis": 0.0841,
-        "tuv": 0.0244,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Solarbronze +SB60@S2; S3/4=Clear; S5/6=Clear +C270@S5",
       "layers": [
         {
@@ -4228,9 +2988,7 @@
             "shortcode": "SB60",
             "lowE_name": "SolarbanÂ® 60",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB60\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -4273,9 +3031,7 @@
             "shortcode": "C270",
             "lowE_name": "LoEÂ² 270",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C270\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -4286,35 +3042,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 657,
-      "config_count": 72,
-      "distinct_colors": 36,
-      "max_dE_in_cluster": 1.8108,
-      "mean_dE_in_cluster": 0.7591,
-      "comment_csv": "SB60 Solarblue 6mm / Argon 11.49mm / Clear 4mm / Vacuum 0.25mm / LUMI 4mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.44,
-      "exterior_Lab": {
-        "L": 33.72,
-        "a": -1.3,
-        "b": -7.64
-      },
-      "interior_Lab": {
-        "L": 43.31,
-        "a": -2.37,
-        "b": -2.35
-      },
-      "performance": {
-        "uval": 0.319,
-        "uvalIP": 0.0562,
-        "rval": 17.8,
-        "shgc": 0.2306,
-        "tvis": 0.4176,
-        "routVis": 0.0778,
-        "tuv": 0.0741,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Solarblue +SB60@S2; S3/4=Clear; S5/6=Clear +LUMI@S5",
       "layers": [
         {
@@ -4333,9 +3063,7 @@
             "shortcode": "SB60",
             "lowE_name": "SolarbanÂ® 60",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB60\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -4378,9 +3106,7 @@
             "shortcode": "LUMI",
             "lowE_name": "ECLAZ II",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"LUMI\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -4391,35 +3117,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 228,
-      "config_count": 182,
-      "distinct_colors": 84,
-      "max_dE_in_cluster": 1.5815,
-      "mean_dE_in_cluster": 0.7243,
-      "comment_csv": "SB60 Solargray 5mm / Argon 12.58mm / SB60 4mm / Vacuum 0.25mm / Clear 4mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.43,
-      "exterior_Lab": {
-        "L": 31.67,
-        "a": -0.14,
-        "b": -2.63
-      },
-      "interior_Lab": {
-        "L": 43.09,
-        "a": -3.85,
-        "b": 3.02
-      },
-      "performance": {
-        "uval": 0.2848,
-        "uvalIP": 0.0502,
-        "rval": 19.94,
-        "shgc": 0.173,
-        "tvis": 0.3232,
-        "routVis": 0.0695,
-        "tuv": 0.0336,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Solargray +SB60@S2; S3/4=Clear +SB60@S4; S5/6=Clear",
       "layers": [
         {
@@ -4438,9 +3138,7 @@
             "shortcode": "SB60",
             "lowE_name": "SolarbanÂ® 60",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB60\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -4464,9 +3162,7 @@
             "shortcode": "SB60",
             "lowE_name": "SolarbanÂ® 60",
             "surface": 4,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB60\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -4496,35 +3192,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 400,
-      "config_count": 72,
-      "distinct_colors": 23,
-      "max_dE_in_cluster": 1.5616,
-      "mean_dE_in_cluster": 0.963,
-      "comment_csv": "C270 6mm / Argon 11.65mm / C270 4mm / Vacuum 0.25mm / Clear 4mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.4,
-      "exterior_Lab": {
-        "L": 44.71,
-        "a": -5.02,
-        "b": -1.91
-      },
-      "interior_Lab": {
-        "L": 47.25,
-        "a": -10.99,
-        "b": 4.1
-      },
-      "performance": {
-        "uval": 0.2889,
-        "uvalIP": 0.0509,
-        "rval": 19.65,
-        "shgc": 0.2433,
-        "tvis": 0.5265,
-        "routVis": 0.1429,
-        "tuv": 0.0329,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Clear +C270@S2; S3/4=Clear +C270@S4; S5/6=Clear",
       "layers": [
         {
@@ -4543,9 +3213,7 @@
             "shortcode": "C270",
             "lowE_name": "LoEÂ² 270",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C270\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -4569,9 +3237,7 @@
             "shortcode": "C270",
             "lowE_name": "LoEÂ² 270",
             "surface": 4,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C270\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -4601,35 +3267,9 @@
       "product": "Enthermal Plus (VIG outboard)",
       "source": "enthermal-plus-outboard.json",
       "source_idx": 445,
-      "config_count": 64,
-      "distinct_colors": 24,
-      "max_dE_in_cluster": 0.8362,
-      "mean_dE_in_cluster": 0.4559,
-      "comment_csv": "C180 5mm / Vacuum 0.25mm / Clear 5mm / Argon 11.08mm / SB60 5mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.43,
-      "exterior_Lab": {
-        "L": 49.49,
-        "a": -2.88,
-        "b": -3.49
-      },
-      "interior_Lab": {
-        "L": 45.33,
-        "a": -2.1,
-        "b": -4.36
-      },
-      "performance": {
-        "uval": 0.3697,
-        "uvalIP": 0.0651,
-        "rval": 15.36,
-        "shgc": 0.4668,
-        "tvis": 0.6259,
-        "routVis": 0.1793,
-        "tuv": 0.0834,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Clear +C180@S2; S3/4=Clear; S5/6=Clear +SB60@S5",
       "layers": [
         {
@@ -4648,9 +3288,7 @@
             "shortcode": "C180",
             "lowE_name": "LoE 180",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C180\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -4693,9 +3331,7 @@
             "shortcode": "SB60",
             "lowE_name": "SolarbanÂ® 60",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB60\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -4706,35 +3342,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 611,
-      "config_count": 188,
-      "distinct_colors": 78,
-      "max_dE_in_cluster": 1.3154,
-      "mean_dE_in_cluster": 0.8529,
-      "comment_csv": "Q452 6mm / Argon 11.65mm / Clear 4mm / Vacuum 0.25mm / C272 4mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.4,
-      "exterior_Lab": {
-        "L": 39.03,
-        "a": -4.06,
-        "b": -1.39
-      },
-      "interior_Lab": {
-        "L": 45.78,
-        "a": -4.37,
-        "b": 1.18
-      },
-      "performance": {
-        "uval": 0.3055,
-        "uvalIP": 0.0538,
-        "rval": 18.58,
-        "shgc": 0.1864,
-        "tvis": 0.4089,
-        "routVis": 0.106,
-        "tuv": 0.0044,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Clear +Q452@S2; S3/4=Clear; S5/6=Clear +C272@S5",
       "layers": [
         {
@@ -4753,9 +3363,7 @@
             "shortcode": "Q452",
             "lowE_name": "Quad LoE 452",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"Q452\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -4798,9 +3406,7 @@
             "shortcode": "C272",
             "lowE_name": "LoEÂ² 272",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C272\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -4811,35 +3417,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 94,
-      "config_count": 100,
-      "distinct_colors": 42,
-      "max_dE_in_cluster": 1.4292,
-      "mean_dE_in_cluster": 0.6541,
-      "comment_csv": "C270 4mm / Argon 13.45mm / Clear 4mm / Vacuum 0.25mm / C366 4mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.4,
-      "exterior_Lab": {
-        "L": 44.97,
-        "a": -2.9,
-        "b": -1.63
-      },
-      "interior_Lab": {
-        "L": 43.89,
-        "a": -5.08,
-        "b": -1.39
-      },
-      "performance": {
-        "uval": 0.2408,
-        "uvalIP": 0.0424,
-        "rval": 23.58,
-        "shgc": 0.2755,
-        "tvis": 0.4957,
-        "routVis": 0.1451,
-        "tuv": 0.0122,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Clear +C270@S2; S3/4=Clear; S5/6=Clear +C366@S5",
       "layers": [
         {
@@ -4858,9 +3438,7 @@
             "shortcode": "C270",
             "lowE_name": "LoEÂ² 270",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C270\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -4903,9 +3481,7 @@
             "shortcode": "C366",
             "lowE_name": "LoEÂ³ 366",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C366\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -4916,35 +3492,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 78,
-      "config_count": 136,
-      "distinct_colors": 63,
-      "max_dE_in_cluster": 1.7291,
-      "mean_dE_in_cluster": 1.347,
-      "comment_csv": "XTREME 4mm / Argon 13.35mm / C270 4mm / Vacuum 0.25mm / Clear 4mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.4,
-      "exterior_Lab": {
-        "L": 42.84,
-        "a": -3.66,
-        "b": -6.42
-      },
-      "interior_Lab": {
-        "L": 48.6,
-        "a": -11.04,
-        "b": 3.09
-      },
-      "performance": {
-        "uval": 0.2819,
-        "uvalIP": 0.0496,
-        "rval": 20.14,
-        "shgc": 0.1878,
-        "tvis": 0.4713,
-        "routVis": 0.1294,
-        "tuv": 0.0531,
-        "nfrc": true,
-        "cen": true
-      },
       "surface_map": "S1/2=Clear +XTR6129@S2; S3/4=Clear +C270@S4; S5/6=Clear",
       "layers": [
         {
@@ -4963,9 +3513,7 @@
             "shortcode": "XTR6129",
             "lowE_name": "COOL-LITE XTREME 61-29 II",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"XTR6129\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -4989,9 +3537,7 @@
             "shortcode": "C270",
             "lowE_name": "LoEÂ² 270",
             "surface": 4,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C270\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -5021,35 +3567,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 2147,
-      "config_count": 60,
-      "distinct_colors": 29,
-      "max_dE_in_cluster": 1.3612,
-      "mean_dE_in_cluster": 0.7064,
-      "comment_csv": "ZEN 6mm / Argon 7.71mm / SB70 6mm / Vacuum 0.25mm / Clear 6mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.46,
-      "exterior_Lab": {
-        "L": 53.55,
-        "a": -3.35,
-        "b": -7.39
-      },
-      "interior_Lab": {
-        "L": 49.2,
-        "a": -3.25,
-        "b": -6.2
-      },
-      "performance": {
-        "uval": 0.2497,
-        "uvalIP": 0.044,
-        "rval": 22.74,
-        "shgc": 0.235,
-        "tvis": 0.5525,
-        "routVis": 0.2131,
-        "tuv": 0.0382,
-        "nfrc": true,
-        "cen": true
-      },
       "surface_map": "S1/2=Clear +ZEN@S2; S3/4=Clear +SB70@S4; S5/6=Clear",
       "layers": [
         {
@@ -5068,9 +3588,7 @@
             "shortcode": "ZEN",
             "lowE_name": "ECLAZ ONE II",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"ZEN\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -5094,9 +3612,7 @@
             "shortcode": "SB70",
             "lowE_name": "SolarbanÂ® 70",
             "surface": 4,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB70\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -5126,35 +3642,9 @@
       "product": "Enthermal Plus (VIG outboard)",
       "source": "enthermal-plus-outboard.json",
       "source_idx": 296,
-      "config_count": 76,
-      "distinct_colors": 26,
-      "max_dE_in_cluster": 1.261,
-      "mean_dE_in_cluster": 0.7343,
-      "comment_csv": "SB60 Solexia 6mm / Vacuum 0.25mm / Clear 4mm / Argon 11.6mm / C272 4mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.45,
-      "exterior_Lab": {
-        "L": 39.44,
-        "a": -5.96,
-        "b": 0.01
-      },
-      "interior_Lab": {
-        "L": 42.33,
-        "a": -2.88,
-        "b": -0.34
-      },
-      "performance": {
-        "uval": 0.2877,
-        "uvalIP": 0.0507,
-        "rval": 19.73,
-        "shgc": 0.261,
-        "tvis": 0.4896,
-        "routVis": 0.1092,
-        "tuv": 0.0325,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Solexia +SB60@S2; S3/4=Clear; S5/6=Clear +C272@S5",
       "layers": [
         {
@@ -5173,9 +3663,7 @@
             "shortcode": "SB60",
             "lowE_name": "SolarbanÂ® 60",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB60\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -5218,9 +3706,7 @@
             "shortcode": "C272",
             "lowE_name": "LoEÂ² 272",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C272\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -5231,35 +3717,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 90,
-      "config_count": 46,
-      "distinct_colors": 26,
-      "max_dE_in_cluster": 1.3515,
-      "mean_dE_in_cluster": 0.7056,
-      "comment_csv": "C180 4mm / Argon 13.25mm / Clear 4mm / Vacuum 0.25mm / LUMI 4mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.4,
-      "exterior_Lab": {
-        "L": 49.56,
-        "a": -1.18,
-        "b": -6.26
-      },
-      "interior_Lab": {
-        "L": 48.22,
-        "a": -1.25,
-        "b": -6.02
-      },
-      "performance": {
-        "uval": 0.3178,
-        "uvalIP": 0.056,
-        "rval": 17.87,
-        "shgc": 0.5433,
-        "tvis": 0.7271,
-        "routVis": 0.1791,
-        "tuv": 0.1938,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Clear +C180@S2; S3/4=Clear; S5/6=Clear +LUMI@S5",
       "layers": [
         {
@@ -5278,9 +3738,7 @@
             "shortcode": "C180",
             "lowE_name": "LoE 180",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C180\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -5323,9 +3781,7 @@
             "shortcode": "LUMI",
             "lowE_name": "ECLAZ II",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"LUMI\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -5336,35 +3792,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 99,
-      "config_count": 136,
-      "distinct_colors": 57,
-      "max_dE_in_cluster": 1.4407,
-      "mean_dE_in_cluster": 0.8196,
-      "comment_csv": "C272 4mm / Argon 13.45mm / Clear 4mm / Vacuum 0.25mm / C270 4mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.4,
-      "exterior_Lab": {
-        "L": 44.11,
-        "a": -5.39,
-        "b": 0.24
-      },
-      "interior_Lab": {
-        "L": 44.63,
-        "a": -4.08,
-        "b": -0.83
-      },
-      "performance": {
-        "uval": 0.2845,
-        "uvalIP": 0.0501,
-        "rval": 19.96,
-        "shgc": 0.3239,
-        "tvis": 0.55,
-        "routVis": 0.1393,
-        "tuv": 0.0422,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Clear +C272@S2; S3/4=Clear; S5/6=Clear +C270@S5",
       "layers": [
         {
@@ -5383,9 +3813,7 @@
             "shortcode": "C272",
             "lowE_name": "LoEÂ² 272",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C272\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -5428,9 +3856,7 @@
             "shortcode": "C270",
             "lowE_name": "LoEÂ² 270",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C270\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -5441,35 +3867,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 2084,
-      "config_count": 44,
-      "distinct_colors": 22,
-      "max_dE_in_cluster": 1.2287,
-      "mean_dE_in_cluster": 0.5371,
-      "comment_csv": "SB70 Solexia 6mm / Argon 7.49mm / LUMI 6mm / Vacuum 0.25mm / Clear 6mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.44,
-      "exterior_Lab": {
-        "L": 41.98,
-        "a": -7.83,
-        "b": -3.04
-      },
-      "interior_Lab": {
-        "L": 46.8,
-        "a": -1.67,
-        "b": -6.05
-      },
-      "performance": {
-        "uval": 0.3377,
-        "uvalIP": 0.0595,
-        "rval": 16.81,
-        "shgc": 0.1993,
-        "tvis": 0.5205,
-        "routVis": 0.124,
-        "tuv": 0.0255,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Solexia +SB70@S2; S3/4=Clear +LUMI@S4; S5/6=Clear",
       "layers": [
         {
@@ -5488,9 +3888,7 @@
             "shortcode": "SB70",
             "lowE_name": "SolarbanÂ® 70",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB70\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -5514,9 +3912,7 @@
             "shortcode": "LUMI",
             "lowE_name": "ECLAZ II",
             "surface": 4,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"LUMI\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -5546,35 +3942,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 12,
-      "config_count": 168,
-      "distinct_colors": 73,
-      "max_dE_in_cluster": 1.4888,
-      "mean_dE_in_cluster": 0.8888,
-      "comment_csv": "C270 4mm / Argon 13.36mm / SB70 4mm / Vacuum 0.25mm / Clear 4mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.41,
-      "exterior_Lab": {
-        "L": 46.16,
-        "a": -5.25,
-        "b": -2.93
-      },
-      "interior_Lab": {
-        "L": 47.87,
-        "a": -5.33,
-        "b": -3.26
-      },
-      "performance": {
-        "uval": 0.235,
-        "uvalIP": 0.0414,
-        "rval": 24.17,
-        "shgc": 0.2054,
-        "tvis": 0.5038,
-        "routVis": 0.1533,
-        "tuv": 0.0167,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Clear +C270@S2; S3/4=Clear +SB70@S4; S5/6=Clear",
       "layers": [
         {
@@ -5593,9 +3963,7 @@
             "shortcode": "C270",
             "lowE_name": "LoEÂ² 270",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C270\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -5619,9 +3987,7 @@
             "shortcode": "SB70",
             "lowE_name": "SolarbanÂ® 70",
             "surface": 4,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB70\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -5651,35 +4017,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 71,
-      "config_count": 146,
-      "distinct_colors": 69,
-      "max_dE_in_cluster": 1.6851,
-      "mean_dE_in_cluster": 1.134,
-      "comment_csv": "ZEN 4mm / Argon 13.35mm / C270 4mm / Vacuum 0.25mm / Clear 4mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.4,
-      "exterior_Lab": {
-        "L": 52.81,
-        "a": -2.41,
-        "b": -6.61
-      },
-      "interior_Lab": {
-        "L": 49.15,
-        "a": -7.08,
-        "b": -0.92
-      },
-      "performance": {
-        "uval": 0.282,
-        "uvalIP": 0.0497,
-        "rval": 20.14,
-        "shgc": 0.3168,
-        "tvis": 0.6022,
-        "routVis": 0.2063,
-        "tuv": 0.0851,
-        "nfrc": true,
-        "cen": true
-      },
       "surface_map": "S1/2=Clear +ZEN@S2; S3/4=Clear +C270@S4; S5/6=Clear",
       "layers": [
         {
@@ -5698,9 +4038,7 @@
             "shortcode": "ZEN",
             "lowE_name": "ECLAZ ONE II",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"ZEN\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -5724,9 +4062,7 @@
             "shortcode": "C270",
             "lowE_name": "LoEÂ² 270",
             "surface": 4,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C270\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -5756,35 +4092,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 2288,
-      "config_count": 32,
-      "distinct_colors": 16,
-      "max_dE_in_cluster": 1.0113,
-      "mean_dE_in_cluster": 0.6468,
-      "comment_csv": "SB70 Solexia 6mm / Argon 8.09mm / Clear 6mm / Vacuum 0.25mm / C272 6mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.44,
-      "exterior_Lab": {
-        "L": 42.02,
-        "a": -8.39,
-        "b": -1.59
-      },
-      "interior_Lab": {
-        "L": 43.62,
-        "a": -2.64,
-        "b": -4.08
-      },
-      "performance": {
-        "uval": 0.3228,
-        "uvalIP": 0.0568,
-        "rval": 17.59,
-        "shgc": 0.2,
-        "tvis": 0.4426,
-        "routVis": 0.1247,
-        "tuv": 0.0112,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Solexia +SB70@S2; S3/4=Clear; S5/6=Clear +C272@S5",
       "layers": [
         {
@@ -5803,9 +4113,7 @@
             "shortcode": "SB70",
             "lowE_name": "SolarbanÂ® 70",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB70\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -5848,9 +4156,7 @@
             "shortcode": "C272",
             "lowE_name": "LoEÂ² 272",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C272\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -5861,35 +4167,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 913,
-      "config_count": 132,
-      "distinct_colors": 52,
-      "max_dE_in_cluster": 1.1962,
-      "mean_dE_in_cluster": 0.7373,
-      "comment_csv": "SB60 5mm / Argon 11.88mm / Clear 5mm / Vacuum 0.25mm / C366 4mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.43,
-      "exterior_Lab": {
-        "L": 43.03,
-        "a": -1.25,
-        "b": -2.04
-      },
-      "interior_Lab": {
-        "L": 42.72,
-        "a": -2.41,
-        "b": -1.88
-      },
-      "performance": {
-        "uval": 0.2445,
-        "uvalIP": 0.0431,
-        "rval": 23.23,
-        "shgc": 0.2898,
-        "tvis": 0.5138,
-        "routVis": 0.1321,
-        "tuv": 0.0162,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Clear +SB60@S2; S3/4=Clear; S5/6=Clear +C366@S5",
       "layers": [
         {
@@ -5908,9 +4188,7 @@
             "shortcode": "SB60",
             "lowE_name": "SolarbanÂ® 60",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB60\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -5953,9 +4231,7 @@
             "shortcode": "C366",
             "lowE_name": "LoEÂ³ 366",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C366\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -5966,35 +4242,9 @@
       "product": "Enthermal Plus (VIG outboard)",
       "source": "enthermal-plus-outboard.json",
       "source_idx": 281,
-      "config_count": 48,
-      "distinct_colors": 22,
-      "max_dE_in_cluster": 1.8928,
-      "mean_dE_in_cluster": 0.8423,
-      "comment_csv": "SKN183 6mm / Vacuum 0.25mm / Clear 4mm / Argon 11.25mm / C270 4mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.4,
-      "exterior_Lab": {
-        "L": 46.42,
-        "a": -5.96,
-        "b": -5.24
-      },
-      "interior_Lab": {
-        "L": 45.72,
-        "a": -4.58,
-        "b": -2.98
-      },
-      "performance": {
-        "uval": 0.2442,
-        "uvalIP": 0.043,
-        "rval": 23.25,
-        "shgc": 0.3147,
-        "tvis": 0.5746,
-        "routVis": 0.1547,
-        "tuv": 0.0644,
-        "nfrc": true,
-        "cen": true
-      },
       "surface_map": "S1/2=Clear +SKN183@S2; S3/4=Clear; S5/6=Clear +C270@S5",
       "layers": [
         {
@@ -6013,9 +4263,7 @@
             "shortcode": "SKN183",
             "lowE_name": "COOL-LITE SKN 183 II",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SKN183\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -6058,9 +4306,7 @@
             "shortcode": "C270",
             "lowE_name": "LoEÂ² 270",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C270\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -6071,35 +4317,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 565,
-      "config_count": 20,
-      "distinct_colors": 9,
-      "max_dE_in_cluster": 1.1606,
-      "mean_dE_in_cluster": 0.6233,
-      "comment_csv": "SKN183 6mm / Argon 11.25mm / SB70 4mm / Vacuum 0.25mm / Clear 4mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.41,
-      "exterior_Lab": {
-        "L": 46.69,
-        "a": -4.13,
-        "b": -8.5
-      },
-      "interior_Lab": {
-        "L": 47.72,
-        "a": -3.42,
-        "b": -5.53
-      },
-      "performance": {
-        "uval": 0.2385,
-        "uvalIP": 0.042,
-        "rval": 23.81,
-        "shgc": 0.2152,
-        "tvis": 0.5406,
-        "routVis": 0.1564,
-        "tuv": 0.0311,
-        "nfrc": true,
-        "cen": true
-      },
       "surface_map": "S1/2=Clear +SKN183@S2; S3/4=Clear +SB70@S4; S5/6=Clear",
       "layers": [
         {
@@ -6118,9 +4338,7 @@
             "shortcode": "SKN183",
             "lowE_name": "COOL-LITE SKN 183 II",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SKN183\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -6144,9 +4362,7 @@
             "shortcode": "SB70",
             "lowE_name": "SolarbanÂ® 70",
             "surface": 4,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB70\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -6176,35 +4392,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 1679,
-      "config_count": 32,
-      "distinct_colors": 14,
-      "max_dE_in_cluster": 1.6736,
-      "mean_dE_in_cluster": 1.1701,
-      "comment_csv": "SB60 Starphire 6mm / Argon 8.49mm / SKN183 6mm / Vacuum 0.25mm / Clear 5mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.44,
-      "exterior_Lab": {
-        "L": 43.68,
-        "a": -1.55,
-        "b": -6.1
-      },
-      "interior_Lab": {
-        "L": 46.39,
-        "a": -3.97,
-        "b": -2.28
-      },
-      "performance": {
-        "uval": 0.2516,
-        "uvalIP": 0.0443,
-        "rval": 22.57,
-        "shgc": 0.2721,
-        "tvis": 0.6084,
-        "routVis": 0.1357,
-        "tuv": 0.0979,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Starphire +SB60@S2; S3/4=Clear +SKN183@S4; S5/6=Clear",
       "layers": [
         {
@@ -6223,9 +4413,7 @@
             "shortcode": "SB60",
             "lowE_name": "SolarbanÂ® 60",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB60\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -6249,9 +4437,7 @@
             "shortcode": "SKN183",
             "lowE_name": "COOL-LITE SKN 183 II",
             "surface": 4,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SKN183\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -6281,35 +4467,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 1560,
-      "config_count": 68,
-      "distinct_colors": 30,
-      "max_dE_in_cluster": 1.3949,
-      "mean_dE_in_cluster": 0.9548,
-      "comment_csv": "SKN183 6mm / Argon 9.15mm / Clear 5mm / Vacuum 0.25mm / LUMI 5mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.4,
-      "exterior_Lab": {
-        "L": 44.87,
-        "a": -1.48,
-        "b": -8.57
-      },
-      "interior_Lab": {
-        "L": 46.27,
-        "a": -3.08,
-        "b": -4.94
-      },
-      "performance": {
-        "uval": 0.3279,
-        "uvalIP": 0.0577,
-        "rval": 17.32,
-        "shgc": 0.3254,
-        "tvis": 0.6812,
-        "routVis": 0.1431,
-        "tuv": 0.1868,
-        "nfrc": true,
-        "cen": true
-      },
       "surface_map": "S1/2=Clear +SKN183@S2; S3/4=Clear; S5/6=Clear +LUMI@S5",
       "layers": [
         {
@@ -6328,9 +4488,7 @@
             "shortcode": "SKN183",
             "lowE_name": "COOL-LITE SKN 183 II",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SKN183\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -6373,9 +4531,7 @@
             "shortcode": "LUMI",
             "lowE_name": "ECLAZ II",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"LUMI\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -6386,35 +4542,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 1358,
-      "config_count": 170,
-      "distinct_colors": 85,
-      "max_dE_in_cluster": 1.5648,
-      "mean_dE_in_cluster": 0.8166,
-      "comment_csv": "LUMI 6mm / Argon 9.75mm / C180 5mm / Vacuum 0.25mm / Clear 5mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.4,
-      "exterior_Lab": {
-        "L": 48.62,
-        "a": -2.41,
-        "b": -5.57
-      },
-      "interior_Lab": {
-        "L": 48.33,
-        "a": -0.79,
-        "b": -6.6
-      },
-      "performance": {
-        "uval": 0.3863,
-        "uvalIP": 0.068,
-        "rval": 14.7,
-        "shgc": 0.5014,
-        "tvis": 0.7137,
-        "routVis": 0.1711,
-        "tuv": 0.1671,
-        "nfrc": true,
-        "cen": true
-      },
       "surface_map": "S1/2=Clear +LUMI@S2; S3/4=Clear +C180@S4; S5/6=Clear",
       "layers": [
         {
@@ -6433,9 +4563,7 @@
             "shortcode": "LUMI",
             "lowE_name": "ECLAZ II",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"LUMI\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -6459,9 +4587,7 @@
             "shortcode": "C180",
             "lowE_name": "LoE 180",
             "surface": 4,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C180\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -6491,35 +4617,9 @@
       "product": "Enthermal Plus (VIG outboard)",
       "source": "enthermal-plus-outboard.json",
       "source_idx": 839,
-      "config_count": 74,
-      "distinct_colors": 37,
-      "max_dE_in_cluster": 1.1209,
-      "mean_dE_in_cluster": 0.6654,
-      "comment_csv": "SB60 Optiblue 6mm / Vacuum 0.25mm / Clear 6mm / Argon 8.71mm / LUMI 5mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.46,
-      "exterior_Lab": {
-        "L": 35.74,
-        "a": -0.56,
-        "b": -6.35
-      },
-      "interior_Lab": {
-        "L": 43.81,
-        "a": -2.84,
-        "b": -1.99
-      },
-      "performance": {
-        "uval": 0.2994,
-        "uvalIP": 0.0527,
-        "rval": 18.96,
-        "shgc": 0.2807,
-        "tvis": 0.4612,
-        "routVis": 0.0881,
-        "tuv": 0.0909,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Optiblue +SB60@S2; S3/4=Clear; S5/6=Clear +LUMI@S5",
       "layers": [
         {
@@ -6538,9 +4638,7 @@
             "shortcode": "SB60",
             "lowE_name": "SolarbanÂ® 60",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB60\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -6583,9 +4681,7 @@
             "shortcode": "LUMI",
             "lowE_name": "ECLAZ II",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"LUMI\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -6596,35 +4692,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 1185,
-      "config_count": 70,
-      "distinct_colors": 37,
-      "max_dE_in_cluster": 1.4911,
-      "mean_dE_in_cluster": 0.927,
-      "comment_csv": "SB70 Optiblue 5mm / Argon 11.08mm / Clear 5mm / Vacuum 0.25mm / C272 5mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.43,
-      "exterior_Lab": {
-        "L": 39.24,
-        "a": -2.12,
-        "b": -6.65
-      },
-      "interior_Lab": {
-        "L": 43.72,
-        "a": -1.93,
-        "b": -4.7
-      },
-      "performance": {
-        "uval": 0.308,
-        "uvalIP": 0.0542,
-        "rval": 18.44,
-        "shgc": 0.1908,
-        "tvis": 0.397,
-        "routVis": 0.1073,
-        "tuv": 0.0166,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Optiblue +SB70@S2; S3/4=Clear; S5/6=Clear +C272@S5",
       "layers": [
         {
@@ -6643,9 +4713,7 @@
             "shortcode": "SB70",
             "lowE_name": "SolarbanÂ® 70",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB70\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -6688,9 +4756,7 @@
             "shortcode": "C272",
             "lowE_name": "LoEÂ² 272",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C272\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -6701,35 +4767,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 369,
-      "config_count": 70,
-      "distinct_colors": 30,
-      "max_dE_in_cluster": 1.522,
-      "mean_dE_in_cluster": 0.9048,
-      "comment_csv": "SB70 Solargray 5mm / Argon 12.58mm / Clear 4mm / Vacuum 0.25mm / SB70 4mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.43,
-      "exterior_Lab": {
-        "L": 34.46,
-        "a": -1.05,
-        "b": -4.3
-      },
-      "interior_Lab": {
-        "L": 46.81,
-        "a": -4.5,
-        "b": -5.53
-      },
-      "performance": {
-        "uval": 0.2349,
-        "uvalIP": 0.0414,
-        "rval": 24.17,
-        "shgc": 0.1323,
-        "tvis": 0.2712,
-        "routVis": 0.0822,
-        "tuv": 0.0052,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Solargray +SB70@S2; S3/4=Clear; S5/6=Clear +SB70@S5",
       "layers": [
         {
@@ -6748,9 +4788,7 @@
             "shortcode": "SB70",
             "lowE_name": "SolarbanÂ® 70",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB70\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -6793,9 +4831,7 @@
             "shortcode": "SB70",
             "lowE_name": "SolarbanÂ® 70",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB70\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -6806,35 +4842,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 1775,
-      "config_count": 4,
-      "distinct_colors": 2,
-      "max_dE_in_cluster": 0.0539,
-      "mean_dE_in_cluster": 0.0269,
-      "comment_csv": "XTREME 6mm / Argon 8.15mm / SKN183 6mm / Vacuum 0.25mm / Clear 5mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.4,
-      "exterior_Lab": {
-        "L": 42.63,
-        "a": -2.87,
-        "b": -8.86
-      },
-      "interior_Lab": {
-        "L": 49.02,
-        "a": -7.43,
-        "b": -2.6
-      },
-      "performance": {
-        "uval": 0.252,
-        "uvalIP": 0.0444,
-        "rval": 22.53,
-        "shgc": 0.1917,
-        "tvis": 0.5034,
-        "routVis": 0.1277,
-        "tuv": 0.1035,
-        "nfrc": true,
-        "cen": true
-      },
       "surface_map": "S1/2=Clear +XTR6129@S2; S3/4=Clear +SKN183@S4; S5/6=Clear",
       "layers": [
         {
@@ -6853,9 +4863,7 @@
             "shortcode": "XTR6129",
             "lowE_name": "COOL-LITE XTREME 61-29 II",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"XTR6129\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -6879,9 +4887,7 @@
             "shortcode": "SKN183",
             "lowE_name": "COOL-LITE SKN 183 II",
             "surface": 4,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SKN183\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -6911,35 +4917,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 2213,
-      "config_count": 96,
-      "distinct_colors": 48,
-      "max_dE_in_cluster": 1.4951,
-      "mean_dE_in_cluster": 0.7657,
-      "comment_csv": "Q452 6mm / Argon 7.45mm / Clear 6mm / Vacuum 0.25mm / SKN183 6mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.4,
-      "exterior_Lab": {
-        "L": 39.72,
-        "a": -4.66,
-        "b": -2.6
-      },
-      "interior_Lab": {
-        "L": 47.97,
-        "a": -5.02,
-        "b": -4.17
-      },
-      "performance": {
-        "uval": 0.2542,
-        "uvalIP": 0.0448,
-        "rval": 22.34,
-        "shgc": 0.1819,
-        "tvis": 0.4248,
-        "routVis": 0.1098,
-        "tuv": 0.0064,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Clear +Q452@S2; S3/4=Clear; S5/6=Clear +SKN183@S5",
       "layers": [
         {
@@ -6958,9 +4938,7 @@
             "shortcode": "Q452",
             "lowE_name": "Quad LoE 452",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"Q452\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -7003,9 +4981,7 @@
             "shortcode": "SKN183",
             "lowE_name": "COOL-LITE SKN 183 II",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SKN183\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -7016,35 +4992,9 @@
       "product": "Enthermal Plus (VIG outboard)",
       "source": "enthermal-plus-outboard.json",
       "source_idx": 828,
-      "config_count": 40,
-      "distinct_colors": 16,
-      "max_dE_in_cluster": 1.15,
-      "mean_dE_in_cluster": 0.4518,
-      "comment_csv": "SB60 Solarblue 6mm / Vacuum 0.25mm / Clear 6mm / Argon 9.01mm / C272 5mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.46,
-      "exterior_Lab": {
-        "L": 33.77,
-        "a": -2.51,
-        "b": -5.88
-      },
-      "interior_Lab": {
-        "L": 41.47,
-        "a": -2.62,
-        "b": -1.15
-      },
-      "performance": {
-        "uval": 0.2978,
-        "uvalIP": 0.0524,
-        "rval": 19.07,
-        "shgc": 0.2248,
-        "tvis": 0.3493,
-        "routVis": 0.0783,
-        "tuv": 0.0316,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Solarblue +SB60@S2; S3/4=Clear; S5/6=Clear +C272@S5",
       "layers": [
         {
@@ -7063,9 +5013,7 @@
             "shortcode": "SB60",
             "lowE_name": "SolarbanÂ® 60",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB60\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -7108,9 +5056,7 @@
             "shortcode": "C272",
             "lowE_name": "LoEÂ² 272",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C272\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -7121,35 +5067,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 368,
-      "config_count": 69,
-      "distinct_colors": 35,
-      "max_dE_in_cluster": 1.5578,
-      "mean_dE_in_cluster": 0.9131,
-      "comment_csv": "SB70 Solargray 5mm / Argon 12.58mm / Clear 4mm / Vacuum 0.25mm / SB60 4mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.43,
-      "exterior_Lab": {
-        "L": 33.74,
-        "a": -0.99,
-        "b": -3.01
-      },
-      "interior_Lab": {
-        "L": 43.76,
-        "a": -2.23,
-        "b": -4.72
-      },
-      "performance": {
-        "uval": 0.2825,
-        "uvalIP": 0.0497,
-        "rval": 20.1,
-        "shgc": 0.1438,
-        "tvis": 0.2958,
-        "routVis": 0.0789,
-        "tuv": 0.0125,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Solargray +SB70@S2; S3/4=Clear; S5/6=Clear +SB60@S5",
       "layers": [
         {
@@ -7168,9 +5088,7 @@
             "shortcode": "SB70",
             "lowE_name": "SolarbanÂ® 70",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB70\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -7213,9 +5131,7 @@
             "shortcode": "SB60",
             "lowE_name": "SolarbanÂ® 60",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB60\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -7226,35 +5142,9 @@
       "product": "Enthermal (VIG, 2 panes)",
       "source": "enthermal.json",
       "source_idx": 92,
-      "config_count": 3,
-      "distinct_colors": 3,
-      "max_dE_in_cluster": 0.1153,
-      "mean_dE_in_cluster": 0.0564,
-      "comment_csv": "SB60 Solarblue 6mm / Vacuum 0.25mm / Clear 4mm",
       "n_panes": 2,
       "gas_fill": null,
       "total_thickness_mm": 9.95,
-      "exterior_Lab": {
-        "L": 31.83,
-        "a": -1.26,
-        "b": -6.02
-      },
-      "interior_Lab": {
-        "L": 38.78,
-        "a": -2.9,
-        "b": 0.55
-      },
-      "performance": {
-        "uval": 0.3486,
-        "uvalIP": 0.0614,
-        "rval": 16.29,
-        "shgc": 0.2469,
-        "tvis": 0.4472,
-        "routVis": 0.0695,
-        "tuv": 0.1019,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Solarblue +SB60@S2; S3/4=Clear",
       "layers": [
         {
@@ -7273,9 +5163,7 @@
             "shortcode": "SB60",
             "lowE_name": "SolarbanÂ® 60",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB60\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -7305,35 +5193,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 1801,
-      "config_count": 154,
-      "distinct_colors": 56,
-      "max_dE_in_cluster": 1.1245,
-      "mean_dE_in_cluster": 0.6013,
-      "comment_csv": "C340 6mm / Argon 9.0mm / Clear 6mm / Vacuum 0.25mm / SB60 5mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.45,
-      "exterior_Lab": {
-        "L": 44.1,
-        "a": -6.84,
-        "b": -12.03
-      },
-      "interior_Lab": {
-        "L": 46.18,
-        "a": -3.79,
-        "b": 0.19
-      },
-      "performance": {
-        "uval": 0.2976,
-        "uvalIP": 0.0524,
-        "rval": 19.08,
-        "shgc": 0.1417,
-        "tvis": 0.2991,
-        "routVis": 0.1378,
-        "tuv": 0.0065,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Clear +C340@S2; S3/4=Clear; S5/6=Clear +SB60@S5",
       "layers": [
         {
@@ -7352,9 +5214,7 @@
             "shortcode": "C340",
             "lowE_name": "LoEÂ³ 340",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C340\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -7397,9 +5257,7 @@
             "shortcode": "SB60",
             "lowE_name": "SolarbanÂ® 60",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB60\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -7410,35 +5268,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 2061,
-      "config_count": 12,
-      "distinct_colors": 6,
-      "max_dE_in_cluster": 1.6064,
-      "mean_dE_in_cluster": 1.047,
-      "comment_csv": "SB60 Optiblue 6mm / Argon 7.49mm / SKN183 6mm / Vacuum 0.25mm / Clear 6mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.44,
-      "exterior_Lab": {
-        "L": 35.99,
-        "a": -0.47,
-        "b": -8.55
-      },
-      "interior_Lab": {
-        "L": 45.06,
-        "a": -3.99,
-        "b": -3.12
-      },
-      "performance": {
-        "uval": 0.2548,
-        "uvalIP": 0.0449,
-        "rval": 22.28,
-        "shgc": 0.2011,
-        "tvis": 0.4259,
-        "routVis": 0.0892,
-        "tuv": 0.0668,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Optiblue +SB60@S2; S3/4=Clear +SKN183@S4; S5/6=Clear",
       "layers": [
         {
@@ -7457,9 +5289,7 @@
             "shortcode": "SB60",
             "lowE_name": "SolarbanÂ® 60",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB60\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -7483,9 +5313,7 @@
             "shortcode": "SKN183",
             "lowE_name": "COOL-LITE SKN 183 II",
             "surface": 4,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SKN183\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -7515,35 +5343,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 1728,
-      "config_count": 52,
-      "distinct_colors": 26,
-      "max_dE_in_cluster": 1.48,
-      "mean_dE_in_cluster": 0.7971,
-      "comment_csv": "SB70 Optiblue 6mm / Argon 9.09mm / C180 6mm / Vacuum 0.25mm / Clear 5mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.44,
-      "exterior_Lab": {
-        "L": 39.68,
-        "a": -1.88,
-        "b": -8.74
-      },
-      "interior_Lab": {
-        "L": 49.48,
-        "a": -1.64,
-        "b": -7.87
-      },
-      "performance": {
-        "uval": 0.3866,
-        "uvalIP": 0.0681,
-        "rval": 14.69,
-        "shgc": 0.1734,
-        "tvis": 0.4073,
-        "routVis": 0.1094,
-        "tuv": 0.0227,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Optiblue +SB70@S2; S3/4=Clear +C180@S4; S5/6=Clear",
       "layers": [
         {
@@ -7562,9 +5364,7 @@
             "shortcode": "SB70",
             "lowE_name": "SolarbanÂ® 70",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB70\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -7588,9 +5388,7 @@
             "shortcode": "C180",
             "lowE_name": "LoE 180",
             "surface": 4,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C180\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -7620,35 +5418,9 @@
       "product": "Enthermal Plus (VIG outboard)",
       "source": "enthermal-plus-outboard.json",
       "source_idx": 984,
-      "config_count": 126,
-      "distinct_colors": 59,
-      "max_dE_in_cluster": 1.2824,
-      "mean_dE_in_cluster": 0.8311,
-      "comment_csv": "SB60 Optigray 6mm / Vacuum 0.25mm / Clear 6mm / Argon 8.01mm / C180 6mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.46,
-      "exterior_Lab": {
-        "L": 36.97,
-        "a": -1.7,
-        "b": -3.11
-      },
-      "interior_Lab": {
-        "L": 48.33,
-        "a": -3.15,
-        "b": -3.69
-      },
-      "performance": {
-        "uval": 0.3042,
-        "uvalIP": 0.0536,
-        "rval": 18.67,
-        "shgc": 0.2465,
-        "tvis": 0.4274,
-        "routVis": 0.0951,
-        "tuv": 0.0476,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Optigray +SB60@S2; S3/4=Clear; S5/6=Clear +C180@S5",
       "layers": [
         {
@@ -7667,9 +5439,7 @@
             "shortcode": "SB60",
             "lowE_name": "SolarbanÂ® 60",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB60\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -7712,9 +5482,7 @@
             "shortcode": "C180",
             "lowE_name": "LoE 180",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C180\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -7725,35 +5493,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 421,
-      "config_count": 137,
-      "distinct_colors": 71,
-      "max_dE_in_cluster": 1.6377,
-      "mean_dE_in_cluster": 1.0988,
-      "comment_csv": "C366 6mm / Argon 11.65mm / C270 4mm / Vacuum 0.25mm / Clear 4mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.4,
-      "exterior_Lab": {
-        "L": 42.75,
-        "a": -3.25,
-        "b": -3.17
-      },
-      "interior_Lab": {
-        "L": 46.35,
-        "a": -7.03,
-        "b": 2.38
-      },
-      "performance": {
-        "uval": 0.287,
-        "uvalIP": 0.0505,
-        "rval": 19.78,
-        "shgc": 0.1974,
-        "tvis": 0.4898,
-        "routVis": 0.1298,
-        "tuv": 0.0116,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Clear +C366@S2; S3/4=Clear +C270@S4; S5/6=Clear",
       "layers": [
         {
@@ -7772,9 +5514,7 @@
             "shortcode": "C366",
             "lowE_name": "LoEÂ³ 366",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C366\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -7798,9 +5538,7 @@
             "shortcode": "C270",
             "lowE_name": "LoEÂ² 270",
             "surface": 4,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C270\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -7830,35 +5568,9 @@
       "product": "Enthermal Plus (VIG outboard)",
       "source": "enthermal-plus-outboard.json",
       "source_idx": 386,
-      "config_count": 32,
-      "distinct_colors": 16,
-      "max_dE_in_cluster": 0.3662,
-      "mean_dE_in_cluster": 0.223,
-      "comment_csv": "SB70 5mm / Vacuum 0.25mm / Clear 5mm / Argon 11.86mm / C270 4mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.41,
-      "exterior_Lab": {
-        "L": 47.09,
-        "a": -7.1,
-        "b": -2.3
-      },
-      "interior_Lab": {
-        "L": 46.39,
-        "a": -4.43,
-        "b": -3.37
-      },
-      "performance": {
-        "uval": 0.2392,
-        "uvalIP": 0.0421,
-        "rval": 23.74,
-        "shgc": 0.2385,
-        "tvis": 0.4982,
-        "routVis": 0.1605,
-        "tuv": 0.0164,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Clear +SB70@S2; S3/4=Clear; S5/6=Clear +C270@S5",
       "layers": [
         {
@@ -7877,9 +5589,7 @@
             "shortcode": "SB70",
             "lowE_name": "SolarbanÂ® 70",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB70\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -7922,9 +5632,7 @@
             "shortcode": "C270",
             "lowE_name": "LoEÂ² 270",
             "surface": 5,
-            "pane_face": "outboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C270\" -- add to COATING_IGDB"
+            "pane_face": "outboard"
           }
         }
       ]
@@ -7935,35 +5643,9 @@
       "product": "Enthermal Plus (VIG inboard)",
       "source": "enthermal-plus-inboard.json",
       "source_idx": 1248,
-      "config_count": 225,
-      "distinct_colors": 104,
-      "max_dE_in_cluster": 1.3329,
-      "mean_dE_in_cluster": 0.7653,
-      "comment_csv": "SB60 6mm / Argon 10.09mm / C272 5mm / Vacuum 0.25mm / Clear 5mm",
       "n_panes": 3,
       "gas_fill": "Ar90",
       "total_thickness_mm": 25.44,
-      "exterior_Lab": {
-        "L": 41.52,
-        "a": -2.04,
-        "b": -2.7
-      },
-      "interior_Lab": {
-        "L": 43.95,
-        "a": -3.53,
-        "b": 2.29
-      },
-      "performance": {
-        "uval": 0.3145,
-        "uvalIP": 0.0554,
-        "rval": 18.05,
-        "shgc": 0.2768,
-        "tvis": 0.5642,
-        "routVis": 0.122,
-        "tuv": 0.052,
-        "nfrc": true,
-        "cen": false
-      },
       "surface_map": "S1/2=Clear +SB60@S2; S3/4=Clear +C272@S4; S5/6=Clear",
       "layers": [
         {
@@ -7982,9 +5664,7 @@
             "shortcode": "SB60",
             "lowE_name": "SolarbanÂ® 60",
             "surface": 2,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"SB60\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
@@ -8008,9 +5688,7 @@
             "shortcode": "C272",
             "lowE_name": "LoEÂ² 272",
             "surface": 4,
-            "pane_face": "inboard",
-            "coated_igdb_id": null,
-            "spectral_note": "no coated-product IGDB id for \"C272\" -- add to COATING_IGDB"
+            "pane_face": "inboard"
           }
         },
         {
