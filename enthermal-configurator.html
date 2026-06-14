@@ -223,7 +223,7 @@ body{font-family:var(--font-body);background:var(--lw-gray-50);color:var(--lw-da
               <div class="radio-option"><input type="radio" name="plusOuterThickness" id="plusOuterT6" value="6"><label class="radio-label" for="plusOuterT6"><span class="radio-value">6</span><span class="radio-unit">mm</span></label></div>
             </div>
           </div>
-          <div class="config-field"><label>Low-E Coating</label><select id="plusOuterCoating"></select></div>
+          <div class="config-field"><label>Low-E Coating + Substrate</label><select id="plusOuterCoating"></select></div>
         </div>
         <div class="config-section" id="plusSectionGap" style="order:2">
           <div class="config-section-label">Gap</div>
@@ -245,6 +245,7 @@ body{font-family:var(--font-body);background:var(--lw-gray-50);color:var(--lw-da
               <option value="4/4">4 / 4 mm</option>
               <option value="5/4">5 / 4 mm</option>
               <option value="5/5">5 / 5 mm</option>
+              <option value="6/4">6 / 4 mm</option>
               <option value="6/5">6 / 5 mm</option>
               <option value="6/6">6 / 6 mm</option>
             </select>
@@ -290,19 +291,6 @@ body{font-family:var(--font-body);background:var(--lw-gray-50);color:var(--lw-da
       <!-- Row 2: Metric cards — left half -->
       <div class="results-grid-metrics-left">
         <div class="metric-card" style="position:relative;padding:15px 17px 11px;display:flex;gap:0">
-          <div style="flex:1;text-align:left;padding-right:12px">
-            <div class="metric-label">U-value</div>
-            <div class="metric-value" id="metricU">—</div>
-            <div class="metric-unit">W/m²·K</div>
-          </div>
-          <div style="flex-shrink:0;display:flex;padding:1px 0"><div style="width:1px;background:var(--lw-gray-200)"></div></div>
-          <div id="uFactorSection" style="flex:1;text-align:right;padding-left:12px">
-            <div class="metric-label">U-factor</div>
-            <div class="metric-value" id="metricUIP">—</div>
-            <div class="metric-unit">Btu/hr·ft²·°F</div>
-          </div>
-        </div>
-        <div class="metric-card" style="position:relative;padding:15px 17px 11px;display:flex;gap:0">
           <div id="rValueSection" style="flex:1;text-align:left;padding-right:12px">
             <div class="metric-label">R-value</div>
             <div class="metric-value" id="metricR">—</div>
@@ -313,6 +301,19 @@ body{font-family:var(--font-body);background:var(--lw-gray-50);color:var(--lw-da
             <div class="metric-label" id="shgcLabel">SHGC</div>
             <div class="metric-value" id="metricSHGC">—</div>
             <div class="metric-unit" id="shgcUnit">Solar Heat Gain</div>
+          </div>
+        </div>
+        <div class="metric-card" style="position:relative;padding:15px 17px 11px;display:flex;gap:0">
+          <div style="flex:1;text-align:left;padding-right:12px">
+            <div class="metric-label">U-value</div>
+            <div class="metric-value" id="metricU">—</div>
+            <div class="metric-unit">W/m²·K</div>
+          </div>
+          <div style="flex-shrink:0;display:flex;padding:1px 0"><div style="width:1px;background:var(--lw-gray-200)"></div></div>
+          <div id="uFactorSection" style="flex:1;text-align:right;padding-left:12px">
+            <div class="metric-label">U-factor</div>
+            <div class="metric-value" id="metricUIP">—</div>
+            <div class="metric-unit">Btu/hr·ft²·°F</div>
           </div>
         </div>
       </div>
@@ -499,10 +500,10 @@ const COATING_NAMES = {
 };
 const SUBSTRATE_NAMES = {
   'Clear': 'Clear',
-  'Optiblue': 'Optiblue®', 'Optigray': 'Optigray®', 'Solarblue': 'Solarblue®',
-  'Solarbronze': 'Solarbronze®', 'Solargray': 'Solargray®',
-  'Solexia': 'Solexia®', 'Starphire': 'Starphire®',
-  'OptiblueZ50': 'Optiblue® (Solarban® z50)', 'OptiblueZ75': 'Optiblue® (Solarban® z75)'
+  'Optiblue': 'Optiblue', 'Optigray': 'Optigray', 'Solarblue': 'Solarblue',
+  'Solarbronze': 'Solarbronze', 'Solargray': 'Solargray',
+  'Solexia': 'Solexia', 'Starphire': 'Starphire',
+  'OptiblueZ50': 'Optiblue (Solarban z50)', 'OptiblueZ75': 'Optiblue (Solarban z75)'
 };
 // Manufacturer prefix for coating dropdowns. Not applied to summary bar or
 // cross-section labels — those keep the bare product name.
@@ -724,7 +725,7 @@ inner.style.borderColor='rgba(180,200,220,0.5)';
 // Cross-section labels: if substrate is Clear, show coating name on top line and
 // substrate+thickness on sub-line. If branded, show substrate+thickness on top
 // line (coating is embedded in the substrate product) and clear the sub-line.
-var outerSubLabel=substrateName(outerLayer.substrate).replace(/[®™]/g,'')+' '+eOuterMM+'mm';
+var outerSubLabel=substrateName(outerLayer.substrate)+' '+eOuterMM+'mm';
 if(outerLayer.substrate==='Clear'){
   document.getElementById('csOuterDetail').textContent=coatingName(outerLayer.coating);
   document.getElementById('csOuterSub').textContent=outerSubLabel;
@@ -751,7 +752,7 @@ document.querySelectorAll('.product-tab').forEach(tab=>{tab.addEventListener('cl
   document.getElementById('csEnthermal').style.display=isPlus?'none':'flex';
   document.getElementById('csEnthPlus').style.display=isPlus?'flex':'none';
   if(isPlus){
-    if(!plusInitialized&&dataLoaded){initPlusConfig();document.getElementById('plusSrf4').checked=true;var pCoat366=Array.from(plusOuterCoatingEl.options).find(function(o){return o.value.includes('366')});if(pCoat366){plusOuterCoatingEl.value=pCoat366.value;updatePlusVigCoatings();var vCoat366=Array.from(plusVigCoatingEl.options).find(function(o){return o.value.includes('366')});if(vCoat366){plusVigCoatingEl.value=vCoat366.value}}updatePlusSurfaces();plusInitialized=true}
+    if(!plusInitialized&&dataLoaded){initPlusConfig();document.getElementById('plusSrf4').checked=true;var pCoat366=Array.from(plusOuterCoatingEl.options).find(function(o){return o.value==='C366|Clear'});if(pCoat366){plusOuterCoatingEl.value=pCoat366.value;updatePlusVigCoatings();var vCoat366=Array.from(plusVigCoatingEl.options).find(function(o){return o.value.includes('366')});if(vCoat366){plusVigCoatingEl.value=vCoat366.value}}updatePlusSurfaces();plusInitialized=true}
     updatePlusResults();requestAnimationFrame(function(){repositionPlusToggles()});
   }else{
     updateResults();requestAnimationFrame(function(){centerCrossSection()});
@@ -816,9 +817,10 @@ function filterPlusData(){
     if(isOutboard)data=data.filter(function(d){return d.glass[2].thickness===ot});
     else data=data.filter(function(d){return d.glass[0].thickness===ot});
   }
-  // Step 2: Outer coating (S2 — glass[0].coating, both modes)
-  var oc=plusOuterCoatingEl.value;
-  if(oc)data=data.filter(function(d){return d.glass[0].coating===oc});
+  // Step 2: Outer coating + substrate (S2 — glass[0], both modes).
+  // Value is "<coating>|<substrate>" so the colored outer lite is selectable.
+  var combo=parseComboKey(plusOuterCoatingEl.value);
+  if(combo.coating)data=data.filter(function(d){return d.glass[0].coating===combo.coating&&d.glass[0].substrate===combo.substrate});
   // Step 3: Gas fill
   var isAir=document.getElementById('gapToggleInput').checked;
   data=data.filter(function(d){return d.gasType===(isAir?'Air':'Ar90')});
@@ -846,15 +848,32 @@ function initPlusConfig(){
   updatePlusOuterCoatings();
 }
 
+// Build the outer "coating + substrate" combo options for the Plus tab,
+// mirroring the Enthermal outer-coating dropdown. The colored substrate
+// always sits on the outer lite (glass[0]), so combining them here is the
+// only way to surface tinted configs (e.g. SB60 on Solargray).
+function buildPlusOuterCombos(data){
+  var combos=[],seen=new Set();
+  data.forEach(function(d){
+    if(!d.glass[0].coating)return;
+    var key=comboKey(d.glass[0]);
+    if(seen.has(key))return;
+    seen.add(key);
+    combos.push({value:key,display:layerDisplay(d.glass[0],coatingNameWithMaker)});
+  });
+  combos.sort(function(a,b){return a.display.localeCompare(b.display)});
+  return combos;
+}
+
 function updatePlusOuterCoatings(){
   var data=getActivePlusData();
   var ot=parseInt(getVal('plusOuterThickness'));
   if(ot)data=data.filter(function(d){return d.glass[0].thickness===ot});
-  var coats=unique(data.map(function(d){return d.glass[0].coating}));
+  var combos=buildPlusOuterCombos(data);
   var prev=plusOuterCoatingEl.value;
-  populateSelect(plusOuterCoatingEl,coats,'Select coating…',coatingNameWithMaker);
-  if(coats.includes(prev))plusOuterCoatingEl.value=prev;
-  else if(coats.length===1)plusOuterCoatingEl.value=coats[0];
+  populateSelect(plusOuterCoatingEl,combos,'Select coating…');
+  if(combos.some(function(c){return c.value===prev}))plusOuterCoatingEl.value=prev;
+  else if(combos.length===1)plusOuterCoatingEl.value=combos[0].value;
   updatePlusVigThickness();
 }
 
@@ -863,8 +882,8 @@ function updatePlusVigThickness(){
   var isOutboard=document.getElementById('posToggleInput').checked;
   var ot=parseInt(getVal('plusOuterThickness'));
   if(ot)data=data.filter(function(d){return d.glass[0].thickness===ot});
-  var oc=plusOuterCoatingEl.value;
-  if(oc)data=data.filter(function(d){return d.glass[0].coating===oc});
+  var combo=parseComboKey(plusOuterCoatingEl.value);
+  if(combo.coating)data=data.filter(function(d){return d.glass[0].coating===combo.coating&&d.glass[0].substrate===combo.substrate});
   var isAir=document.getElementById('gapToggleInput').checked;
   data=data.filter(function(d){return d.gasType===(isAir?'Air':'Ar90')});
   var validCombos=new Set(data.map(function(d){return getVigComboKey(d,isOutboard)}));
@@ -936,11 +955,11 @@ function updatePlusS2CoatingOutboard(){
   var data=_plusOutboardData();
   var vt=document.getElementById('plusVigThickness').value;
   if(vt)data=data.filter(function(d){return getVigComboKey(d,true)===vt});
-  var coats=unique(data.map(function(d){return d.glass[0].coating})).filter(function(c){return c});
+  var combos=buildPlusOuterCombos(data);
   var prev=plusOuterCoatingEl.value;
-  populateSelect(plusOuterCoatingEl,coats,'Select coating…',coatingNameWithMaker);
-  if(coats.includes(prev))plusOuterCoatingEl.value=prev;
-  else if(coats.length>0)plusOuterCoatingEl.value=coats[0];
+  populateSelect(plusOuterCoatingEl,combos,'Select coating…');
+  if(combos.some(function(c){return c.value===prev}))plusOuterCoatingEl.value=prev;
+  else if(combos.length>0)plusOuterCoatingEl.value=combos[0].value;
   updatePlusResults();
 }
 // Branch b — Inboard (mono inner) thickness, depends on VIG thickness only.
@@ -992,7 +1011,7 @@ function seedPlusOutboardDefaults(){
 function seedPlusInboardDefaults(){
   initPlusConfig();
   document.getElementById('plusSrf4').checked=true;
-  var pCoat366=Array.from(plusOuterCoatingEl.options).find(function(o){return o.value==='C366'});
+  var pCoat366=Array.from(plusOuterCoatingEl.options).find(function(o){return o.value==='C366|Clear'});
   if(pCoat366){
     plusOuterCoatingEl.value=pCoat366.value;
     updatePlusVigThickness();
@@ -1048,7 +1067,9 @@ function updatePlusResults(surfaceOnly){
   if(!surfaceOnly){document.querySelectorAll('.metric-value').forEach(function(el){el.classList.remove('fade-in');void el.offsetWidth;el.classList.add('fade-in')})}
   refreshMetricMuted();
   var isOutboard=document.getElementById('posToggleInput').checked;
-  var s2Display=layerDisplay(match.glass[0]);
+  // S2 always names its substrate explicitly — "… on Clear" for clear lites,
+  // "… on Solargray" etc. for tinted ones (not just the bare coating name).
+  var s2Display=coatingName(match.glass[0].coating)+' on '+substrateName(match.glass[0].substrate);
   var secondDisplay=coatingName(match.secondCoating);
   var vigSrf=match.secondSurface;
   var isS4=vigSrf==='S4';
@@ -1070,7 +1091,7 @@ function updatePlusResults(surfaceOnly){
   // the inboard-most lite in both modes.
   var leftLayer=match.glass[0];
   var leftIsCoated=leftLayer.substrate!=='Clear';
-  var leftSubLabel=substrateName(leftLayer.substrate).replace(/[®™]/g,'')+' '+leftLayer.thickness+'mm';
+  var leftSubLabel=substrateName(leftLayer.substrate)+' '+leftLayer.thickness+'mm';
   if(leftIsCoated){
     document.getElementById('csPlusOuterDetail').textContent=leftSubLabel;
     document.getElementById('csPlusOuterCoating').textContent=coatingName(leftLayer.coating);
