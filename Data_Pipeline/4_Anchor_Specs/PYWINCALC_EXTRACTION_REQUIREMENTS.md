@@ -1,14 +1,14 @@
-# pyWinCalc Extraction Requirements — 77-Anchor Production Run
+# pyWinCalc Extraction Requirements — 137-Anchor Production Run
 
-> Contract between the pyWinCalc extraction script and the render pipeline (Stage B data conversion → Stage C Blender automation). Defines exactly what to extract, what to validate, and what to exclude. Companion to `CLAUDE_GLASS_SHADER.md` (shader consumer) and `CLUSTERING_AND_DELIVERY.md` (anchor definitions).
+> Contract between the pyWinCalc extraction script and the render pipeline (Stage B data conversion → Stage C Blender automation). Defines exactly what to extract, what to validate, and what to exclude. Companion to `CLAUDE_GLASS_SHADER.md` (shader consumer) and `../3_Clustering/CLUSTERING_PROCEDURE.md` (anchor definitions).
 
 ---
 
 ## 1. Scope
 
-- **77 anchors** from `AnchorRender_Configs.json` (config-only input: per-layer stack, surface/flip, and `lite_nfrc_id`), spanning 7 manufacturer families / 14 coatings
-- **Face-on optical + color extraction** for all 77 (shader inputs)
-- **Full angular Rfvis sweep** for all 77 (scaling-formula validation — exhaustive, not sampled)
+- **137 anchors** from `AnchorRender_Configs.json` (config-only input: per-layer stack, surface/flip, and `lite_nfrc_id`), spanning 7 manufacturer families / 14 coatings / 8 exterior-substrate families
+- **Face-on optical + color extraction** for all 137 (shader inputs)
+- **Full angular Rfvis sweep** for all 137 (scaling-formula validation — exhaustive, not sampled)
 - Optical/visual quantities only. **No thermal outputs** — gap definitions in this run are nominal-air placeholders; any U-value or SHGC produced would be invalid, not merely redundant. Production thermal data already lives in the configurator JSONs.
 
 ---
@@ -78,8 +78,8 @@ All quantities are **front-side, specular (`direct_direct`), W5 photopic/color**
 
 ### 3.4 Totals
 
-- 16 values × 77 anchors = **1,232 numbers**
-- 77 `color()` calls + 693 photopic calls (9 angles × 77)
+- 16 values × 137 anchors = **2,192 numbers**
+- 137 `color()` calls + 1,233 photopic calls (9 angles × 137)
 
 ---
 
@@ -107,7 +107,7 @@ All quantities are **front-side, specular (`direct_direct`), W5 photopic/color**
 
 ## 6. Output files
 
-### 6.1 `anchors_77_optical.csv` — one row per anchor
+### 6.1 `anchors_137_optical.csv` — one row per anchor
 
 | Column | Source |
 |---|---|
@@ -126,7 +126,7 @@ All quantities are **front-side, specular (`direct_direct`), W5 photopic/color**
 | `max_abs_deviation` | §3.3 angular metric |
 | `angular_verdict` | `CONFIRMED` / `DOCUMENTED` / `FLAGGED` |
 
-### 6.2 `angular_validation.csv` — one row per (anchor, θ): 77 × 9 = 693 rows
+### 6.2 `angular_validation.csv` — one row per (anchor, θ): 137 × 9 = 1,233 rows
 
 | Column | Source |
 |---|---|
@@ -149,7 +149,7 @@ All quantities are **front-side, specular (`direct_direct`), W5 photopic/color**
 ## 7. Acceptance criteria for the run
 
 ```
-[ ] All 77 anchors: face_on_status = PASS (Rfvis and Tvis within ±0.002 of JSON)
+[ ] All 137 anchors: face_on_status = PASS (Rfvis and Tvis within ±0.002 of JSON)
 [ ] θ-unit verification passed (anchor #0 at 60° ≈ 0.279)
 [ ] FLAGGED tier empty (expected) — else Stage B per-anchor override list produced
 [ ] All three output files written, full precision
@@ -162,7 +162,7 @@ A single face-on `FAIL` halts trust in that anchor's Lab values too — fix the 
 
 ## 8. Anchor #0 verification fixture
 
-Anchor #0 is **not one of the 77 production anchors** — its outer coating (ECLAZ II) does not appear in the production set. The script must define its stack as a separate verification fixture, built and checked **before** the production loop runs.
+Anchor #0 is **not one of the 137 production anchors** — its outer coating (ECLAZ II) does not appear in the production set. The script must define its stack as a separate verification fixture, built and checked **before** the production loop runs.
 
 ### 8.1 Stack definition
 
@@ -187,8 +187,8 @@ Enthermal Plus VIG-inboard configuration. The vacuum gap is optically irrelevant
 
 ### 8.3 Gate behavior
 
-Both Rfvis checks (8.2 rows 1–2) must pass before any production anchor is processed. A fixture failure means the pyWinCalc environment (standard file, convention, units, or API usage) — not the anchor data — is wrong; halt and diagnose rather than running 77 anchors under an unproven setup. Write the fixture results to `run_log.txt` as the first entries.
+Both Rfvis checks (8.2 rows 1–2) must pass before any production anchor is processed. A fixture failure means the pyWinCalc environment (standard file, convention, units, or API usage) — not the anchor data — is wrong; halt and diagnose rather than running 137 anchors under an unproven setup. Write the fixture results to `run_log.txt` as the first entries.
 
 ### 8.4 Interpretive caveat for the angular validation
 
-The canonical 10-stop curve (§5.4) was measured on this ECLAZ stack. The exhaustive 77-anchor sweep (§3.3) is precisely the test of whether that curve *shape* transfers to the production coating families. If a family clusters in `DOCUMENTED` or `FLAGGED`, the most likely cause is ECLAZ's angular character not generalizing to that family — the designed remedy is the per-anchor measured-curve exception path, not a re-derivation of the formula.
+The canonical 10-stop curve (§5.4) was measured on this ECLAZ stack. The exhaustive 137-anchor sweep (§3.3) is precisely the test of whether that curve *shape* transfers to the production coating families. If a family clusters in `DOCUMENTED` or `FLAGGED`, the most likely cause is ECLAZ's angular character not generalizing to that family — the designed remedy is the per-anchor measured-curve exception path, not a re-derivation of the formula.

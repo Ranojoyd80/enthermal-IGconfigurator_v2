@@ -200,9 +200,10 @@ The pane reordering uses CSS flex `order`; the substrate tint and spacer callout
 
 ## Color Card (Exterior Color)
 
-The card now shows a **static exterior sky photograph** with a weather toggle and a
-zoom lightbox — not a computed Lab→RGB gradient. (The old `#fvGlass` gradient, flip
-button, and `#colorInfo` Lab readout have been removed.) See
+The card shows a **per-configuration photoreal render** with a weather toggle and a
+zoom lightbox — not a computed Lab→RGB gradient. The config's `cid` selects the image
+(`App_Data/Anchor_Renders/<Sky>/anchor_<cid>.webp`) via `setAnchorImages(cid)`. (The old
+`#fvGlass` gradient, flip button, and `#colorInfo` Lab readout have been removed.) See
 [color-rendering.md](color-rendering.md) for full detail.
 
 | Element | Description | CSS / ID |
@@ -210,7 +211,7 @@ button, and `#colorInfo` Lab readout have been removed.) See
 | Card Header | "Exterior Color" (static) | `#colorViewTitle` |
 | Sky Toggle | Pill toggle: Clear / Overcast / Cloudy weather backdrop | `#skyToggle`, `.sky-toggle-option[data-img]` |
 | Toggle Thumb | Teal sliding pill behind the active option | `#skyThumb` |
-| Render Image | The exterior sky photo (`*_Set3.png`); `src` swaps with the toggle, default Overcast | `#colorRenderImg` |
+| Render Image | The per-config render (`Anchor_Renders/<Sky>/anchor_<cid>.webp`); `src` set per config and swaps with the toggle, default Overcast | `#colorRenderImg` |
 | Zoom Button | Magnifier button to open the lightbox | `#colorZoomBtn` |
 | Zoom Lightbox | Full-screen overlay; prev/next or ←/→ step through the three sky conditions | `#imgZoomOverlay`, `#imgZoomFull`, `#imgZoomPrev`, `#imgZoomNext`, `#imgZoomClose` |
 

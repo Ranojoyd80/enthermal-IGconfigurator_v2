@@ -236,9 +236,9 @@ Both tabs implement constraint propagation — each selection filters downstream
 ```
 
 ### Color Rendering
-- The **Exterior Color** card shows a **static exterior sky image** (`App_Data/Anchor_Renders/*_Set3.png`) with a Clear/Overcast/Cloudy weather toggle + zoom lightbox — the same image for every config (not per-config color)
-- The earlier runtime `labToRgb()` Lab→sRGB gradient renderer and the flip/Lab-readout UI have been **removed**
-- Per-config CIE L\*a\*b\* values (`extL/A/B`, `intL/A/B`) remain in the data and feed the JND clustering; per-config photoreal renders are the planned next step (see `CLUSTERING_PROCEDURE.md`)
+- The **Exterior Color** card shows a **per-config photoreal render** with a Clear/Overcast/Cloudy weather toggle + zoom lightbox. Each config carries an integer `cid` (anchor id, injected into the JSON by the clustering script); `setAnchorImages(cid)` points the card at `App_Data/Anchor_Renders/<Sky>/anchor_<cid>.webp` (`cid` zero-padded to ≥2 digits). The 6,862 configs collapse to **137 anchors** at CIEDE2000 ≤ 1.5, substrate-partitioned — full detail in `Data_Pipeline/3_Clustering/CLUSTERING_PROCEDURE.md`
+- The earlier runtime `labToRgb()` Lab→sRGB gradient renderer and the flip/Lab-readout UI have been **removed**; so has the interim static `*_Set3.png` placeholder sky (the same image for every config) — renders are now per-config via `cid`
+- Per-config CIE L\*a\*b\* values (`extL/A/B`, `intL/A/B`) remain in the data and drive the JND clustering that assigns each config its `cid`
 - The cross-section glass panes are still tinted from substrate via `getGlassColor()` — on **both** tabs the exterior lite (`glass[0]`) is tinted from its substrate; the always-Clear inner lites keep their default styling. On Plus this follows the inboard/outboard flip (mono pane in inboard, VIG-outer pane in outboard). A Lab→sRGB cross-section tint was evaluated and rejected: the assembly Lab values are coating-dominated and don't carry the recognizable per-substrate body color
 
 ---

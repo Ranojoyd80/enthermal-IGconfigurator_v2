@@ -54,7 +54,9 @@ App_Data/
 ├── enthermal-plus-inboard.json — 4,748 Plus Inboard configs (~4.5 MB)
 ├── enthermal-plus-outboard.json — 2,016 Plus Outboard configs (~1.9 MB)
 └── Anchor_Renders/
-    └── *_Set3.png             — 3 exterior sky images (Clear / Overcast / Cloudy)
+    ├── Clear/    anchor_00.webp … anchor_136.webp   — per-config exterior renders
+    ├── Overcast/ anchor_00.webp … anchor_136.webp     (137 anchors × 3 skies = 411, ~637 MB)
+    └── Cloudy/   anchor_00.webp … anchor_136.webp
 ```
 
 *(Per-section line counts drift as the single file evolves; treat the function lists below as a guide, not an exact inventory.)*
@@ -148,7 +150,7 @@ App_Data/
 | S4/S5 surface toggle | Coating surface toggle with auto-disable when only one surface is valid |
 | Placement toggle | Inboard/Outboard mode switching with UI reorder, reseed, and cross-section rearrangement |
 | Gas fill toggle | Argon/Air toggle with cascade update |
-| Sky-condition toggle | Swaps the color-card image between Clear / Overcast / Cloudy `*_Set3.png` |
+| Sky-condition toggle | Swaps the color-card image between Clear / Overcast / Cloudy renders for the current config's `cid` |
 | Image zoom lightbox | Full-screen viewer; steps through the three sky conditions |
 
 ### Smart Filtering Logic
@@ -265,17 +267,22 @@ Each record contains a `stack` array of layers plus performance metrics:
 
 ### Color Rendering (current state)
 
-The **Exterior Color** card currently shows a **static exterior sky photograph**
-(`*_Set3.png`) with a Clear / Overcast / Cloudy weather toggle and a zoom lightbox.
-It is the same image for every configuration — it does **not** render per-config
-color. The earlier runtime `labToRgb()` Lab→sRGB gradient renderer (and the flip /
-Lab-readout UI) has been removed. A disclaimer below the image reminds users that
-screen colors are not a substitute for a mock-up.
+The **Exterior Color** card shows a **per-configuration photoreal render** with a
+Clear / Overcast / Cloudy weather toggle and a zoom lightbox. Each config carries an
+integer `cid` (anchor id) injected into the JSON by the clustering script, and
+`setAnchorImages(cid)` points the card at
+`App_Data/Anchor_Renders/<Sky>/anchor_<cid>.webp`. The 6,862 configs collapse to
+**137 color anchors** (CIEDE2000 ≤ 1.5, partitioned by exterior substrate), so the
+image is imperceptibly close to — and the same hue family as — the exact selection.
+The earlier runtime `labToRgb()` Lab→sRGB gradient renderer (and the flip /
+Lab-readout UI), and the interim static `*_Set3.png` placeholder sky, have both been
+removed. A disclaimer below the image reminds users that screen colors are not a
+substitute for a mock-up.
 
 The per-config CIE L\*a\*b\* values (`extL/A/B`, `intL/A/B`) remain in the data and
-feed the JND color clustering; per-configuration photoreal renders are the planned
-next step (see [color-rendering.md](color-rendering.md) and
-[../CLUSTERING_PROCEDURE.md](../CLUSTERING_PROCEDURE.md)). The cross-section panes are
+drive the JND color clustering that assigns each config its `cid` (see
+[color-rendering.md](color-rendering.md) and
+[CLUSTERING_PROCEDURE.md](../Data_Pipeline/3_Clustering/CLUSTERING_PROCEDURE.md)). The cross-section panes are
 still tinted from substrate color via `getGlassColor()` — on both tabs, the exterior
 lite (`glass[0]`) is tinted from its substrate, while the always-Clear inner lites
 keep their default styling. (The assembly-level Lab values are coating-dominated and

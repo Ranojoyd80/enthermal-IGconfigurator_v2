@@ -118,7 +118,7 @@ The pipeline is **CSV → `csv_to_json.py` → JSON** (the CSVs are the source o
 2. Run `python Data_Pipeline/2_Conversion/csv_to_json.py` → writes the 3 files into `App_Data/` (see `Data_Pipeline/2_Conversion/json-schema.md` for the output format)
 3. No HTML changes needed for data-only updates
 4. If a CSV introduces a new coating or substrate token, `csv_to_json.py` **fails loudly** — register it in the `COATING_NAMES` / `SUBSTRATE_NAMES` (and manufacturer) lookups in the HTML, then regenerate
-5. The JND color clustering is a separate downstream step — see `CLUSTERING_PROCEDURE.md`
+5. The JND color clustering is a downstream step that **rewrites** the JSON — `python Data_Pipeline/3_Clustering/recluster_at_jnd.py` clusters the 6,862 configs to 137 anchors and **injects an integer `cid` (anchor id) onto every record**. It is therefore the *final* writer of `App_Data/*.json`: re-running `csv_to_json.py` alone drops `cid`, so always re-run the clustering after it. See `Data_Pipeline/3_Clustering/CLUSTERING_PROCEDURE.md`.
 
 ---
 

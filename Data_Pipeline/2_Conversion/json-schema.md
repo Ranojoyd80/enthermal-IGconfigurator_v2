@@ -47,7 +47,8 @@ lives in the `stack` array; everything else is a scalar metric or color.
   "nfrc": true,
   "cen": false,
   "gFactor": null,
-  "uvalCEN": null
+  "uvalCEN": null,
+  "cid": 27
 }
 ```
 
@@ -75,7 +76,7 @@ unknown token so new products fail loudly instead of silently mislabeling.
 > coating, not which face. The front-end re-derives the surface at load time by a
 > fixed positional convention in `postProcessData()` — outer-pane coating → S2,
 > middle-pane → S4, inner-pane → S5. (Verified against the CSV Low-E suffixes for
-> all 77 render anchors: 0 mismatches; only S2/S4/S5 ever occur.) The authoritative
+> all 137 render anchors: 0 mismatches; only S2/S4/S5 ever occur.) The authoritative
 > surface number survives only in the CSV `… Lite Low-E` column suffix.
 
 ---
@@ -98,6 +99,7 @@ unknown token so new products fail loudly instead of silently mislabeling.
 | `cen` | boolean | — | `true` iff a Saint-Gobain coating sits on Surface 2 |
 | `gFactor` | number \| null | — | CEN solar factor (g); `null` when not provided |
 | `uvalCEN` | number \| null | W/m²K | U-value (CEN); `null` when not provided |
+| `cid` | integer | — | Color-cluster anchor id → exterior render `anchor_<cid>.webp`. **Not from the CSV** — injected by `3_Clustering/recluster_at_jnd.py`, which runs after `csv_to_json.py` and is the final writer of this JSON. See `../3_Clustering/CLUSTERING_PROCEDURE.md`. |
 
 ---
 

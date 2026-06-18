@@ -28,7 +28,9 @@ Host as a static site on any static host — S3 + CloudFront, Netlify, Vercel, G
     ├── enthermal-plus-inboard.json
     ├── enthermal-plus-outboard.json
     └── Anchor_Renders/
-        └── Clear_Set3.png / Overcast_Set3.png / Cloudy_Set3.png   ← exterior sky images
+        ├── Clear/      anchor_00.webp … anchor_136.webp   ← per-config exterior renders
+        ├── Overcast/   anchor_00.webp … anchor_136.webp      (137 anchors × 3 skies = 411)
+        └── Cloudy/     anchor_00.webp … anchor_136.webp
 ```
 
 ---
@@ -48,20 +50,23 @@ Loads "Plus Jakarta Sans" and "DM Sans" from the Google Fonts CDN. If a strict C
 
 ## Performance notes
 
-Total payload is **~14.6 MB**. The JSON loads on first page load; the sky images
-load on demand (the default Overcast image first, the other two when toggled).
+The full deploy is **~643 MB**, dominated by the render library — but **first load is
+small**: the JSON (~6.5 MB) plus the single default render. Each anchor render is fetched
+on demand (the current config × active sky), so a session pulls only a handful of images,
+each cached after first view.
 
 | Asset | Size |
 |---|---|
 | `enthermal-plus-inboard.json` | ~4.5 MB |
 | `enthermal-plus-outboard.json` | ~1.9 MB |
-| 3 × sky PNG images (`*_Set3.png`) | ~2.8 MB each (~8.4 MB total) |
+| Anchor renders (137 anchors × 3 skies, `.webp`) | **~637 MB total** (~1.6 MB each, 411 files) — loaded one at a time on demand |
 | `enthermal.json` | ~71 KB |
 | `enthermal-configurator.html` | ~104 KB |
 
 Recommendations:
-- **Enable gzip/Brotli compression.** The JSON compresses ~80–90%, cutting ~6 MB of data down to well under 1 MB. Biggest single win for first-load speed.
-- **Set sensible Cache-Control headers** on the `App_Data/` and image assets (they change infrequently).
+- **Enable gzip/Brotli compression** for the JSON and HTML (compresses ~80–90%, cutting ~6 MB to well under 1 MB). WebP is already compressed — don't expect further gain there.
+- **The render library is large (~637 MB).** Consider a recompression pass on the high-res WebP, and/or hosting the renders on a CDN/separate assets repo if you approach a host's storage or bandwidth limit (e.g. GitHub Pages' 1 GB soft cap). See `Data_Pipeline/3_Clustering/CLUSTERING_PROCEDURE.md` Part 2.
+- **Set sensible Cache-Control headers** on the `App_Data/` and render assets (they change infrequently).
 - **Optimize the PNGs** if first-load performance matters (WebP conversion / resizing) — they're large and uncompressed.
 
 ---

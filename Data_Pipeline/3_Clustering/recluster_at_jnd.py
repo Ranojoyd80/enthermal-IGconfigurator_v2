@@ -8,7 +8,7 @@ color. This script collapses all configs onto a minimal set of "anchors": one
 representative real configuration per color cluster, such that EVERY config is
 within ΔE ≤ TOL of its anchor's color.
 
-Why this design (see CLUSTERING_DECISIONS.md for the full rationale, the
+Why this design (see CLUSTERING_PROCEDURE.md for the full rationale, the
 ΔE76 -> CIEDE2000 revision history, and the substrate-partition decision):
 
   * Cluster on pure CIELAB (extL, extA, extB), NOT routVis. routVis is redundant
