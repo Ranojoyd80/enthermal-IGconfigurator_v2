@@ -98,7 +98,7 @@ The most instructive config to trace is the one with the **largest** error anywh
 
 ### The config a user selects
 ```
-Stack:  C270 Clear 6mm / Ar90 7.49mm / SKN183 Clear 6mm / Vacuum 0.25mm / Clear 6mm
+Stack:  C366 Clear 6mm / Ar90 8.01mm / SB70 Clear 6mm / Vacuum 0.25mm / Clear 6mm
 Color:  extL = 43.65   extA = -4.41   extB = -3.57   (muted blue-green, Clear substrate)
 ```
 A triple-glazed Enthermal Plus build whose exterior pane is a low-E-coated **Clear** lite.
@@ -108,7 +108,7 @@ A triple-glazed Enthermal Plus build whose exterior pane is a low-E-coated **Cle
 Stack:  C270 Clear 6mm / Ar90 7.45mm / SKN183 Clear 6mm / Vacuum 0.25mm / Clear 6mm
 Color:  extL = 44.58   extA = -4.21   extB = -4.84
 ```
-The most central real config in its cluster (80 configs, 40 distinct colors) — **same Clear substrate family**, by construction.
+The most central real config in its cluster (80 configs, 40 distinct colors). Note this is a **physically different build** — different low-E coatings on both the outer pane (C366 vs C270) and the VIG pane (SB70 vs SKN183), hence the very different SHGC/Tvis/T-UV — yet its *exterior reflected color* is nearly identical and it is in the **same Clear substrate family** (by construction). This is exactly what the clustering exploits: collapse unlike builds that look alike onto one render. (The gap thicknesses differ too, but that is incidental — argon gap width has no effect on visible reflected color.)
 
 ### The distance
 ```
@@ -118,7 +118,7 @@ per-axis:  ΔL = -0.93   Δa = -0.20   Δb = +1.27
 The worst-served user in the entire product line sees an image **1.4164 ΔE2000** from their true selection. The gap is almost entirely on the `b` (blue↔yellow) axis within the same hue family — a slight blue/yellow shift, not a hue rotation. Imperceptible without the two swatches side by side, which the tool never shows.
 
 ### What the user experiences
-1. They configure this exact C270 / SKN183 triple-glaze build.
+1. They configure this exact C366 / SB70 triple-glaze build.
 2. The readout shows **their** true numbers — U-value, their exact Lab — drawn straight from the JSON. *These are never approximated.*
 3. The config's `cid` (27) resolves directly to `anchor_27`.
 4. The browser loads `App_Data/Anchor_Renders/Overcast/anchor_27.webp` — a render of the cluster's central build, 1.42 ΔE away. Indistinguishable.
