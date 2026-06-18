@@ -66,6 +66,13 @@ visualized** on the card, but they are the basis for the clustering that drives 
 planned render pipeline (below), and they remain available for any future readout or
 tint feature.
 
+> **Note — Lab is not used for the cross-section tint.** Driving the cross-section
+> glass-pane tint from these `extL/A/B` values was evaluated and rejected: the
+> assembly-level Lab is dominated by the low-E coating, so different substrates
+> collapse to nearly the same dark blue-gray and the recognizable body tint
+> (bronze, green, blue) is lost. The cross-section keeps the hand-tuned
+> `getGlassColor(substrate)` lookup instead.
+
 ---
 
 ## 5. The plan — per-anchor photoreal renders

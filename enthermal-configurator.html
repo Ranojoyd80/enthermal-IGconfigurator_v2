@@ -380,6 +380,14 @@ body{font-family:var(--font-body);background:var(--lw-gray-50);color:var(--lw-da
                     <div class="cs-callout-text" id="csCoatingLabel">Low-E Coating</div>
                   </div>
                 </div>
+                <!-- Callout - left side (Hermetic Seal at base of VIG) -->
+                <div class="cs-callouts">
+                  <div class="cs-callout" id="csCalloutHermetic" style="top:87%;flex-direction:row-reverse">
+                    <div class="cs-callout-dot"></div>
+                    <div class="cs-callout-line" style="width:50px"></div>
+                    <div class="cs-callout-text" style="padding-left:0;padding-right:6px">Hermetic Seal</div>
+                  </div>
+                </div>
               </div>
               <div class="cs-pane-info"><div class="cs-pane-info-title">Inboard</div><div class="cs-pane-info-detail" id="csInnerDetail">—</div></div>
             </div>
@@ -433,13 +441,24 @@ body{font-family:var(--font-body);background:var(--lw-gray-50);color:var(--lw-da
                     <div class="cs-callout-line" style="width:40px"></div>
                     <div class="cs-callout-text" id="csPlusCoatingLabel">Low-E Coating</div>
                   </div>
+                  <!-- Metal Spacer at base of the argon gap (right-side label) -->
+                  <div class="cs-callout" id="csPlusCalloutMetal" style="top:87%">
+                    <div class="cs-callout-dot"></div>
+                    <div class="cs-callout-line" style="width:40px"></div>
+                    <div class="cs-callout-text">Metal Spacer</div>
+                  </div>
                 </div>
-                <!-- Callout - left side (S2 coating) -->
+                <!-- Callouts - left side (S2 coating; Hermetic Seal at base of VIG) -->
                 <div class="cs-callouts">
                   <div class="cs-callout" id="csPlusCalloutS2" style="top:12%;flex-direction:row-reverse">
                     <div class="cs-callout-dot"></div>
                     <div class="cs-callout-line" id="csPlusS2Line" style="width:40px"></div>
                     <div class="cs-callout-text" id="csPlusS2Label" style="padding-left:0;padding-right:6px">Low-E (S2)</div>
+                  </div>
+                  <div class="cs-callout" id="csPlusCalloutHermetic" style="top:87%;flex-direction:row-reverse">
+                    <div class="cs-callout-dot"></div>
+                    <div class="cs-callout-line" id="csPlusHermeticLine" style="width:40px"></div>
+                    <div class="cs-callout-text" style="padding-left:0;padding-right:6px">Hermetic Seal</div>
                   </div>
                 </div>
               </div>
@@ -758,6 +777,15 @@ document.getElementById('csThicknessVal').textContent=match.totalThickness.toFix
 var coatingLeft=outerPx-3;var vacuumLeft=outerPx-1;
 document.getElementById('csCalloutCoating').style.left=coatingLeft+'px';
 document.getElementById('csCalloutVacuum').style.left=vacuumLeft+'px';
+// Hermetic Seal points at the black spacer (same gap X), label extends left,
+// vertically centered on the spacer.
+var eUnit=document.querySelector('#csEnthermal .cs-unit'),hsCallout=document.getElementById('csCalloutHermetic'),eSpacer=document.querySelector('#csVacuum .cs-spacer');
+if(eUnit&&hsCallout){
+  hsCallout.style.right=(eUnit.offsetWidth-vacuumLeft-3)+'px';hsCallout.style.left='auto';
+  void hsCallout.offsetWidth;
+  var eUr=eUnit.getBoundingClientRect(),eSr=eSpacer.getBoundingClientRect();
+  hsCallout.style.top=((eSr.top+eSr.height/2-eUr.top)-hsCallout.offsetHeight/2)+'px';
+}
 document.getElementById('summaryText').innerHTML='<strong>'+layerDisplay(outerLayer)+'</strong> on <strong>'+eOuterMM+'mm</strong> outboard and <strong>Clear '+eInnerMM+'mm</strong> inboard.';
 requestAnimationFrame(centerCrossSection)}
 document.querySelectorAll('input[name="outerThickness"]').forEach(r=>r.addEventListener('change',updateOuterCoatings));
@@ -1119,6 +1147,20 @@ function updatePlusResults(surfaceOnly){
     document.getElementById('csPlusOuterDetail').textContent=coatingName(leftLayer.coating);
     document.getElementById('csPlusOuterCoating').textContent=leftSubLabel;
   }
+  // Tint the exterior lite (glass[0], the only lite whose substrate varies) by
+  // its substrate; the two Clear lites keep their default styling. Which DOM
+  // pane is the exterior lite depends on placement: Inboard → mono pane
+  // (leftmost); Outboard → VIG outer pane (reordered leftmost via flex order).
+  var extTint='linear-gradient(180deg,'+getGlassColor(leftLayer.substrate)+' 0%,'+getGlassColor(leftLayer.substrate).replace(/0\.\d+\)/,'0.3)')+' 100%)';
+  var csPlusMonoPaneEl=document.getElementById('csPlusMonoPane');
+  var csPlusVigOuterEl=document.getElementById('csPlusVigOuter');
+  if(isOutboard){
+    csPlusVigOuterEl.style.background=extTint;
+    csPlusMonoPaneEl.style.background='';
+  }else{
+    csPlusMonoPaneEl.style.background=extTint;
+    csPlusVigOuterEl.style.background='';
+  }
   document.getElementById('csPlusVigCoatingLabel').textContent=coatingName(match.secondCoating);
   document.getElementById('csPlusRightCoating').style.display='';
   document.getElementById('csPlusRightCoating').textContent='Clear '+match.glass[2].thickness+'mm';
@@ -1184,6 +1226,29 @@ function updatePlusResults(surfaceOnly){
     s2Callout.style.right=(unit.offsetWidth-s2DotX-3)+'px';
     s2Callout.style.left='auto';
   }
+  // Spacer callouts (bottom): Hermetic Seal points at the VIG vacuum spacer,
+  // Metal Spacer at the base of the argon gap. Place each label on its own side
+  // of the diagram so the lines never cross — in Outboard the VIG is on the left
+  // (Hermetic Seal reads from the left), in Inboard it is on the right.
+  var uW=unit.offsetWidth;
+  function placeSpacerCallout(el,dotX,spacerEl){
+    var txt=el.querySelector('.cs-callout-text'),line=el.querySelector('.cs-callout-line');
+    if(dotX<uW/2){ // label to the left of the dot
+      el.style.flexDirection='row-reverse';el.style.left='auto';el.style.right=(uW-dotX-3)+'px';
+      txt.style.paddingLeft='0';txt.style.paddingRight='6px';line.style.width='40px';
+    }else{ // label to the right of the dot
+      el.style.flexDirection='row';el.style.right='auto';el.style.left=dotX+'px';
+      txt.style.paddingLeft='6px';txt.style.paddingRight='0';line.style.width=Math.max(12,uW-dotX+14)+'px';
+    }
+    // Align the callout to the vertical center of its spacer.
+    if(spacerEl){
+      void el.offsetWidth;
+      var ur=unit.getBoundingClientRect(),sr=spacerEl.getBoundingClientRect();
+      el.style.top=((sr.top+sr.height/2-ur.top)-el.offsetHeight/2)+'px';
+    }
+  }
+  placeSpacerCallout(document.getElementById('csPlusCalloutHermetic'),vacDotX,unit.querySelector('.cs-vacuum .cs-spacer'));
+  placeSpacerCallout(document.getElementById('csPlusCalloutMetal'),argonDotX,document.querySelector('#csPlusArgonGap > div'));
 }
 function _plusIsOutboard(){return document.getElementById('posToggleInput').checked}
 document.querySelectorAll('input[name="plusOuterThickness"]').forEach(function(r){r.addEventListener('change',function(){

@@ -130,13 +130,14 @@ Example: **5/5 mm** Enthermal **LoE³ 366** (S2) outboard with **LoE³ 366** (S5
 | Outboard Sub | Glass color + thickness (line 2, e.g., "Clear 6mm") | `#csOuterSub` |
 | Inboard Label | INBOARD title (right side of panes) | `.cs-pane-info-title` |
 | Inboard Detail | Glass type + thickness (e.g., "Clear 6mm") | `#csInnerDetail` |
-| Outer Pane | Left glass pane element | `#csPaneOuter` |
+| Outer Pane | Left glass pane element; tinted from the outer substrate via `getGlassColor()` | `#csPaneOuter` |
 | Inner Pane | Right glass pane element | `#csPaneInner` |
 | Low-E Coating Line | Thin orange line on inner surface of outer pane | `#csCoatingLine` |
 | Vacuum Gap | Thin 4px gap between panes | `#csVacuum` |
 | Black Spacer | 54px black rectangle at base of gap | `.cs-spacer` |
 | Callout: Vacuum | Circle + line + "Vacuum Cavity" label | `#csCalloutVacuum` |
 | Callout: Low-E | Circle + line + "Low-E Coating" label | `#csCalloutCoating`, `#csCoatingLabel` |
+| Callout: Hermetic Seal | Circle + line + "Hermetic Seal" label, points at the black spacer; left-side label, vertically centered on the spacer | `#csCalloutHermetic` |
 
 ---
 
@@ -152,10 +153,10 @@ Example: **5/5 mm** Enthermal **LoE³ 366** (S2) outboard with **LoE³ 366** (S5
 | Right Info Title | "Enthermal" or "Inboard" (changes with placement toggle) | `#csPlusRightInfoTitle` |
 | Right Info Detail | Coating name (outboard: outerCoating, inboard: vigCoating) | `#csPlusVigCoatingLabel` |
 | Right Info Sub | VIG thickness (e.g., "4/4 mm") or "Clear 4mm" | `#csPlusRightCoating` |
-| Mono Pane | Monolithic glass pane (outboard glass) | `#csPlusMonoPane` |
+| Mono Pane | Monolithic glass pane (`glass[0]`, the exterior lite). Tinted from its substrate via `getGlassColor()` in Inboard mode (it is the exterior lite); reset to clear in Outboard mode (where the VIG outer becomes the exterior lite) | `#csPlusMonoPane` |
 | Mono S2 Coating | Orange coating line on right edge of mono pane | `#csPlusMonoS2` |
 | Mono S5 Coating | Orange coating line on left edge of mono pane | `#csPlusMonoS5` |
-| VIG Outer Pane | Middle lite (left VIG pane) | `#csPlusVigOuter` |
+| VIG Outer Pane | Middle lite (left VIG pane). Tinted from `glass[0]`'s substrate via `getGlassColor()` in Outboard mode (it becomes the exterior lite); reset to clear in Inboard mode | `#csPlusVigOuter` |
 | VIG Inner Pane | Inboard lite (right VIG pane) | `#csPlusVigInner` |
 | Argon Gap | 50px wide gap with desiccant bead pattern | `#csPlusArgonGap` |
 | S4 Coating Line | Orange line on right edge of VIG outer pane (opacity transition) | `#csPlusCoatingS4` |
@@ -164,6 +165,8 @@ Example: **5/5 mm** Enthermal **LoE³ 366** (S2) outboard with **LoE³ 366** (S5
 | Callout: Vacuum | Circle + line + "VACUUM CAVITY" | `#csPlusCalloutVacuum` |
 | Callout: Low-E | Circle + line + "LOW-E (S4)" or "LOW-E (S5)" | `#csPlusCalloutCoating`, `#csPlusCoatingLabel` |
 | Callout: S2 | Circle + line + "LOW-E (S2)" (exterior/left side) | `#csPlusCalloutS2`, `#csPlusS2Label` |
+| Callout: Hermetic Seal | Circle + line + "Hermetic Seal", points at the VIG vacuum spacer. Placed on the spacer's own side (left in Outboard where the VIG is exterior, right in Inboard); vertically centered on the spacer | `#csPlusCalloutHermetic` |
+| Callout: Metal Spacer | Circle + line + "Metal Spacer", points at the warm-edge spacer at the base of the argon gap. Placed on the spacer's own side (right in Outboard, left in Inboard); vertically centered on the spacer | `#csPlusCalloutMetal` |
 
 ### Cross-Section Layout Modes
 
@@ -171,11 +174,17 @@ Example: **5/5 mm** Enthermal **LoE³ 366** (S2) outboard with **LoE³ 366** (S5
 - S2 on VIG outer right edge, S5 on mono pane left edge
 - Left label: "Enthermal" + vigCoating + VIG thickness
 - Right label: "Inboard" + outerCoating + "Clear 4mm"
+- Exterior lite (`glass[0]`) is the VIG outer pane → it carries the substrate tint
+- Spacer callouts: Hermetic Seal on the left (VIG vacuum is exterior), Metal Spacer on the right
 
 **Inboard mode:** Mono pane → argon gap → VIG outer → vacuum → VIG inner (left to right)
 - S2 on mono pane right edge, S4 or S5 on VIG (toggle-controlled)
 - Left label: "Outboard" + outerCoating + "Clear 4mm"
 - Right label: "Enthermal" + vigCoating + VIG thickness
+- Exterior lite (`glass[0]`) is the mono pane → it carries the substrate tint
+- Spacer callouts: Metal Spacer on the left (argon gap is exterior-side), Hermetic Seal on the right
+
+The pane reordering uses CSS flex `order`; the substrate tint and spacer callouts follow `glass[0]` and the live spacer positions, so each renders on the correct pane/side in both modes.
 
 ---
 

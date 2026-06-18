@@ -85,7 +85,7 @@ App_Data/
 | `coatingNameWithMaker(code)` | Prepend manufacturer prefix for dropdowns (e.g., `Cardinal LoE³ 366`) |
 | `layerDisplay(layer, nameFn)` | Format a glass layer for display — coating only for Clear, "coating on substrate" for branded |
 | `postProcessData()` | Attach `glass[]`, `gasType`, `secondCoating`, `secondSurface` accessors to each data row |
-| `getGlassColor(substrate)` | Map a substrate to a tint color for the **cross-section** glass panes (not the color card) |
+| `getGlassColor(substrate)` | Map a substrate to a tint color for the **cross-section** glass panes (not the color card). Drives the exterior lite tint on both the Enthermal and Enthermal Plus cross-sections |
 | `unique(arr)` | Return unique sorted values |
 | `getVal(name)` | Get checked radio button value by name attribute |
 | `populateSelect(el, items, placeholder, nameFn)` | Populate a `<select>` with options |
@@ -276,7 +276,12 @@ The per-config CIE L\*a\*b\* values (`extL/A/B`, `intL/A/B`) remain in the data 
 feed the JND color clustering; per-configuration photoreal renders are the planned
 next step (see [color-rendering.md](color-rendering.md) and
 [../CLUSTERING_PROCEDURE.md](../CLUSTERING_PROCEDURE.md)). The cross-section panes are
-still tinted from substrate color via `getGlassColor()`.
+still tinted from substrate color via `getGlassColor()` — on both tabs, the exterior
+lite (`glass[0]`) is tinted from its substrate, while the always-Clear inner lites
+keep their default styling. (The assembly-level Lab values are coating-dominated and
+do not encode the recognizable per-substrate body tint, so the hand-tuned
+`getGlassColor()` lookup is used for the cross-section rather than a Lab→sRGB
+conversion.)
 
 ---
 

@@ -239,7 +239,7 @@ Both tabs implement constraint propagation — each selection filters downstream
 - The **Exterior Color** card shows a **static exterior sky image** (`App_Data/Anchor_Renders/*_Set3.png`) with a Clear/Overcast/Cloudy weather toggle + zoom lightbox — the same image for every config (not per-config color)
 - The earlier runtime `labToRgb()` Lab→sRGB gradient renderer and the flip/Lab-readout UI have been **removed**
 - Per-config CIE L\*a\*b\* values (`extL/A/B`, `intL/A/B`) remain in the data and feed the JND clustering; per-config photoreal renders are the planned next step (see `CLUSTERING_PROCEDURE.md`)
-- The cross-section glass panes are still tinted from substrate via `getGlassColor()`
+- The cross-section glass panes are still tinted from substrate via `getGlassColor()` — on **both** tabs the exterior lite (`glass[0]`) is tinted from its substrate; the always-Clear inner lites keep their default styling. On Plus this follows the inboard/outboard flip (mono pane in inboard, VIG-outer pane in outboard). A Lab→sRGB cross-section tint was evaluated and rejected: the assembly Lab values are coating-dominated and don't carry the recognizable per-substrate body color
 
 ---
 
@@ -251,6 +251,8 @@ Both tabs implement constraint propagation — each selection filters downstream
 - Desiccant beads (Plus): 96 CSS `radial-gradient()` layers
 - Spacer bar: solid #1a1d24 rectangle at base of gap
 - Callout system: dot (6px circle) + line (1px height) + text (9px uppercase)
+- Left-side callouts use `flex-direction: row-reverse` and are anchored via `style.right` (e.g. S2, Hermetic Seal); right-side callouts are anchored via `style.left`
+- Spacer callouts: **Hermetic Seal** points at the black VIG spacer (both tabs); **Metal Spacer** points at the argon-gap warm-edge spacer (Plus only — Enthermal is a pure VIG with no metal spacer). Each is positioned in JS to the spacer's measured vertical center, and on Plus each sits on its own spacer's side so the lines never cross (Hermetic Seal reads from the left in outboard, where the VIG is exterior)
 - S4/S5 coating lines use `opacity` transitions (0.25s ease), not display toggle
 
 ---
