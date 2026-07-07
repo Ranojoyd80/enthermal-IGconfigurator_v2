@@ -1,9 +1,14 @@
 """
-Build AnchorRender_Configs.json — the build-CONFIGURATION of the 77 JND render
-anchors. This is the PyWinCalc *input*: the optical stack only. It deliberately
-carries NO performance or color outputs (U/SHGC/Tvis/Lab/reflectance) — PyWinCalc
-computes those. Keeping the file input-only avoids shipping stale duplicates of
-results the run will regenerate.
+Build AnchorRender_Configs.json — the build-CONFIGURATION of the JND render
+anchors (two-axis clustering: exterior-reflected + transmitted color). This is
+the PyWinCalc *input*: the optical stack only. It deliberately carries NO
+performance or color outputs (U/SHGC/Tvis/Lab/reflectance) — PyWinCalc computes
+those. Keeping the file input-only avoids shipping stale duplicates of results
+the run will regenerate.
+
+Also emits render_manifest.csv — the flat Blender render list, one row per anchor.
+Since cids are 1-based (CID_BASE=1 in recluster_at_jnd.py), blender_frame ==
+cluster_id (no off-by-one). Carries target Lab (both axes) + max dE for QA.
 
 HYBRID SOURCE (by design):
   * MAKEUP comes from the live app data in ../../App_Data/*.json (the optical `stack`:
@@ -53,9 +58,9 @@ CSV_DIR = os.path.join(PRODUCT_DATA, '1_Source_CSVs')
 
 ANCHORS_JSON = os.path.join(PRODUCT_DATA, '3_Clustering', 'anchors.json')
 CSV_FOR_SOURCE = {
-    'enthermal.json': 'IG_Config_Enthermal_Dataset_12-04-26.csv',
-    'enthermal-plus-inboard.json': 'IG_Config_EnthermalPlus_Inboard_Dataset_12-04-26.csv',
-    'enthermal-plus-outboard.json': 'IG_Config_EnthermalPlus_Outboard_Dataset_12-04-26.csv',
+    'enthermal.json': 'IG_Config_Enthermal_Dataset_07-07-26.csv',
+    'enthermal-plus-inboard.json': 'IG_Config_EnthermalPlus_Inboard_Dataset_07-07-26.csv',
+    'enthermal-plus-outboard.json': 'IG_Config_EnthermalPlus_Outboard_Dataset_07-07-26.csv',
 }
 PRODUCT_LABEL = {
     'enthermal.json': 'Enthermal (VIG, 2 panes)',
@@ -214,7 +219,8 @@ def main():
         'optics_key': ('Per layer, lite_nfrc_id is the coated-product NFRC/IGDB id (unique per '
                        'glass+coating). Resolve via NFRC->IGSDB to get the coated optics; orient '
                        'using coating.surface / pane_face.'),
-        'tolerance_dE2000': anchors_doc.get('tolerance_dE2000'),
+        'tolerance_ext_dE2000': anchors_doc.get('tolerance_ext_dE2000'),
+        'tolerance_trn_dE2000': anchors_doc.get('tolerance_trn_dE2000'),
         'metric': anchors_doc.get('metric'),
         'partitioned_by': anchors_doc.get('partitioned_by'),
         'total_configs_covered': anchors_doc.get('total_configs'),
@@ -228,6 +234,23 @@ def main():
     out_path = os.path.join(SCRIPT_DIR, 'AnchorRender_Configs.json')
     with open(out_path, 'w', encoding='utf-8') as fh:
         json.dump(out, fh, indent=2, ensure_ascii=False)
+
+    # --- render_manifest.csv : flat Blender render list -----------------------
+    # blender_frame == cluster_id (cids are 1-based, so no off-by-one). Target
+    # Lab on both axes + max in-cluster dE are for QA against the rendered result.
+    manifest_path = os.path.join(SCRIPT_DIR, 'render_manifest.csv')
+    with open(manifest_path, 'w', newline='', encoding='utf-8') as fh:
+        w = csv.writer(fh)
+        w.writerow(['blender_frame', 'anchor_code', 'cluster_id', 'substrate',
+                    'config_count', 'target_extL', 'target_extA', 'target_extB',
+                    'target_trnL', 'target_trnA', 'target_trnB',
+                    'max_ext_dE', 'max_trn_dE', 'build'])
+        for a in anchors_doc['anchors']:
+            e, t = a['exterior'], a['transmitted']
+            w.writerow([a['cluster_id'], a['code'], a['cluster_id'], a['substrate'],
+                        a['config_count'], e['L'], e['a'], e['b'], t['L'], t['a'], t['b'],
+                        a.get('max_dE_in_cluster'), a.get('max_trn_dE_in_cluster'),
+                        a['stack_desc']])
 
     print('Anchors written        : %d' % len(out_anchors))
     print('Color join mismatches  : %d %s' % (len(color_mismatches),
@@ -243,6 +266,7 @@ def main():
     for m in surface_flags[:12]:
         print('   ', m)
     print('\nWrote: %s' % os.path.relpath(out_path, SCRIPT_DIR))
+    print('Wrote: %s' % os.path.relpath(manifest_path, SCRIPT_DIR))
 
 
 if __name__ == '__main__':

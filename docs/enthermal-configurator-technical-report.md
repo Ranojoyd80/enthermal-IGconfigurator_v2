@@ -271,8 +271,8 @@ The **Exterior Color** card shows a **per-configuration photoreal render** with 
 Clear / Overcast / Cloudy weather toggle and a zoom lightbox. Each config carries an
 integer `cid` (anchor id) injected into the JSON by the clustering script, and
 `setAnchorImages(cid)` points the card at
-`App_Data/Anchor_Renders/<Sky>/anchor_<cid>.webp`. The 6,862 configs collapse to
-**137 color anchors** (CIEDE2000 ≤ 1.5, partitioned by exterior substrate), so the
+`App_Data/Anchor_Renders/<Sky>/anchor_<cid>.webp`. The 6,444 configs collapse to
+**202 color anchors** (two-axis CIEDE2000: exterior ≤ 1.5 + transmitted ≤ 3.0, partitioned by exterior substrate; 1-based `cid`s), so the
 image is imperceptibly close to — and the same hue family as — the exact selection.
 The earlier runtime `labToRgb()` Lab→sRGB gradient renderer (and the flip /
 Lab-readout UI), and the interim static `*_Set3.png` placeholder sky, have both been

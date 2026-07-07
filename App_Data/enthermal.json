@@ -29,14 +29,14 @@
     "extL": 46.23,
     "extA": -1.34,
     "extB": -5.55,
-    "intL": 45.2,
-    "intA": -0.5,
-    "intB": -5.95,
+    "trnL": 91.06,
+    "trnA": -2.39,
+    "trnB": 2.46,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 45
+    "cid": 67
   },
   {
     "stack": [
@@ -68,14 +68,14 @@
     "extL": 46.07,
     "extA": -1.47,
     "extB": -5.5,
-    "intL": 45.13,
-    "intA": -0.53,
-    "intB": -5.97,
+    "trnL": 90.91,
+    "trnA": -2.57,
+    "trnB": 2.49,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 35
+    "cid": 67
   },
   {
     "stack": [
@@ -107,14 +107,14 @@
     "extL": 45.97,
     "extA": -1.47,
     "extB": -5.53,
-    "intL": 44.93,
-    "intA": -0.63,
-    "intB": -5.94,
+    "trnL": 90.78,
+    "trnA": -2.75,
+    "trnB": 2.52,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 35
+    "cid": 67
   },
   {
     "stack": [
@@ -146,14 +146,14 @@
     "extL": 45.79,
     "extA": -1.65,
     "extB": -5.39,
-    "intL": 45.05,
-    "intA": -0.55,
-    "intB": -5.99,
+    "trnL": 90.58,
+    "trnA": -2.86,
+    "trnB": 2.54,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 35
+    "cid": 67
   },
   {
     "stack": [
@@ -185,14 +185,14 @@
     "extL": 45.69,
     "extA": -1.66,
     "extB": -5.42,
-    "intL": 44.85,
-    "intA": -0.66,
-    "intB": -5.96,
+    "trnL": 90.45,
+    "trnA": -3.04,
+    "trnB": 2.57,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 35
+    "cid": 67
   },
   {
     "stack": [
@@ -224,14 +224,14 @@
     "extL": 45.61,
     "extA": -1.65,
     "extB": -5.45,
-    "intL": 44.58,
-    "intA": -0.81,
-    "intB": -5.85,
+    "trnL": 90.13,
+    "trnA": -3.34,
+    "trnB": 2.63,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 35
+    "cid": 67
   },
   {
     "stack": [
@@ -263,14 +263,14 @@
     "extL": 41.56,
     "extA": -2.96,
     "extB": -2.04,
-    "intL": 43.16,
-    "intA": -7.54,
-    "intB": 2.45,
+    "trnL": 86.55,
+    "trnA": -3.66,
+    "trnB": 2.78,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 10
+    "cid": 13
   },
   {
     "stack": [
@@ -302,14 +302,14 @@
     "extL": 41.34,
     "extA": -3.05,
     "extB": -2.04,
-    "intL": 43.07,
-    "intA": -7.57,
-    "intB": 2.42,
+    "trnL": 86.37,
+    "trnA": -3.79,
+    "trnB": 2.85,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 10
+    "cid": 13
   },
   {
     "stack": [
@@ -341,14 +341,14 @@
     "extL": 41.24,
     "extA": -3.05,
     "extB": -2.06,
-    "intL": 42.87,
-    "intA": -7.66,
-    "intB": 2.43,
+    "trnL": 86.25,
+    "trnA": -3.96,
+    "trnB": 2.88,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 10
+    "cid": 13
   },
   {
     "stack": [
@@ -380,14 +380,14 @@
     "extL": 41.26,
     "extA": -3.27,
     "extB": -1.94,
-    "intL": 43.07,
-    "intA": -7.63,
-    "intB": 2.45,
+    "trnL": 86.15,
+    "trnA": -4.11,
+    "trnB": 2.87,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 10
+    "cid": 13
   },
   {
     "stack": [
@@ -419,14 +419,14 @@
     "extL": 41.17,
     "extA": -3.27,
     "extB": -1.96,
-    "intL": 42.87,
-    "intA": -7.72,
-    "intB": 2.46,
+    "trnL": 86.03,
+    "trnA": -4.27,
+    "trnB": 2.9,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 10
+    "cid": 13
   },
   {
     "stack": [
@@ -458,14 +458,14 @@
     "extL": 41.1,
     "extA": -3.27,
     "extB": -1.98,
-    "intL": 42.62,
-    "intA": -7.78,
-    "intB": 2.46,
+    "trnL": 85.72,
+    "trnA": -4.55,
+    "trnB": 2.96,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 10
+    "cid": 13
   },
   {
     "stack": [
@@ -497,14 +497,14 @@
     "extL": 39.14,
     "extA": -0.81,
     "extB": -2.23,
-    "intL": 40.76,
-    "intA": -2.06,
-    "intB": 0.72,
+    "trnL": 87.65,
+    "trnA": -2.54,
+    "trnB": 2.55,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 3
+    "cid": 6
   },
   {
     "stack": [
@@ -536,14 +536,14 @@
     "extL": 38.99,
     "extA": -0.9,
     "extB": -2.2,
-    "intL": 40.69,
-    "intA": -2.08,
-    "intB": 0.71,
+    "trnL": 87.51,
+    "trnA": -2.71,
+    "trnB": 2.58,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 3
+    "cid": 6
   },
   {
     "stack": [
@@ -575,14 +575,14 @@
     "extL": 38.89,
     "extA": -0.9,
     "extB": -2.22,
-    "intL": 40.49,
-    "intA": -2.16,
-    "intB": 0.72,
+    "trnL": 87.38,
+    "trnA": -2.88,
+    "trnB": 2.6,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 3
+    "cid": 6
   },
   {
     "stack": [
@@ -614,14 +614,14 @@
     "extL": 38.79,
     "extA": -1.02,
     "extB": -2.14,
-    "intL": 40.62,
-    "intA": -2.11,
-    "intB": 0.71,
+    "trnL": 87.19,
+    "trnA": -2.99,
+    "trnB": 2.63,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 3
+    "cid": 6
   },
   {
     "stack": [
@@ -653,14 +653,14 @@
     "extL": 38.68,
     "extA": -1.03,
     "extB": -2.16,
-    "intL": 40.42,
-    "intA": -2.19,
-    "intB": 0.72,
+    "trnL": 87.07,
+    "trnA": -3.16,
+    "trnB": 2.66,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 3
+    "cid": 6
   },
   {
     "stack": [
@@ -692,14 +692,14 @@
     "extL": 38.6,
     "extA": -1.02,
     "extB": -2.18,
-    "intL": 40.19,
-    "intA": -2.28,
-    "intB": 0.73,
+    "trnL": 86.76,
+    "trnA": -3.45,
+    "trnB": 2.72,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 3
+    "cid": 6
   },
   {
     "stack": [
@@ -731,14 +731,14 @@
     "extL": 43.38,
     "extA": -5.66,
     "extB": -12.84,
-    "intL": 46.38,
-    "intA": -1.92,
-    "intB": 0.96,
+    "trnL": 68.83,
+    "trnA": -8.87,
+    "trnB": -5.53,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 22
+    "cid": 43
   },
   {
     "stack": [
@@ -770,14 +770,14 @@
     "extL": 43.15,
     "extA": -5.8,
     "extB": -12.74,
-    "intL": 46.35,
-    "intA": -1.91,
-    "intB": 0.97,
+    "trnL": 68.69,
+    "trnA": -8.96,
+    "trnB": -5.46,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 22
+    "cid": 43
   },
   {
     "stack": [
@@ -809,14 +809,14 @@
     "extL": 43.12,
     "extA": -5.79,
     "extB": -12.74,
-    "intL": 46.15,
-    "intA": -2.05,
-    "intB": 1.0,
+    "trnL": 68.59,
+    "trnA": -9.08,
+    "trnB": -5.43,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 22
+    "cid": 43
   },
   {
     "stack": [
@@ -848,14 +848,14 @@
     "extL": 43.07,
     "extA": -6.04,
     "extB": -12.47,
-    "intL": 46.36,
-    "intA": -1.93,
-    "intB": 0.98,
+    "trnL": 68.51,
+    "trnA": -9.19,
+    "trnB": -5.42,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 22
+    "cid": 43
   },
   {
     "stack": [
@@ -887,14 +887,14 @@
     "extL": 43.05,
     "extA": -6.03,
     "extB": -12.47,
-    "intL": 46.15,
-    "intA": -2.07,
-    "intB": 1.02,
+    "trnL": 68.42,
+    "trnA": -9.31,
+    "trnB": -5.38,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 22
+    "cid": 43
   },
   {
     "stack": [
@@ -926,14 +926,14 @@
     "extL": 43.03,
     "extA": -6.02,
     "extB": -12.47,
-    "intL": 45.87,
-    "intA": -2.26,
-    "intB": 1.07,
+    "trnL": 68.16,
+    "trnA": -9.51,
+    "trnB": -5.31,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 22
+    "cid": 43
   },
   {
     "stack": [
@@ -965,14 +965,14 @@
     "extL": 39.84,
     "extA": -0.63,
     "extB": -3.66,
-    "intL": 41.43,
-    "intA": 0.59,
-    "intB": -1.3,
+    "trnL": 84.11,
+    "trnA": -5.99,
+    "trnB": 3.29,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 5
+    "cid": 7
   },
   {
     "stack": [
@@ -1004,14 +1004,14 @@
     "extL": 39.62,
     "extA": -0.73,
     "extB": -3.66,
-    "intL": 41.35,
-    "intA": 0.61,
-    "intB": -1.35,
+    "trnL": 83.94,
+    "trnA": -6.1,
+    "trnB": 3.36,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 5
+    "cid": 7
   },
   {
     "stack": [
@@ -1043,14 +1043,14 @@
     "extL": 39.54,
     "extA": -0.71,
     "extB": -3.68,
-    "intL": 41.15,
-    "intA": 0.51,
-    "intB": -1.34,
+    "trnL": 83.82,
+    "trnA": -6.26,
+    "trnB": 3.38,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 5
+    "cid": 7
   },
   {
     "stack": [
@@ -1082,14 +1082,14 @@
     "extL": 39.56,
     "extA": -0.96,
     "extB": -3.53,
-    "intL": 41.35,
-    "intA": 0.55,
-    "intB": -1.32,
+    "trnL": 83.73,
+    "trnA": -6.39,
+    "trnB": 3.38,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 5
+    "cid": 7
   },
   {
     "stack": [
@@ -1121,14 +1121,14 @@
     "extL": 39.47,
     "extA": -0.94,
     "extB": -3.56,
-    "intL": 41.15,
-    "intA": 0.46,
-    "intB": -1.31,
+    "trnL": 83.61,
+    "trnA": -6.55,
+    "trnB": 3.41,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 5
+    "cid": 7
   },
   {
     "stack": [
@@ -1160,14 +1160,14 @@
     "extL": 39.41,
     "extA": -0.93,
     "extB": -3.58,
-    "intL": 40.91,
-    "intA": 0.32,
-    "intB": -1.27,
+    "trnL": 83.31,
+    "trnA": -6.81,
+    "trnB": 3.46,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 5
+    "cid": 7
   },
   {
     "stack": [
@@ -1199,14 +1199,14 @@
     "extL": 37.23,
     "extA": -2.41,
     "extB": -2.48,
-    "intL": 45.86,
-    "intA": -5.55,
-    "intB": 3.4,
+    "trnL": 77.28,
+    "trnA": -8.15,
+    "trnB": 3.6,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 0
+    "cid": 1
   },
   {
     "stack": [
@@ -1238,14 +1238,14 @@
     "extL": 37.01,
     "extA": -2.48,
     "extB": -2.52,
-    "intL": 45.81,
-    "intA": -5.54,
-    "intB": 3.38,
+    "trnL": 77.12,
+    "trnA": -8.25,
+    "trnB": 3.66,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 0
+    "cid": 1
   },
   {
     "stack": [
@@ -1277,14 +1277,14 @@
     "extL": 36.95,
     "extA": -2.46,
     "extB": -2.54,
-    "intL": 45.62,
-    "intA": -5.63,
-    "intB": 3.4,
+    "trnL": 77.01,
+    "trnA": -8.39,
+    "trnB": 3.68,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 0
+    "cid": 1
   },
   {
     "stack": [
@@ -1316,14 +1316,14 @@
     "extL": 36.98,
     "extA": -2.64,
     "extB": -2.41,
-    "intL": 45.81,
-    "intA": -5.57,
-    "intB": 3.4,
+    "trnL": 76.93,
+    "trnA": -8.51,
+    "trnB": 3.68,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 0
+    "cid": 1
   },
   {
     "stack": [
@@ -1355,14 +1355,14 @@
     "extL": 36.92,
     "extA": -2.62,
     "extB": -2.43,
-    "intL": 45.61,
-    "intA": -5.66,
-    "intB": 3.41,
+    "trnL": 76.81,
+    "trnA": -8.65,
+    "trnB": 3.7,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 0
+    "cid": 1
   },
   {
     "stack": [
@@ -1394,14 +1394,14 @@
     "extL": 36.87,
     "extA": -2.61,
     "extB": -2.44,
-    "intL": 45.34,
-    "intA": -5.76,
-    "intB": 3.41,
+    "trnL": 76.54,
+    "trnA": -8.88,
+    "trnB": 3.74,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 0
+    "cid": 1
   },
   {
     "stack": [
@@ -1433,14 +1433,14 @@
     "extL": 39.43,
     "extA": -1.26,
     "extB": -2.48,
-    "intL": 41.14,
-    "intA": -2.84,
-    "intB": 1.81,
+    "trnL": 87.66,
+    "trnA": -3.63,
+    "trnB": 2.89,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 3
+    "cid": 6
   },
   {
     "stack": [
@@ -1472,14 +1472,14 @@
     "extL": 39.34,
     "extA": -1.39,
     "extB": -2.46,
-    "intL": 41.1,
-    "intA": -2.88,
-    "intB": 1.81,
+    "trnL": 87.5,
+    "trnA": -3.84,
+    "trnB": 2.89,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 3
+    "cid": 6
   },
   {
     "stack": [
@@ -1511,14 +1511,14 @@
     "extL": 39.25,
     "extA": -1.43,
     "extB": -2.46,
-    "intL": 40.96,
-    "intA": -2.99,
-    "intB": 1.83,
+    "trnL": 87.27,
+    "trnA": -4.07,
+    "trnB": 2.94,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 3
+    "cid": 6
   },
   {
     "stack": [
@@ -1550,14 +1550,14 @@
     "extL": 39.21,
     "extA": -1.55,
     "extB": -2.43,
-    "intL": 41.06,
-    "intA": -2.93,
-    "intB": 1.81,
+    "trnL": 87.3,
+    "trnA": -4.12,
+    "trnB": 2.88,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 3
+    "cid": 6
   },
   {
     "stack": [
@@ -1589,14 +1589,14 @@
     "extL": 39.12,
     "extA": -1.6,
     "extB": -2.43,
-    "intL": 40.92,
-    "intA": -3.04,
-    "intB": 1.82,
+    "trnL": 87.06,
+    "trnA": -4.35,
+    "trnB": 2.93,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 3
+    "cid": 6
   },
   {
     "stack": [
@@ -1628,14 +1628,14 @@
     "extL": 39.3,
     "extA": -1.71,
     "extB": -2.36,
-    "intL": 41.15,
-    "intA": -3.23,
-    "intB": 1.8,
+    "trnL": 86.83,
+    "trnA": -4.67,
+    "trnB": 2.89,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 3
+    "cid": 6
   },
   {
     "stack": [
@@ -1667,14 +1667,14 @@
     "extL": 43.65,
     "extA": -3.1,
     "extB": -4.65,
-    "intL": 44.26,
-    "intA": -1.43,
-    "intB": -5.61,
+    "trnL": 84.57,
+    "trnA": -5.69,
+    "trnB": 4.79,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 21
+    "cid": 35
   },
   {
     "stack": [
@@ -1706,14 +1706,14 @@
     "extL": 43.53,
     "extA": -3.26,
     "extB": -4.61,
-    "intL": 44.24,
-    "intA": -1.46,
-    "intB": -5.62,
+    "trnL": 84.41,
+    "trnA": -5.88,
+    "trnB": 4.79,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 21
+    "cid": 35
   },
   {
     "stack": [
@@ -1745,14 +1745,14 @@
     "extL": 43.47,
     "extA": -3.29,
     "extB": -4.61,
-    "intL": 44.07,
-    "intA": -1.62,
-    "intB": -5.52,
+    "trnL": 84.19,
+    "trnA": -6.09,
+    "trnB": 4.84,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 21
+    "cid": 35
   },
   {
     "stack": [
@@ -1784,14 +1784,14 @@
     "extL": 43.37,
     "extA": -3.48,
     "extB": -4.55,
-    "intL": 44.21,
-    "intA": -1.49,
-    "intB": -5.63,
+    "trnL": 84.21,
+    "trnA": -6.12,
+    "trnB": 4.79,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 21
+    "cid": 35
   },
   {
     "stack": [
@@ -1823,14 +1823,14 @@
     "extL": 43.31,
     "extA": -3.51,
     "extB": -4.55,
-    "intL": 44.04,
-    "intA": -1.65,
-    "intB": -5.54,
+    "trnL": 83.99,
+    "trnA": -6.33,
+    "trnB": 4.85,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 21
+    "cid": 35
   },
   {
     "stack": [
@@ -1862,14 +1862,14 @@
     "extL": 43.44,
     "extA": -3.59,
     "extB": -4.49,
-    "intL": 44.21,
-    "intA": -1.92,
-    "intB": -5.42,
+    "trnL": 83.77,
+    "trnA": -6.62,
+    "trnB": 4.8,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 21
+    "cid": 35
   },
   {
     "stack": [
@@ -1901,14 +1901,14 @@
     "extL": 50.99,
     "extA": -2.87,
     "extB": -6.96,
-    "intL": 47.16,
-    "intA": -6.62,
-    "intB": -7.18,
+    "trnL": 78.75,
+    "trnA": -6.54,
+    "trnB": 0.86,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 56
+    "cid": 92
   },
   {
     "stack": [
@@ -1940,14 +1940,14 @@
     "extL": 50.95,
     "extA": -2.88,
     "extB": -6.96,
-    "intL": 46.98,
-    "intA": -6.73,
-    "intB": -7.05,
+    "trnL": 78.54,
+    "trnA": -6.74,
+    "trnB": 0.91,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 56
+    "cid": 92
   },
   {
     "stack": [
@@ -1979,14 +1979,14 @@
     "extL": 50.79,
     "extA": -3.11,
     "extB": -6.9,
-    "intL": 47.14,
-    "intA": -6.64,
-    "intB": -7.18,
+    "trnL": 78.57,
+    "trnA": -6.79,
+    "trnB": 0.86,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 56
+    "cid": 92
   },
   {
     "stack": [
@@ -2018,14 +2018,14 @@
     "extL": 50.76,
     "extA": -3.12,
     "extB": -6.89,
-    "intL": 46.96,
-    "intA": -6.75,
-    "intB": -7.05,
+    "trnL": 78.35,
+    "trnA": -6.99,
+    "trnB": 0.92,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 56
+    "cid": 92
   },
   {
     "stack": [
@@ -2057,14 +2057,14 @@
     "extL": 50.83,
     "extA": -3.18,
     "extB": -6.87,
-    "intL": 47.09,
-    "intA": -6.9,
-    "intB": -6.91,
+    "trnL": 78.15,
+    "trnA": -7.28,
+    "trnB": 0.88,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 56
+    "cid": 92
   },
   {
     "stack": [
@@ -2081,29 +2081,29 @@
       {
         "type": "glass",
         "coating": null,
-        "substrate": "Clear",
+        "substrate": "Starphire",
         "thickness": 4
       }
     ],
-    "totalThickness": 8.95,
-    "uval": 0.3487,
+    "totalThickness": 8.85,
+    "uval": 0.3488,
     "uvalIP": 0.0614,
     "rval": 16.28,
-    "shgc": 0.4028,
-    "tvis": 0.7276,
-    "routVis": 0.1115,
-    "tuv": 0.2121,
-    "extL": 39.83,
-    "extA": -0.68,
-    "extB": -2.58,
-    "intL": 41.27,
-    "intA": -2.64,
-    "intB": 1.82,
+    "shgc": 0.4038,
+    "tvis": 0.7465,
+    "routVis": 0.1106,
+    "tuv": 0.2469,
+    "extL": 39.67,
+    "extA": -0.25,
+    "extB": -2.72,
+    "trnL": 89.17,
+    "trnA": -1.59,
+    "trnB": 2.76,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 122
+    "cid": 196
   },
   {
     "stack": [
@@ -2120,29 +2120,29 @@
       {
         "type": "glass",
         "coating": null,
-        "substrate": "Clear",
+        "substrate": "Starphire",
         "thickness": 5
       }
     ],
     "totalThickness": 9.65,
-    "uval": 0.3486,
+    "uval": 0.3487,
     "uvalIP": 0.0614,
     "rval": 16.29,
-    "shgc": 0.4029,
-    "tvis": 0.7227,
-    "routVis": 0.111,
-    "tuv": 0.2067,
-    "extL": 39.74,
-    "extA": -0.72,
-    "extB": -2.58,
-    "intL": 41.13,
-    "intA": -2.75,
-    "intB": 1.83,
+    "shgc": 0.4038,
+    "tvis": 0.7458,
+    "routVis": 0.1105,
+    "tuv": 0.2461,
+    "extL": 39.66,
+    "extA": -0.25,
+    "extB": -2.73,
+    "trnL": 89.13,
+    "trnA": -1.62,
+    "trnB": 2.75,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 122
+    "cid": 196
   },
   {
     "stack": [
@@ -2159,29 +2159,29 @@
       {
         "type": "glass",
         "coating": null,
-        "substrate": "Clear",
+        "substrate": "Starphire",
         "thickness": 4
       }
     ],
-    "totalThickness": 9.95,
-    "uval": 0.3486,
+    "totalThickness": 9.85,
+    "uval": 0.3487,
     "uvalIP": 0.0614,
     "rval": 16.29,
-    "shgc": 0.4018,
-    "tvis": 0.7267,
-    "routVis": 0.1114,
-    "tuv": 0.2115,
-    "extL": 39.8,
-    "extA": -0.7,
-    "extB": -2.58,
-    "intL": 41.27,
-    "intA": -2.65,
-    "intB": 1.81,
+    "shgc": 0.4028,
+    "tvis": 0.7456,
+    "routVis": 0.1104,
+    "tuv": 0.2459,
+    "extL": 39.65,
+    "extA": -0.28,
+    "extB": -2.72,
+    "trnL": 89.12,
+    "trnA": -1.63,
+    "trnB": 2.75,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 122
+    "cid": 196
   },
   {
     "stack": [
@@ -2198,29 +2198,29 @@
       {
         "type": "glass",
         "coating": null,
-        "substrate": "Clear",
+        "substrate": "Starphire",
         "thickness": 5
       }
     ],
     "totalThickness": 10.65,
-    "uval": 0.3485,
+    "uval": 0.3486,
     "uvalIP": 0.0614,
     "rval": 16.29,
-    "shgc": 0.4019,
-    "tvis": 0.7218,
-    "routVis": 0.1108,
-    "tuv": 0.2061,
-    "extL": 39.71,
-    "extA": -0.75,
-    "extB": -2.58,
-    "intL": 41.12,
-    "intA": -2.77,
-    "intB": 1.83,
+    "shgc": 0.4028,
+    "tvis": 0.7449,
+    "routVis": 0.1104,
+    "tuv": 0.2451,
+    "extL": 39.63,
+    "extA": -0.28,
+    "extB": -2.73,
+    "trnL": 89.09,
+    "trnA": -1.66,
+    "trnB": 2.74,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 122
+    "cid": 196
   },
   {
     "stack": [
@@ -2237,29 +2237,29 @@
       {
         "type": "glass",
         "coating": null,
-        "substrate": "Clear",
+        "substrate": "Starphire",
         "thickness": 6
       }
     ],
-    "totalThickness": 11.75,
+    "totalThickness": 11.65,
     "uval": 0.3484,
     "uvalIP": 0.0614,
     "rval": 16.3,
-    "shgc": 0.4013,
-    "tvis": 0.7168,
-    "routVis": 0.1119,
-    "tuv": 0.2017,
-    "extL": 39.89,
-    "extA": -0.86,
-    "extB": -2.51,
-    "intL": 41.35,
-    "intA": -2.97,
-    "intB": 1.81,
+    "shgc": 0.4028,
+    "tvis": 0.7439,
+    "routVis": 0.1103,
+    "tuv": 0.2441,
+    "extL": 39.63,
+    "extA": -0.29,
+    "extB": -2.73,
+    "trnL": 89.04,
+    "trnA": -1.7,
+    "trnB": 2.74,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 122
+    "cid": 196
   },
   {
     "stack": [
@@ -2276,29 +2276,29 @@
       {
         "type": "glass",
         "coating": null,
-        "substrate": "Clear",
+        "substrate": "Starphire",
         "thickness": 4
       }
     ],
-    "totalThickness": 9.95,
+    "totalThickness": 9.85,
     "uval": 0.2803,
     "uvalIP": 0.0494,
     "rval": 20.26,
-    "shgc": 0.2647,
-    "tvis": 0.6658,
-    "routVis": 0.1353,
-    "tuv": 0.0771,
-    "extL": 43.58,
-    "extA": -1.71,
-    "extB": -4.53,
-    "intL": 44.24,
-    "intA": -1.3,
-    "intB": -5.61,
+    "shgc": 0.2652,
+    "tvis": 0.6829,
+    "routVis": 0.1345,
+    "tuv": 0.0895,
+    "extL": 43.46,
+    "extA": -1.41,
+    "extB": -4.64,
+    "trnL": 86.08,
+    "trnA": -2.99,
+    "trnB": 3.52,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 126
+    "cid": 198
   },
   {
     "stack": [
@@ -2315,29 +2315,29 @@
       {
         "type": "glass",
         "coating": null,
-        "substrate": "Clear",
+        "substrate": "Starphire",
         "thickness": 5
       }
     ],
     "totalThickness": 10.65,
-    "uval": 0.2802,
+    "uval": 0.2803,
     "uvalIP": 0.0494,
     "rval": 20.26,
-    "shgc": 0.2648,
-    "tvis": 0.6613,
-    "routVis": 0.1349,
-    "tuv": 0.0751,
-    "extL": 43.52,
-    "extA": -1.74,
-    "extB": -4.53,
-    "intL": 44.08,
-    "intA": -1.47,
-    "intB": -5.52,
+    "shgc": 0.2652,
+    "tvis": 0.6823,
+    "routVis": 0.1344,
+    "tuv": 0.0893,
+    "extL": 43.46,
+    "extA": -1.41,
+    "extB": -4.64,
+    "trnL": 86.05,
+    "trnA": -3.02,
+    "trnB": 3.51,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 126
+    "cid": 198
   },
   {
     "stack": [
@@ -2354,29 +2354,29 @@
       {
         "type": "glass",
         "coating": null,
-        "substrate": "Clear",
+        "substrate": "Starphire",
         "thickness": 6
       }
     ],
-    "totalThickness": 11.75,
-    "uval": 0.2801,
+    "totalThickness": 11.65,
+    "uval": 0.2802,
     "uvalIP": 0.0493,
     "rval": 20.27,
-    "shgc": 0.2644,
-    "tvis": 0.6568,
-    "routVis": 0.1358,
-    "tuv": 0.0736,
-    "extL": 43.65,
-    "extA": -1.82,
-    "extB": -4.47,
-    "intL": 44.25,
-    "intA": -1.74,
-    "intB": -5.41,
+    "shgc": 0.2652,
+    "tvis": 0.6814,
+    "routVis": 0.1344,
+    "tuv": 0.0889,
+    "extL": 43.45,
+    "extA": -1.42,
+    "extB": -4.65,
+    "trnL": 86.0,
+    "trnA": -3.06,
+    "trnB": 3.5,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 126
+    "cid": 198
   },
   {
     "stack": [
@@ -2408,14 +2408,14 @@
     "extL": 40.39,
     "extA": -0.62,
     "extB": -3.62,
-    "intL": 40.65,
-    "intA": 0.21,
-    "intB": -3.71,
+    "trnL": 93.01,
+    "trnA": -1.96,
+    "trnB": 2.15,
     "nfrc": true,
     "cen": true,
     "gFactor": 0.637426,
     "uvalCEN": 0.411255,
-    "cid": 5
+    "cid": 10
   },
   {
     "stack": [
@@ -2447,14 +2447,14 @@
     "extL": 40.3,
     "extA": -0.76,
     "extB": -3.57,
-    "intL": 40.65,
-    "intA": 0.15,
-    "intB": -3.59,
+    "trnL": 92.89,
+    "trnA": -2.09,
+    "trnB": 2.19,
     "nfrc": true,
     "cen": true,
     "gFactor": 0.631194,
     "uvalCEN": 0.410489,
-    "cid": 5
+    "cid": 10
   },
   {
     "stack": [
@@ -2486,14 +2486,14 @@
     "extL": 40.27,
     "extA": -0.85,
     "extB": -3.57,
-    "intL": 40.6,
-    "intA": 0.09,
-    "intB": -3.53,
+    "trnL": 92.78,
+    "trnA": -2.24,
+    "trnB": 2.18,
     "nfrc": true,
     "cen": true,
     "gFactor": 0.631191,
     "uvalCEN": 0.410312,
-    "cid": 5
+    "cid": 10
   },
   {
     "stack": [
@@ -2525,14 +2525,14 @@
     "extL": 40.25,
     "extA": -0.79,
     "extB": -3.52,
-    "intL": 40.58,
-    "intA": 0.18,
-    "intB": -3.71,
+    "trnL": 92.78,
+    "trnA": -2.24,
+    "trnB": 2.2,
     "nfrc": true,
     "cen": true,
     "gFactor": 0.625003,
     "uvalCEN": 0.411103,
-    "cid": 5
+    "cid": 10
   },
   {
     "stack": [
@@ -2564,14 +2564,14 @@
     "extL": 40.22,
     "extA": -0.89,
     "extB": -3.52,
-    "intL": 40.54,
-    "intA": 0.12,
-    "intB": -3.65,
+    "trnL": 92.66,
+    "trnA": -2.39,
+    "trnB": 2.19,
     "nfrc": true,
     "cen": true,
     "gFactor": 0.624999,
     "uvalCEN": 0.410926,
-    "cid": 5
+    "cid": 10
   },
   {
     "stack": [
@@ -2603,14 +2603,14 @@
     "extL": 40.11,
     "extA": -0.96,
     "extB": -3.61,
-    "intL": 40.38,
-    "intA": 0.02,
-    "intB": -3.78,
+    "trnL": 92.55,
+    "trnA": -2.52,
+    "trnB": 2.21,
     "nfrc": true,
     "cen": true,
     "gFactor": 0.625117,
     "uvalCEN": 0.410748,
-    "cid": 5
+    "cid": 10
   },
   {
     "stack": [
@@ -2642,14 +2642,14 @@
     "extL": 49.29,
     "extA": -0.64,
     "extB": -7.1,
-    "intL": 46.7,
-    "intA": 0.22,
-    "intB": -7.29,
+    "trnL": 90.94,
+    "trnA": -2.13,
+    "trnB": 3.48,
     "nfrc": true,
     "cen": true,
     "gFactor": 0.521668,
     "uvalCEN": 0.309946,
-    "cid": 50
+    "cid": 85
   },
   {
     "stack": [
@@ -2681,14 +2681,14 @@
     "extL": 49.16,
     "extA": -0.74,
     "extB": -7.16,
-    "intL": 46.67,
-    "intA": 0.17,
-    "intB": -7.29,
+    "trnL": 90.82,
+    "trnA": -2.26,
+    "trnB": 3.48,
     "nfrc": true,
     "cen": true,
     "gFactor": 0.517117,
     "uvalCEN": 0.311716,
-    "cid": 50
+    "cid": 85
   },
   {
     "stack": [
@@ -2720,14 +2720,14 @@
     "extL": 49.14,
     "extA": -0.8,
     "extB": -7.17,
-    "intL": 46.61,
-    "intA": 0.08,
-    "intB": -7.23,
+    "trnL": 90.71,
+    "trnA": -2.4,
+    "trnB": 3.47,
     "nfrc": true,
     "cen": true,
     "gFactor": 0.517148,
     "uvalCEN": 0.311615,
-    "cid": 50
+    "cid": 85
   },
   {
     "stack": [
@@ -2759,14 +2759,14 @@
     "extL": 49.05,
     "extA": -0.89,
     "extB": -7.12,
-    "intL": 46.66,
-    "intA": 0.11,
-    "intB": -7.22,
+    "trnL": 90.71,
+    "trnA": -2.38,
+    "trnB": 3.52,
     "nfrc": true,
     "cen": true,
     "gFactor": 0.512729,
     "uvalCEN": 0.313143,
-    "cid": 50
+    "cid": 85
   },
   {
     "stack": [
@@ -2798,14 +2798,14 @@
     "extL": 49.03,
     "extA": -0.96,
     "extB": -7.12,
-    "intL": 46.59,
-    "intA": 0.02,
-    "intB": -7.16,
+    "trnL": 90.6,
+    "trnA": -2.52,
+    "trnB": 3.51,
     "nfrc": true,
     "cen": true,
     "gFactor": 0.512758,
     "uvalCEN": 0.313042,
-    "cid": 50
+    "cid": 85
   },
   {
     "stack": [
@@ -2837,14 +2837,14 @@
     "extL": 48.96,
     "extA": -1.0,
     "extB": -7.19,
-    "intL": 46.43,
-    "intA": -0.1,
-    "intB": -7.24,
+    "trnL": 90.49,
+    "trnA": -2.65,
+    "trnB": 3.53,
     "nfrc": true,
     "cen": true,
     "gFactor": 0.512902,
     "uvalCEN": 0.31294,
-    "cid": 50
+    "cid": 85
   },
   {
     "stack": [
@@ -2876,14 +2876,14 @@
     "extL": 41.4,
     "extA": -1.2,
     "extB": -8.27,
-    "intL": 42.81,
-    "intA": -2.64,
-    "intB": -4.33,
+    "trnL": 89.17,
+    "trnA": -3.19,
+    "trnB": 2.34,
     "nfrc": true,
     "cen": true,
     "gFactor": 0.354771,
     "uvalCEN": 0.292044,
-    "cid": 9
+    "cid": 14
   },
   {
     "stack": [
@@ -2915,14 +2915,14 @@
     "extL": 41.37,
     "extA": -1.28,
     "extB": -8.27,
-    "intL": 42.76,
-    "intA": -2.69,
-    "intB": -4.26,
+    "trnL": 89.07,
+    "trnA": -3.32,
+    "trnB": 2.34,
     "nfrc": true,
     "cen": true,
     "gFactor": 0.354808,
     "uvalCEN": 0.291956,
-    "cid": 9
+    "cid": 14
   },
   {
     "stack": [
@@ -2954,14 +2954,14 @@
     "extL": 41.29,
     "extA": -1.33,
     "extB": -8.35,
-    "intL": 42.6,
-    "intA": -2.8,
-    "intB": -4.37,
+    "trnL": 88.95,
+    "trnA": -3.45,
+    "trnB": 2.35,
     "nfrc": true,
     "cen": true,
     "gFactor": 0.354948,
     "uvalCEN": 0.291868,
-    "cid": 9
+    "cid": 14
   },
   {
     "stack": [
@@ -2993,14 +2993,14 @@
     "extL": 39.85,
     "extA": -1.8,
     "extB": -6.29,
-    "intL": 45.7,
-    "intA": -6.62,
-    "intB": 0.36,
+    "trnL": 82.7,
+    "trnA": -4.62,
+    "trnB": -0.49,
     "nfrc": true,
     "cen": true,
     "gFactor": 0.249646,
     "uvalCEN": 0.307874,
-    "cid": 4
+    "cid": 8
   },
   {
     "stack": [
@@ -3032,14 +3032,14 @@
     "extL": 39.7,
     "extA": -2.04,
     "extB": -6.23,
-    "intL": 45.69,
-    "intA": -6.62,
-    "intB": 0.44,
+    "trnL": 82.49,
+    "trnA": -4.86,
+    "trnB": -0.46,
     "nfrc": true,
     "cen": true,
     "gFactor": 0.248261,
     "uvalCEN": 0.302222,
-    "cid": 4
+    "cid": 8
   },
   {
     "stack": [
@@ -3071,14 +3071,14 @@
     "extL": 39.69,
     "extA": -2.09,
     "extB": -6.23,
-    "intL": 45.63,
-    "intA": -6.69,
-    "intB": 0.48,
+    "trnL": 82.39,
+    "trnA": -4.98,
+    "trnB": -0.46,
     "nfrc": true,
     "cen": true,
     "gFactor": 0.248291,
     "uvalCEN": 0.302128,
-    "cid": 4
+    "cid": 8
   },
   {
     "stack": [
@@ -3110,14 +3110,14 @@
     "extL": 39.63,
     "extA": -2.12,
     "extB": -6.28,
-    "intL": 45.47,
-    "intA": -6.83,
-    "intB": 0.36,
+    "trnL": 82.29,
+    "trnA": -5.1,
+    "trnB": -0.44,
     "nfrc": true,
     "cen": true,
     "gFactor": 0.248381,
     "uvalCEN": 0.302033,
-    "cid": 4
+    "cid": 8
   },
   {
     "stack": [
@@ -3149,14 +3149,14 @@
     "extL": 36.49,
     "extA": -4.13,
     "extB": -1.27,
-    "intL": 40.17,
-    "intA": -3.66,
-    "intB": 1.93,
+    "trnL": 82.69,
+    "trnA": -9.12,
+    "trnB": 3.72,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 110
+    "cid": 181
   },
   {
     "stack": [
@@ -3188,14 +3188,14 @@
     "extL": 36.42,
     "extA": -4.14,
     "extB": -1.27,
-    "intL": 40.04,
-    "intA": -3.75,
-    "intB": 1.94,
+    "trnL": 82.47,
+    "trnA": -9.32,
+    "trnB": 3.77,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 110
+    "cid": 181
   },
   {
     "stack": [
@@ -3227,14 +3227,14 @@
     "extL": 36.57,
     "extA": -4.26,
     "extB": -1.2,
-    "intL": 40.29,
-    "intA": -3.92,
-    "intB": 1.92,
+    "trnL": 82.26,
+    "trnA": -9.6,
+    "trnB": 3.73,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 110
+    "cid": 181
   },
   {
     "stack": [
@@ -3266,14 +3266,14 @@
     "extL": 30.9,
     "extA": 0.56,
     "extB": 0.23,
-    "intL": 38.54,
-    "intA": -2.16,
-    "intB": 2.09,
+    "trnL": 70.83,
+    "trnA": 0.79,
+    "trnB": 7.11,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 93
+    "cid": 152
   },
   {
     "stack": [
@@ -3305,14 +3305,14 @@
     "extL": 30.86,
     "extA": 0.53,
     "extB": 0.22,
-    "intL": 38.42,
-    "intA": -2.25,
-    "intB": 2.09,
+    "trnL": 70.63,
+    "trnA": 0.59,
+    "trnB": 7.14,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 93
+    "cid": 152
   },
   {
     "stack": [
@@ -3344,14 +3344,14 @@
     "extL": 30.94,
     "extA": 0.5,
     "extB": 0.27,
-    "intL": 38.7,
-    "intA": -2.43,
-    "intB": 2.07,
+    "trnL": 70.43,
+    "trnA": 0.31,
+    "trnB": 7.09,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 93
+    "cid": 152
   },
   {
     "stack": [
@@ -3383,14 +3383,14 @@
     "extL": 29.28,
     "extA": 0.08,
     "extB": -2.09,
-    "intL": 38.11,
-    "intA": -2.38,
-    "intB": 1.48,
+    "trnL": 66.0,
+    "trnA": -1.47,
+    "trnB": 0.25,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 100
+    "cid": 164
   },
   {
     "stack": [
@@ -3422,14 +3422,14 @@
     "extL": 29.25,
     "extA": 0.06,
     "extB": -2.08,
-    "intL": 37.99,
-    "intA": -2.46,
-    "intB": 1.49,
+    "trnL": 65.81,
+    "trnA": -1.65,
+    "trnB": 0.29,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 100
+    "cid": 164
   },
   {
     "stack": [
@@ -3461,14 +3461,14 @@
     "extL": 29.31,
     "extA": 0.02,
     "extB": -2.06,
-    "intL": 38.29,
-    "intA": -2.63,
-    "intB": 1.48,
+    "trnL": 65.63,
+    "trnA": -1.9,
+    "trnB": 0.27,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 100
+    "cid": 164
   },
   {
     "stack": [
@@ -3500,14 +3500,14 @@
     "extL": 33.08,
     "extA": -0.9,
     "extB": -1.9,
-    "intL": 39.14,
-    "intA": -2.65,
-    "intB": 1.68,
+    "trnL": 76.09,
+    "trnA": -3.63,
+    "trnB": 2.38,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 76
+    "cid": 126
   },
   {
     "stack": [
@@ -3539,14 +3539,14 @@
     "extL": 33.03,
     "extA": -0.93,
     "extB": -1.89,
-    "intL": 39.01,
-    "intA": -2.74,
-    "intB": 1.69,
+    "trnL": 75.88,
+    "trnA": -3.83,
+    "trnB": 2.43,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 76
+    "cid": 126
   },
   {
     "stack": [
@@ -3578,14 +3578,14 @@
     "extL": 33.14,
     "extA": -1.0,
     "extB": -1.85,
-    "intL": 39.28,
-    "intA": -2.92,
-    "intB": 1.67,
+    "trnL": 75.68,
+    "trnA": -4.11,
+    "trnB": 2.4,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 76
+    "cid": 126
   },
   {
     "stack": [
@@ -3617,14 +3617,14 @@
     "extL": 31.83,
     "extA": -1.26,
     "extB": -6.02,
-    "intL": 38.78,
-    "intA": -2.9,
-    "intB": 0.55,
+    "trnL": 72.98,
+    "trnA": -6.78,
+    "trnB": -6.74,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 85
+    "cid": 141
   },
   {
     "stack": [
@@ -3656,14 +3656,14 @@
     "extL": 31.79,
     "extA": -1.28,
     "extB": -5.99,
-    "intL": 38.66,
-    "intA": -2.98,
-    "intB": 0.57,
+    "trnL": 72.79,
+    "trnA": -6.96,
+    "trnB": -6.66,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 85
+    "cid": 141
   },
   {
     "stack": [
@@ -3695,14 +3695,14 @@
     "extL": 31.89,
     "extA": -1.35,
     "extB": -5.98,
-    "intL": 38.94,
-    "intA": -3.14,
-    "intB": 0.58,
+    "trnL": 72.6,
+    "trnA": -7.21,
+    "trnB": -6.67,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 85
+    "cid": 141
   },
   {
     "stack": [
@@ -3734,14 +3734,14 @@
     "extL": 33.45,
     "extA": -0.32,
     "extB": -5.13,
-    "intL": 39.24,
-    "intA": -2.61,
-    "intB": 0.84,
+    "trnL": 76.82,
+    "trnA": -3.42,
+    "trnB": -3.41,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 66
+    "cid": 110
   },
   {
     "stack": [
@@ -3773,14 +3773,14 @@
     "extL": 33.4,
     "extA": -0.35,
     "extB": -5.1,
-    "intL": 39.11,
-    "intA": -2.7,
-    "intB": 0.86,
+    "trnL": 76.61,
+    "trnA": -3.63,
+    "trnB": -3.34,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 66
+    "cid": 110
   },
   {
     "stack": [
@@ -3812,13 +3812,13 @@
     "extL": 33.51,
     "extA": -0.42,
     "extB": -5.08,
-    "intL": 39.38,
-    "intA": -2.88,
-    "intB": 0.87,
+    "trnL": 76.41,
+    "trnA": -3.91,
+    "trnB": -3.36,
     "nfrc": true,
     "cen": false,
     "gFactor": null,
     "uvalCEN": null,
-    "cid": 66
+    "cid": 110
   }
 ]

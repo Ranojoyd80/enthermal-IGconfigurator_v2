@@ -236,7 +236,7 @@ Both tabs implement constraint propagation — each selection filters downstream
 ```
 
 ### Color Rendering
-- The **Exterior Color** card shows a **per-config photoreal render** with a Clear/Overcast/Cloudy weather toggle + zoom lightbox. Each config carries an integer `cid` (anchor id, injected into the JSON by the clustering script); `setAnchorImages(cid)` points the card at `App_Data/Anchor_Renders/<Sky>/anchor_<cid>.webp` (`cid` zero-padded to ≥2 digits). The 6,862 configs collapse to **137 anchors** at CIEDE2000 ≤ 1.5, substrate-partitioned — full detail in `Data_Pipeline/3_Clustering/CLUSTERING_PROCEDURE.md`
+- The **Exterior Color** card shows a **per-config photoreal render** with a Clear/Overcast/Cloudy weather toggle + zoom lightbox. Each config carries an integer `cid` (anchor id, injected into the JSON by the clustering script); `setAnchorImages(cid)` points the card at `App_Data/Anchor_Renders/<Sky>/anchor_<cid>.webp` (`cid` zero-padded to ≥2 digits). The 6,444 configs collapse to **202 anchors** via two-axis CIEDE2000 clustering (exterior reflected ≤ 1.5 **and** transmitted ≤ 3.0), substrate-partitioned, with **1-based** `cid`s (frame N = cid N) — full detail in `Data_Pipeline/3_Clustering/CLUSTERING_PROCEDURE.md`
 - The earlier runtime `labToRgb()` Lab→sRGB gradient renderer and the flip/Lab-readout UI have been **removed**; so has the interim static `*_Set3.png` placeholder sky (the same image for every config) — renders are now per-config via `cid`
 - Per-config CIE L\*a\*b\* values (`extL/A/B`, `intL/A/B`) remain in the data and drive the JND clustering that assigns each config its `cid`
 - The cross-section glass panes are still tinted from substrate via `getGlassColor()` — on **both** tabs the exterior lite (`glass[0]`) is tinted from its substrate; the always-Clear inner lites keep their default styling. On Plus this follows the inboard/outboard flip (mono pane in inboard, VIG-outer pane in outboard). A Lab→sRGB cross-section tint was evaluated and rejected: the assembly Lab values are coating-dominated and don't carry the recognizable per-substrate body color
@@ -307,7 +307,7 @@ When `/implement-design` returns Figma-derived code:
 
 This is the **LuxWall Enthermal™ Product Configurator** — a technical sales tool for architects, specifiers, and the LuxWall sales team. It displays thermal performance metrics (U-value, SHGC, Tvis, R-value, OITC) for vacuum insulated glass (VIG) configurations.
 
-**Current tabs:** Enthermal™ (98 configs), Enthermal Plus™ (6,764 configs — 4,748 inboard + 2,016 outboard). There are two tabs; an earlier Spandrel placeholder tab has been removed.
+**Current tabs:** Enthermal™ (98 configs), Enthermal Plus™ (6,346 configs — 4,470 inboard + 1,876 outboard). There are two tabs; an earlier Spandrel placeholder tab has been removed.
 
 **Data source:** LBNL Windows 7 / PyWinCalc calculations exported to CSV (`Data_Pipeline/`), converted to the JSON files in `App_Data/` by `csv_to_json.py`, and loaded at runtime via `fetch()`.
 

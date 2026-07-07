@@ -24,7 +24,7 @@ available via a toggle, all for the *same* config:
 | Overcast | `App_Data/Anchor_Renders/Overcast/anchor_<cid>.webp` | ✓ |
 | Cloudy | `App_Data/Anchor_Renders/Cloudy/anchor_<cid>.webp` | |
 
-The 6,862 configs collapse to **137 color anchors** (CIEDE2000 ≤ 1.5, partitioned by
+The 6,444 configs collapse to **202 color anchors** (two-axis CIEDE2000: exterior reflected ≤ 1.5 **and** transmitted ≤ 3.0; 1-based `cid`s; partitioned by
 exterior substrate), so the render is imperceptibly close to — and the same hue family as
 — the user's exact selection. Full algorithm and delivery detail:
 [CLUSTERING_PROCEDURE.md](../Data_Pipeline/3_Clustering/CLUSTERING_PROCEDURE.md).

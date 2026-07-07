@@ -76,7 +76,7 @@ unknown token so new products fail loudly instead of silently mislabeling.
 > coating, not which face. The front-end re-derives the surface at load time by a
 > fixed positional convention in `postProcessData()` — outer-pane coating → S2,
 > middle-pane → S4, inner-pane → S5. (Verified against the CSV Low-E suffixes for
-> all 137 render anchors: 0 mismatches; only S2/S4/S5 ever occur.) The authoritative
+> all 202 render anchors: 0 mismatches; only S2/S4/S5 ever occur.) The authoritative
 > surface number survives only in the CSV `… Lite Low-E` column suffix.
 
 ---

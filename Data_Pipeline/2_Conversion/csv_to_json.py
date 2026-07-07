@@ -41,9 +41,9 @@ OUTPUT_DIR = os.path.join(REPO_ROOT, 'App_Data')
 HTML_PATH = os.path.join(REPO_ROOT, 'enthermal-configurator.html')
 
 CSV_DIR = os.path.join(PRODUCT_DATA, '1_Source_CSVs')
-ENTHERMAL_CSV = os.path.join(CSV_DIR, 'IG_Config_Enthermal_Dataset_12-04-26.csv')
-PLUS_INBOARD_CSV = os.path.join(CSV_DIR, 'IG_Config_EnthermalPlus_Inboard_Dataset_12-04-26.csv')
-PLUS_OUTBOARD_CSV = os.path.join(CSV_DIR, 'IG_Config_EnthermalPlus_Outboard_Dataset_12-04-26.csv')
+ENTHERMAL_CSV = os.path.join(CSV_DIR, 'IG_Config_Enthermal_Dataset_07-07-26.csv')
+PLUS_INBOARD_CSV = os.path.join(CSV_DIR, 'IG_Config_EnthermalPlus_Inboard_Dataset_07-07-26.csv')
+PLUS_OUTBOARD_CSV = os.path.join(CSV_DIR, 'IG_Config_EnthermalPlus_Outboard_Dataset_07-07-26.csv')
 
 # Rewrites applied to coating shortcodes during import. Keep the CSV's raw
 # codes on the left; the canonical set the app consumes is on the right.
@@ -186,9 +186,12 @@ def convert(csv_path):
                 'extL': parse_float(r['Exterior Reflected Color L*']),
                 'extA': parse_float(r['Exterior Reflected Color a*']),
                 'extB': parse_float(r['Exterior Reflected Color b*']),
-                'intL': parse_float(r['Interior Reflected Color L*']),
-                'intA': parse_float(r['Interior Reflected Color a*']),
-                'intB': parse_float(r['Interior Reflected Color b*']),
+                # The 07-07-26 datasets replaced the Interior Reflected Color
+                # columns with Transmitted Color. Exterior Reflected still drives
+                # anchor clustering; transmitted color is carried through as trn*.
+                'trnL': parse_float(r['Transmitted Color L*']),
+                'trnA': parse_float(r['Transmitted Color a*']),
+                'trnB': parse_float(r['Transmitted Color b*']),
                 'nfrc': r.get('NFRC', '').strip() == 'Yes',
                 'cen': r.get('CEN', '').strip() == 'Yes',
                 'gFactor': parse_float(r.get('g-factor', '')),
