@@ -479,7 +479,7 @@ body{font-family:var(--font-body);background:var(--lw-gray-50);color:var(--lw-da
       </div>
     </div>
       <div class="viz-card viz-color">
-        <div class="viz-card-header" style="justify-content:space-between;padding:13.5px 18px"><span id="colorViewTitle">Exterior Color</span>
+        <div class="viz-card-header" style="justify-content:space-between;padding:13.5px 18px"><span id="colorViewTitle">Exterior Appearance</span>
           <div class="sky-toggle" id="skyToggle">
             <span class="sky-toggle-option active" data-folder="Overcast" data-img="App_Data/Anchor_Renders/Overcast/anchor_01.webp">Overcast</span>
             <span class="sky-toggle-option" data-folder="PartlyClear" data-img="App_Data/Anchor_Renders/PartlyClear/anchor_01.webp">Partly Clear</span>
@@ -735,7 +735,7 @@ function clearResults(){
   document.getElementById('csInnerDetail').textContent='—';
   document.getElementById('csECarbon').textContent='—';
   document.getElementById('csIGUWeight').textContent='—';
-  document.getElementById('colorViewTitle').textContent='Exterior Color';
+  document.getElementById('colorViewTitle').textContent='Exterior Appearance';
   refreshMetricMuted();
 }
 function updateResults(){const match=findMatch();if(!getVal('outerThickness')||!outerCoatingEl.value||!getVal('innerThickness')){clearResults();return}
@@ -1126,7 +1126,7 @@ function findPlusMatch(){
 function updatePlusResults(surfaceOnly){
   if(!plusOuterCoatingEl.value||!plusVigCoatingEl.value){clearResults();return}
   var match=findPlusMatch();
-  if(!match){['metricU','metricUIP','metricR','metricSHGC','metricTvis','metricRoutVis','metricTdw','metricRw','metricTuv'].forEach(id=>document.getElementById(id).textContent='—');document.getElementById('summaryText').textContent='Select a product to view results.';document.getElementById('colorViewTitle').textContent='Exterior Color';return}
+  if(!match){['metricU','metricUIP','metricR','metricSHGC','metricTvis','metricRoutVis','metricTdw','metricRw','metricTuv'].forEach(id=>document.getElementById(id).textContent='—');document.getElementById('summaryText').textContent='Select a product to view results.';document.getElementById('colorViewTitle').textContent='Exterior Appearance';return}
   setAnchorImages(match.cid);
   // Auto-flip toggle to match the config's CEN availability
   var stdInput=document.getElementById('stdToggleInput');
