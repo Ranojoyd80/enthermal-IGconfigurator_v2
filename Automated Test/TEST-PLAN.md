@@ -67,7 +67,7 @@ This is the intended behavior. Group C and stress test S2 assert against this co
 | CEN/NFRC toggle | `checked` matches `match.cen`; `.locked` present when `match.cen` |
 | Gas-fill round-trip | `match.gas` matches radio selection (catches silent Air→Argon fallback) |
 | Cross-section labels | from `match.glass[i]` |
-| Color card | Per-config render (`#colorRenderImg`) — `setAnchorImages(match.cid)` points it at `Anchor_Renders/<Sky>/anchor_<cid>.webp`; the sky toggle swaps `src` among Clear/Overcast/Cloudy for that `cid` (default Overcast). **No per-config L/a/b readout or flip** — that UI was removed. |
+| Color card | Per-config render (`#colorRenderImg`) — `setAnchorImages(match.cid)` points it at `Anchor_Renders/<Folder>/anchor_<cid>.webp` (`cid` 1-based, folder from `data-folder`); the sky toggle swaps `src` between Overcast/PartlyClear for that `cid` (default Overcast). **No per-config L/a/b readout or flip** — that UI was removed. |
 | Dropdown option set | unique coatings at current thickness |
 | Cascade disabled state | predicate |
 
@@ -225,6 +225,6 @@ The agent does **not** silently rewrite the plan mid-run. Each correction goes i
 2. `python -m http.server --bind 127.0.0.1 8000` in repo root (separate terminal)
 3. `Automated Test/golden.json` populated (A9 uses CEN schema)
 4. Naive predicate reimplementation in test runner
-5. Color card is a per-config render — `setAnchorImages(match.cid)` sets `#colorRenderImg.src` to `Anchor_Renders/<Sky>/anchor_<cid>.webp`; assert the `src` reflects `match.cid` and swaps among Clear/Overcast/Cloudy per toggle option (default Overcast). The old per-config L/a/b readout and flip have been removed.
+5. Color card is a per-config render — `setAnchorImages(match.cid)` sets `#colorRenderImg.src` to `Anchor_Renders/<Folder>/anchor_<cid>.webp` (`cid` 1-based; folder = the option's `data-folder`, `Overcast` or `PartlyClear`); assert the `src` reflects `match.cid` and swaps between Overcast/Partly Clear per toggle option (default Overcast). The old per-config L/a/b readout and flip have been removed.
 6. ≥250ms wait after any placement toggle flip (150ms intentional fade)
 7. Plus-outboard predicate must key on `glass[0].substrate` (default Clear for Group E)

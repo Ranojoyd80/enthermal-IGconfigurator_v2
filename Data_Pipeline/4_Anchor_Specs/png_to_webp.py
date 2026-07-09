@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
 """Phase 4: Convert anchor PNG renders -> lossless WebP for the app.
 
-Source PNGs (Blender, 2075x1550) live OUTSIDE the repo, one folder per sky:
-  <SRC>/ClearSky_AnchorRenders/Clear_Anchor0001..0137.png
-  <SRC>/CloudySky_AnchorRenders/Cloudy_Anchor0001..0137.png
-  <SRC>/Overcast_AnchorRenders/Overcast_Anchor0001..0137.png
+Source PNGs (Blender, high-res) live OUTSIDE the repo, one folder per sky/exposure:
+  <SRC>/Overcast_AnchorRenders/Exp090/Overcast_090NNNN.png    (NNNN = 0001..0202)
+  <SRC>/ClearSky_AnchorRenders/Exp075/ClearSky_Exp075NNNN.png (NNNN = 0001..0202)
 
-Mapping: Blender frame N (Anchor NNNN) -> per-config cid = N-1.
-Output: App_Data/Anchor_Renders/{Clear,Overcast,Cloudy}/anchor_<cid>.webp
-        cid zero-padded to >=2 digits (0->"00", 5->"05", 135->"135").
+Mapping: Blender frame N -> per-config cid = N (1-based; frame N = cid N).
+Output: App_Data/Anchor_Renders/{Overcast,PartlyClear}/anchor_<cid>.webp
+        cid zero-padded to >=2 digits (1->"01", 5->"05", 202->"202").
+
+Two skies ship in the app: Overcast (default) + Partly Clear. The "Partly Clear"
+render is the ClearSky Exp075 batch; the app shows the display label "Partly Clear"
+but the on-disk folder is space-free ("PartlyClear") to keep the URL paths clean.
 
 Lossless only (lossy visibly degrades glass). Verifies pixel-identical after save.
 """
@@ -16,29 +19,28 @@ import sys
 from pathlib import Path
 from PIL import Image, ImageChops
 
-SRC = Path(r"C:\Users\14084\Documents\Rhino_GH_Files\Office_RenderingModel\AnchorRenders")
+SRC = Path(r"C:\Users\14084\Documents\Blender_Renderings\IGUConfigurator_RenderingModel\AnchorRenders")
 DST = Path(__file__).resolve().parents[2] / "App_Data" / "Anchor_Renders"
 
-# (source subfolder, source filename prefix, destination folder name)
+# (source subfolder, source filename builder from frame, destination folder name)
 SKIES = [
-    ("ClearSky_AnchorRenders",  "Clear",    "Clear"),
-    ("CloudySky_AnchorRenders", "Cloudy",   "Cloudy"),
-    ("Overcast_AnchorRenders",  "Overcast", "Overcast"),
+    ("Overcast_AnchorRenders/Exp090",  lambda f: f"Overcast_090{f:04d}.png",    "Overcast"),
+    ("ClearSky_AnchorRenders/Exp075",  lambda f: f"ClearSky_Exp075{f:04d}.png", "PartlyClear"),
 ]
-N_FRAMES = 137  # frames 0001..0137 -> cid 0..136
+N_FRAMES = 202  # frames 0001..0202 -> cid 1..202 (1-based; frame N = cid N)
 
 
 def main():
     total, failures = 0, []
-    for sub, prefix, dstname in SKIES:
+    for sub, namefn, dstname in SKIES:
         srcdir = SRC / sub
         dstdir = DST / dstname
         dstdir.mkdir(parents=True, exist_ok=True)
         if not srcdir.is_dir():
             sys.exit(f"ERROR: missing source folder {srcdir}")
         for frame in range(1, N_FRAMES + 1):
-            cid = frame - 1
-            png = srcdir / f"{prefix}_Anchor{frame:04d}.png"
+            cid = frame  # 1-based: frame N = cid N
+            png = srcdir / namefn(frame)
             webp = dstdir / f"anchor_{cid:02d}.webp"
             if not png.is_file():
                 sys.exit(f"ERROR: missing {png}")

@@ -14,11 +14,12 @@
 > - **Part 1 (clustering) — live and current.** The script produces **202 anchors** today
 >   against the July 2026 dataset using the **two-axis** metric (exterior-reflected *and*
 >   transmitted color). Every config carries a **1-based** integer `cid` (anchor id).
-> - **Part 2 (renders + app) — PENDING re-render.** The delivery mechanism (`cid` →
->   `anchor_<cid>.webp`) is implemented, but the shipped renders and the app's sky toggle
->   still reflect the *old* 137-anchor / three-sky / 0-based layout. The 202-anchor × two-sky
->   (Overcast + Partly Clear) batch has **not** been rendered yet, and the app still points at
->   `anchor_00`-based defaults. Part 2 below describes the **target**; see its status note.
+> - **Part 2 (renders + app) — DONE (July 2026).** The 202-anchor × two-sky
+>   (Overcast + Partly Clear) batch has been rendered, converted to WebP, and shipped under
+>   `App_Data/Anchor_Renders/{Overcast,PartlyClear}/anchor_01…anchor_202.webp` (1-based). The
+>   app's sky toggle is now two options (Overcast default + Partly Clear) and its defaults
+>   point at `anchor_01`. "Partly Clear" resolves to the space-free `PartlyClear/` folder via
+>   each option's `data-folder` attribute.
 
 ---
 
@@ -222,10 +223,9 @@ Re-running `csv_to_json.py` alone **drops `cid`** — always re-run the clusteri
 
 Part 1 produces 202 anchor images per sky. Part 2 is how the configurator shows the right one.
 
-> **Status note (July 2026):** the delivery *mechanism* (`config.cid` → `anchor_<cid>.webp`) is
-> implemented and unchanged, but the shipped assets and the app's sky toggle are still on the
-> **old 137-anchor / three-sky / 0-based** layout. This section describes the **target** state
-> for the 202-anchor / two-sky batch; the items marked *pending* below are not done yet.
+> **Status note (July 2026):** DONE. The delivery *mechanism* (`config.cid` → `anchor_<cid>.webp`)
+> and the shipped assets + app sky toggle are all on the **202-anchor / two-sky (Overcast +
+> Partly Clear) / 1-based** layout described below. The former *pending* items are complete.
 
 ## The data card stays 1:1; only the image is shared
 
@@ -241,8 +241,8 @@ function setAnchorImages(cid){
   if(cid==null) return;                                  // keep last image rather than 404
   var code = 'anchor_' + String(cid).padStart(2,'0');    // 1 -> anchor_01, 202 -> anchor_202
   document.querySelectorAll('.sky-toggle-option').forEach(function(opt){
-    var sky = opt.textContent.trim();                    // TARGET: Overcast | Partly Clear
-    opt.setAttribute('data-img', 'App_Data/Anchor_Renders/'+sky+'/'+code+'.webp');
+    var folder = opt.getAttribute('data-folder') || opt.textContent.trim();  // Overcast | PartlyClear
+    opt.setAttribute('data-img', 'App_Data/Anchor_Renders/'+folder+'/'+code+'.webp');
   });
   var active = document.querySelector('.sky-toggle-option.active');
   if(active) document.getElementById('colorRenderImg').src = active.getAttribute('data-img');
@@ -255,15 +255,15 @@ function setAnchorImages(cid){
 The 404 renders are organized by sky, filename keyed on the anchor code:
 ```
 App_Data/Anchor_Renders/
-  Overcast/     anchor_01.webp … anchor_202.webp   (202)   ← default
-  Partly Clear/ anchor_01.webp … anchor_202.webp   (202)
+  Overcast/    anchor_01.webp … anchor_202.webp   (202)   ← default
+  PartlyClear/ anchor_01.webp … anchor_202.webp   (202)
 ```
-There is **no `anchor_00`** under 1-based numbering. The **Exterior Color** card's pill toggle becomes **two** options (Overcast / Partly Clear, default Overcast).
+There is **no `anchor_00`** under 1-based numbering. The **Exterior Color** card's pill toggle is **two** options (Overcast / Partly Clear, default Overcast). The folder is space-free (`PartlyClear`); the toggle shows "Partly Clear" as the display label and resolves the folder via each option's `data-folder` attribute.
 
-**Pending for Part 2:**
-1. Render the 202 anchors × 2 skies (per [render_manifest.csv](../4_Anchor_Specs/render_manifest.csv) — frame N = cid N) after the PyWinCalc optics run.
-2. Replace `App_Data/Anchor_Renders/` with the new two-sky, 1-based set.
-3. Update the app: sky toggle from three options (Clear/Overcast/Cloudy) to two (Overcast/Partly Clear), and repoint the `anchor_00.webp` placeholder defaults (there is no cid 0) to `anchor_01.webp`.
+**Done for Part 2 (July 2026):**
+1. Rendered the 202 anchors × 2 skies (frame N = cid N); Overcast = Overcast/Exp090, Partly Clear = ClearSky/Exp075.
+2. Converted PNG → lossless WebP via [png_to_webp.py](../4_Anchor_Specs/png_to_webp.py) and replaced `App_Data/Anchor_Renders/` with the two-sky, 1-based set.
+3. Updated the app: sky toggle from three options (Clear/Overcast/Cloudy) to two (Overcast/Partly Clear), and repointed the placeholder defaults from `anchor_00.webp` to `anchor_01.webp`.
 
 ## Format & hosting
 
@@ -277,8 +277,8 @@ There is **no `anchor_00`** under 1-based numbering. The **Exterior Color** card
 |---|---|---|
 | 1 | Run clustering against current data; pin anchor count | **done — 202 anchors, max ΔE ext 1.4576 / trn 2.8610** |
 | 2 | Config → render resolution | **done — per-config 1-based `cid` → `anchor_<cid>.webp`** |
-| 3 | Render the anchor × sky batch (202 × 2) | **pending — needs PyWinCalc optics, then Blender** |
-| 4 | Update app to two-sky toggle + repoint placeholders | **pending** |
+| 3 | Render the anchor × sky batch (202 × 2) | **done — Overcast (Exp090) + Partly Clear (Exp075), 1-based** |
+| 4 | Update app to two-sky toggle + repoint placeholders | **done — `data-folder` map, `anchor_01` defaults** |
 | 5 | Move assets to a CDN if traffic warrants | not started (in-repo today) |
 
 ## Superseded decisions (kept for reference)

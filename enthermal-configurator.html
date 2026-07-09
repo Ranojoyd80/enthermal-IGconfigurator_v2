@@ -481,15 +481,14 @@ body{font-family:var(--font-body);background:var(--lw-gray-50);color:var(--lw-da
       <div class="viz-card viz-color">
         <div class="viz-card-header" style="justify-content:space-between;padding:13.5px 18px"><span id="colorViewTitle">Exterior Color</span>
           <div class="sky-toggle" id="skyToggle">
-            <span class="sky-toggle-option" data-img="App_Data/Anchor_Renders/Clear/anchor_00.webp">Clear</span>
-            <span class="sky-toggle-option active" data-img="App_Data/Anchor_Renders/Overcast/anchor_00.webp">Overcast</span>
-            <span class="sky-toggle-option" data-img="App_Data/Anchor_Renders/Cloudy/anchor_00.webp">Cloudy</span>
+            <span class="sky-toggle-option active" data-folder="Overcast" data-img="App_Data/Anchor_Renders/Overcast/anchor_01.webp">Overcast</span>
+            <span class="sky-toggle-option" data-folder="PartlyClear" data-img="App_Data/Anchor_Renders/PartlyClear/anchor_01.webp">Partly Clear</span>
             <span class="sky-toggle-thumb" id="skyThumb"></span>
           </div>
         </div>
         <div class="viz-card-body" style="flex-direction:column;gap:0;background:var(--lw-gray-50);padding:0">
           <div class="color-img-wrap" style="position:relative;flex:1;min-height:0;display:flex">
-            <img src="App_Data/Anchor_Renders/Overcast/anchor_00.webp" alt="Exterior color rendering" id="colorRenderImg" style="width:100%;height:100%;object-fit:cover;object-position:bottom;display:block;cursor:zoom-in">
+            <img src="App_Data/Anchor_Renders/Overcast/anchor_01.webp" alt="Exterior color rendering" id="colorRenderImg" style="width:100%;height:100%;object-fit:cover;object-position:bottom;display:block;cursor:zoom-in">
             <button id="colorZoomBtn" class="color-zoom-btn" type="button" title="Enlarge image" aria-label="Enlarge image"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></button>
           </div>
           <div style="font-size:11px;color:var(--lw-gray-400);line-height:1.5;text-align:center;padding:8px 0;font-style:italic;width:220px;margin:0 auto">Colors shown on the screen should not be used as a substitute for a mock-up.</div>
@@ -534,6 +533,16 @@ const COATING_MAKERS = {
 function coatingName(code){return COATING_NAMES[code]||code}
 function substrateName(code){return SUBSTRATE_NAMES[code]||code}
 function coatingNameWithMaker(code){var m=COATING_MAKERS[code];return m?m+' '+coatingName(code):coatingName(code)}
+// Label for the Inboard (mono/VIG) coating dropdown. A Starphire exterior means the
+// whole assembly is Starphire, so append the substrate to match the exterior
+// "Low-E Coating + Substrate" dropdown; every other exterior keeps Clear inner lites
+// (no suffix). Options are already filtered to substrate-valid coatings, so the
+// suffix is always accurate.
+function plusInnerCoatingLabel(code){
+  var oc=plusOuterCoatingEl.value;
+  var sub=(oc?oc.split('|')[1]:'')||'Clear';
+  return sub==='Starphire'?coatingNameWithMaker(code)+' on '+substrateName(sub):coatingNameWithMaker(code);
+}
 // Dropdown display rule: clear substrate shows only the coating name;
 // branded substrates append " on <substrate>". Pass coatingNameWithMaker
 // as the nameFn for dropdowns; omit for summary/cross-section.
@@ -662,20 +671,24 @@ const glassColors={
   'OptiblueZ75':'rgba(130,175,215,0.6)'
 };
 function getGlassColor(substrate){return glassColors[substrate]||glassColors['Clear']}
+// Vertical pane-tint gradient for a lite of the given substrate (top→bottom fade).
+function paneTintGradient(substrate){var c=getGlassColor(substrate);return 'linear-gradient(180deg,'+c+' 0%,'+c.replace(/0\.\d+\)/,'0.3)')+' 100%)'}
 
 // --- Per-config exterior render lookup -------------------------------------
-// Per-config exterior render lookup. Each config carries `cid` (integer anchor
-// id), injected by Data_Pipeline/3_Clustering/recluster_at_jnd.py. The render is
-// App_Data/Anchor_Renders/<Sky>/anchor_<cid>.webp (cid zero-padded to >=2 digits,
-// e.g. 5 -> anchor_05, 135 -> anchor_135). No runtime Lab-key formatting.
-// Repoints the three sky-toggle options (data-img) + the visible image; the sky
-// toggle and zoom lightbox both read data-img, so they follow automatically.
+// Per-config exterior render lookup. Each config carries `cid` (1-based integer
+// anchor id), injected by Data_Pipeline/3_Clustering/recluster_at_jnd.py. The render
+// is App_Data/Anchor_Renders/<Folder>/anchor_<cid>.webp (cid zero-padded to >=2
+// digits, e.g. 1 -> anchor_01, 202 -> anchor_202). No runtime Lab-key formatting.
+// Repoints the two sky-toggle options (data-img) + the visible image; the sky
+// toggle and zoom lightbox both read data-img, so they follow automatically. The
+// folder name comes from data-folder (space-free), not the display label, so the
+// "Partly Clear" option resolves to the PartlyClear/ folder.
 function setAnchorImages(cid){
   if(cid==null)return; // fallback: keep last image rather than render a broken <img>
   var code='anchor_'+String(cid).padStart(2,'0');
   document.querySelectorAll('.sky-toggle-option').forEach(function(opt){
-    var sky=opt.textContent.trim(); // Clear | Overcast | Cloudy -> folder name
-    opt.setAttribute('data-img','App_Data/Anchor_Renders/'+sky+'/'+code+'.webp');
+    var folder=opt.getAttribute('data-folder')||opt.textContent.trim(); // Overcast | PartlyClear
+    opt.setAttribute('data-img','App_Data/Anchor_Renders/'+folder+'/'+code+'.webp');
   });
   var active=document.querySelector('.sky-toggle-option.active');
   if(active)document.getElementById('colorRenderImg').src=active.getAttribute('data-img');
@@ -758,7 +771,9 @@ outer.style.width=outerPx+'px';
 outer.style.background='linear-gradient(180deg,'+getGlassColor(outerLayer.substrate)+' 0%,'+getGlassColor(outerLayer.substrate).replace(/0\.\d+\)/,'0.3)')+' 100%)';
 document.getElementById('csCoatingLine').style.display='block';
 inner.style.width=innerPx+'px';
-inner.style.background='linear-gradient(180deg,rgba(200,220,240,0.6) 0%,rgba(180,200,220,0.4) 100%)';
+// Inner lite is Clear for every config except Starphire (all-Starphire assemblies),
+// so tint by the actual inner substrate; keep the established Clear look otherwise.
+inner.style.background=innerLayer.substrate!=='Clear'?paneTintGradient(innerLayer.substrate):'linear-gradient(180deg,rgba(200,220,240,0.6) 0%,rgba(180,200,220,0.4) 100%)';
 inner.style.borderColor='rgba(180,200,220,0.5)';
 // Cross-section labels: if substrate is Clear, show coating name on top line and
 // substrate+thickness on sub-line. If branded, show substrate+thickness on top
@@ -771,7 +786,7 @@ if(outerLayer.substrate==='Clear'){
   document.getElementById('csOuterDetail').textContent=outerSubLabel;
   document.getElementById('csOuterSub').textContent=coatingName(outerLayer.coating);
 }
-document.getElementById('csInnerDetail').textContent='Clear '+eInnerMM+'mm';
+document.getElementById('csInnerDetail').textContent=substrateName(innerLayer.substrate)+' '+eInnerMM+'mm';
 document.getElementById('csThicknessVal').textContent=match.totalThickness.toFixed(1)+' mm';
 // Position callouts: coating is at right edge of outer pane, vacuum is in the gap
 var coatingLeft=outerPx-3;var vacuumLeft=outerPx-1;
@@ -786,7 +801,7 @@ if(eUnit&&hsCallout){
   var eUr=eUnit.getBoundingClientRect(),eSr=eSpacer.getBoundingClientRect();
   hsCallout.style.top=((eSr.top+eSr.height/2-eUr.top)-hsCallout.offsetHeight/2)+'px';
 }
-document.getElementById('summaryText').innerHTML='<strong>'+layerDisplay(outerLayer)+'</strong> on <strong>'+eOuterMM+'mm</strong> outboard and <strong>Clear '+eInnerMM+'mm</strong> inboard.';
+document.getElementById('summaryText').innerHTML='<strong>'+layerDisplay(outerLayer)+'</strong> on <strong>'+eOuterMM+'mm</strong> outboard and <strong>'+substrateName(innerLayer.substrate)+' '+eInnerMM+'mm</strong> inboard.';
 requestAnimationFrame(centerCrossSection)}
 document.querySelectorAll('input[name="outerThickness"]').forEach(r=>r.addEventListener('change',updateOuterCoatings));
 outerCoatingEl.addEventListener('change',updateInnerThickness);
@@ -946,13 +961,28 @@ function updatePlusVigThickness(){
   updatePlusVigCoatings();
 }
 
+// CEN eligibility requires a Saint-Gobain coating present AND no Vitro coating.
+// When the outer coating is Saint-Gobain, CEN is achievable only if the VIG
+// coating is non-Vitro — so prefer a CEN-eligible VIG for the DEFAULT selection
+// rather than silently retaining (or first-picking) a Vitro VIG, which would
+// suppress the CEN toggle. The user can still choose a Vitro VIG manually.
+function pickPlusVigDefault(vigCoats,prev){
+  var outerCode=(plusOuterCoatingEl.value||'').split('|')[0];
+  if(COATING_MAKERS[outerCode]==='Saint-Gobain'){
+    var cenOK=function(vc){return COATING_MAKERS[vc]!=='Vitro'};
+    if(vigCoats.includes(prev)&&cenOK(prev))return prev;
+    var elig=vigCoats.find(cenOK);
+    if(elig!=null)return elig;
+  }
+  if(vigCoats.includes(prev))return prev;
+  return vigCoats.length>0?vigCoats[0]:'';
+}
 function updatePlusVigCoatings(){
   var filtered=filterPlusData();
   var vigCoats=unique(filtered.map(function(d){return d.secondCoating})).filter(function(c){return c});
   var prev=plusVigCoatingEl.value;
-  populateSelect(plusVigCoatingEl,vigCoats,'Select coating…',coatingNameWithMaker);
-  if(vigCoats.includes(prev))plusVigCoatingEl.value=prev;
-  else if(vigCoats.length>0)plusVigCoatingEl.value=vigCoats[0];
+  populateSelect(plusVigCoatingEl,vigCoats,'Select coating…',plusInnerCoatingLabel);
+  plusVigCoatingEl.value=pickPlusVigDefault(vigCoats,prev);
   updatePlusSurfaces();
 }
 
@@ -991,6 +1021,16 @@ function _plusOutboardData(){
   var isAir=document.getElementById('gapToggleInput').checked;
   return data.filter(function(d){return d.gasType===(isAir?'Air':'Ar90')});
 }
+// Restrict outboard configs to those whose exterior VIG lite (glass[0]) matches the
+// selected S2 coating+substrate, so the Inboard (mono) thickness/coating options are
+// coupled to the exterior. Without this a Starphire exterior would still offer mono
+// coatings that only exist on Clear lites (an invalid, non-all-Starphire assembly).
+function _plusOutboardMatchExterior(data){
+  var oc=plusOuterCoatingEl.value;
+  if(!oc)return data;
+  var p=oc.split('|'),coat=p[0],sub=p[1]||'Clear';
+  return data.filter(function(d){return d.glass[0].coating===coat&&d.glass[0].substrate===sub});
+}
 function updatePlusVigThicknessOutboard(){
   var sel=document.getElementById('plusVigThickness');
   Array.from(sel.options).forEach(function(opt){opt.disabled=false});
@@ -1014,6 +1054,7 @@ function updatePlusInboardThicknessOutboard(){
   var data=_plusOutboardData();
   var vt=document.getElementById('plusVigThickness').value;
   if(vt)data=data.filter(function(d){return getVigComboKey(d,true)===vt});
+  data=_plusOutboardMatchExterior(data);
   var validThick=new Set(data.map(function(d){return d.glass[2].thickness}));
   var current=parseInt(getVal('plusOuterThickness'));
   document.querySelectorAll('input[name="plusOuterThickness"]').forEach(function(r){
@@ -1035,11 +1076,11 @@ function updatePlusS5CoatingOutboard(){
   if(vt)data=data.filter(function(d){return getVigComboKey(d,true)===vt});
   var ot=parseInt(getVal('plusOuterThickness'));
   if(ot)data=data.filter(function(d){return d.glass[2].thickness===ot});
+  data=_plusOutboardMatchExterior(data);
   var vigCoats=unique(data.map(function(d){return d.secondCoating})).filter(function(c){return c});
   var prev=plusVigCoatingEl.value;
-  populateSelect(plusVigCoatingEl,vigCoats,'Select coating…',coatingNameWithMaker);
-  if(vigCoats.includes(prev))plusVigCoatingEl.value=prev;
-  else if(vigCoats.length>0)plusVigCoatingEl.value=vigCoats[0];
+  populateSelect(plusVigCoatingEl,vigCoats,'Select coating…',plusInnerCoatingLabel);
+  plusVigCoatingEl.value=pickPlusVigDefault(vigCoats,prev);
   document.getElementById('plusSrf5').checked=true;
   updatePlusResults();
 }
@@ -1121,14 +1162,15 @@ function updatePlusResults(surfaceOnly){
   var secondDisplay=coatingName(match.secondCoating);
   var vigSrf=match.secondSurface;
   var isS4=vigSrf==='S4';
-  // The "mono" (non-VIG) lite: glass[0] in Inboard, glass[2] in Outboard.
-  // Both are always Clear in practice; we format them generically.
+  // The "mono" (non-VIG) lite: glass[0] in Inboard, glass[2] in Outboard. It is
+  // Clear for every config except Starphire (all-Starphire assemblies), so name
+  // the substrate when it isn't Clear.
   var monoLayer=isOutboard?match.glass[2]:match.glass[0];
-  var monoDisplay='Clear '+monoLayer.thickness+'mm';
   var monoMM=monoLayer.thickness;
+  var monoThickLabel=(monoLayer.substrate&&monoLayer.substrate!=='Clear'?substrateName(monoLayer.substrate)+' ':'')+monoMM+'mm';
   if(isOutboard){
     var vigCombo=pOuterMM+'/'+pMiddleMM;
-    document.getElementById('summaryText').innerHTML='<strong>'+vigCombo+' mm</strong> Enthermal <strong>'+s2Display+'</strong> (S2) outboard with <strong>'+secondDisplay+'</strong> (S5) on <strong>'+monoMM+'mm</strong>';
+    document.getElementById('summaryText').innerHTML='<strong>'+vigCombo+' mm</strong> Enthermal <strong>'+s2Display+'</strong> (S2) outboard with <strong>'+secondDisplay+'</strong> (S5) on <strong>'+monoThickLabel+'</strong>';
   }else{
     var vigCombo=pMiddleMM+'/'+pInnerMM;
     document.getElementById('summaryText').innerHTML='<strong>'+s2Display+'</strong> (S2) on <strong>'+monoMM+'mm</strong> with <strong>'+vigCombo+' mm</strong> Enthermal <strong>'+secondDisplay+'</strong> ('+vigSrf+') inboard';
@@ -1147,23 +1189,21 @@ function updatePlusResults(surfaceOnly){
     document.getElementById('csPlusOuterDetail').textContent=coatingName(leftLayer.coating);
     document.getElementById('csPlusOuterCoating').textContent=leftSubLabel;
   }
-  // Tint the exterior lite (glass[0], the only lite whose substrate varies) by
-  // its substrate; the two Clear lites keep their default styling. Which DOM
-  // pane is the exterior lite depends on placement: Inboard → mono pane
-  // (leftmost); Outboard → VIG outer pane (reordered leftmost via flex order).
-  var extTint='linear-gradient(180deg,'+getGlassColor(leftLayer.substrate)+' 0%,'+getGlassColor(leftLayer.substrate).replace(/0\.\d+\)/,'0.3)')+' 100%)';
-  var csPlusMonoPaneEl=document.getElementById('csPlusMonoPane');
-  var csPlusVigOuterEl=document.getElementById('csPlusVigOuter');
-  if(isOutboard){
-    csPlusVigOuterEl.style.background=extTint;
-    csPlusMonoPaneEl.style.background='';
-  }else{
-    csPlusMonoPaneEl.style.background=extTint;
-    csPlusVigOuterEl.style.background='';
-  }
+  // Tint each lite pane by its OWN substrate. For most tinted substrates only the
+  // exterior lite is non-Clear (inner lites are Clear → default styling), but a
+  // Starphire config is all-Starphire, so every pane gets the (subtle) Starphire
+  // tint. DOM→glass mapping depends on placement: Inboard mono=glass[0]; Outboard
+  // the VIG outer pane is exterior (glass[0]) and the mono pane is glass[2].
+  var paneSub=function(sub){return sub==='Clear'?'':paneTintGradient(sub)};
+  var g=match.glass,monoSub,vigOuterSub,vigInnerSub;
+  if(isOutboard){vigOuterSub=g[0].substrate;vigInnerSub=g[1].substrate;monoSub=g[2].substrate}
+  else{monoSub=g[0].substrate;vigOuterSub=g[1].substrate;vigInnerSub=g[2].substrate}
+  document.getElementById('csPlusMonoPane').style.background=paneSub(monoSub);
+  document.getElementById('csPlusVigOuter').style.background=paneSub(vigOuterSub);
+  document.getElementById('csPlusVigInner').style.background=paneSub(vigInnerSub);
   document.getElementById('csPlusVigCoatingLabel').textContent=coatingName(match.secondCoating);
   document.getElementById('csPlusRightCoating').style.display='';
-  document.getElementById('csPlusRightCoating').textContent='Clear '+match.glass[2].thickness+'mm';
+  document.getElementById('csPlusRightCoating').textContent=substrateName(match.glass[2].substrate)+' '+match.glass[2].thickness+'mm';
 
   if(isOutboard){
     // Coatings fixed at S2 (VIG outer right edge) and S5 (mono pane left edge)
@@ -1256,7 +1296,11 @@ document.querySelectorAll('input[name="plusOuterThickness"]').forEach(function(r
   else updatePlusOuterCoatings();
 })});
 plusOuterCoatingEl.addEventListener('change',function(){
-  if(_plusIsOutboard())updatePlusResults();
+  // Outboard: re-run the Inboard (mono) thickness→coating cascade so the mono options
+  // are re-coupled to the newly-selected exterior (e.g. a Starphire exterior now offers
+  // only Starphire-valid mono lites). updatePlusS5CoatingOutboard's pickPlusVigDefault
+  // still prefers a CEN-eligible mono when the exterior coating is Saint-Gobain.
+  if(_plusIsOutboard())updatePlusInboardThicknessOutboard();
   else updatePlusVigThickness();
 });
 document.getElementById('plusVigThickness').addEventListener('change',function(){
@@ -1585,16 +1629,14 @@ function repositionPlusToggles(){_plusToggleResizers.forEach(function(fn){fn()})
   var img=document.getElementById('colorRenderImg');
   if(!toggle||!thumb)return;
   var options=toggle.querySelectorAll('.sky-toggle-option');
-  // Match the two outer options (Clear / Cloudy) to each other so they're the
-  // same width; leave the middle option (Overcast) at its natural, wider width.
+  // Two options (Overcast / Partly Clear): match both to the wider one so the
+  // control is symmetric and the sliding thumb travels a consistent width.
   function equalizeOptions(){
     options.forEach(function(o){o.style.width=''});
-    var a=options[0],c=options[2];
-    if(!a||!c)return;
-    var w=Math.max(a.offsetWidth,c.offsetWidth);
+    var w=0;
+    options.forEach(function(o){if(o.offsetWidth>w)w=o.offsetWidth});
     if(w<1)return;
-    a.style.width=w+'px';
-    c.style.width=w+'px';
+    options.forEach(function(o){o.style.width=w+'px'});
   }
   function positionThumb(){
     var active=toggle.querySelector('.sky-toggle-option.active');

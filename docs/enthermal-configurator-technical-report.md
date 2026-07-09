@@ -50,13 +50,12 @@ enthermal-configurator.html    — ~104 KB (1,515 lines)
 └── <script>    — named functions + IIFEs (vanilla ES6)
 
 App_Data/
-├── enthermal.json             — 98 Enthermal configs (~71 KB)
-├── enthermal-plus-inboard.json — 4,748 Plus Inboard configs (~4.5 MB)
-├── enthermal-plus-outboard.json — 2,016 Plus Outboard configs (~1.9 MB)
+├── enthermal.json             — 98 Enthermal configs (~73 KB)
+├── enthermal-plus-inboard.json — 4,470 Plus Inboard configs (~4.4 MB)
+├── enthermal-plus-outboard.json — 1,876 Plus Outboard configs (~1.8 MB)
 └── Anchor_Renders/
-    ├── Clear/    anchor_00.webp … anchor_136.webp   — per-config exterior renders
-    ├── Overcast/ anchor_00.webp … anchor_136.webp     (137 anchors × 3 skies = 411, ~637 MB)
-    └── Cloudy/   anchor_00.webp … anchor_136.webp
+    ├── Overcast/     anchor_01.webp … anchor_202.webp  — per-config exterior renders (default)
+    └── PartlyClear/  anchor_01.webp … anchor_202.webp    (202 anchors × 2 skies = 404)
 ```
 
 *(Per-section line counts drift as the single file evolves; treat the function lists below as a guide, not an exact inventory.)*
@@ -150,8 +149,8 @@ App_Data/
 | S4/S5 surface toggle | Coating surface toggle with auto-disable when only one surface is valid |
 | Placement toggle | Inboard/Outboard mode switching with UI reorder, reseed, and cross-section rearrangement |
 | Gas fill toggle | Argon/Air toggle with cascade update |
-| Sky-condition toggle | Swaps the color-card image between Clear / Overcast / Cloudy renders for the current config's `cid` |
-| Image zoom lightbox | Full-screen viewer; steps through the three sky conditions |
+| Sky-condition toggle | Swaps the color-card image between Overcast / Partly Clear renders for the current config's `cid` |
+| Image zoom lightbox | Full-screen viewer; steps through the two sky conditions |
 
 ### Smart Filtering Logic
 
