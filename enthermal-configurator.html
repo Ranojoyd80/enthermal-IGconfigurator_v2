@@ -106,7 +106,7 @@ body{font-family:var(--font-body);background:var(--lw-gray-50);color:var(--lw-da
 .std-toggle-option{position:relative;z-index:1;padding:5px 13px;font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:.5px;color:var(--lw-gray-500);border-radius:18px;transition:color .25s;white-space:nowrap}
 .std-toggle-thumb{position:absolute;top:2px;left:2px;height:calc(100% - 4px);border-radius:18px;background:var(--lw-teal);box-shadow:0 1px 4px rgba(13,148,136,.35);transition:transform .25s cubic-bezier(.4,0,.2,1),width .25s;pointer-events:none}
 .std-toggle input:checked~.std-toggle-thumb{transform:translateX(var(--thumb-offset))}
-.std-toggle-option.active{color:#fff}
+.std-toggle-option.active{color:var(--lw-white)}
 .std-toggle.locked{cursor:not-allowed;pointer-events:none}
 .std-toggle.locked .std-toggle-option:not(.active){opacity:.35}
 .srf-toggle-row{display:grid;grid-template-columns:1fr 67px 1fr;align-items:center}
@@ -123,23 +123,23 @@ body{font-family:var(--font-body);background:var(--lw-gray-50);color:var(--lw-da
    .results-grid at load) only makes sense in the side-by-side layout. In the
    stacked (≤1024px) and print layouts it crushes the cards, so both blocks
    override the inline style — the one legitimate use of !important here. */
-@media print{.header,.hero,.product-tabs,#printBtn{display:none!important}.main{display:block!important;padding:10px!important}.config-panel{border:none!important;box-shadow:none!important;height:auto!important;min-height:0}.results-grid{margin-top:10px;height:auto!important}.viz-cross .viz-card-body{min-height:460px}}
+@media print{.header,.hero,.product-tabs,#printBtn,#colorZoomBtn{display:none!important}.main{display:block!important;padding:10px!important}.config-panel{border:none!important;box-shadow:none!important;height:auto!important;min-height:0}.results-grid{margin-top:10px;height:auto!important}.viz-cross .viz-card-body{min-height:460px}}
 @media(max-width:1024px){.main{grid-template-columns:1fr;padding:20px 20px 40px}.results-grid{grid-template-columns:1fr;grid-template-rows:none;height:auto!important}.results-grid-metrics-left,.results-grid-metrics-right{grid-template-columns:1fr}.config-panel{height:auto!important;min-height:0}.viz-cross .viz-card-body{min-height:460px}}
 .color-img-wrap{overflow:hidden}
 .color-zoom-btn{position:absolute;bottom:12px;right:12px;width:34px;height:34px;border:none;border-radius:8px;background:rgba(255,255,255,.85);box-shadow:0 1px 4px rgba(0,0,0,.18);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--lw-dark);transition:background .2s,transform .2s}
-.color-zoom-btn:hover{background:#fff;transform:scale(1.06)}
+.color-zoom-btn:hover{background:var(--lw-white);transform:scale(1.06)}
 .img-zoom-overlay{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;background:rgba(10,15,26,.88);padding:40px;cursor:zoom-out}
 .img-zoom-overlay.open{display:flex}
 .img-zoom-overlay img{max-width:92vw;max-height:92vh;object-fit:contain;border-radius:8px;cursor:default}
-.img-zoom-close{position:absolute;top:24px;right:32px;width:42px;height:42px;border:none;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.img-zoom-close{position:absolute;top:24px;right:32px;width:42px;height:42px;border:none;border-radius:50%;background:rgba(255,255,255,.12);color:var(--lw-white);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
 .img-zoom-close:hover{background:rgba(255,255,255,.25)}
-.img-zoom-nav{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border:none;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.img-zoom-nav{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border:none;border-radius:50%;background:rgba(255,255,255,.12);color:var(--lw-white);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
 .img-zoom-nav:hover{background:rgba(255,255,255,.25)}
 .img-zoom-prev{left:24px}
 .img-zoom-next{right:24px}
 .sky-toggle{position:relative;display:inline-flex;align-items:center;background:var(--lw-gray-200);border-radius:20px;padding:2px;cursor:pointer;user-select:none}
 .sky-toggle-option{position:relative;z-index:1;padding:5px 11px;font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:.3px;text-transform:none;color:var(--lw-gray-500);border-radius:18px;transition:color .25s;white-space:nowrap;cursor:pointer;text-align:center}
-.sky-toggle-option.active{color:#fff}
+.sky-toggle-option.active{color:var(--lw-white)}
 .sky-toggle-thumb{position:absolute;top:2px;left:2px;height:calc(100% - 4px);border-radius:18px;background:var(--lw-teal);box-shadow:0 1px 4px rgba(13,148,136,.35);transition:transform .25s cubic-bezier(.4,0,.2,1),width .25s;pointer-events:none}
 </style>
 </head>
@@ -147,7 +147,7 @@ body{font-family:var(--font-body);background:var(--lw-gray-50);color:var(--lw-da
 <div class="header">
   <div style="display:flex;align-items:center">
     <svg xmlns="http://www.w3.org/2000/svg" width="153" height="24" viewBox="0 0 153 24" fill="none">
-      <g clip-path="url(#clip0_logo)">
+      <g clip-path="url(#clipLogo)">
         <path d="M51.8888 16.4357V18.368H40.293V5.6062H42.4808V16.4357H51.8888Z" fill="white"/>
         <path d="M67.0393 5.6062V12.3515C67.0393 16.1261 64.6141 18.7512 60.0927 18.7512C55.5713 18.7512 53.1641 16.1261 53.1641 12.3515V5.6062H55.3519V12.2058C55.3519 15.0683 57.0469 16.8008 60.0927 16.8008C63.1385 16.8008 64.8515 15.0683 64.8515 12.2058V5.6062H67.0393Z" fill="white"/>
         <path d="M77.5596 11.9142L83.5025 18.368H80.7497L76.1561 13.4094L71.5431 18.368H68.918L74.8428 11.9323L68.9721 5.6062H71.7249L76.2643 10.4928L80.7857 5.6062H83.4289L77.5581 11.9142H77.5596Z" fill="white"/>
@@ -158,7 +158,7 @@ body{font-family:var(--font-body);background:var(--lw-gray-50);color:var(--lw-da
         <path d="M32.7725 17.6619L22.3067 1.25019C21.8514 0.537941 20.9513 0 20.212 0H3.80178C3.36451 0 3.00989 0.189331 2.82958 0.518407C2.62672 0.889557 2.68082 1.3704 2.97984 1.83772L4.67631 4.49887H1.09404C0.656774 4.49887 0.302153 4.6882 0.121838 5.01728C-0.0810171 5.38843 -0.0269225 5.86927 0.272101 6.33659L10.7379 22.7483C11.1917 23.4606 12.0933 23.9985 12.8326 23.9985H29.2443C29.6816 23.9985 30.0362 23.8092 30.2165 23.4801C30.4194 23.1089 30.3653 22.6281 30.0662 22.1608L28.3698 19.4996H31.952C32.3893 19.4996 32.7439 19.3103 32.9242 18.9812C33.1271 18.6101 33.073 18.1292 32.774 17.6619H32.7725ZM0.975331 5.50563C0.975331 5.50563 0.978337 5.51315 0.981342 5.52817C0.978337 5.51465 0.976834 5.50714 0.975331 5.50563ZM2.92424 0.570999C2.96481 0.49737 3.0144 0.431255 3.073 0.374155C3.0144 0.431255 2.96331 0.49737 2.92424 0.570999ZM12.8311 22.9061C12.4659 22.9061 11.9085 22.5515 11.659 22.1623L1.19472 5.75056C1.15565 5.68896 1.1301 5.63636 1.11508 5.59579H5.37503L13.4457 18.2509C13.4802 18.305 13.5208 18.3621 13.5719 18.4282L13.6034 18.4688C13.653 18.5304 13.6996 18.583 13.7447 18.6311C13.7837 18.6717 13.8273 18.7153 13.8769 18.7603L13.9175 18.7964C13.949 18.8249 13.9821 18.852 14.0182 18.882L14.0632 18.9181C14.0978 18.9452 14.1339 18.9722 14.1759 19.0023L14.212 19.0278C14.6523 19.3328 15.1241 19.5011 15.5418 19.5011H27.073L29.1451 22.7513C29.1842 22.8129 29.2097 22.8655 29.2263 22.9061H12.8341H12.8311ZM18.6763 6.33809L26.3713 18.4057H15.5373C15.3525 18.4057 15.079 18.299 14.8386 18.1322L14.804 18.1082C14.7815 18.0917 14.7605 18.0766 14.7394 18.0601L14.7064 18.0331C14.6853 18.0165 14.6643 17.9985 14.6432 17.979L14.6162 17.9549C14.5861 17.9264 14.5606 17.9008 14.5366 17.8768C14.511 17.8497 14.4855 17.8197 14.4524 17.7806L14.4344 17.7566C14.4058 17.719 14.3848 17.6905 14.3668 17.6634L6.6718 5.59429H17.5058C17.8709 5.59429 18.4284 5.94891 18.6778 6.33809H18.6763ZM13.9055 18.6371C13.8769 18.6101 13.8484 18.5815 13.8213 18.553C13.8484 18.5815 13.8769 18.6086 13.9055 18.6371ZM30.1895 22.7047C30.1489 22.5455 30.0768 22.3832 29.9731 22.2194C30.0768 22.3817 30.1489 22.5455 30.1895 22.7047ZM27.6695 18.4057L19.5989 5.75056C19.1436 5.03832 18.2435 4.50038 17.5043 4.50038H5.97458L3.90245 1.25019C3.86339 1.18858 3.83784 1.13599 3.82131 1.09542H20.2135C20.5786 1.09542 21.1361 1.45004 21.3855 1.83922L31.8514 18.2509C31.8904 18.3125 31.916 18.3651 31.9325 18.4057H27.6726H27.6695Z" fill="white"/>
         <path d="M149.613 18.3772V16.6987H148.956V16.4373H150.546V16.6987H149.885V18.3772H149.613ZM150.879 18.3772V16.4373H151.168L151.807 17.2877L152.441 16.4373H152.725V18.3772H152.453V16.882L151.808 17.71L151.151 16.882V18.3772H150.879Z" fill="white"/>
       </g>
-      <defs><clipPath id="clip0_logo"><rect width="152.726" height="24" fill="white"/></clipPath></defs>
+      <defs><clipPath id="clipLogo"><rect width="152.726" height="24" fill="white"/></clipPath></defs>
     </svg>
   </div>
   <div class="header-badge">Product Configurator</div>
@@ -185,7 +185,7 @@ body{font-family:var(--font-body);background:var(--lw-gray-50);color:var(--lw-da
               <div class="radio-option"><input type="radio" name="outerThickness" id="outerT6" value="6"><label class="radio-label" for="outerT6"><span class="radio-value">6</span><span class="radio-unit">mm</span></label></div>
             </div>
           </div>
-          <div class="config-field"><label>Low-E Coating</label><select id="outerCoating"></select></div>
+          <div class="config-field"><label for="outerCoating">Low-E Coating</label><select id="outerCoating"></select></div>
         </div>
         <div class="config-section">
           <div class="config-section-label">Gap</div>
@@ -227,7 +227,7 @@ body{font-family:var(--font-body);background:var(--lw-gray-50);color:var(--lw-da
               <div class="radio-option"><input type="radio" name="plusOuterThickness" id="plusOuterT6" value="6"><label class="radio-label" for="plusOuterT6"><span class="radio-value">6</span><span class="radio-unit">mm</span></label></div>
             </div>
           </div>
-          <div class="config-field"><label>Low-E Coating + Substrate</label><select id="plusOuterCoating"></select></div>
+          <div class="config-field"><label for="plusOuterCoating">Low-E Coating + Substrate</label><select id="plusOuterCoating"></select></div>
         </div>
         <div class="config-section" id="plusSectionGap" style="order:2">
           <div class="config-section-label">Gap</div>
@@ -244,7 +244,7 @@ body{font-family:var(--font-body);background:var(--lw-gray-50);color:var(--lw-da
         </div>
         <div class="config-section" id="plusSectionEnthermal" style="order:3">
           <div class="config-section-label">Enthermal</div>
-          <div class="config-field"><label>Thickness</label>
+          <div class="config-field"><label for="plusVigThickness">Thickness</label>
             <select id="plusVigThickness">
               <option value="4/4">4 / 4 mm</option>
               <option value="5/4">5 / 4 mm</option>
@@ -254,7 +254,7 @@ body{font-family:var(--font-body);background:var(--lw-gray-50);color:var(--lw-da
               <option value="6/6">6 / 6 mm</option>
             </select>
           </div>
-          <div class="config-field" style="margin-bottom:0"><label>Low-E Coating</label><select id="plusVigCoating"></select></div>
+          <div class="config-field" style="margin-bottom:0"><label for="plusVigCoating">Low-E Coating</label><select id="plusVigCoating"></select></div>
           <div class="config-field" id="plusCoatingSurfaceField" style="margin-top:12px"><label>Coating Surface</label>
           <div style="padding:7px 12px;border:1.5px solid var(--lw-gray-200);border-radius:9px">
             <div class="srf-toggle-row">
@@ -338,7 +338,7 @@ body{font-family:var(--font-body);background:var(--lw-gray-50);color:var(--lw-da
           </div>
           <div style="flex-shrink:0;display:flex;padding:1px 0"><div style="width:1px;background:var(--lw-gray-200)"></div></div>
           <div style="flex:1;min-width:0;box-sizing:border-box;text-align:right;padding:0 17px 0 8px">
-            <div class="metric-label">T<sub style="font-size:.556em">UV</sub></div>
+            <div class="metric-label">T<sub style="font-size:9px">UV</sub></div>
             <div class="metric-value" id="metricTuv">—</div>
             <div class="metric-unit" style="text-align:right">UV<br>Transmittance</div>
           </div>
@@ -490,7 +490,7 @@ body{font-family:var(--font-body);background:var(--lw-gray-50);color:var(--lw-da
             <span class="sky-toggle-thumb" id="skyThumb"></span>
           </div>
         </div>
-        <div class="viz-card-body" style="flex-direction:column;gap:0;background:var(--lw-gray-50);padding:0">
+        <div class="viz-card-body" style="flex-direction:column;gap:0;background:var(--lw-white);padding:0">
           <div class="color-img-wrap" style="position:relative;flex:1;min-height:0;display:flex">
             <img src="App_Data/Anchor_Renders/Overcast/anchor_01.webp?v=54e29159" alt="Exterior color rendering" id="colorRenderImg" style="width:100%;height:100%;object-fit:cover;object-position:bottom;display:block;cursor:zoom-in">
             <div id="colorRenderFallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;background:var(--lw-gray-100);color:var(--lw-gray-500);font-family:var(--font-body);font-size:13px;text-align:center;padding:24px">Exterior render unavailable for this configuration.</div>
@@ -590,7 +590,7 @@ function showAppBanner(msg){
   if(!b){
     b=document.createElement('div');
     b.id='appErrorBanner';
-    b.style.cssText='background:var(--lw-dark);color:#fff;border-left:4px solid var(--lw-teal);padding:12px 40px;font-family:var(--font-body);font-size:13px;line-height:1.5';
+    b.style.cssText='background:var(--lw-dark);color:var(--lw-white);border-left:4px solid var(--lw-teal);padding:12px 40px;font-family:var(--font-body);font-size:13px;line-height:1.5';
     document.body.insertBefore(b,document.body.firstChild);
   }
   b.textContent=msg;
@@ -646,6 +646,16 @@ Promise.all([
   if (outerCoatingEl.options.length > 0) {
     var coat366 = Array.from(outerCoatingEl.options).find(function(o) { return o.value===DEFAULT_COMBO; });
     if (coat366) { outerCoatingEl.value = coat366.value; updateInnerThickness(); }
+  }
+  // If the user opened the Plus tab before the fetch resolved, the tab-click
+  // handler skipped seeding (dataLoaded was false) — seed it now or its
+  // dropdowns stay empty until the user tabs away and back.
+  var activeTab = document.querySelector('.product-tab.active');
+  if (!plusInitialized && activeTab && activeTab.getAttribute('data-tab')==='enthermal-plus') {
+    seedPlusInboardDefaults();
+    plusInitialized = true;
+    updatePlusResults();
+    requestAnimationFrame(function(){ repositionPlusToggles(); });
   }
 }).catch(function(err) {
   console.error('Failed to load data:', err);
@@ -772,6 +782,9 @@ function setRenderUnavailable(on){
     setRenderUnavailable(true);
   });
   img.addEventListener('load',function(){setRenderUnavailable(false)});
+  // If the markup-default image already failed BEFORE this script ran, the
+  // error event has come and gone — detect the broken state directly.
+  if(img.complete&&img.naturalWidth===0)setRenderUnavailable(true);
 })();
 function setAnchorImages(cid){
   if(cid==null){
@@ -852,6 +865,11 @@ function finishMetricsRender(fade){
   if(fade){document.querySelectorAll('.metric-value').forEach(function(el){el.classList.remove('fade-in');void el.offsetWidth;el.classList.add('fade-in')})}
   refreshMetricMuted();
 }
+// Single clear-state authority for BOTH tabs (updateResults, updatePlusResults
+// and the Plus no-match branch all route here — do not grow inline copies).
+// Also drops the previous config's facade render (honest-placeholder policy,
+// see setRenderUnavailable) and both tabs' cross-section text labels so no
+// stale config data survives next to the "Select a product…" summary.
 function clearResults(){
   ['metricU','metricUIP','metricR','metricSHGC','metricTvis','metricRoutVis','metricTdw','metricRw','metricTuv'].forEach(id=>document.getElementById(id).textContent='—');
   document.getElementById('summaryText').textContent='Select a product to view results.';
@@ -861,7 +879,14 @@ function clearResults(){
   document.getElementById('csInnerDetail').textContent='—';
   document.getElementById('csECarbon').textContent='—';
   document.getElementById('csIGUWeight').textContent='—';
+  document.getElementById('csThicknessValPlus').textContent='—';
+  document.getElementById('csPlusOuterDetail').textContent='—';
+  document.getElementById('csPlusOuterCoating').textContent='—';
+  document.getElementById('csPlusVigCoatingLabel').textContent='—';
+  document.getElementById('csPlusRightCoating').textContent='—';
+  document.getElementById('csPlusArgonLabel').textContent='—';
   document.getElementById('colorViewTitle').textContent='Exterior Appearance';
+  setRenderUnavailable(true);
   refreshMetricMuted();
 }
 function updateResults(){const match=findMatch();if(!getVal('outerThickness')||!outerCoatingEl.value||!getVal('innerThickness')){clearResults();return}
@@ -880,7 +905,6 @@ var outerPx=Math.round(eOuterMM*3),innerPx=Math.round(eInnerMM*3);
 var outer=document.getElementById('csPaneOuter'),inner=document.getElementById('csPaneInner');
 outer.style.width=outerPx+'px';
 outer.style.background='linear-gradient(180deg,'+getGlassColor(outerLayer.substrate)+' 0%,'+getGlassColor(outerLayer.substrate).replace(/0\.\d+\)/,'0.3)')+' 100%)';
-document.getElementById('csCoatingLine').style.display='block';
 inner.style.width=innerPx+'px';
 // Inner lite is Clear for every config except Starphire (all-Starphire assemblies),
 // so tint by the actual inner substrate; keep the established Clear look otherwise.
@@ -946,6 +970,7 @@ function centerCrossSection(){
   // Measure with current transform intact to avoid a one-frame flash
   var m=(cs.style.transform||'').match(/translateX\(([-\d.]+)/);
   var currentOffset=m?parseFloat(m[1]):0;
+  void card.offsetWidth; // flush pending layout before measuring (project rule §9)
   var cardRect=card.getBoundingClientRect();
   var vacRect=vacuum.getBoundingClientRect();
   var cardCenter=cardRect.left+cardRect.width/2;
@@ -1224,7 +1249,7 @@ function findPlusMatch(){
 function updatePlusResults(surfaceOnly){
   if(!plusOuterCoatingEl.value||!plusVigCoatingEl.value){clearResults();return}
   var match=findPlusMatch();
-  if(!match){['metricU','metricUIP','metricR','metricSHGC','metricTvis','metricRoutVis','metricTdw','metricRw','metricTuv'].forEach(id=>document.getElementById(id).textContent='—');document.getElementById('summaryText').textContent='Select a product to view results.';document.getElementById('colorViewTitle').textContent='Exterior Appearance';return}
+  if(!match){clearResults();return}
   setAnchorImages(match.cid);
   var cenActive=renderCoreMetrics(match);
   document.getElementById('metricTdw').textContent='—';document.getElementById('metricRw').textContent='—';
@@ -1245,15 +1270,14 @@ function updatePlusResults(surfaceOnly){
   var secondDisplay=coatingName(match.secondCoating);
   var vigSrf=match.secondSurface;
   var isS4=vigSrf==='S4';
-  // The "mono" (non-VIG) lite: glass[0] in Inboard, glass[2] in Outboard. It is
-  // Clear for every config except Starphire (all-Starphire assemblies), so name
-  // the substrate when it isn't Clear.
+  // The "mono" (non-VIG) lite: glass[0] in Inboard, glass[2] in Outboard. Both
+  // summaries name it by thickness only — its substrate is Clear for every config
+  // except Starphire, and there the S2 combo already says "on Starphire".
   var monoLayer=isOutboard?match.glass[2]:match.glass[0];
   var monoMM=monoLayer.thickness;
-  var monoThickLabel=(monoLayer.substrate&&monoLayer.substrate!=='Clear'?substrateName(monoLayer.substrate)+' ':'')+monoMM+'mm';
   if(isOutboard){
     var vigCombo=pOuterMM+'/'+pMiddleMM;
-    document.getElementById('summaryText').innerHTML='<strong>'+vigCombo+' mm</strong> Enthermal <strong>'+s2Display+'</strong> (S2) outboard with <strong>'+secondDisplay+'</strong> (S5) on <strong>'+monoThickLabel+'</strong>';
+    document.getElementById('summaryText').innerHTML='<strong>'+vigCombo+' mm</strong> Enthermal <strong>'+s2Display+'</strong> (S2) outboard with <strong>'+secondDisplay+'</strong> (S5) on <strong>'+monoMM+'mm</strong>';
   }else{
     var vigCombo=pMiddleMM+'/'+pInnerMM;
     document.getElementById('summaryText').innerHTML='<strong>'+s2Display+'</strong> (S2) on <strong>'+monoMM+'mm</strong> with <strong>'+vigCombo+' mm</strong> Enthermal <strong>'+secondDisplay+'</strong> ('+vigSrf+') inboard';
@@ -1286,7 +1310,11 @@ function updatePlusResults(surfaceOnly){
   document.getElementById('csPlusVigInner').style.background=paneSub(vigInnerSub);
   document.getElementById('csPlusVigCoatingLabel').textContent=coatingName(match.secondCoating);
   document.getElementById('csPlusRightCoating').style.display='';
-  document.getElementById('csPlusRightCoating').textContent=substrateName(match.glass[2].substrate)+' '+match.glass[2].thickness+'mm';
+  // Show the lite the second coating is actually on: in Inboard mode S4 sits on
+  // the VIG outer lite (glass[1]), S5 on the VIG inner (glass[2]). Outboard and
+  // Enthermal have a single inboard lite, so glass[2] is always right there.
+  var coatedLite=(!isOutboard&&isS4)?match.glass[1]:match.glass[2];
+  document.getElementById('csPlusRightCoating').textContent=substrateName(coatedLite.substrate)+' '+coatedLite.thickness+'mm';
 
   if(isOutboard){
     // Coatings fixed at S2 (VIG outer right edge) and S5 (mono pane left edge)
@@ -1424,6 +1452,9 @@ var stdUserFlip=false;
     stdUserFlip=true;
     var isPlus=document.getElementById('configEnthPlus').style.display!=='none';
     if(isPlus){updatePlusResults()}else{updateResults()}
+    // The update call consumes the flag in renderCoreMetrics; clear it here too
+    // so a cleared-selection early return can't leak it into the next render.
+    stdUserFlip=false;
   });
   requestAnimationFrame(syncStdToggle);
   window.addEventListener('resize',syncStdToggle);
@@ -1480,6 +1511,11 @@ function repositionPlusToggles(){_plusToggleResizers.forEach(function(fn){fn()})
     var hasS4=validSurfaces.includes('S4'),hasS5=validSurfaces.includes('S5');
     if(hasS4&&hasS5){
       toggle.classList.remove('disabled');input.disabled=false;
+      // The hidden radios are the source of truth on every cascade/seed path
+      // (user flips go through sync(), which writes the radios first). Without
+      // this line an Inboard→Outboard→Inboard round trip leaves the checkbox
+      // on S5 while the seed reset the radio to S4 — toggle shows S5, results are S4.
+      input.checked=radioS5.checked;
     }else if(hasS4&&!hasS5){
       input.checked=false;input.disabled=true;toggle.classList.add('disabled');
       radioS4.checked=true;
@@ -1493,7 +1529,6 @@ function repositionPlusToggles(){_plusToggleResizers.forEach(function(fn){fn()})
     updatePlusResults();
   };
 })();
-// ── Reposition all Plus toggle thumbs (called after tab becomes visible) ──
 // ── Gap fill toggle ──
 (function(){
   var toggle=document.getElementById('gapToggle');
@@ -1521,7 +1556,10 @@ function repositionPlusToggles(){_plusToggleResizers.forEach(function(fn){fn()})
       else updatePlusVigThickness();
     }
   }
-  _plusToggleResizers.push(sync);
+  // Resizer must only reposition the thumb. Registering sync here re-ran the
+  // whole cascade on every Plus-tab click, which let pickPlusVigDefault silently
+  // swap a manually chosen Vitro VIG under a Saint-Gobain exterior.
+  _plusToggleResizers.push(positionThumb);
   input.addEventListener('change',sync);
   window.addEventListener('resize',positionThumb);
   requestAnimationFrame(sync);

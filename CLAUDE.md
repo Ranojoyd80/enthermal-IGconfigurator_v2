@@ -66,13 +66,14 @@ Do NOT introduce any font sizes outside this scale.
 <div class="config-section">
   <div class="config-section-label">SECTION NAME</div>
   <div class="config-field">
-    <label>Field Label</label>
+    <label for="uniqueId">Field Label</label>
     <!-- select or radio-group goes here -->
   </div>
 </div>
 ```
 - Sections have `margin-bottom: 18px`, `padding-bottom: 18px`, `border-bottom: 1px solid var(--lw-gray-200)`
 - Last section in a group: no border-bottom, no margin-bottom
+- When the field is a single `<select>`, the caption label MUST carry `for="<selectId>"` (screen-reader name + click-to-focus). Radio-group/toggle captions take no `for` (a label can't target a group)
 
 ### Select Dropdown
 ```html
@@ -157,7 +158,7 @@ Do NOT introduce any font sizes outside this scale.
 ### Main Grid
 ```css
 .main {
-  max-width: 1320px;
+  max-width: 1428px;
   display: grid;
   grid-template-columns: 320px 1fr;
   gap: 14px;
@@ -171,19 +172,21 @@ Do NOT introduce any font sizes outside this scale.
 ```css
 .results-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
+  grid-template-columns: 446px minmax(0, 1fr);
+  grid-template-rows: auto auto 1fr;
+  column-gap: 14px;
+  row-gap: 22px;
 }
 ```
-- Row 1: Summary bar + Download button (full span, 1fr + 120px)
-- Row 2: Two metric card groups (each internally 1fr 1fr or 1fr 120px)
-- Row 3: Cross-section card + Color card (full span, side by side)
+- Row 1: Summary bar + Download button (full span, 1fr + 216px)
+- Row 2: Two metric card groups (right group internally minmax(0,1fr) + 216px)
+- Row 3: Cross-section card + Color card (446px + flexible, side by side)
 
 ### Shared Spacing Values
 - Card padding: 18px 14px 14px (metric cards), 24px (viz card body)
 - Card border-radius: 12px (metric), 14px (viz/summary), 16px (config panel)
-- Gap between cards: 14px
-- Config body padding: 30px 22px 24px
+- Gap between cards: 14px columns, 22px rows (results grid)
+- Config body padding: 37px 22px 22px
 - Section margin/padding: 18px bottom
 
 ---
