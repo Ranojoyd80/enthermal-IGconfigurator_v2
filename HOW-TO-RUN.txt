@@ -8,10 +8,20 @@ will not work.
 Quick Start
 -----------
 1. Open a terminal in this project folder
-2. Run:   python -m http.server
+2. Run:   python serve.py
 3. Open:  http://localhost:8000/enthermal-configurator.html
 
 That's it. No dependencies, no install, no build step.
+
+serve.py is a thin wrapper around Python's built-in http.server that
+adds a "Cache-Control: no-store" header to every response. Without it
+the browser may cache the HTML (which contains all the app's JS/CSS)
+and keep showing an OLD version of the app after edits unless you
+hard-refresh (Ctrl+Shift+R). With serve.py, a normal reload (F5)
+always shows the latest files.
+
+Plain `python -m http.server` still works, but expect to need
+Ctrl+Shift+R after every change.
 
 Stopping the Server
 -------------------
