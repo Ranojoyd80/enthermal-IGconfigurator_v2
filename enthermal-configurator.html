@@ -119,8 +119,12 @@ body{font-family:var(--font-body);background:var(--lw-gray-50);color:var(--lw-da
 .srf-toggle-thumb{position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:var(--lw-teal);box-shadow:0 1px 4px rgba(13,148,136,.35);transition:left .25s cubic-bezier(.4,0,.2,1);pointer-events:none}
 .srf-toggle input:disabled~.srf-toggle-thumb{background:var(--lw-gray-400);box-shadow:none}
 .srf-toggle.disabled{opacity:.35;cursor:not-allowed}
-@media print{.header,.hero,.product-tabs,#printBtn{display:none!important}.main{display:block!important;padding:10px!important}.config-panel{border:none!important;box-shadow:none!important}.results-grid{margin-top:10px}}
-@media(max-width:1024px){.main{grid-template-columns:1fr;padding:20px 20px 40px}.results-grid{grid-template-columns:1fr;grid-template-rows:none}.results-grid-metrics-left,.results-grid-metrics-right{grid-template-columns:1fr}}
+/* The tab-switch anti-jump lock (JS sets inline height:770px on .config-panel and
+   .results-grid at load) only makes sense in the side-by-side layout. In the
+   stacked (≤1024px) and print layouts it crushes the cards, so both blocks
+   override the inline style — the one legitimate use of !important here. */
+@media print{.header,.hero,.product-tabs,#printBtn{display:none!important}.main{display:block!important;padding:10px!important}.config-panel{border:none!important;box-shadow:none!important;height:auto!important;min-height:0}.results-grid{margin-top:10px;height:auto!important}.viz-cross .viz-card-body{min-height:460px}}
+@media(max-width:1024px){.main{grid-template-columns:1fr;padding:20px 20px 40px}.results-grid{grid-template-columns:1fr;grid-template-rows:none;height:auto!important}.results-grid-metrics-left,.results-grid-metrics-right{grid-template-columns:1fr}.config-panel{height:auto!important;min-height:0}.viz-cross .viz-card-body{min-height:460px}}
 .color-img-wrap{overflow:hidden}
 .color-zoom-btn{position:absolute;bottom:12px;right:12px;width:34px;height:34px;border:none;border-radius:8px;background:rgba(255,255,255,.85);box-shadow:0 1px 4px rgba(0,0,0,.18);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--lw-dark);transition:background .2s,transform .2s}
 .color-zoom-btn:hover{background:#fff;transform:scale(1.06)}
