@@ -125,6 +125,8 @@ Starphire display contract (B1/B2/B7/A13): the assembly is all-Starphire, so the
 
 ### Group E — Plus Outboard (8) — VIG-outer substrate implicitly Clear for all entries
 
+> **Surface-control presentation in Outboard (clarified by 2026-07-11 run):** the Coating Surface field (`#plusCoatingSurfaceField`) is **hidden** entirely and the hidden radio is forced to S5 — there is no visible locked toggle. Assert `field.offsetParent === null` and `plusSrf5.checked === true`.
+
 | # | VIG | S2 | mono t | S5 | Gas | CEN expect | Notes |
 |---|---|---|---|---|---|---|---|
 | E1 | 5/5 | C366 | 4 | C366 | Ar90 | NFRC | **golden** |
