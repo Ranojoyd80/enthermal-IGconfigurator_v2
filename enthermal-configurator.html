@@ -481,14 +481,14 @@ body{font-family:var(--font-body);background:var(--lw-gray-50);color:var(--lw-da
       <div class="viz-card viz-color">
         <div class="viz-card-header" style="justify-content:space-between;padding:13.5px 18px"><span id="colorViewTitle">Exterior Appearance</span>
           <div class="sky-toggle" id="skyToggle">
-            <span class="sky-toggle-option active" data-folder="Overcast" data-img="App_Data/Anchor_Renders/Overcast/anchor_01.webp?v=2">Overcast</span>
-            <span class="sky-toggle-option" data-folder="PartlyClear" data-img="App_Data/Anchor_Renders/PartlyClear/anchor_01.webp?v=2">Partly Clear</span>
+            <span class="sky-toggle-option active" data-folder="Overcast" data-img="App_Data/Anchor_Renders/Overcast/anchor_01.webp?v=54e29159">Overcast</span>
+            <span class="sky-toggle-option" data-folder="PartlyClear" data-img="App_Data/Anchor_Renders/PartlyClear/anchor_01.webp?v=54e29159">Partly Clear</span>
             <span class="sky-toggle-thumb" id="skyThumb"></span>
           </div>
         </div>
         <div class="viz-card-body" style="flex-direction:column;gap:0;background:var(--lw-gray-50);padding:0">
           <div class="color-img-wrap" style="position:relative;flex:1;min-height:0;display:flex">
-            <img src="App_Data/Anchor_Renders/Overcast/anchor_01.webp?v=2" alt="Exterior color rendering" id="colorRenderImg" style="width:100%;height:100%;object-fit:cover;object-position:bottom;display:block;cursor:zoom-in">
+            <img src="App_Data/Anchor_Renders/Overcast/anchor_01.webp?v=54e29159" alt="Exterior color rendering" id="colorRenderImg" style="width:100%;height:100%;object-fit:cover;object-position:bottom;display:block;cursor:zoom-in">
             <button id="colorZoomBtn" class="color-zoom-btn" type="button" title="Enlarge image" aria-label="Enlarge image"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></button>
           </div>
           <div style="font-size:11px;color:var(--lw-gray-400);line-height:1.5;text-align:center;padding:8px 0;font-style:italic;width:220px;margin:0 auto">Colors shown on the screen should not be used as a substitute for a mock-up.</div>
@@ -677,7 +677,7 @@ function paneTintGradient(substrate){var c=getGlassColor(substrate);return 'line
 // --- Per-config exterior render lookup -------------------------------------
 // Per-config exterior render lookup. Each config carries `cid` (1-based integer
 // anchor id), injected by Data_Pipeline/3_Clustering/recluster_at_jnd.py. The render
-// is App_Data/Anchor_Renders/<Folder>/anchor_<cid>.webp (cid zero-padded to >=2
+// is App_Data/Anchor_Renders/<Folder>/anchor_<cid>.webp?v=54e29159 (cid zero-padded to >=2
 // digits, e.g. 1 -> anchor_01, 202 -> anchor_202). No runtime Lab-key formatting.
 // Repoints the two sky-toggle options (data-img) + the visible image; the sky
 // toggle and zoom lightbox both read data-img, so they follow automatically. The
@@ -685,10 +685,11 @@ function paneTintGradient(substrate){var c=getGlassColor(substrate);return 'line
 // "Partly Clear" option resolves to the PartlyClear/ folder.
 // RENDER_V is a cache-buster: render batches replace files under identical names,
 // so browsers that cached an earlier batch keep serving the old pixels (JS-assigned
-// img.src requests hit the HTTP cache even after a hard refresh). Bump the number
-// whenever the anchor renders are regenerated. Keep the markup data-img/src
-// defaults (colorRenderImg + sky-toggle options) on the same value.
-var RENDER_V='?v=2';
+// img.src requests hit the HTTP cache even after a hard refresh). Do NOT edit the
+// token by hand — the pre-commit hook (.githooks/sync_render_version.py) derives it
+// from the render files' content and rewrites it here and in the markup defaults
+// (colorRenderImg src + sky-toggle data-img) on every commit.
+var RENDER_V='?v=54e29159';
 function setAnchorImages(cid){
   if(cid==null)return; // fallback: keep last image rather than render a broken <img>
   var code='anchor_'+String(cid).padStart(2,'0');

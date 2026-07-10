@@ -325,6 +325,12 @@ This is the **LuxWall Enthermal™ Product Configurator** — a technical sales 
 
 ## Git Workflow
 
+### Pre-commit hook (render cache-buster) — REQUIRED
+- Hooks live in `.githooks/` (committed). One-time setup per clone: `git config core.hooksPath .githooks`
+- On every commit, `.githooks/sync_render_version.py` derives a token from the content of `App_Data/Anchor_Renders/` and rewrites the `?v=<token>` on every anchor-render URL in `enthermal-configurator.html` (the `RENDER_V` constant + the markup defaults), re-staging the file.
+- **Why:** render batches replace `.webp` files under identical names; browsers that cached an earlier batch keep showing the old pixels — JS-assigned `img.src` requests hit the HTTP cache even after Ctrl+Shift+R. The content-derived query string makes replaced renders impossible to mask with a stale cache.
+- Never hand-edit a `?v=` token; never bypass the hook with `--no-verify`.
+
 ### After completing changes:
 - Run `git add .`
 - Run `git commit -m "<summarize features added, bugs fixed, or changes made>"`
