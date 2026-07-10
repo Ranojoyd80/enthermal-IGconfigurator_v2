@@ -535,6 +535,10 @@ const COATING_MAKERS = {
   'SB60':'Vitro','SB70':'Vitro','SB72':'Vitro','SBR67':'Vitro',
   'SKN183':'Saint-Gobain','XTR6129':'Saint-Gobain','LUMI':'Saint-Gobain','ZEN':'Saint-Gobain'
 };
+// Featured default selection for every tab/placement seed. Change the flagship
+// coating here and nowhere else.
+const DEFAULT_COATING='C366';
+const DEFAULT_COMBO=DEFAULT_COATING+'|Clear';
 function coatingName(code){return COATING_NAMES[code]||code}
 function substrateName(code){return SUBSTRATE_NAMES[code]||code}
 function coatingNameWithMaker(code){var m=COATING_MAKERS[code];return m?m+' '+coatingName(code):coatingName(code)}
@@ -640,7 +644,7 @@ Promise.all([
   document.getElementById('innerT6').checked = true;
   updateOuterCoatings();
   if (outerCoatingEl.options.length > 0) {
-    var coat366 = Array.from(outerCoatingEl.options).find(function(o) { return o.value==='C366|Clear'; });
+    var coat366 = Array.from(outerCoatingEl.options).find(function(o) { return o.value===DEFAULT_COMBO; });
     if (coat366) { outerCoatingEl.value = coat366.value; updateInnerThickness(); }
   }
 }).catch(function(err) {
@@ -1184,7 +1188,7 @@ function seedPlusOutboardDefaults(){
   if(Array.from(vSel.options).some(function(o){return o.value==='5/5'}))vSel.value='5/5';
   updatePlusS2CoatingOutboard();
   updatePlusInboardThicknessOutboard();
-  var coat366=Array.from(plusVigCoatingEl.options).find(function(o){return o.value==='C366'});
+  var coat366=Array.from(plusVigCoatingEl.options).find(function(o){return o.value===DEFAULT_COATING});
   if(coat366&&plusVigCoatingEl.value!==coat366.value){
     plusVigCoatingEl.value=coat366.value;
     updatePlusResults();
@@ -1193,11 +1197,11 @@ function seedPlusOutboardDefaults(){
 function seedPlusInboardDefaults(){
   initPlusConfig();
   document.getElementById('plusSrf4').checked=true;
-  var pCoat366=Array.from(plusOuterCoatingEl.options).find(function(o){return o.value==='C366|Clear'});
+  var pCoat366=Array.from(plusOuterCoatingEl.options).find(function(o){return o.value===DEFAULT_COMBO});
   if(pCoat366){
     plusOuterCoatingEl.value=pCoat366.value;
     updatePlusVigThickness();
-    var vCoat366=Array.from(plusVigCoatingEl.options).find(function(o){return o.value==='C366'});
+    var vCoat366=Array.from(plusVigCoatingEl.options).find(function(o){return o.value===DEFAULT_COATING});
     if(vCoat366)plusVigCoatingEl.value=vCoat366.value;
   }
   updatePlusSurfaces();
