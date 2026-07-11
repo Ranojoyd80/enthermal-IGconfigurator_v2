@@ -843,8 +843,12 @@ function setAnchorImages(cid){
   if(active&&img){
     img.src=active.getAttribute('data-img');
     // Cached → complete is already true, show immediately (no flicker).
-    // Not cached → neutral loading panel until the load event lands.
-    setRenderState(img.complete&&img.naturalWidth>0?'image':'loading');
+    // Not cached: only drop to the loading panel when nothing valid is on
+    // screen (tab init, cleared selection, prior error). If a render is
+    // already showing, keep it visible and swap silently on load — flashing
+    // a loading panel on every selection is worse than a brief stale sky.
+    if(img.complete&&img.naturalWidth>0)setRenderState('image');
+    else if(renderState!=='image')setRenderState('loading');
   }
   // After the visible image has been requested, warm the inactive sky so the
   // sky toggle swaps instantly.
@@ -1829,7 +1833,8 @@ function repositionPlusToggles(){_plusToggleResizers.forEach(function(fn){fn()})
     // assigning it would resurface that facade via the load handler.
     if(img&&src&&(renderState==='image'||renderState==='loading')){
       img.src=src;
-      if(!(img.complete&&img.naturalWidth>0))setRenderState('loading');
+      // Same rule as setAnchorImages: silent swap while a render is showing.
+      if(!(img.complete&&img.naturalWidth>0)&&renderState!=='image')setRenderState('loading');
     }
     positionThumb();
   }
