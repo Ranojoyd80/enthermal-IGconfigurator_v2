@@ -657,6 +657,20 @@ Promise.all([
     updatePlusResults();
     requestAnimationFrame(function(){ repositionPlusToggles(); });
   }
+  // Warm the Plus tab's default render (both skies) in the background so the
+  // first tab switch shows it instantly instead of the loading panel. Mirrors
+  // the coating combo seedPlusInboardDefaults will pick (DEFAULT_COMBO outer,
+  // DEFAULT_COATING VIG on S4); cid is a color anchor, so the seeded
+  // thickness/gas defaults can't change which anchor that combo resolves to.
+  // A wrong guess costs one unused cached image — nothing user-visible.
+  var plusDefault = DATA_PLUS_IN.find(function(d){
+    return d.glass[0].coating===DEFAULT_COATING && d.glass[0].substrate==='Clear'
+      && d.secondCoating===DEFAULT_COATING && d.secondSurface==='S4';
+  });
+  if (plusDefault && plusDefault.cid!=null) {
+    preloadRender(anchorUrl('Overcast', plusDefault.cid));
+    preloadRender(anchorUrl('PartlyClear', plusDefault.cid));
+  }
 }).catch(function(err) {
   console.error('Failed to load data:', err);
   var msg='Unable to load product data. Please refresh the page (Ctrl+Shift+R). If the problem persists, contact LuxWall.';
@@ -763,42 +777,78 @@ function paneTintGradient(substrate){var c=getGlassColor(substrate);return 'line
 // from the render files' content and rewrites it here and in the markup defaults
 // (colorRenderImg src + sky-toggle data-img) on every commit.
 var RENDER_V='?v=54e29159';
-// Honest failure state for the exterior render: never show a broken-image icon
-// or (worse) the previous config's facade. Triggered by img error or missing cid;
-// cleared automatically when a subsequent image loads.
-function setRenderUnavailable(on){
+// Render-panel state machine. Only 'image' shows the render; every other state
+// hides it behind the fallback panel so we never show a broken-image icon or
+// (worse) the previous config's facade. States:
+//   'image'       — render visible
+//   'loading'     — healthy in-flight state: the new src is still downloading
+//   'cleared'     — no config selected (clearResults path)
+//   'unavailable' — honest failure: img error event or config with no cid
+// The wording matters: 'unavailable' is a factual claim about the config, so it
+// must never appear during a normal first-time download — that's 'loading'.
+var renderState='image';
+var RENDER_FALLBACK_TEXT={
+  loading:'Loading exterior render…',
+  cleared:'Select a product to view the exterior render.',
+  unavailable:'Exterior render unavailable for this configuration.'
+};
+function setRenderState(state){
+  renderState=state;
   var img=document.getElementById('colorRenderImg');
   var fb=document.getElementById('colorRenderFallback');
   var zb=document.getElementById('colorZoomBtn');
-  if(img)img.style.display=on?'none':'block';
-  if(fb)fb.style.display=on?'flex':'none';
-  if(zb)zb.style.display=on?'none':'flex';
+  var showImg=state==='image';
+  if(img)img.style.display=showImg?'block':'none';
+  if(fb){
+    fb.style.display=showImg?'none':'flex';
+    fb.textContent=RENDER_FALLBACK_TEXT[state]||RENDER_FALLBACK_TEXT.unavailable;
+  }
+  if(zb)zb.style.display=showImg?'flex':'none';
 }
 (function(){
   var img=document.getElementById('colorRenderImg');
   if(!img)return;
+  // Guard both transitions against 'cleared': a download that was in flight
+  // when the selection got cleared must not resurface its facade (or an error
+  // message) on top of the cleared state when it eventually settles.
   img.addEventListener('error',function(){
     console.error('Exterior render failed to load: '+img.src);
-    setRenderUnavailable(true);
+    if(renderState!=='cleared')setRenderState('unavailable');
   });
-  img.addEventListener('load',function(){setRenderUnavailable(false)});
+  img.addEventListener('load',function(){if(renderState!=='cleared')setRenderState('image')});
   // If the markup-default image already failed BEFORE this script ran, the
   // error event has come and gone — detect the broken state directly.
-  if(img.complete&&img.naturalWidth===0)setRenderUnavailable(true);
+  if(img.complete&&img.naturalWidth===0)setRenderState('unavailable');
 })();
+function anchorUrl(folder,cid){
+  return 'App_Data/Anchor_Renders/'+folder+'/anchor_'+String(cid).padStart(2,'0')+'.webp'+RENDER_V;
+}
+// Warm the HTTP cache in the background so a first-time view doesn't sit on
+// the loading panel (Image() fetches go to the same cache as img.src).
+function preloadRender(url){if(url)(new Image()).src=url}
 function setAnchorImages(cid){
   if(cid==null){
     console.error('setAnchorImages: config has no cid — showing render-unavailable state');
-    setRenderUnavailable(true);
+    setRenderState('unavailable');
     return;
   }
-  var code='anchor_'+String(cid).padStart(2,'0');
+  var inactiveUrls=[];
   document.querySelectorAll('.sky-toggle-option').forEach(function(opt){
     var folder=opt.getAttribute('data-folder')||opt.textContent.trim(); // Overcast | PartlyClear
-    opt.setAttribute('data-img','App_Data/Anchor_Renders/'+folder+'/'+code+'.webp'+RENDER_V);
+    opt.setAttribute('data-img',anchorUrl(folder,cid));
+    if(!opt.classList.contains('active'))inactiveUrls.push(opt.getAttribute('data-img'));
   });
   var active=document.querySelector('.sky-toggle-option.active');
-  if(active)document.getElementById('colorRenderImg').src=active.getAttribute('data-img');
+  var img=document.getElementById('colorRenderImg');
+  if(active&&img){
+    img.src=active.getAttribute('data-img');
+    // Cached → complete is already true, show immediately (no flicker).
+    // Not cached → neutral loading panel until the load event lands.
+    setRenderState(img.complete&&img.naturalWidth>0?'image':'loading');
+  }
+  // After the visible image has been requested, warm the inactive sky so the
+  // sky toggle swaps instantly.
+  inactiveUrls.forEach(preloadRender);
 }
 // Acoustic lookup for Enthermal — key = "<smaller>/<larger>" glass thickness in mm
 const ENTHERMAL_ACOUSTIC={
@@ -868,7 +918,7 @@ function finishMetricsRender(fade){
 // Single clear-state authority for BOTH tabs (updateResults, updatePlusResults
 // and the Plus no-match branch all route here — do not grow inline copies).
 // Also drops the previous config's facade render (honest-placeholder policy,
-// see setRenderUnavailable) and both tabs' cross-section text labels so no
+// see setRenderState) and both tabs' cross-section text labels so no
 // stale config data survives next to the "Select a product…" summary.
 function clearResults(){
   ['metricU','metricUIP','metricR','metricSHGC','metricTvis','metricRoutVis','metricTdw','metricRw','metricTuv'].forEach(id=>document.getElementById(id).textContent='—');
@@ -886,7 +936,7 @@ function clearResults(){
   document.getElementById('csPlusRightCoating').textContent='—';
   document.getElementById('csPlusArgonLabel').textContent='—';
   document.getElementById('colorViewTitle').textContent='Exterior Appearance';
-  setRenderUnavailable(true);
+  setRenderState('cleared');
   refreshMetricMuted();
 }
 function updateResults(){const match=findMatch();if(!getVal('outerThickness')||!outerCoatingEl.value||!getVal('innerThickness')){clearResults();return}
@@ -1774,7 +1824,13 @@ function repositionPlusToggles(){_plusToggleResizers.forEach(function(fn){fn()})
     options.forEach(function(o){o.classList.remove('active')});
     opt.classList.add('active');
     var src=opt.getAttribute('data-img');
-    if(img&&src)img.src=src;
+    // Only swap the image in image/loading states: in 'cleared'/'unavailable'
+    // the data-img may belong to a config that is no longer selected, and
+    // assigning it would resurface that facade via the load handler.
+    if(img&&src&&(renderState==='image'||renderState==='loading')){
+      img.src=src;
+      if(!(img.complete&&img.naturalWidth>0))setRenderState('loading');
+    }
     positionThumb();
   }
   options.forEach(function(o){o.addEventListener('click',function(){select(o)})});
