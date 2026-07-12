@@ -128,7 +128,7 @@ body{font-family:var(--font-body);background:var(--lw-gray-50);color:var(--lw-da
    stacked (≤1024px) and print layouts it crushes the cards, so both blocks
    override the inline style — the one legitimate use of !important here. */
 @media print{.header,.hero,.product-tabs,#printBtn,#colorZoomBtn{display:none!important}.main{display:block!important;padding:10px!important}.config-panel{border:none!important;box-shadow:none!important;height:auto!important;min-height:0}.results-grid{margin-top:10px;height:auto!important}.viz-cross .viz-card-body{min-height:460px}}
-@media(max-width:1024px){.main{grid-template-columns:1fr;padding:20px 20px 40px}.results-grid{grid-template-columns:1fr;grid-template-rows:none;height:auto!important}.results-grid-metrics-left,.results-grid-metrics-right{grid-template-columns:1fr}.config-panel{height:auto!important;min-height:0}.viz-cross .viz-card-body{min-height:460px}}
+@media(max-width:1024px){.main{grid-template-columns:1fr;padding:20px 20px 40px}.results-grid{grid-template-columns:1fr;grid-template-rows:none;height:auto!important}.results-grid-metrics-left,.results-grid-metrics-right{grid-template-columns:1fr}.config-panel{height:auto!important;min-height:0}.viz-cross .viz-card-body{min-height:460px}.results-summary-row{grid-template-columns:1fr!important;height:auto!important}.config-summary{height:auto;min-height:calc(var(--tab-row-height) + 2px);padding:10px 21px}#printBtn{height:calc(var(--tab-row-height) + 2px)!important}}
 .color-img-wrap{overflow:hidden}
 .color-zoom-btn{position:absolute;bottom:12px;right:12px;width:34px;height:34px;border:none;border-radius:8px;background:rgba(255,255,255,.85);box-shadow:0 1px 4px rgba(0,0,0,.18);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--lw-dark);transition:background .2s,transform .2s}
 .color-zoom-btn:hover{background:var(--lw-white);transform:scale(1.06)}
@@ -281,7 +281,7 @@ body{font-family:var(--font-body);background:var(--lw-gray-50);color:var(--lw-da
   </div>
   <div class="results-grid">
       <!-- Row 1: Summary + Download (full span) -->
-      <div style="grid-column:1/-1;display:grid;grid-template-columns:1fr 216px;gap:14px;height:calc(var(--tab-row-height) + 2px)">
+      <div class="results-summary-row" style="grid-column:1/-1;display:grid;grid-template-columns:1fr 216px;gap:14px;height:calc(var(--tab-row-height) + 2px)">
         <div class="config-summary" style="display:flex;align-items:center;justify-content:space-between;gap:16px">
           <div class="config-summary-text" id="summaryText">Select a product to view results.</div>
           <div class="std-toggle-wrap">
