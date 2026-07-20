@@ -1,8 +1,8 @@
-# Enthermal™ Product Configurator — Technical Report
+﻿# Enthermalâ„¢ Product Configurator â€” Technical Report
 
 ## 1. How Was This App Developed?
 
-The configurator was developed iteratively through a conversational AI-assisted workflow using Claude. Early versions (V1–V22) built out the core UI, cascade logic, cross-section diagrams, and metric cards. Subsequent work migrated the data layer from embedded JS arrays to external JSON files loaded via `fetch()`, expanded the product catalog from ~96 to ~6,862 configurations, and added features such as the CEN/NFRC standard toggle, Inboard/Outboard placement toggle, Air/Argon gas fill selector, and data-driven coating shortcodes.
+The configurator was developed iteratively through a conversational AI-assisted workflow using Claude. Early versions (V1â€“V22) built out the core UI, cascade logic, cross-section diagrams, and metric cards. Subsequent work migrated the data layer from embedded JS arrays to external JSON files loaded via `fetch()`, expanded the product catalog from ~96 to ~6,862 configurations, and added features such as the CEN/NFRC standard toggle, Inboard/Outboard placement toggle, Air/Argon gas fill selector, and data-driven coating shortcodes.
 
 ### Development Timeline (Selected Milestones)
 
@@ -11,20 +11,20 @@ The configurator was developed iteratively through a conversational AI-assisted 
 | V1 | Core layout, dual-value metric cards, centered cross-section diagram, typography system |
 | V2 | Full CSV data ingestion (60 Enthermal configs), T-UV metric card, substrate/coating dropdown split |
 | V3 | Enthermal Plus tab with config panel, argon gap visualization, coating surface selector (S4/S5) |
-| V7 | Smart cascading filters for both tabs — invalid selections are prevented, no-match messages eliminated |
-| V12 | Dead CSS removed, font scale consolidated to 6 sizes (9·11·13·15·25·32 px) |
+| V7 | Smart cascading filters for both tabs â€” invalid selections are prevented, no-match messages eliminated |
+| V12 | Dead CSS removed, font scale consolidated to 6 sizes (9Â·11Â·13Â·15Â·25Â·32 px) |
 | V16 | Expanded Enthermal data to 60 records, Plus data to 36 records |
 | V21 | NFRC/CEN standard toggle, S4/S5 surface toggle redesigned as slider, OITC metric card, Embodied Carbon and IGU Weight info bar |
-| V22 | Centering bug fix — synchronous reflow (`void cs.offsetWidth`), S4/S5 opacity transitions |
+| V22 | Centering bug fix â€” synchronous reflow (`void cs.offsetWidth`), S4/S5 opacity transitions |
 | Post-V22 | Migrated data from embedded JS arrays to external JSON files (`App_Data/*.json`). Stack-based data schema with `glass[]`, `vacuum`, `gas` layers. Coating shortcodes (C366, SB70, etc.) with display name lookups. |
-| Current | IG_Config dataset migration — 98 Enthermal + 4,748 Plus Inboard + 2,016 Plus Outboard rows. 14 coatings, 10 substrates. Inboard/Outboard placement toggle with separate cascade logic. Air/Argon gas fill toggle. CEN auto-flip with per-row `cen`/`gFactor`/`uvalCEN` fields. |
+| Current | IG_Config dataset migration â€” 98 Enthermal + 4,748 Plus Inboard + 2,016 Plus Outboard rows. 14 coatings, 10 substrates. Inboard/Outboard placement toggle with separate cascade logic. Air/Argon gas fill toggle. CEN auto-flip with per-row `cen`/`gFactor`/`uvalCEN` fields. |
 
 ### Data Validation
 
 All data is sourced from LBNL Windows 7 / PyWinCalc calculations and cross-checked against official LuxWall product data sheets:
 
-- **Enthermal (LW00041.6)**: 98 configurations across 14 coatings and 10 substrates — 98%+ match rate.
-- **Enthermal Plus (LW00054.4)**: 6,764 configurations across Inboard and Outboard placement modes — validated via automated test suite (51 configs, 3 stress tests, 0 failures).
+- **Enthermal (LW00041.6)**: 98 configurations across 14 coatings and 10 substrates â€” 98%+ match rate.
+- **Enthermal Plus (LW00054.4)**: 6,764 configurations across Inboard and Outboard placement modes â€” validated via automated test suite (51 configs, 3 stress tests, 0 failures).
 
 ---
 
@@ -35,27 +35,27 @@ All data is sourced from LBNL Windows 7 / PyWinCalc calculations and cross-check
 | Layer | Technology |
 |-------|-----------|
 | Language | Vanilla HTML5, CSS3, JavaScript (ES6) |
-| Framework | None — zero dependencies, no build step |
+| Framework | None â€” zero dependencies, no build step |
 | Typography | Google Fonts: Plus Jakarta Sans (display), DM Sans (body) |
 | Data | External JSON files loaded via `fetch()` at startup |
-| Hosting | Static file hosting — HTML + `App_Data/` folder |
+| Hosting | Static file hosting â€” HTML + `App_Data/` folder |
 | External deps | Google Fonts CDN only |
 
 ### File Structure
 
 ```
-enthermal-configurator.html    — ~125 KB
-├── <style>     — CSS (design tokens + component styles)
-├── <body>      — semantic HTML
-└── <script>    — named functions + IIFEs (vanilla ES6)
+enthermal-configurator.html    â€” ~125 KB
+â”œâ”€â”€ <style>     â€” CSS (design tokens + component styles)
+â”œâ”€â”€ <body>      â€” semantic HTML
+â””â”€â”€ <script>    â€” named functions + IIFEs (vanilla ES6)
 
 App_Data/
-├── enthermal.json             — 98 Enthermal configs (~73 KB)
-├── enthermal-plus-inboard.json — 4,470 Plus Inboard configs (~4.2 MB)
-├── enthermal-plus-outboard.json — 1,876 Plus Outboard configs (~1.8 MB)
-└── Anchor_Renders/
-    ├── Overcast/     anchor_01.webp … anchor_202.webp  — per-config exterior renders (default)
-    └── PartlyClear/  anchor_01.webp … anchor_202.webp    (202 anchors × 2 skies = 404)
+â”œâ”€â”€ enthermal.json             â€” 98 Enthermal configs (~73 KB)
+â”œâ”€â”€ enthermal-plus-inboard.json â€” 4,470 Plus Inboard configs (~4.2 MB)
+â”œâ”€â”€ enthermal-plus-outboard.json â€” 1,876 Plus Outboard configs (~1.8 MB)
+â””â”€â”€ Anchor_Renders/
+    â”œâ”€â”€ Overcast/     anchor_01.webp â€¦ anchor_202.webp  â€” per-config exterior renders (default)
+    â””â”€â”€ PartlyClear/  anchor_01.webp â€¦ anchor_202.webp    (202 anchors Ã— 2 skies = 404)
 ```
 
 *(Per-section line counts drift as the single file evolves; treat the function lists below as a guide, not an exact inventory.)*
@@ -64,8 +64,8 @@ App_Data/
 
 - **CSS custom properties** for consistent theming under `:root`
 - Key tokens: `--lw-dark`, `--lw-teal`, `--lw-gray-*`, `--font-display`, `--font-body`
-- **6-size type scale**: 9·11·13·15·25·32 px (consolidated from 9 sizes in V12)
-- Responsive breakpoint at 1024px (single-column stack for tablet/mobile)
+- **6-size type scale**: 9Â·11Â·13Â·15Â·25Â·32 px (consolidated from 9 sizes in V12)
+- Responsive breakpoint at 1120px (single-column stack for tablet/mobile)
 - Print media query hides header, hero, tabs, and download button
 - Cross-section glass panes use CSS gradients and box-shadows (no images)
 - Cross-section height uses pure CSS flex layout (no JS calculations since V11)
@@ -81,10 +81,10 @@ App_Data/
 
 | Function | Purpose |
 |----------|---------|
-| `coatingName(code)` | Map shortcode to display name (e.g., `C366` → `LoE³ 366`) |
-| `substrateName(code)` | Map substrate to display name (e.g., `Optiblue` → `Optiblue®`) |
-| `coatingNameWithMaker(code)` | Prepend manufacturer prefix for dropdowns (e.g., `Cardinal LoE³ 366`) |
-| `layerDisplay(layer, nameFn)` | Format a glass layer for display — coating only for Clear, "coating on substrate" for branded |
+| `coatingName(code)` | Map shortcode to display name (e.g., `C366` â†’ `LoEÂ³ 366`) |
+| `substrateName(code)` | Map substrate to display name (e.g., `Optiblue` â†’ `OptiblueÂ®`) |
+| `coatingNameWithMaker(code)` | Prepend manufacturer prefix for dropdowns (e.g., `Cardinal LoEÂ³ 366`) |
+| `layerDisplay(layer, nameFn)` | Format a glass layer for display â€” coating only for Clear, "coating on substrate" for branded |
 | `postProcessData()` | Attach `glass[]`, `gasType`, `secondCoating`, `secondSurface` accessors to each data row |
 | `getGlassColor(substrate)` | Map a substrate to a tint color for the **cross-section** glass panes (not the color card). Drives the exterior lite tint on both the Enthermal and Enthermal Plus cross-sections |
 | `unique(arr)` | Return unique sorted values |
@@ -105,25 +105,25 @@ App_Data/
 | `clearResults()` | Reset all metric cards and summary to blank state |
 | `updateResults()` | Populate all metric cards, cross-section, summary, and CEN/NFRC toggle |
 
-**Enthermal Plus Tab — Inboard Cascade (8 functions)**
+**Enthermal Plus Tab â€” Inboard Cascade (8 functions)**
 
 | Function | Purpose |
 |----------|---------|
 | `getActivePlusData()` | Return `DATA_PLUS_IN` or `DATA_PLUS_OUT` based on placement toggle |
 | `getVigComboKey(d, isOutboard)` | Compute VIG thickness combo string (e.g., `"4/4"`) |
 | `filterPlusData()` | Apply all active filters to Plus dataset |
-| `initPlusConfig()` | Initialize Plus tab — enable valid outer thickness radios |
+| `initPlusConfig()` | Initialize Plus tab â€” enable valid outer thickness radios |
 | `updatePlusOuterCoatings()` | Populate Plus outer coating (S2) dropdown |
 | `updatePlusVigThickness()` | Filter and populate VIG thickness dropdown |
 | `updatePlusVigCoatings()` | Populate VIG coating dropdown for inboard mode |
 | `updatePlusSurfaces()` | Handle S4/S5 toggle enable/disable and auto-selection |
 
-**Enthermal Plus Tab — Outboard Cascade (6 functions)**
+**Enthermal Plus Tab â€” Outboard Cascade (6 functions)**
 
 | Function | Purpose |
 |----------|---------|
 | `_plusOutboardData()` | Filter active Plus dataset by current gas selection |
-| `updatePlusVigThicknessOutboard()` | Root of outboard cascade — enables all VIG thickness options |
+| `updatePlusVigThicknessOutboard()` | Root of outboard cascade â€” enables all VIG thickness options |
 | `updatePlusS2CoatingOutboard()` | Filter S2 (VIG outer) coatings by VIG thickness |
 | `updatePlusInboardThicknessOutboard()` | Filter mono inboard thickness radios by VIG thickness |
 | `updatePlusS5CoatingOutboard()` | Filter S5 (mono inboard) coatings by mono thickness |
@@ -145,7 +145,7 @@ App_Data/
 
 | IIFE | Purpose |
 |------|---------|
-| NFRC/CEN toggle | Standard toggle with auto-flip, locking, label switching (SHGC↔g-Factor; OITC/Rw values blank by mode) |
+| NFRC/CEN toggle | Standard toggle with auto-flip, locking, label switching (SHGCâ†”g-Factor; OITC/Rw values blank by mode) |
 | S4/S5 surface toggle | Coating surface toggle with auto-disable when only one surface is valid |
 | Placement toggle | Inboard/Outboard mode switching with UI reorder, reseed, and cross-section rearrangement |
 | Gas fill toggle | Argon/Air toggle with cascade update |
@@ -154,13 +154,13 @@ App_Data/
 
 ### Smart Filtering Logic
 
-All tabs implement cascading constraint propagation — each selection filters downstream options so that **every possible user selection leads to valid data**:
+All tabs implement cascading constraint propagation â€” each selection filters downstream options so that **every possible user selection leads to valid data**:
 
-**Enthermal:** Outer Thickness → Low-E Coating (combined coating+substrate dropdown) → Inner Thickness (auto-constrained) → Results
+**Enthermal:** Outer Thickness â†’ Low-E Coating (combined coating+substrate dropdown) â†’ Inner Thickness (auto-constrained) â†’ Results
 
-**Plus Inboard:** Outer Thickness → S2 Coating → Gas Fill → VIG Thickness → VIG Coating → S4/S5 Surface → Results
+**Plus Inboard:** Outer Thickness â†’ S2 Coating â†’ Gas Fill â†’ VIG Thickness â†’ VIG Coating â†’ S4/S5 Surface â†’ Results
 
-**Plus Outboard:** VIG Thickness (root) → S2 Coating + Mono Thickness (parallel branches) → S5 Coating → Results
+**Plus Outboard:** VIG Thickness (root) â†’ S2 Coating + Mono Thickness (parallel branches) â†’ S5 Coating â†’ Results
 
 Invalid options are visually disabled (35% opacity, `not-allowed` cursor). For inner thickness radios and Plus surfaces, auto-selection of the first valid option occurs when the current selection becomes invalid. For the coating dropdown, the app clears the selection and shows "Select a product to view results."
 
@@ -169,8 +169,8 @@ Invalid options are visually disabled (35% opacity, `not-allowed` cursor). For i
 The toggle auto-flips based on the matched data row's `cen` field. CEN-enabled coatings (LUMI, ZEN, SKN183, XTR6129) have per-row `gFactor` and `uvalCEN` values. When CEN is active:
 - U-value displays `uvalCEN` instead of `uval`
 - SHGC displays `gFactor`, label changes to "g-Factor"
-- U-Factor (IP) and R-value show "—"
-- The acoustic card shows R<sub>w</sub> (its value populated) while the OITC value blanks to "—"; in NFRC mode it's the reverse
+- U-Factor (IP) and R-value show "â€”"
+- The acoustic card shows R<sub>w</sub> (its value populated) while the OITC value blanks to "â€”"; in NFRC mode it's the reverse
 - Toggle is always locked (user cannot manually override)
 
 ---
@@ -222,13 +222,13 @@ Each record contains a `stack` array of layers plus performance metrics:
 | Field | Type | Description | Example |
 |-------|------|-------------|---------|
 | `totalThickness` | float | Overall IGU thickness in mm | `25.4` |
-| `uval` | float | U-value in W/m²·K (NFRC) | `0.2391` |
-| `uvalIP` | float | U-value in BTU/hr·ft²·°F | `0.0421` |
+| `uval` | float | U-value in W/mÂ²Â·K (NFRC) | `0.2391` |
+| `uvalIP` | float | U-value in BTU/hrÂ·ftÂ²Â·Â°F | `0.0421` |
 | `rval` | float | R-value (insulation) | `23.75` |
-| `shgc` | float | Solar Heat Gain Coefficient (0–1) | `0.1777` |
-| `tvis` | float | Visible Light Transmittance (0–1) | `0.4612` |
-| `routVis` | float | Exterior Visible Reflectance (0–1) | `0.1266` |
-| `tuv` | float | UV Transmittance (0–1) | `0.0045` |
+| `shgc` | float | Solar Heat Gain Coefficient (0â€“1) | `0.1777` |
+| `tvis` | float | Visible Light Transmittance (0â€“1) | `0.4612` |
+| `routVis` | float | Exterior Visible Reflectance (0â€“1) | `0.1266` |
+| `tuv` | float | UV Transmittance (0â€“1) | `0.0045` |
 | `nfrc` | bool | Has NFRC values | `true` |
 | `cen` | bool | Has CEN values | `false` |
 | `gFactor` | float\|null | CEN g-Factor (null if NFRC-only) | `0.637426` |
@@ -237,17 +237,17 @@ Each record contains a `stack` array of layers plus performance metrics:
 | `intL`, `intA`, `intB` | float | Interior transmitted color CIE L\*a\*b\* | `44.4, -0.25, -0.79` |
 
 **Derived fields** (computed by `postProcessData()` at runtime):
-- `glass[]` — array of glass-type layers extracted from `stack`
-- `gasType` — gas fill type (`"Ar90"` or `"Air"`) from gas layer
-- `secondCoating` — the non-S2 coating (Plus only)
-- `secondSurface` — `"S4"` or `"S5"` based on which glass pane holds the second coating
+- `glass[]` â€” array of glass-type layers extracted from `stack`
+- `gasType` â€” gas fill type (`"Ar90"` or `"Air"`) from gas layer
+- `secondCoating` â€” the non-S2 coating (Plus only)
+- `secondSurface` â€” `"S4"` or `"S5"` based on which glass pane holds the second coating
 
 ### Configuration Coverage
 
 **Enthermal** (98 configs):
 - 14 coatings: Cardinal (C180, C270, C272, C340, C366, Q452), Vitro (SB60, SB70, SB72, SBR67), Saint-Gobain (SKN183, XTR6129, LUMI, ZEN)
-- 10 substrates: Clear, Starphire®, Optiblue®, Optigray®, Solarblue®, Solarbronze®, Solargray®, Solexia®, Optiblue® (z50), Optiblue® (z75)
-- 3 outer thicknesses: 4mm, 5mm, 6mm (some coatings restricted — SB72/SKN183: 6mm only, SBR67: 5–6mm, XTR6129: 4/6mm)
+- 10 substrates: Clear, StarphireÂ®, OptiblueÂ®, OptigrayÂ®, SolarblueÂ®, SolarbronzeÂ®, SolargrayÂ®, SolexiaÂ®, OptiblueÂ® (z50), OptiblueÂ® (z75)
+- 3 outer thicknesses: 4mm, 5mm, 6mm (some coatings restricted â€” SB72/SKN183: 6mm only, SBR67: 5â€“6mm, XTR6129: 4/6mm)
 - 3 inner thicknesses: 4mm, 5mm, 6mm (constrained by outer selection)
 - 19 CEN-enabled rows (LUMI, ZEN, SKN183, XTR6129 coatings)
 
@@ -271,16 +271,16 @@ Overcast / Partly Clear weather toggle (default Overcast) and a zoom lightbox. E
 integer `cid` (anchor id) injected into the JSON by the clustering script, and
 `setAnchorImages(cid)` points the card at
 `App_Data/Anchor_Renders/<Sky>/anchor_<cid>.webp`. The 6,444 configs collapse to
-**202 color anchors** (two-axis CIEDE2000: exterior ≤ 1.5 + transmitted ≤ 3.0, partitioned by exterior substrate; 1-based `cid`s), so the
-image is imperceptibly close to — and the same hue family as — the exact selection.
-The earlier runtime `labToRgb()` Lab→sRGB gradient renderer (and the flip /
+**202 color anchors** (two-axis CIEDE2000: exterior â‰¤ 1.5 + transmitted â‰¤ 3.0, partitioned by exterior substrate; 1-based `cid`s), so the
+image is imperceptibly close to â€” and the same hue family as â€” the exact selection.
+The earlier runtime `labToRgb()` Labâ†’sRGB gradient renderer (and the flip /
 Lab-readout UI), and the interim static `*_Set3.png` placeholder sky, have both been
 removed. A disclaimer below the image notes that on-screen color is representational
 and varies with display, and that final color should be confirmed with physical samples.
 
 The render panel is a four-state machine (`setRenderState`: `image` / `loading` /
 `cleared` / `unavailable`): a first-time download shows a neutral "Loading exterior
-render…" panel, a cleared selection shows its own neutral prompt, and the
+renderâ€¦" panel, a cleared selection shows its own neutral prompt, and the
 "unavailable" wording is reserved for an actual image error or a config with no
 `cid`. While a render is already on screen, config changes swap silently (the
 previous render stays up until the new one loads). The app background-preloads the
@@ -291,11 +291,11 @@ The per-config CIE L\*a\*b\* values (`extL/A/B`, `intL/A/B`) remain in the data 
 drive the JND color clustering that assigns each config its `cid` (see
 [color-rendering.md](color-rendering.md) and
 [CLUSTERING_PROCEDURE.md](../Data_Pipeline/3_Clustering/CLUSTERING_PROCEDURE.md)). The cross-section panes are
-still tinted from substrate color via `getGlassColor()` — on both tabs, the exterior
+still tinted from substrate color via `getGlassColor()` â€” on both tabs, the exterior
 lite (`glass[0]`) is tinted from its substrate, while the always-Clear inner lites
 keep their default styling. (The assembly-level Lab values are coating-dominated and
 do not encode the recognizable per-substrate body tint, so the hand-tuned
-`getGlassColor()` lookup is used for the cross-section rather than a Lab→sRGB
+`getGlassColor()` lookup is used for the cross-section rather than a Labâ†’sRGB
 conversion.)
 
 ---
@@ -309,7 +309,7 @@ Data is fully separated from the application. The three JSON files in the `App_D
 ### Data Pipeline
 
 ```
-PyWinCalc → CSV export → Python transform script → JSON files → Deploy
+PyWinCalc â†’ CSV export â†’ Python transform script â†’ JSON files â†’ Deploy
 ```
 
 The Python transform scripts in the `Data_Pipeline/` folder handle:
@@ -326,9 +326,9 @@ To add a new coating (e.g., a new Cardinal or Solarban variant):
 2. Append the results to the CSV
 3. Add the coating shortcode to `COATING_NAMES`, `COATING_MAKERS`, and (if applicable) `SUBSTRATE_NAMES` in the HTML
 4. Re-run the transform script to regenerate JSON
-5. Deploy — the UI automatically picks up new coatings in the dropdowns
+5. Deploy â€” the UI automatically picks up new coatings in the dropdowns
 
-To add an Enthermal Spandrel product (there is currently **no** Spandrel tab — an
+To add an Enthermal Spandrel product (there is currently **no** Spandrel tab â€” an
 earlier placeholder tab was removed; the app now ships two tabs, Enthermal and
 Enthermal Plus):
 1. Create a `App_Data/enthermal-spandrel.json` with the stack-based schema
@@ -352,7 +352,7 @@ Since the app is a single HTML file with no server-side requirements, it can be 
 | **Azure Static Web Apps** | Git integration or CLI deploy | Free tier available |
 | **Company web server** | Upload to existing IIS/Apache/Nginx server | Existing infrastructure |
 
-**Deployment is two items** — upload `enthermal-configurator.html` and the `App_Data/` folder. No Node.js, no PHP, no database server.
+**Deployment is two items** â€” upload `enthermal-configurator.html` and the `App_Data/` folder. No Node.js, no PHP, no database server.
 
 ### Option B: Embed in Existing LuxWall Website
 
@@ -398,7 +398,7 @@ For a dedicated URL like `configure.luxwall.com`:
 
 ### Threat Model
 
-The primary concern is **unauthorized modification** of the app after deployment — ensuring that the performance data shown to customers, architects, and specifiers is accurate and has not been tampered with.
+The primary concern is **unauthorized modification** of the app after deployment â€” ensuring that the performance data shown to customers, architects, and specifiers is accurate and has not been tampered with.
 
 ### Recommended Security Measures
 
@@ -451,7 +451,7 @@ Strict-Transport-Security: max-age=31536000; includeSubDomains
 
 On the hosting server, implement file integrity monitoring to detect unauthorized changes:
 
-- **AWS S3**: Enable versioning and object lock (WORM — Write Once Read Many) to prevent modification of deployed files
+- **AWS S3**: Enable versioning and object lock (WORM â€” Write Once Read Many) to prevent modification of deployed files
 - **Netlify/Vercel**: Deploy only from a protected Git branch (e.g., `main` with branch protection rules requiring PR approval)
 - **Self-hosted**: Use file integrity monitoring tools (OSSEC, Tripwire, or simple cron-based `sha256sum` checks)
 
@@ -498,4 +498,4 @@ While it's impossible to fully prevent client-side modification (the browser is 
 | Runtime checksum validation | Client-side data tampering | **Medium** |
 | Minification/obfuscation | Casual reverse engineering | **Low** |
 
-> **Note:** No client-side application can be made fully tamper-proof — anyone can inspect and modify what runs in their browser. The security measures above protect the **deployed source of truth** so that the data served to all users is accurate. For regulatory or contractual scenarios requiring certified performance data, consider generating signed PDF reports server-side.
+> **Note:** No client-side application can be made fully tamper-proof â€” anyone can inspect and modify what runs in their browser. The security measures above protect the **deployed source of truth** so that the data served to all users is accurate. For regulatory or contractual scenarios requiring certified performance data, consider generating signed PDF reports server-side.

@@ -125,10 +125,18 @@ body{font-family:var(--font-body);background:var(--lw-gray-50);color:var(--lw-da
 .srf-toggle.disabled{opacity:.35;cursor:not-allowed}
 /* The tab-switch anti-jump lock (JS sets inline height:770px on .config-panel and
    .results-grid at load) only makes sense in the side-by-side layout. In the
-   stacked (≤1024px) and print layouts it crushes the cards, so both blocks
+   stacked (≤1120px) and print layouts it crushes the cards, so both blocks
    override the inline style — the one legitimate use of !important here. */
-@media print{.header,.hero,.product-tabs,#printBtn,#colorZoomBtn{display:none!important}.main{display:block!important;padding:10px!important}.config-panel{border:none!important;box-shadow:none!important;height:auto!important;min-height:0}.results-grid{margin-top:10px;height:auto!important}.viz-cross .viz-card-body{min-height:460px}}
-@media(max-width:1024px){.main{grid-template-columns:1fr;padding:20px 20px 40px}.results-grid{grid-template-columns:1fr;grid-template-rows:none;height:auto!important}.results-grid-metrics-left,.results-grid-metrics-right{grid-template-columns:1fr}.config-panel{height:auto!important;min-height:0}.viz-cross .viz-card-body{min-height:460px}.results-summary-row{grid-template-columns:1fr!important;height:auto!important}.config-summary{height:auto;min-height:calc(var(--tab-row-height) + 2px);padding:10px 21px}#printBtn{height:calc(var(--tab-row-height) + 2px)!important}}
+@media print{.header,.hero,.product-tabs,#printBtn,#colorZoomBtn{display:none!important}.main{display:block!important;padding:10px!important}.config-panel{border:none!important;box-shadow:none!important;height:auto!important;min-height:0}.results-grid{margin-top:10px;height:auto!important}.viz-cross .viz-card-body{min-height:460px}
+/* Browsers skip CSS backgrounds by default when printing ("Background graphics"
+   unchecked). The metric values are gradient-backgrounds clipped to transparent
+   text, so without an override every number prints as blank space — swap to
+   solid ink. The cross-section artwork (coating lines, spacer, desiccant,
+   toggle thumbs) IS backgrounds and has no ink equivalent, so force it with
+   print-color-adjust:exact. */
+.metric-value{background:none!important;-webkit-text-fill-color:var(--lw-navy)!important;color:var(--lw-navy)}
+*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+@media(max-width:1120px){.main{grid-template-columns:1fr;padding:20px 20px 40px}.results-grid{grid-template-columns:1fr;grid-template-rows:none;height:auto!important}.results-grid-metrics-left,.results-grid-metrics-right{grid-template-columns:1fr}.config-panel{height:auto!important;min-height:0}.viz-cross .viz-card-body{min-height:460px}.results-summary-row{grid-template-columns:1fr!important;height:auto!important}.config-summary{height:auto;min-height:calc(var(--tab-row-height) + 2px);padding:10px 21px}#printBtn{height:calc(var(--tab-row-height) + 2px)!important}}
 .color-img-wrap{overflow:hidden}
 .color-zoom-btn{position:absolute;bottom:12px;right:12px;width:34px;height:34px;border:none;border-radius:8px;background:rgba(255,255,255,.85);box-shadow:0 1px 4px rgba(0,0,0,.18);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--lw-dark);transition:background .2s,transform .2s}
 .color-zoom-btn:hover{background:var(--lw-white);transform:scale(1.06)}
@@ -487,7 +495,7 @@ body{font-family:var(--font-body);background:var(--lw-gray-50);color:var(--lw-da
       </div>
     </div>
       <div class="viz-card viz-color">
-        <div class="viz-card-header" style="justify-content:space-between;padding:13.5px 18px"><span id="colorViewTitle">Exterior Appearance</span>
+        <div class="viz-card-header" style="justify-content:space-between;padding:13.5px 18px;flex-wrap:wrap;row-gap:6px"><span id="colorViewTitle">Exterior Appearance</span>
           <div class="sky-toggle" id="skyToggle">
             <span class="sky-toggle-option active" data-folder="Overcast" data-img="App_Data/Anchor_Renders/Overcast/anchor_07.webp?v=54e29159">Overcast</span>
             <span class="sky-toggle-option" data-folder="PartlyClear" data-img="App_Data/Anchor_Renders/PartlyClear/anchor_07.webp?v=54e29159">Partly Clear</span>
@@ -1183,8 +1191,18 @@ function updatePlusVigThickness(){
 // When the outer coating is Saint-Gobain, CEN is achievable only if the VIG
 // coating is non-Vitro — so prefer a CEN-eligible VIG for the DEFAULT selection
 // rather than silently retaining (or first-picking) a Vitro VIG, which would
-// suppress the CEN toggle. The user can still choose a Vitro VIG manually.
+// suppress the CEN toggle. That preference must NOT override an explicit user
+// choice: plusVigUserPick records the last coating the user picked in the VIG
+// dropdown themselves (set only in the select's change listener — seeding and
+// cascade code assign .value without firing change), and while that pick is
+// still a valid option every repopulation keeps it. Without this, a manually
+// chosen Vitro VIG under a Saint-Gobain outer was silently swapped for the
+// first non-Vitro coating on any gas/thickness change. Seed functions clear
+// the pick (a placement flip is a re-default, not a user VIG choice).
+var plusVigUserPick=null;
 function pickPlusVigDefault(vigCoats,prev){
+  if(plusVigUserPick&&!vigCoats.includes(plusVigUserPick))plusVigUserPick=null;
+  if(plusVigUserPick)return plusVigUserPick;
   var outerCode=(plusOuterCoatingEl.value||'').split('|')[0];
   if(COATING_MAKERS[outerCode]==='Saint-Gobain'){
     var cenOK=function(vc){return COATING_MAKERS[vc]!=='Vitro'};
@@ -1289,6 +1307,7 @@ function updatePlusS5CoatingOutboard(){
 }
 function seedPlusOutboardDefaults(){
   plusSeeding=true;
+  plusVigUserPick=null;
   try{
     var vSel=document.getElementById('plusVigThickness');
     Array.from(vSel.options).forEach(function(opt){opt.disabled=false});
@@ -1314,6 +1333,7 @@ function seedPlusOutboardDefaults(){
 var plusSeeding=false;
 function seedPlusInboardDefaults(){
   plusSeeding=true;
+  plusVigUserPick=null;
   try{
     initPlusConfig();
     document.getElementById('plusSrf4').checked=true;
@@ -1515,6 +1535,7 @@ document.getElementById('plusVigThickness').addEventListener('change',function()
   else updatePlusVigCoatings();
 });
 plusVigCoatingEl.addEventListener('change',function(){
+  plusVigUserPick=plusVigCoatingEl.value||null;
   if(_plusIsOutboard())updatePlusResults();
   else updatePlusSurfaces();
 });
