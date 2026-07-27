@@ -1322,9 +1322,13 @@ function seedPlusOutboardDefaults(){
   plusSeeding=true;
   plusVigUserPick=null;
   try{
+    // Featured Outboard default: 5/5 VIG + 5 mm mono inboard lite. The radio is
+    // set before updatePlusInboardThicknessOutboard, which keeps a valid preset
+    // and falls back to the first valid thickness otherwise.
     var vSel=document.getElementById('plusVigThickness');
     Array.from(vSel.options).forEach(function(opt){opt.disabled=false});
     if(Array.from(vSel.options).some(function(o){return o.value==='5/5'}))vSel.value='5/5';
+    document.getElementById('plusOuterT5').checked=true;
     updatePlusS2CoatingOutboard();
     updatePlusInboardThicknessOutboard();
     var coat366=Array.from(plusVigCoatingEl.options).find(function(o){return o.value===DEFAULT_COATING});
@@ -1348,11 +1352,16 @@ function seedPlusInboardDefaults(){
   plusSeeding=true;
   plusVigUserPick=null;
   try{
+    // Featured Inboard default: 6 mm mono exterior lite + 4/4 VIG. Set before
+    // the cascades run — updatePlusVigThickness keeps a preset combo while it
+    // is valid and falls back to the first valid one otherwise.
+    document.getElementById('plusOuterT6').checked=true;
     initPlusConfig();
     document.getElementById('plusSrf4').checked=true;
     var pCoat366=Array.from(plusOuterCoatingEl.options).find(function(o){return o.value===DEFAULT_COMBO});
     if(pCoat366){
       plusOuterCoatingEl.value=pCoat366.value;
+      document.getElementById('plusVigThickness').value='4/4';
       updatePlusVigThickness();
       var vCoat366=Array.from(plusVigCoatingEl.options).find(function(o){return o.value===DEFAULT_COATING});
       if(vCoat366)plusVigCoatingEl.value=vCoat366.value;
