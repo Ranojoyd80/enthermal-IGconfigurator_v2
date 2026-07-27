@@ -6,7 +6,7 @@
 <title>Enthermal™ Product Configurator | LuxWall</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--lw-dark:#0a0f1a;--lw-dark-2:#111827;--lw-dark-3:#1a2236;--lw-white:#fff;--lw-gray-50:#f8fafc;--lw-gray-100:#f1f5f9;--lw-gray-200:#e2e8f0;--lw-gray-300:#cbd5e1;--lw-gray-400:#94a3b8;--lw-gray-500:#64748b;--lw-gray-600:#475569;--lw-gray-700:#334155;--lw-teal:#0d9488;--lw-teal-light:#14b8a6;--lw-navy:#0f2a4a;--font-display:'Plus Jakarta Sans',sans-serif;--font-body:'DM Sans',sans-serif;--tab-row-height:53px}
+:root{--lw-dark:#0a0f1a;--lw-dark-2:#111827;--lw-dark-3:#1a2236;--lw-white:#fff;--lw-gray-50:#f8fafc;--lw-gray-100:#f1f5f9;--lw-gray-200:#e2e8f0;--lw-gray-300:#cbd5e1;--lw-gray-400:#94a3b8;--lw-gray-500:#64748b;--lw-gray-600:#475569;--lw-gray-700:#334155;--lw-teal:#0d9488;--lw-teal-light:#14b8a6;--lw-navy:#0f2a4a;--lw-red:#dc2626;--font-display:'Plus Jakarta Sans',sans-serif;--font-body:'DM Sans',sans-serif;--tab-row-height:53px}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:var(--font-body);background:var(--lw-gray-50);color:var(--lw-dark);min-height:100vh;-webkit-font-smoothing:antialiased}
 .header{background:var(--lw-dark);padding:18px 40px;display:flex;align-items:center;justify-content:space-between}
@@ -34,6 +34,12 @@ body{font-family:var(--font-body);background:var(--lw-gray-50);color:var(--lw-da
 .config-field>label{display:block;font-size:13px;font-weight:500;color:var(--lw-gray-500);margin-bottom:5px}
 .config-field select{width:100%;padding:9px 12px;border:1.5px solid var(--lw-gray-200);border-radius:9px;font-family:var(--font-body);font-size:13px;font-weight:500;color:var(--lw-dark);background:var(--lw-white);cursor:pointer;transition:border-color .2s,box-shadow .2s;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:32px}
 .config-field select:focus{outline:none;border-color:var(--lw-dark);box-shadow:0 0 0 3px rgba(10,15,26,.08)}
+/* Unresolved coating dropdown ("Select coating…" placeholder showing): brief
+   attention pulse (3 cycles), then the animation ends and the class's steady
+   red ring remains until the cascade resolves the pick. Placed after :focus
+   so the red keeps priority while the user is in the field. */
+.config-field select.select-attn{border-color:var(--lw-red);box-shadow:0 0 0 3px rgba(220,38,38,.12);animation:attnPulse 1.2s ease-in-out 3}
+@keyframes attnPulse{0%,100%{box-shadow:0 0 0 3px rgba(220,38,38,.10)}50%{box-shadow:0 0 0 6px rgba(220,38,38,.30)}}
 .config-field select:hover{border-color:var(--lw-gray-300)}
 .radio-group{display:flex;gap:6px}
 .radio-option{flex:1;position:relative}
@@ -914,7 +920,18 @@ function embodiedCarbon(totalGlassMM,cenActive){
   var e=EMBODIED_CARBON[totalGlassMM];
   return e?(cenActive?e.cen:e.nfrc).toFixed(1):'—';
 }
+// Red attention ring on any coating dropdown sitting on its "Select coating…"
+// placeholder (value ''). Class added only when newly unresolved so the pulse
+// animation doesn't restart on every pass; removed as soon as a pick resolves.
+function flagUnresolvedCoatings(){
+  ['outerCoating','plusOuterCoating','plusVigCoating'].forEach(function(id){
+    var el=document.getElementById(id);
+    if(el.value!=='')el.classList.remove('select-attn');
+    else if(!el.classList.contains('select-attn'))el.classList.add('select-attn');
+  });
+}
 function refreshMetricMuted(){
+  flagUnresolvedCoatings();
   document.querySelectorAll('.metric-value').forEach(function(el){
     var t=(el.textContent||'').trim();
     var muted=(t===''||t==='—'||t==='-');
