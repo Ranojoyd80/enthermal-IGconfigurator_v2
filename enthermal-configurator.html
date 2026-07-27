@@ -485,11 +485,11 @@ body{font-family:var(--font-body);background:var(--lw-gray-50);color:var(--lw-da
       <div class="cs-info-bar" style="display:flex;border-top:1px solid var(--lw-gray-200);font-family:var(--font-display);padding-top:1px">
         <div class="cs-info-stat" style="flex:1;text-align:center;padding:8px 18px">
           <div class="cs-info-stat-value"><span id="csECarbon">—</span> <span class="cs-info-stat-unit">kg CO₂e/m²</span></div>
-          <div class="cs-info-stat-caption">Embodied Carbon</div>
+          <div class="cs-info-stat-caption" id="csECarbonCaption">Cradle to Grave</div>
         </div>
         <div style="width:1px;background:var(--lw-gray-200);flex-shrink:0"></div>
         <div class="cs-info-stat" style="flex:1;text-align:center;padding:8px 18px">
-          <div class="cs-info-stat-value"><span id="csIGUWeight">—</span> <span class="cs-info-stat-unit">kg/m²</span></div>
+          <div class="cs-info-stat-value"><span id="csIGUWeight">—</span> <span class="cs-info-stat-unit" id="csIGUWeightUnit">kg/m²</span></div>
           <div class="cs-info-stat-caption">IGU Weight</div>
         </div>
       </div>
@@ -886,7 +886,19 @@ const ENTHERMAL_ACOUSTIC={
   '6/6':{rw:36,oitc:32}
 };
 function acousticKey(a,b){return Math.min(a,b)+'/'+Math.max(a,b)}
-function iguWeight(totalGlassMM){return (2.5*totalGlassMM).toFixed(1)}
+// IGU weight: 2.5 kg/m² per mm of glass. CEN reports SI (kg/m²);
+// NFRC reports IP (lb/ft², 1 kg/m² = 0.204816 lb/ft²).
+function iguWeight(totalGlassMM,cenActive){
+  var kg=2.5*totalGlassMM;
+  return (cenActive?kg:kg*0.204816).toFixed(1);
+}
+// Info-bar labels follow the active standard: embodied-carbon caption names the
+// life-cycle scope (NFRC = Cradle to Gate, CEN = Cradle to Grave; value stays
+// SI kg CO₂e/m² per EPD practice) and the weight unit flips kg/m² ↔ lb/ft².
+function syncInfoBarLabels(cenActive){
+  document.getElementById('csECarbonCaption').textContent=cenActive?'Cradle to Grave':'Cradle to Gate';
+  document.getElementById('csIGUWeightUnit').textContent=cenActive?'kg/m²':'lb/ft²';
+}
 // Embodied carbon (kg CO₂e/m²) lookup by total glass thickness (sum of lites, mm).
 // NFRC mode shows Cradle-Gate (A1–A3); CEN mode shows Cradle-Grave (full life cycle).
 // 9 mm / 11 mm are linear midpoints between published/calculated points.
@@ -982,8 +994,9 @@ var eOuterMM=outerLayer.thickness,eInnerMM=innerLayer.thickness;
 var eAcoustic=ENTHERMAL_ACOUSTIC[acousticKey(eOuterMM,eInnerMM)];
 document.getElementById('metricTdw').textContent=(eAcoustic&&!cenActive)?eAcoustic.oitc:'—';
 document.getElementById('metricRw').textContent=(eAcoustic&&cenActive)?eAcoustic.rw:'—';
-document.getElementById('csIGUWeight').textContent=iguWeight(eOuterMM+eInnerMM);
+document.getElementById('csIGUWeight').textContent=iguWeight(eOuterMM+eInnerMM,cenActive);
 document.getElementById('csECarbon').textContent=embodiedCarbon(eOuterMM+eInnerMM,cenActive);
+syncInfoBarLabels(cenActive);
 finishMetricsRender(true);
 var outerPx=Math.round(eOuterMM*3),innerPx=Math.round(eInnerMM*3);
 var outer=document.getElementById('csPaneOuter'),inner=document.getElementById('csPaneInner');
@@ -1370,8 +1383,9 @@ function updatePlusResults(surfaceOnly){
   var cenActive=renderCoreMetrics(match);
   document.getElementById('metricTdw').textContent='—';document.getElementById('metricRw').textContent='—';
   var pOuterMM=match.glass[0].thickness,pMiddleMM=match.glass[1].thickness,pInnerMM=match.glass[2].thickness;
-  document.getElementById('csIGUWeight').textContent=iguWeight(pOuterMM+pMiddleMM+pInnerMM);
+  document.getElementById('csIGUWeight').textContent=iguWeight(pOuterMM+pMiddleMM+pInnerMM,cenActive);
   document.getElementById('csECarbon').textContent='—';
+  syncInfoBarLabels(cenActive);
   document.getElementById('csThicknessValPlus').textContent=match.totalThickness.toFixed(1)+' mm';
   var gasLayer=match.stack.find(function(l){return l.type==='gas'});
   if(gasLayer){
