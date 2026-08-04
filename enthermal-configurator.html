@@ -58,7 +58,7 @@ body{font-family:var(--font-body);background:var(--lw-gray-50);color:var(--lw-da
 .vacuum-text{font-family:var(--font-body);font-size:13px;font-weight:500;color:var(--lw-dark)}
 .vacuum-text span{font-weight:400;color:var(--lw-gray-500);font-size:13px}
 .config-summary{background:var(--lw-white);border-radius:14px;border:1px solid var(--lw-gray-200);padding:0 21px;box-shadow:0 1px 3px rgba(0,0,0,.04);height:calc(var(--tab-row-height) + 2px)}
-.config-summary-text{font-size:13px;color:var(--lw-gray-600);line-height:1.55}
+.config-summary-text{font-size:13px;color:var(--lw-gray-600);line-height:1.55;text-wrap:balance}
 .config-summary-text strong{color:var(--lw-dark)}
 
 /* ── Metric Cards — clean, no icons ── */
@@ -560,6 +560,10 @@ const DEFAULT_COMBO=DEFAULT_COATING+'|Clear';
 function coatingName(code){return COATING_NAMES[code]||code}
 function substrateName(code){return SUBSTRATE_NAMES[code]||code}
 function coatingNameWithMaker(code){var m=COATING_MAKERS[code];return m?m+' '+coatingName(code):coatingName(code)}
+// Summary bar only: strip the COOL-LITE brand prefix — the two longest names in
+// the set are what pushes the longest summaries onto a second line. Dropdowns
+// and cross-section labels keep the full branded name.
+function summaryCoatingName(code){return coatingName(code).replace(/^COOL-LITE /,'')}
 // Label for the Inboard (mono/VIG) coating dropdown. A Starphire exterior means the
 // whole assembly is Starphire, so append the substrate to match the exterior
 // "Low-E Coating + Substrate" dropdown; every other exterior keeps Clear inner lites
@@ -1054,7 +1058,7 @@ if(eUnit&&hsCallout){
   var eUr=eUnit.getBoundingClientRect(),eSr=eSpacer.getBoundingClientRect();
   hsCallout.style.top=((eSr.top+eSr.height/2-eUr.top)-hsCallout.offsetHeight/2)+'px';
 }
-document.getElementById('summaryText').innerHTML='<strong>'+layerDisplay(outerLayer)+'</strong> on <strong>'+eOuterMM+'mm</strong> outboard and <strong>'+substrateName(innerLayer.substrate)+' '+eInnerMM+'mm</strong> inboard.';
+document.getElementById('summaryText').innerHTML='<strong>'+layerDisplay(outerLayer,summaryCoatingName)+'</strong> on <strong>'+eOuterMM+'mm</strong> outboard and <strong>'+substrateName(innerLayer.substrate)+' '+eInnerMM+'mm</strong> inboard.';
 requestAnimationFrame(centerCrossSection)}
 document.querySelectorAll('input[name="outerThickness"]').forEach(r=>r.addEventListener('change',updateOuterCoatings));
 outerCoatingEl.addEventListener('change',updateInnerThickness);
@@ -1422,8 +1426,8 @@ function updatePlusResults(surfaceOnly){
   var isOutboard=document.getElementById('posToggleInput').checked;
   // S2: bare coating name for clear lites (keeps the summary short), but
   // "… on Solargray" etc. for tinted ones so the substrate is still named.
-  var s2Display=layerDisplay(match.glass[0]);
-  var secondDisplay=coatingName(match.secondCoating);
+  var s2Display=layerDisplay(match.glass[0],summaryCoatingName);
+  var secondDisplay=summaryCoatingName(match.secondCoating);
   var vigSrf=match.secondSurface;
   var isS4=vigSrf==='S4';
   // The "mono" (non-VIG) lite: glass[0] in Inboard, glass[2] in Outboard. Both
