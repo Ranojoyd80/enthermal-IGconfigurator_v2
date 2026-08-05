@@ -61,6 +61,31 @@
 | Coating Surface Field | Container for S4/S5 toggle — hidden in Outboard mode | `#plusCoatingSurfaceField` |
 | Hidden Radios | Hidden radio inputs synced by the surface toggle | `#plusSrf4` (S4), `#plusSrf5` (S5), `name='plusCoatingSurface'` |
 
+### Unresolved-Coating Attention Ring
+
+When a coating dropdown is sitting on its `"Select coating…"` placeholder (`value === ''`),
+it gets a **red attention ring** so the blocked cascade is visible rather than silent.
+
+| Element | Description | CSS / ID |
+|---------|-------------|----------|
+| Attention ring | Red border + halo on an unresolved coating select | `.config-field select.select-attn` |
+| Pulse keyframes | Halo expands 3px → 6px and back | `@keyframes attnPulse` |
+| Flag function | Adds/removes `.select-attn` across all three coating selects | `flagUnresolvedCoatings()` |
+
+Behavior:
+
+- **3-cycle pulse, then a steady ring.** `animation: attnPulse 1.2s ease-in-out 3` runs
+  three times and stops; the class's own `border-color: var(--lw-red)` + `box-shadow`
+  remain until the pick resolves. The ring is a persistent state, not just an animation.
+- **The class is added only on the transition into the unresolved state**, so the pulse
+  doesn't restart on every render pass.
+- **Covers all three coating selects:** `#outerCoating`, `#plusOuterCoating`, `#plusVigCoating`.
+- **Cleared as soon as the cascade resolves the pick** (`el.value !== ''`).
+- **Ordered after `:focus` in the stylesheet** so the red keeps priority while the user
+  is inside the field.
+- **Re-evaluated on every render/clear path** — `flagUnresolvedCoatings()` is called from
+  `refreshMetricMuted()`, which every update and clear path already runs.
+
 ---
 
 ## Config Summary & Standards
@@ -76,9 +101,24 @@
 
 ### Summary Text Formats
 
+> **Coating names in the summary are shortened.** The summary bar uses
+> `summaryCoatingName(code)` — `coatingName(code)` with a leading `"COOL-LITE "`
+> stripped — so Saint-Gobain products read `SKN 183 II` rather than
+> `COOL-LITE SKN 183 II`. **This applies to the summary text only**; the config-panel
+> dropdowns and the cross-section labels keep the full name. The shortening exists to
+> stop long Plus summaries from wrapping a single orphan word onto a second line.
+>
+> The summary element also carries `text-wrap: balance` (`.config-summary-text`), which
+> evens out line lengths when it does wrap. Together these clear all orphan-wrapping
+> Plus configs at full width (verified 0 of 3,173 distinct summaries wrap).
+
 **Enthermal™:**
-`<strong>[coating display]</strong> on <strong>[outerMM]mm</strong> outboard and <strong>Clear [innerMM]mm</strong> inboard.`
+`<strong>[coating display]</strong> on <strong>[outerMM]mm</strong> outboard and <strong>[inner substrate] [innerMM]mm</strong> inboard.`
 Example: **LoE³ 366** on **6mm** outboard and **Clear 6mm** inboard.
+
+The inboard lite is named with its **actual substrate**, not a hardcoded "Clear" — on an
+all-Starphire assembly it reads **Starphire 6mm**. (See the Starphire display contract in
+`Automated Test/TEST-PLAN.md` §4 Group B.)
 
 **Enthermal Plus™ — Inboard:**
 `<strong>[S2 display]</strong> (S2) on <strong>[monoMM]mm</strong> with <strong>[vigCombo] mm</strong> Enthermal <strong>[secondCoating]</strong> ([surface]) inboard`
@@ -190,11 +230,20 @@ The pane reordering uses CSS flex `order`; the substrate tint and spacer callout
 
 ## Cross-Section Info Bar
 
+Both stats are **standard-aware** — the active NFRC/CEN standard changes the caption
+and the unit, not just the number.
+
 | Element | Description | CSS / ID |
 |---------|-------------|----------|
-| Embodied Carbon | kg CO₂e/m² value | `#csECarbon` |
-| IGU Weight | kg/m² value | `#csIGUWeight` |
+| Embodied Carbon | Value in kg CO₂e/m² — the unit stays SI in both standards, per EPD practice | `#csECarbon` |
+| Embodied Carbon Caption | Life-cycle scope: **"Cradle to Gate"** in NFRC, **"Cradle to Grave"** in CEN | `#csECarbonCaption` |
+| IGU Weight | Numeric value; recomputed per standard by `iguWeight(mm, cenActive)` | `#csIGUWeight` |
+| IGU Weight Unit | **"lb/ft²"** in NFRC, **"kg/m²"** in CEN (1 kg/m² = 0.204816 lb/ft²) | `#csIGUWeightUnit` |
 | Info Bar Container | Bottom bar with border-top divider | `.cs-info-bar` |
+
+Both stats grey out via `.metric-muted` when their value is `"—"` — `refreshMetricMuted()`
+runs the same pass over the info bar as over the metric cards. Enthermal Plus has no
+embodied-carbon data yet, so that stat is permanently muted on the Plus tab.
 
 ---
 
@@ -248,7 +297,24 @@ The Inboard/Outboard placement toggle controls the physical arrangement of the V
 - Cascade: vigThickness (root) → S2 coating + monoThickness → S5 coating
 - Glass section label changes to "Inboard"
 
-Switching modes triggers a reseed to defaults (C366 where available) and cross-section pane reorder.
+Switching modes triggers a reseed to defaults and a cross-section pane reorder. The two
+seed functions set **featured** configurations, not just the first valid option:
+
+| Mode | Seeded by | Defaults |
+|---|---|---|
+| Inboard | `seedPlusInboardDefaults()` | **6 mm mono** exterior lite + **4/4 VIG**, C366 throughout, surface S4 |
+| Outboard | `seedPlusOutboardDefaults()` | **5/5 VIG** + **5 mm mono** inboard lite, C366 throughout (S5 forced) |
+
+The presets are applied **before** the cascades run, so the keep-if-valid logic in
+`updatePlusVigThickness()` / `updatePlusInboardThicknessOutboard()` retains them where
+they're valid and falls back to the first valid option otherwise (graceful fallback, not
+a hard requirement that the preset exist).
+
+A `plusSeeding` flag suppresses the transient `clearResults()` calls that fire while a
+seed function is rebuilding the dropdowns in half-seeded states — without it, the render
+already on screen would be hidden and the card would drop to the loading panel instead of
+swapping silently. A genuinely unresolvable selection still clears, because the post-seed
+`updatePlusResults()` runs with the flag down.
 
 ---
 
@@ -262,6 +328,7 @@ Switching modes triggers a reseed to defaults (C366 where available) and cross-s
 | `--lw-navy` | Primary dark blue for values and headings | `#0f2a4a` |
 | `--lw-teal` | Accent teal/green | `#0d9488` |
 | `--lw-teal-light` | Lighter teal for header badge | `#14b8a6` |
+| `--lw-red` | Attention ring on an unresolved coating dropdown | `#dc2626` |
 | `--lw-white` | Card backgrounds | `#ffffff` |
 | `--lw-gray-50` | Lightest gray (page bg, color card bg) | `#f8fafc` |
 | `--lw-gray-100` | Tab background, row dividers | `#f1f5f9` |
@@ -273,3 +340,6 @@ Switching modes triggers a reseed to defaults (C366 where available) and cross-s
 | `--lw-gray-700` | Dark gray | `#334155` |
 | `--font-display` | Heading/value font stack | `Plus Jakarta Sans, sans-serif` |
 | `--font-body` | Body text font stack | `DM Sans, sans-serif` |
+| `--tab-row-height` | Product-tab row height (layout metric, not a color) | `53px` |
+
+*(This table mirrors `:root` in the HTML. If you add a token, add it here and to CLAUDE.md §2 — that file mandates using only listed tokens, so an unlisted one is effectively invisible to future work.)*

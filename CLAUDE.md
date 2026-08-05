@@ -7,7 +7,7 @@
 
 ## 1. Architecture â€” Non-Negotiable Constraints
 
-- **Single HTML file for all code.** All application code lives in one `.html` file (~125 KB) â€” all CSS in a `<style>` block, all JS in a `<script>` block. There are no external CSS or JS files.
+- **Single HTML file for all code.** All application code lives in one `.html` file (~132 KB) â€” all CSS in a `<style>` block, all JS in a `<script>` block. There are no external CSS or JS files.
 - **Data lives in external JSON.** Product data is split into three files in `App_Data/` (`enthermal.json`, `enthermal-plus-inboard.json`, `enthermal-plus-outboard.json`) and loaded at runtime via `fetch()`. The data is *not* embedded in the HTML. Because of the `fetch()` calls, the app **must be served over HTTP(S)** â€” opening it via `file://` loads blank. See [HOW-TO-RUN.txt](HOW-TO-RUN.txt) and [HOSTING.md](HOSTING.md).
 - **Zero dependencies.** No React, no Tailwind, no npm, no build step (the CSVâ†’JSON Python script in `Data_Pipeline/` is a data-prep tool, not a frontend build step). The only external runtime resource is Google Fonts CDN.
 - **Vanilla stack only.** HTML5, CSS3, JavaScript ES6. No frameworks, no libraries, no transpilation.
@@ -38,6 +38,12 @@ All styling MUST use these CSS custom properties. Never use raw hex values or Ta
 --lw-teal: #0d9488         /* Accent â€” selected states, toggles, indicators */
 --lw-teal-light: #14b8a6   /* Header badge */
 --lw-navy: #0f2a4a         /* Metric value gradient end */
+--lw-red: #dc2626          /* Attention ring on an unresolved coating dropdown */
+```
+
+### Layout Tokens
+```
+--tab-row-height: 53px     /* Product-tab row height */
 ```
 
 ### Typography
@@ -84,6 +90,7 @@ Do NOT introduce any font sizes outside this scale.
 - Styled via `.config-field select` â€” 9px 12px padding, 1.5px border, 9px border-radius
 - Custom chevron via data URI SVG background-image
 - Focus: border-color var(--lw-dark), box-shadow 0 0 0 3px rgba(10,15,26,.08)
+- **Unresolved coating select** (`value === ''`, placeholder showing): `.select-attn` adds a red attention ring â€” `border-color: var(--lw-red)` + halo, with `animation: attnPulse 1.2s ease-in-out 3`. The pulse runs 3 cycles and ends; the **steady ring persists** until the cascade resolves the pick. Add the class only on the transition into the unresolved state so the pulse doesn't restart every render, and keep the rule **after** `:focus` so red wins while the user is in the field. Applied by `flagUnresolvedCoatings()`, called from `refreshMetricMuted()` so every render/clear path re-evaluates it
 
 ### Radio Group (Thickness Selector)
 ```html
@@ -194,21 +201,27 @@ Do NOT introduce any font sizes outside this scale.
 ## 5. JavaScript Patterns
 
 ### Data Storage
-- Data is loaded at startup from three external JSON files via `fetch()` (see line ~541): `App_Data/enthermal.json`, `App_Data/enthermal-plus-inboard.json`, `App_Data/enthermal-plus-outboard.json`
+- Data is loaded at startup from three external JSON files via `fetch()` (search for `fetch(` â€” currently ~line 621; line numbers drift, the symbol doesn't): `App_Data/enthermal.json`, `App_Data/enthermal-plus-inboard.json`, `App_Data/enthermal-plus-outboard.json`
 - The fetches resolve into the in-memory arrays (`DATA`, `DATA_PLUS_IN`, `DATA_PLUS_OUT`); all init runs inside the `fetch().then()` callback
 - The JSON is generated from the CSV sources in `Data_Pipeline/` by `csv_to_json.py` â€” never hand-edit the JSON; change the CSV/script and regenerate
-- Derived fields computed at runtime: `outerThickness`, `outerColorName`, `innerThickness`
+- Derived fields attached to every row by `postProcessData()` at runtime (not present in the JSON on disk): `glass[]` (the glass-type layers of `stack`), `gasType`, and â€” on 3-pane Plus rows only â€” `secondCoating` / `secondSurface` (`S4` if the coating is on `glass[1]`, `S5` if on `glass[2]`, both `null` if neither is coated)
 
 ### Cascading Filter Logic
 Both tabs implement constraint propagation â€” each selection filters downstream options:
 
-**Enthermal:** Outer Thickness â†’ Low-E Coating â†’ Substrate Color â†’ Inner Thickness (auto-constrained) â†’ Results
+**Enthermal:** Outer Thickness â†’ Low-E Coating â†’ Inner Thickness (auto-constrained) â†’ Results
+The coating dropdown is a **single combined coating+substrate select** (option value is a `"coating|substrate"` combo key via `comboKey()`) â€” there is no separate substrate-color step.
 
-**Plus:** Outer Coating â†’ VIG Coating (filtered) â†’ Coating Surface S4/S5 (auto-constrained) â†’ Results
+**Plus â€” Inboard:** Outboard Thickness â†’ Outboard Coating (S2) â†’ Gas Fill â†’ VIG Thickness â†’ VIG Coating â†’ Coating Surface S4/S5 â†’ Results
+
+**Plus â€” Outboard:** VIG Thickness (root) â†’ S2 Coating + Inboard Thickness (parallel branches) â†’ S5 Coating â†’ Results (surface always S5; the Coating Surface field is hidden, not just disabled)
 
 - Invalid options: `disabled=true`, label opacity 0.3, cursor not-allowed
-- When current selection becomes invalid: auto-select first valid option
-- Helper functions: `unique()`, `getVal()`, `populateSelect()`
+- **When the current selection becomes invalid, behavior differs by control type â€” do not "fix" one into the other:**
+  - **Coating dropdowns â†’ the selection is CLEARED**, not auto-replaced. `updateOuterCoatings()` calls `clearResults()`, and the full cleared state applies: summary reads `"Select a product to view results."`, all metric fields `"â€”"`, cross-section labels `"â€”"`, and the exterior render drops to its placeholder (the previous config's facade must NOT stay up). The dropdown then shows its placeholder and gets the red attention ring.
+  - **Thickness radios / surface toggles â†’ auto-select the first valid option.** Invalid thickness radios are also pre-disabled upstream, so the user usually cannot reach an invalid state through them at all.
+  - This is a deliberate product decision, not an oversight â€” it is the §3a contract in `Automated Test/TEST-PLAN.md`, asserted by Group C and stress test S2. Changing it means updating that plan in the same commit.
+- Helper functions: `unique()`, `getVal()`, `populateSelect()`, `comboKey()`/`parseComboKey()`
 
 ### DOM Updates
 - Use `document.getElementById()` and `document.querySelector()` â€” no jQuery, no virtual DOM
@@ -239,7 +252,7 @@ Both tabs implement constraint propagation â€” each selection filters downs
 ```
 
 ### Color Rendering
-- The **Exterior Color** card shows a **per-config photoreal render** with an Overcast/Partly Clear weather toggle (default Overcast) + zoom lightbox. Each config carries an integer `cid` (anchor id, injected into the JSON by the clustering script); `setAnchorImages(cid)` points the card at `App_Data/Anchor_Renders/<Folder>/anchor_<cid>.webp` (`cid` zero-padded to â‰¥2 digits). The folder name comes from each toggle option's `data-folder` (`Overcast` or the space-free `PartlyClear`), not the display label. The 6,444 configs collapse to **202 anchors** via two-axis CIEDE2000 clustering (exterior reflected â‰¤ 1.5 **and** transmitted â‰¤ 3.0), substrate-partitioned, with **1-based** `cid`s (frame N = cid N) â€” full detail in `Data_Pipeline/3_Clustering/CLUSTERING_PROCEDURE.md`
+- The **Exterior Appearance** card shows a **per-config photoreal render** with an Overcast/Partly Clear weather toggle (default Overcast) + zoom lightbox. Each config carries an integer `cid` (anchor id, injected into the JSON by the clustering script); `setAnchorImages(cid)` points the card at `App_Data/Anchor_Renders/<Folder>/anchor_<cid>.webp?v=<RENDER_V>` (`cid` zero-padded to â‰¥2 digits; the `?v=` token is the auto-synced cache-buster â€” never hand-edit it). A `null` `cid` is a **failure state**, not a no-op: it logs and shows the render-unavailable panel rather than leaving the previous config's facade on screen. The folder name comes from each toggle option's `data-folder` (`Overcast` or the space-free `PartlyClear`), not the display label. The 6,444 configs collapse to **202 anchors** via two-axis CIEDE2000 clustering (exterior reflected â‰¤ 1.5 **and** transmitted â‰¤ 3.0), substrate-partitioned, with **1-based** `cid`s (frame N = cid N) â€” full detail in `Data_Pipeline/3_Clustering/CLUSTERING_PROCEDURE.md`
 - The earlier runtime `labToRgb()` Labâ†’sRGB gradient renderer and the flip/Lab-readout UI have been **removed**; so has the interim static `*_Set3.png` placeholder sky (the same image for every config) â€” renders are now per-config via `cid`
 - Per-config CIE L\*a\*b\* values (`extL/A/B`, `intL/A/B`) remain in the data and drive the JND clustering that assigns each config its `cid`
 - The cross-section glass panes are tinted from substrate via `getGlassColor()` / `paneTintGradient()` â€” **each lite pane is tinted by its own lite's substrate**, and each lite's label (including the inner/mono lite) shows its actual substrate rather than a hardcoded "Clear". For every substrate except Starphire only the exterior lite is non-Clear (the inner lites are genuinely Clear â†’ default styling), but a **Starphire** config is all-Starphire, so every pane gets the (subtle) Starphire tint and every label reads "Starphire". On Plus the DOM-paneâ†’`glass[]` mapping follows the inboard/outboard flip (mono pane = `glass[0]` inboard / `glass[2]` outboard). A Labâ†’sRGB cross-section tint was evaluated and rejected: the assembly Lab values are coating-dominated and don't carry the recognizable per-substrate body color

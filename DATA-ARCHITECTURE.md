@@ -11,8 +11,10 @@
 | File | Product | Rows | Size |
 |---|---|---|---|
 | `App_Data/enthermal.json` | Enthermal | 98 | ~71 KB |
-| `App_Data/enthermal-plus-inboard.json` | Enthermal Plus (VIG inboard) | 4,748 | ~4.5 MB |
-| `App_Data/enthermal-plus-outboard.json` | Enthermal Plus (VIG outboard) | 2,016 | ~1.9 MB |
+| `App_Data/enthermal-plus-inboard.json` | Enthermal Plus (VIG inboard) | 4,470 | ~4.4 MB |
+| `App_Data/enthermal-plus-outboard.json` | Enthermal Plus (VIG outboard) | 1,876 | ~1.9 MB |
+
+Total **6,444** configurations (07-07-26 dataset).
 
 **Source of truth:** these JSON files are *generated*, never hand-edited. The
 authoritative data is the three CSVs in `Data_Pipeline/1_Source_CSVs/` (raw PyWinCalc/LBNL exports);
@@ -65,9 +67,17 @@ metrics and colors: `totalThickness`, `uval`, `uvalIP`, `rval`, `shgc`, `tvis`,
 | Embodied Carbon | Total glass thickness (8–12 mm) | `EMBODIED_CARBON` lookup table; NFRC = Cradle-Gate (A1–A3), CEN = Cradle-Grave. Enthermal Plus has no data yet → `—` |
 
 Source values for these tables live in `Data_Pipeline/Product Data Constants.md`.
-The CEN/NFRC "Standard" toggle auto-locks to each config's `cen` flag and swaps the
-metric set: CEN mode shows `uvalCEN`, `gFactor` (in place of SHGC), and Rw; NFRC mode
-shows `uval`/`uvalIP`, `rval`, SHGC, and OITC.
+
+The CEN/NFRC "Standard" toggle **defaults** to each config's `cen` flag on every row
+change and swaps the metric set: CEN mode shows `uvalCEN`, `gFactor` (in place of
+SHGC), and Rw; NFRC mode shows `uval`/`uvalIP`, `rval`, SHGC, and OITC. On CEN-capable
+rows the toggle is **enabled** — the user may flip to NFRC and back (a manual flip
+survives same-row re-renders via `stdUserFlip`). On non-CEN rows it is **disabled and
+forced to NFRC**.
+
+`cen` is set by the **maker-set rule**: a Saint-Gobain coating present anywhere in the
+assembly AND no Vitro coating present (a Vitro coating anywhere blocks CEN). Full
+statement and verification in `Data_Pipeline/2_Conversion/json-schema.md`.
 
 ---
 
@@ -101,6 +111,10 @@ Three levels of coating name used in the UI:
 
 ### Enthermal
 Outer Thickness → Low-E Coating → Inner Thickness → **single row**
+
+The Low-E Coating select is a **combined coating+substrate** dropdown (option value is a
+`"coating|substrate"` combo key), so substrate is chosen in the same step as coating, not
+as a separate cascade node.
 
 ### Enthermal Plus — Inboard Placement
 Outboard Thickness → Outboard Low-E Coating → Gas Fill (Argon/Air) → VIG Thickness → VIG Low-E Coating → Coating Surface (S4/S5) → **single row**

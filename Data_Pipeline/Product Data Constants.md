@@ -55,6 +55,15 @@ Calculated from total glass thickness (sum of all lites, excluding the vacuum ga
 - Metric: `weight (kg/m²) = 2.5 × total_glass_thickness_mm`
 - Imperial: `weight (lb/ft²) = 0.512 × total_glass_thickness_mm`
 
+**Which unit is displayed follows the active standard** — the info bar reports
+**lb/ft² in NFRC** mode and **kg/m² in CEN** mode (`iguWeight(mm, cenActive)`; the
+`#csIGUWeightUnit` span flips with it). Conversion factor: 1 kg/m² = 0.204816 lb/ft²,
+which is where the 0.512 imperial coefficient comes from (2.5 × 0.204816).
+
+Note this is the opposite pairing from Embodied Carbon, which stays in SI
+(kg CO₂e/m²) under both standards per EPD practice and instead changes its
+**life-cycle scope** caption (Cradle to Gate in NFRC, Cradle to Grave in CEN).
+
 ### Examples
 
 | Configuration | Glass Thickness | Weight (kg/m²) | Weight (lb/ft²) |

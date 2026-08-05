@@ -72,11 +72,11 @@ config × active sky), each cached after first view.
 | `enthermal-plus-outboard.json` | ~1.8 MB |
 | Anchor renders (202 anchors × 2 skies, `.webp`) | **~668 MB total** (~1.65 MB each, 404 files) — loaded on demand |
 | `enthermal.json` | ~71 KB |
-| `enthermal-configurator.html` | ~125 KB |
+| `enthermal-configurator.html` | ~132 KB |
 
 Recommendations:
 - **Enable gzip/Brotli compression** for the JSON and HTML (compresses ~80–90%, cutting ~6 MB to well under 1 MB). WebP is already compressed — don't expect further gain there.
-- **The render library is large (~668 MB).** Consider a recompression pass on the high-res WebP, and/or hosting the renders on a CDN/separate assets repo if you approach a host's storage or bandwidth limit (e.g. GitHub Pages' 1 GB soft cap). See `Data_Pipeline/3_Clustering/CLUSTERING_PROCEDURE.md` Part 2.
+- **The render library is large (~668 MB).** If you approach a host's storage or bandwidth limit (e.g. GitHub Pages' 1 GB soft cap), move the renders to a CDN or a separate assets repo. **Do not solve this by recompressing them** — see gotcha #5; the renders are lossless by design and re-encoding them lossily shifts the exterior colors the tool exists to show. Serving fewer bytes is a hosting/CDN problem, not an image-quality tradeoff. See `Data_Pipeline/3_Clustering/CLUSTERING_PROCEDURE.md` Part 2.
 - **Set sensible Cache-Control headers** on the `App_Data/` and render assets (they change infrequently, and every render URL carries a content-derived `?v=` cache-buster that changes when a render batch is replaced — so long max-age is safe).
 
 ---

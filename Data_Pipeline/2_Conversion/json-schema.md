@@ -8,8 +8,10 @@ folder). Never hand-edit the output — change the CSV or the script and regener
 | File | Product | Rows | Glass panes |
 |---|---|---|---|
 | `App_Data/enthermal.json` | Enthermal (VIG) | 98 | 2 |
-| `App_Data/enthermal-plus-inboard.json` | Enthermal Plus (VIG inboard) | 4,748 | 3 |
-| `App_Data/enthermal-plus-outboard.json` | Enthermal Plus (VIG outboard) | 2,016 | 3 |
+| `App_Data/enthermal-plus-inboard.json` | Enthermal Plus (VIG inboard) | 4,470 | 3 |
+| `App_Data/enthermal-plus-outboard.json` | Enthermal Plus (VIG outboard) | 1,876 | 3 |
+
+Total 6,444 rows (07-07-26 dataset).
 
 Each file is a JSON array of objects. All numeric values are stored as numbers (or
 `null` when the source cell is blank), never as strings.
@@ -96,10 +98,36 @@ unknown token so new products fail loudly instead of silently mislabeling.
 | `extL` / `extA` / `extB` | number | — | Exterior Reflected Color CIE L\*a\*b\* |
 | `intL` / `intA` / `intB` | number | — | Interior Reflected Color CIE L\*a\*b\* |
 | `nfrc` | boolean | — | `true` if the row is an NFRC-rated configuration |
-| `cen` | boolean | — | `true` iff a Saint-Gobain coating sits on Surface 2 |
+| `cen` | boolean | — | `true` iff a Saint-Gobain coating is present **anywhere in the assembly** AND **no Vitro coating** is present — see *The CEN rule* below |
 | `gFactor` | number \| null | — | CEN solar factor (g); `null` when not provided |
 | `uvalCEN` | number \| null | W/m²K | U-value (CEN); `null` when not provided |
 | `cid` | integer | — | Color-cluster anchor id → exterior render `anchor_<cid>.webp`. **Not from the CSV** — injected by `3_Clustering/recluster_at_jnd.py`, which runs after `csv_to_json.py` and is the final writer of this JSON. See `../3_Clustering/CLUSTERING_PROCEDURE.md`. |
+
+---
+
+## The CEN rule
+
+`cen` is **maker-set based**, not surface based:
+
+```
+cen === (any coating on any lite is Saint-Gobain)  AND  (no coating on any lite is Vitro)
+```
+
+Saint-Gobain coatings: `LUMI`, `ZEN`, `SKN183`, `XTR6129`. Vitro coatings: `SB60`,
+`SB70`, `SB72`, `SBR67`. A Vitro coating **anywhere in the assembly blocks CEN** even
+when a Saint-Gobain coating is also present.
+
+Verified against the current dataset: **0 violations across all 6,444 rows.**
+
+> **The old "Saint-Gobain on Surface 2" form is wrong** and was corrected 2026-07-09.
+> It disagrees with the data on **636 rows** (428 inboard + 208 outboard) — configs
+> carrying a Saint-Gobain coating on S4/S5 with no Vitro present, which are `cen=true`
+> despite a non-SG S2. Anything still asserting the S2-only rule is stale.
+> See `../../Automated Test/TEST-PLAN.md` §2.6 for the executable gate.
+
+Counts per file: enthermal **19/98**, plus-inboard **752/4,470**, plus-outboard
+**366/1,876** (1,137 CEN rows of 6,444). Every row satisfies
+`gFactor != null ⟺ uvalCEN != null ⟺ cen`.
 
 ---
 

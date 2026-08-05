@@ -1,7 +1,7 @@
 # Glass Color Rendering — Current State
 
 > How the Enthermal™ Configurator shows exterior glass appearance in the **Exterior
-> Color** viz card. The card now shows a **per-configuration photoreal render**; the
+> Appearance** viz card. The card now shows a **per-configuration photoreal render**; the
 > earlier `labToRgb()` gradient and the interim static-sky placeholder are both gone.
 
 > **History:** two designs have been retired here. (1) A `labToRgb()` → CSS-gradient
@@ -14,7 +14,7 @@
 
 ## 1. What the card shows today
 
-The **Exterior Color** card (`viz-color`) displays a **per-configuration photoreal
+The **Exterior Appearance** card (`viz-color`) displays a **per-configuration photoreal
 render**, selected by the config's `cid` (1-based integer anchor id). Two sky variants are
 available via a toggle, all for the *same* config:
 
@@ -36,7 +36,7 @@ Key DOM / JS (`enthermal-configurator.html`):
 - `#colorRenderImg` — the `<img>`; `src` is set per config and swaps on weather toggle (≈ line 492)
 - `#skyToggle` / `.sky-toggle-option[data-img]` / `#skyThumb` — the weather toggle (≈ line 483)
 - `setAnchorImages(cid)` — repoints both sky options' `data-img` + the visible image for the current config (≈ line 673); called from `updateResults()` / the Plus updater on every config change
-- `#colorViewTitle` — header text, fixed to "Exterior Color"
+- `#colorViewTitle` — header text, fixed to "Exterior Appearance"
 
 ---
 
@@ -48,17 +48,42 @@ time (`Data_Pipeline/3_Clustering/recluster_at_jnd.py`). The front-end reads `ci
 directly — no runtime Lab-key string formatting, no `cluster_map.json` fetch:
 
 ```js
+// Cache-buster token — maintained by .githooks/sync_render_version.py, never by hand.
+var RENDER_V='?v=54e29159';
+
+function anchorUrl(folder,cid){
+  return 'App_Data/Anchor_Renders/'+folder+'/anchor_'+String(cid).padStart(2,'0')+'.webp'+RENDER_V;
+}
+
 function setAnchorImages(cid){
-  if(cid==null) return;                                   // keep last image rather than 404
-  var code = 'anchor_' + String(cid).padStart(2,'0');     // 1 -> anchor_01, 202 -> anchor_202
+  if(cid==null){                                          // honest failure, not a stale facade
+    console.error('setAnchorImages: config has no cid — showing render-unavailable state');
+    setRenderState('unavailable');
+    return;
+  }
+  var inactiveUrls=[];
   document.querySelectorAll('.sky-toggle-option').forEach(function(opt){
-    var folder = opt.getAttribute('data-folder') || opt.textContent.trim();  // Overcast | PartlyClear
-    opt.setAttribute('data-img', 'App_Data/Anchor_Renders/'+folder+'/'+code+'.webp');
+    var folder=opt.getAttribute('data-folder')||opt.textContent.trim(); // Overcast | PartlyClear
+    opt.setAttribute('data-img',anchorUrl(folder,cid));
+    if(!opt.classList.contains('active'))inactiveUrls.push(opt.getAttribute('data-img'));
   });
-  var active = document.querySelector('.sky-toggle-option.active');
-  if(active) document.getElementById('colorRenderImg').src = active.getAttribute('data-img');
+  // …sets #colorRenderImg.src from the active option, then background-preloads
+  // the inactive sky so the toggle is instant. See the file for the full body.
 }
 ```
+
+Three things in this function are load-bearing and easy to get wrong:
+
+- **A `null` cid is a failure, not a no-op.** An earlier build returned early and left
+  the previous config's façade on screen. That is exactly the wrong behavior — the card
+  would silently show another configuration's glass. It now logs and drops to the
+  `unavailable` state.
+- **Every URL carries `RENDER_V`.** Render batches replace `.webp` files under identical
+  names, so a JS-assigned `img.src` hits the HTTP cache and serves the old pixels even
+  after Ctrl+Shift+R. The token is content-derived and rewritten by the pre-commit hook —
+  never hand-edit it, never bypass the hook.
+- **The inactive sky is preloaded** on every config change, which is what makes the sky
+  toggle feel instant.
 
 The data card itself stays 1:1: the user always sees the **exact** optical numbers and Lab
 values for *their* selection from the JSON — only the *image* is shared across a cluster.
