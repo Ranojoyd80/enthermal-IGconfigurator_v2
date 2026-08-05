@@ -2,7 +2,7 @@
 
 > Run 3 of the UI regression suite, first run against the revised plan (07-07-26 dataset,
 > corrected CEN maker-set rule, extended §3a contract). Runner: Chrome DevTools MCP,
-> headed, `python serve.py`. Prior runs are documented in [TEST-REPORT.md](TEST-REPORT.md)
+> headed, `python serve.py`. Prior runs are documented in [TEST-REPORT-2026-04.md](TEST-REPORT-2026-04.md)
 > (historical record).
 
 ## Summary

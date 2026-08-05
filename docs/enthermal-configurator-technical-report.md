@@ -2,7 +2,11 @@
 
 ## 1. How Was This App Developed?
 
-The configurator was developed iteratively through a conversational AI-assisted workflow using Claude. Early versions (V1â€“V22) built out the core UI, cascade logic, cross-section diagrams, and metric cards. Subsequent work migrated the data layer from embedded JS arrays to external JSON files loaded via `fetch()`, expanded the product catalog from ~96 to ~6,862 configurations, and added features such as the CEN/NFRC standard toggle, Inboard/Outboard placement toggle, Air/Argon gas fill selector, and data-driven coating shortcodes.
+The configurator was developed iteratively through a conversational AI-assisted workflow using Claude. Early versions (V1â€“V22) built out the core UI, cascade logic, cross-section diagrams, and metric cards. Subsequent work migrated the data layer from embedded JS arrays to external JSON files loaded via `fetch()`, expanded the product catalog from ~96 to **6,444** configurations, and added features such as the CEN/NFRC standard toggle, Inboard/Outboard placement toggle, Air/Argon gas fill selector, and data-driven coating shortcodes.
+
+> **Row counts in this report** are the 07-07-26 dataset: **98 / 4,470 / 1,876 = 6,444**.
+> `Data_Pipeline/2_Conversion/json-schema.md` is the source of truth for schema and counts;
+> figures here are a summary of it, not an independent record.
 
 ### Development Timeline (Selected Milestones)
 
@@ -17,14 +21,14 @@ The configurator was developed iteratively through a conversational AI-assisted 
 | V21 | NFRC/CEN standard toggle, S4/S5 surface toggle redesigned as slider, OITC metric card, Embodied Carbon and IGU Weight info bar |
 | V22 | Centering bug fix â€” synchronous reflow (`void cs.offsetWidth`), S4/S5 opacity transitions |
 | Post-V22 | Migrated data from embedded JS arrays to external JSON files (`App_Data/*.json`). Stack-based data schema with `glass[]`, `vacuum`, `gas` layers. Coating shortcodes (C366, SB70, etc.) with display name lookups. |
-| Current | IG_Config dataset migration â€” 98 Enthermal + 4,748 Plus Inboard + 2,016 Plus Outboard rows. 14 coatings, 10 substrates. Inboard/Outboard placement toggle with separate cascade logic. Air/Argon gas fill toggle. CEN auto-flip with per-row `cen`/`gFactor`/`uvalCEN` fields. |
+| Current | IG_Config dataset migration â€” 98 Enthermal + 4,470 Plus Inboard + 1,876 Plus Outboard rows. 14 coatings, 10 substrates. Inboard/Outboard placement toggle with separate cascade logic. Air/Argon gas fill toggle. CEN auto-flip with per-row `cen`/`gFactor`/`uvalCEN` fields. |
 
 ### Data Validation
 
 All data is sourced from LBNL Windows 7 / PyWinCalc calculations and cross-checked against official LuxWall product data sheets:
 
 - **Enthermal (LW00041.6)**: 98 configurations across 14 coatings and 10 substrates â€” 98%+ match rate.
-- **Enthermal Plus (LW00054.4)**: 6,764 configurations across Inboard and Outboard placement modes â€” validated via automated test suite (51 configs, 3 stress tests, 0 failures).
+- **Enthermal Plus (LW00054.4)**: 6,346 configurations across Inboard and Outboard placement modes â€” validated via automated test suite (latest run 2026-07-11: 64 cases, 3 stress tests, 20 pre-flight gates, 0 failures).
 
 ---
 
@@ -44,7 +48,7 @@ All data is sourced from LBNL Windows 7 / PyWinCalc calculations and cross-check
 ### File Structure
 
 ```
-enthermal-configurator.html    â€” ~125 KB
+enthermal-configurator.html    â€” ~132 KB
 â”œâ”€â”€ <style>     â€” CSS (design tokens + component styles)
 â”œâ”€â”€ <body>      â€” semantic HTML
 â””â”€â”€ <script>    â€” named functions + IIFEs (vanilla ES6)
@@ -75,7 +79,11 @@ App_Data/
 
 ### JavaScript Architecture
 
-43 named functions + 3 IIFEs organized into five concerns:
+~73 named functions + several IIFEs, organized into five concerns. The tables below
+cover the principal functions per concern and are **not** a complete inventory â€” the
+file has grown since they were written (render state machine, preloading, summary
+name helpers, and the coating-dropdown attention ring are among the additions).
+Search by name in the file for the authoritative list.
 
 **Data & Display Helpers (9 functions)**
 
@@ -141,7 +149,7 @@ App_Data/
 
 **Layout (4 functions):** `centerCrossSection()`, `centerPlusCrossSection()`, `alignCrossSection()`, `alignPlusCrossSection()`
 
-**Toggle IIFEs (3 closures)**
+**Toggle IIFEs (6 closures)**
 
 | IIFE | Purpose |
 |------|---------|
@@ -166,12 +174,26 @@ Invalid options are visually disabled (35% opacity, `not-allowed` cursor). For i
 
 ### CEN/NFRC Standard Toggle
 
-The toggle auto-flips based on the matched data row's `cen` field. CEN-enabled coatings (LUMI, ZEN, SKN183, XTR6129) have per-row `gFactor` and `uvalCEN` values. When CEN is active:
+The toggle **defaults** to the matched data row's `cen` field on every row change.
+
+`cen` follows the **maker-set rule** (corrected 2026-07-09): a Saint-Gobain coating
+(LUMI, ZEN, SKN183, XTR6129) is present **anywhere in the assembly** AND **no Vitro
+coating** (SB60, SB70, SB72, SBR67) is present â€” a Vitro coating anywhere blocks CEN
+even when Saint-Gobain is also present. CEN rows carry per-row `gFactor` and `uvalCEN`
+values. (The older "Saint-Gobain on Surface 2" formulation is wrong for the current
+data â€” it disagrees on 636 rows. See `Data_Pipeline/2_Conversion/json-schema.md`.)
+
+When CEN is shown:
 - U-value displays `uvalCEN` instead of `uval`
 - SHGC displays `gFactor`, label changes to "g-Factor"
 - U-Factor (IP) and R-value show "â€”"
 - The acoustic card shows R<sub>w</sub> (its value populated) while the OITC value blanks to "â€”"; in NFRC mode it's the reverse
-- Toggle is always locked (user cannot manually override)
+- Embodied carbon switches scope to cradle-to-grave, and the IGU weight unit switches to kg/mÂ² (NFRC reports lb/ftÂ²)
+
+**Toggle enablement:** on CEN-capable rows the toggle is **enabled** â€” the user may flip
+to NFRC and back, and a manual flip survives same-row re-renders via `stdUserFlip`. On
+non-CEN rows it is **disabled and forced to NFRC**. (It was locked in both directions in
+an earlier build; that is no longer the behavior.)
 
 ---
 
@@ -179,7 +201,7 @@ The toggle auto-flips based on the matched data row's `cen` field. CEN-enabled c
 
 ### Storage Method
 
-Data is stored in **three external JSON files** loaded at startup via `Promise.all()` with `fetch()`. The three datasets total approximately 6,862 configurations.
+Data is stored in **three external JSON files** loaded at startup via `Promise.all()` with `fetch()`. The three datasets total **6,444** configurations.
 
 ### Data Source
 
@@ -193,9 +215,9 @@ Promise.all([
   fetch('App_Data/enthermal-plus-inboard.json').then(r => r.json()),
   fetch('App_Data/enthermal-plus-outboard.json').then(r => r.json())
 ]).then(results => {
-  DATA = results[0];           // 98 rows
-  DATA_PLUS_IN = results[1];   // 4,748 rows
-  DATA_PLUS_OUT = results[2];  // 2,016 rows
+  DATA = results[0];
+  DATA_PLUS_IN = results[1];
+  DATA_PLUS_OUT = results[2];
   postProcessData();
   dataLoaded = true;
 });
@@ -203,46 +225,36 @@ Promise.all([
 
 ### Stack-Based Schema (all datasets)
 
-Each record contains a `stack` array of layers plus performance metrics:
-
-**Stack layers:**
-
-| Layer type | Fields | Example |
-|-----------|--------|---------|
-| `glass` | `coating`, `substrate`, `thickness` | `{"type":"glass","coating":"C366","substrate":"Clear","thickness":6}` |
-| `vacuum` | `thickness` | `{"type":"vacuum","thickness":0.25}` |
-| `gas` | `gasType`, `thickness` | `{"type":"gas","gasType":"Ar90","thickness":13.45}` |
+Each record contains a `stack` array of layers (three types: `glass` with
+`coating`/`substrate`/`thickness`, `gas` with `gasType`/`thickness`, and `vacuum` with
+`thickness`), plus flat scalar metrics and colors. Layers are in optical order,
+exterior â†’ interior:
 
 **Enthermal stack:** `[glass, vacuum, glass]` (2 panes)
 **Plus Inboard stack:** `[glass(mono), gas, glass(VIG outer), vacuum, glass(VIG inner)]` (3 panes)
 **Plus Outboard stack:** `[glass(VIG outer), vacuum, glass(VIG inner), gas, glass(mono)]` (3 panes)
 
-**Performance metrics (all rows):**
+> **Full field reference:
+> [`Data_Pipeline/2_Conversion/json-schema.md`](../Data_Pipeline/2_Conversion/json-schema.md).**
+> That file is the source of truth for every scalar field, its type and unit, the `cid`
+> anchor id, and the CEN rule. It is generated-artifact documentation kept next to the
+> generator, so it moves when the schema moves. The per-field table that used to be
+> duplicated here has been removed rather than maintained in two places â€” it had already
+> drifted (stale CEN semantics, missing `cid`).
 
-| Field | Type | Description | Example |
-|-------|------|-------------|---------|
-| `totalThickness` | float | Overall IGU thickness in mm | `25.4` |
-| `uval` | float | U-value in W/mÂ²Â·K (NFRC) | `0.2391` |
-| `uvalIP` | float | U-value in BTU/hrÂ·ftÂ²Â·Â°F | `0.0421` |
-| `rval` | float | R-value (insulation) | `23.75` |
-| `shgc` | float | Solar Heat Gain Coefficient (0â€“1) | `0.1777` |
-| `tvis` | float | Visible Light Transmittance (0â€“1) | `0.4612` |
-| `routVis` | float | Exterior Visible Reflectance (0â€“1) | `0.1266` |
-| `tuv` | float | UV Transmittance (0â€“1) | `0.0045` |
-| `nfrc` | bool | Has NFRC values | `true` |
-| `cen` | bool | Has CEN values | `false` |
-| `gFactor` | float\|null | CEN g-Factor (null if NFRC-only) | `0.637426` |
-| `uvalCEN` | float\|null | CEN U-value (null if NFRC-only) | `0.411255` |
-| `extL`, `extA`, `extB` | float | Exterior reflected color CIE L\*a\*b\* | `42.22, -2.0, -3.67` |
-| `intL`, `intA`, `intB` | float | Interior transmitted color CIE L\*a\*b\* | `44.4, -0.25, -0.79` |
-
-**Derived fields** (computed by `postProcessData()` at runtime):
+**Derived fields** (attached to each row by `postProcessData()` at runtime â€” not present
+in the JSON on disk):
 - `glass[]` â€” array of glass-type layers extracted from `stack`
 - `gasType` â€” gas fill type (`"Ar90"` or `"Air"`) from gas layer
 - `secondCoating` â€” the non-S2 coating (Plus only)
 - `secondSurface` â€” `"S4"` or `"S5"` based on which glass pane holds the second coating
 
 ### Configuration Coverage
+
+*(Row and CEN counts below are a summary of
+[json-schema.md](../Data_Pipeline/2_Conversion/json-schema.md); the executable check on
+them is `Automated Test/preflight.py`, which aborts the regression suite on any
+deviation.)*
 
 **Enthermal** (98 configs):
 - 14 coatings: Cardinal (C180, C270, C272, C340, C366, Q452), Vitro (SB60, SB70, SB72, SBR67), Saint-Gobain (SKN183, XTR6129, LUMI, ZEN)
@@ -251,18 +263,18 @@ Each record contains a `stack` array of layers plus performance metrics:
 - 3 inner thicknesses: 4mm, 5mm, 6mm (constrained by outer selection)
 - 19 CEN-enabled rows (LUMI, ZEN, SKN183, XTR6129 coatings)
 
-**Enthermal Plus Inboard** (4,748 configs):
+**Enthermal Plus Inboard** (4,470 configs):
 - 3 pane configuration: mono outboard + argon gap + VIG (2-pane)
-- VIG thickness combos: 4/4, 5/4, 5/5, 6/5, 6/6 mm
+- VIG thickness combos: 4/4, 5/4, 5/5, 6/5, 6/6 mm (**no 6/4** in inboard)
 - S4/S5 surface toggle for second coating placement
 - Gas fill: 90% Argon or 100% Air
-- 724 CEN-enabled rows
+- 752 CEN-enabled rows
 
-**Enthermal Plus Outboard** (2,016 configs):
+**Enthermal Plus Outboard** (1,876 configs):
 - 3 pane configuration: VIG (2-pane) + argon gap + mono inboard
-- Same VIG thickness combos and gas fill options
-- Surface always S5 (toggle disabled)
-- 358 CEN-enabled rows
+- All six VIG thickness combos (incl. 6/4) and the same gas fill options
+- Surface always S5 (Coating Surface field hidden, hidden radio forced to S5)
+- 366 CEN-enabled rows
 
 ### Color Rendering (current state)
 
@@ -339,20 +351,24 @@ Enthermal Plus):
 
 ## 5. How Can This App Be Hosted on a Website?
 
+> **Deploying? Read [HOSTING.md](../HOSTING.md) first.** This section surveys hosting
+> *options*; HOSTING.md is the operational handoff and carries the six critical gotchas
+> that are not repeated here â€” `App_Data/` must ship alongside the HTML, no `file://`,
+> case-sensitive paths, no lossy image optimization on the renders, and asset query
+> strings must pass through. Deploying from this section alone will produce a blank app.
+
 ### Option A: Static File Hosting (Simplest)
 
-Since the app is a single HTML file with no server-side requirements, it can be hosted on any static file server:
+The app is fully static â€” no Node.js, no PHP, no database â€” so any static host works:
+S3 + CloudFront, Netlify, Vercel, GitHub Pages, Azure Static Web Apps, or a plain
+IIS/Apache/Nginx directory. **Deployment is two items:** `enthermal-configurator.html`
+and the `App_Data/` folder, with folder structure and casing preserved.
 
-| Platform | Deployment Method | Cost |
-|----------|------------------|------|
-| **AWS S3 + CloudFront** | Upload file to S3 bucket, serve via CloudFront CDN | ~$1/month |
-| **Netlify** | Drag-and-drop deploy or Git integration | Free tier available |
-| **Vercel** | Git push to deploy | Free tier available |
-| **GitHub Pages** | Push to repo, enable Pages | Free |
-| **Azure Static Web Apps** | Git integration or CLI deploy | Free tier available |
-| **Company web server** | Upload to existing IIS/Apache/Nginx server | Existing infrastructure |
-
-**Deployment is two items** â€” upload `enthermal-configurator.html` and the `App_Data/` folder. No Node.js, no PHP, no database server.
+**The deployment procedure, folder layout, gotchas, performance notes, and open
+questions for the hosting team all live in [HOSTING.md](../HOSTING.md)** â€” that is the
+handoff document, and it is the one to send to whoever deploys this. The platform
+comparison that used to be duplicated here has been removed in favor of that single
+source; the options below (B and C) are the ones HOSTING.md does *not* cover.
 
 ### Option B: Embed in Existing LuxWall Website
 

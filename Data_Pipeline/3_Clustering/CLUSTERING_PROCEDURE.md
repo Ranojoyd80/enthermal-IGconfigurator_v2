@@ -235,20 +235,25 @@ A user always sees the **exact** optical numbers (`uval`, `routVis`, `tvis`, Lab
 
 [CLAUDE.md](../../CLAUDE.md) forbids hand-editing `App_Data/*.json`, but the clustering script *is* the generator of that JSON, so it injects a 1-based integer **`cid`** onto every record at build time. The front-end reads `cid` directly:
 
-```js
-// enthermal-configurator.html — setAnchorImages()
-function setAnchorImages(cid){
-  if(cid==null) return;                                  // keep last image rather than 404
-  var code = 'anchor_' + String(cid).padStart(2,'0');    // 1 -> anchor_01, 202 -> anchor_202
-  document.querySelectorAll('.sky-toggle-option').forEach(function(opt){
-    var folder = opt.getAttribute('data-folder') || opt.textContent.trim();  // Overcast | PartlyClear
-    opt.setAttribute('data-img', 'App_Data/Anchor_Renders/'+folder+'/'+code+'.webp');
-  });
-  var active = document.querySelector('.sky-toggle-option.active');
-  if(active) document.getElementById('colorRenderImg').src = active.getAttribute('data-img');
-}
+The contract this document is responsible for is the **naming and numbering**, which the
+clustering step defines:
+
 ```
-`setAnchorImages(match.cid)` is called whenever the configuration changes; the sky toggle and zoom lightbox both read `data-img`. The 1-based `cid` needs no code change here (`padStart(2,'0')` already yields `anchor_01`).
+cid N  →  anchor_<N zero-padded to ≥2>.webp   →  App_Data/Anchor_Renders/<Sky>/…
+cid 1  →  anchor_01.webp        cid 202 →  anchor_202.webp        (no anchor_00)
+```
+
+`setAnchorImages(match.cid)` in `enthermal-configurator.html` resolves that path whenever
+the configuration changes; the sky toggle and zoom lightbox both read the `data-img` it
+writes. 1-based `cid`s needed no app-side change (`padStart(2,'0')` already yields
+`anchor_01`). Every URL additionally carries `RENDER_V`, the content-derived `?v=`
+cache-buster maintained by the `.githooks/sync_render_version.py` pre-commit hook.
+
+> **The app-side implementation is documented in
+> [docs/color-rendering.md](../../docs/color-rendering.md)** — the function body, the
+> null-`cid` failure contract, the preloading, and the render state machine. It is not
+> reproduced here; a second copy of that code drifted out of sync once already and
+> documented a behavior (`if(cid==null) return`) that had been deliberately removed.
 
 ## Asset layout & the sky toggle (target)
 
@@ -258,7 +263,7 @@ App_Data/Anchor_Renders/
   Overcast/    anchor_01.webp … anchor_202.webp   (202)   ← default
   PartlyClear/ anchor_01.webp … anchor_202.webp   (202)
 ```
-There is **no `anchor_00`** under 1-based numbering. The **Exterior Color** card's pill toggle is **two** options (Overcast / Partly Clear, default Overcast). The folder is space-free (`PartlyClear`); the toggle shows "Partly Clear" as the display label and resolves the folder via each option's `data-folder` attribute.
+There is **no `anchor_00`** under 1-based numbering. The **Exterior Appearance** card's pill toggle is **two** options (Overcast / Partly Clear, default Overcast). The folder is space-free (`PartlyClear`); the toggle shows "Partly Clear" as the display label and resolves the folder via each option's `data-folder` attribute.
 
 **Done for Part 2 (July 2026):**
 1. Rendered the 202 anchors × 2 skies (frame N = cid N); Overcast = Overcast/Exp090, Partly Clear = ClearSky/Exp075.
@@ -269,7 +274,10 @@ There is **no `anchor_00`** under 1-based numbering. The **Exterior Color** card
 
 - **Format:** WebP — universal support, already compressed.
 - **Hosting:** renders ship **in-repo** under `App_Data/Anchor_Renders/`, loaded via relative paths (same `fetch()`/HTTP requirement as the rest of the app; no `file://`). Only one render is fetched at a time (current config × active sky).
-- **If this becomes a public high-traffic tool:** move the asset set to a CDN and point the `data-img` base at it. Version by **path segment** (`/renders/v3/…`), never a query string (query strings defeat edge caching).
+- **Cache-busting (shipped):** every render URL carries a content-derived `?v=<hash>` query string, rewritten by the `.githooks/sync_render_version.py` pre-commit hook whenever the contents of `App_Data/Anchor_Renders/` change. This is what makes a replaced render batch impossible to mask with a stale browser cache. Hosts must **pass query strings through to the origin and include them in the cache key** — see [HOSTING.md](../../HOSTING.md) gotcha #6.
+- **If this becomes a public high-traffic tool:** move the asset set to a CDN and point the `data-img` base at it. Any CDN chosen must honor the query string as part of the cache key (all major CDNs do; some require enabling it). Adding a `/renders/v3/…` path segment on top is optional and orthogonal — it does not replace the `?v=` token, which is generated automatically and is what the app actually relies on.
+
+  > An earlier revision of this document said to version by path segment and "never a query string." That advice predates the pre-commit hook and contradicts the shipped app and HOSTING.md — it has been removed.
 
 ## Open items
 
