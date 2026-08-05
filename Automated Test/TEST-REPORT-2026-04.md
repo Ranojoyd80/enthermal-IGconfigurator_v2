@@ -1,4 +1,4 @@
-# Test Report — Enthermal Configurator UI Regression
+# Test Report — 2026-04-12 & 2026-04-14 — app commits 999cd6f / 45fc962
 
 > **Historical record — do not rewrite.** This documents two runs against specific
 > past commits (999cd6f on 2026-04-12, 45fc962 on 2026-04-14) and reflects the app
